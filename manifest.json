@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Gemini Folders",
+  "version": "1.1",
+  "description": "Organisez vos conversations Gemini dans des dossiers personnalisés.",
+  "permissions": ["activeTab", "storage"],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Dossiers Gemini",
+    "default_icon": "icon.png"
+  },
+  "host_permissions": [
+    "*://gemini.google.com/*"
+  ]
+}

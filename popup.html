@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    /* Variables dynamiques pour le mode Clair (par défaut) */
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+      --border-color: #cccccc;
+      --folder-bg: #f8f9fa;
+      --folder-hover: #e8eaed;
+      --accent-color: #1a73e8; /* Bleu Gemini par défaut */
+      --delete-color: #d93025;
+      --input-bg: #ffffff;
+      --muted-text: #777777;
+    }
+
+    /* Détection automatique du mode Sombre de ton navigateur */
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg-color: #202124;
+        --text-color: #e8eaed;
+        --border-color: #5f6368;
+        --folder-bg: #303134;
+        --folder-hover: #3c4043;
+        --accent-color: #8ab4f8; /* Bleu plus clair pour ressortir */
+        --delete-color: #f28b82;
+        --input-bg: #202124;
+        --muted-text: #9aa0a6;
+      }
+    }
+
+    /* Utilisation de la couleur de thème du système si le navigateur le permet */
+    @supports (color: AccentColor) {
+      :root {
+        --accent-color: AccentColor;
+      }
+    }
+
+    /* Application du style dynamique */
+    body { font-family: Arial, sans-serif; width: 340px; padding: 12px; margin: 0; background-color: var(--bg-color); color: var(--text-color); transition: all 0.2s; }
+    
+    h3 { margin-top: 0; color: var(--accent-color); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;}
+    h3 img { width: 20px; height: 20px; } /* Pour la petite icône dans le titre */
+
+    input { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--input-bg); color: var(--text-color); }
+    input:focus { outline: 2px solid var(--accent-color); border-color: transparent; }
+    
+    #searchInput { border-color: var(--accent-color); margin-bottom: 15px; border-width: 2px; }
+    
+    button.main-btn { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; border: none; border-radius: 4px; background-color: var(--accent-color); color: #fff; cursor: pointer; font-weight: bold; margin-top: 5px; opacity: 0.9;}
+    button.main-btn:hover { opacity: 1; filter: brightness(1.1); }
+    
+    #status { color: #34a853; font-size: 12px; display: none; margin-bottom: 10px; text-align: center; font-weight: bold; }
+    hr { border: 0; border-top: 1px solid var(--border-color); margin: 5px 0 15px 0; }
+
+    .folder { margin-top: 5px; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; }
+    .folder-header { display: flex; align-items: center; cursor: pointer; background: var(--folder-bg); padding: 8px 10px; transition: background 0.2s; }
+    .folder-header:hover { background: var(--folder-hover); }
+    .folder-name { font-weight: bold; flex-grow: 1; font-size: 14px; color: var(--text-color); }
+    .folder-icon { margin-right: 6px; }
+    
+    .folder-content { display: none; padding: 8px 10px; background: var(--bg-color); border-top: 1px solid var(--border-color); }
+    .chat-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .chat-item:last-child { margin-bottom: 0; }
+    .chat-link { font-size: 12px; color: var(--accent-color); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; margin-right: 8px; }
+    .chat-link:hover { text-decoration: underline; }
+    
+    .chat-actions { display: flex; gap: 4px; flex-shrink: 0; }
+    .action-btn { cursor: pointer; border: none; background: none; padding: 2px 4px; border-radius: 3px; font-size: 11px; opacity: 0.7; }
+    .action-btn:hover { opacity: 1; background: var(--folder-hover); }
+    .delete-btn { color: var(--delete-color); }
+    
+    #noResults { text-align: center; color: var(--muted-text); margin-top: 15px; font-size: 13px; display: none; }
+    
+    .footer-actions { margin-top: 15px; display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border-color); padding-top: 10px; }
+    .secondary-btn { flex: 1; background: var(--folder-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; transition: all 0.2s; }
+    .secondary-btn:hover { background: var(--folder-hover); }
+  </style>
+</head>
+<body>
+  <h3><img src="icon.svg" alt="logo"> Dossiers Gemini</h3>
+  
+  <input type="text" id="searchInput" placeholder="🔍 Rechercher une conversation...">
+  <hr>
+  
+  <input type="text" id="folderName" placeholder="Nom du dossier (ex: Projets Code)">
+  <input type="text" id="chatTitle" placeholder="Titre de la conversation">
+  
+  <button id="saveBtn" class="main-btn">Sauvegarder</button>
+  <div id="status">Conversation sauvegardée !</div>
+  
+  <div id="folderList"></div>
+  <div id="noResults">Aucun résultat trouvé 🕵️</div>
+
+  <div class="footer-actions">
+    <button id="exportBtn" class="secondary-btn">💾 Exporter</button>
+    <button id="importBtn" class="secondary-btn">📂 Importer</button>
+    <input type="file" id="importFile" accept=".json" style="display: none;">
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
