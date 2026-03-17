@@ -1,9 +1,21 @@
 document.addEventListener('DOMContentLoaded', async () => {
+  // --- NOUVEAU : Traduction de l'interface ---
+  document.getElementById('appTitle').textContent = chrome.i18n.getMessage("appTitle");
+  document.getElementById('searchInput').placeholder = chrome.i18n.getMessage("searchPlaceholder");
+  document.getElementById('folderName').placeholder = chrome.i18n.getMessage("folderPlaceholder");
+  document.getElementById('chatTitle').placeholder = chrome.i18n.getMessage("chatPlaceholder");
+  document.getElementById('saveBtn').textContent = chrome.i18n.getMessage("saveBtn");
+  document.getElementById('status').textContent = chrome.i18n.getMessage("statusSaved");
+  document.getElementById('noResults').textContent = chrome.i18n.getMessage("noResults");
+  document.getElementById('exportBtn').textContent = chrome.i18n.getMessage("exportBtn");
+  document.getElementById('importBtn').textContent = chrome.i18n.getMessage("importBtn");
+  // -------------------------------------------
+
   const folderList = document.getElementById('folderList');
   const saveBtn = document.getElementById('saveBtn');
   const exportBtn = document.getElementById('exportBtn');
-  const importBtn = document.getElementById('importBtn'); // Nouveau bouton
-  const importFile = document.getElementById('importFile'); // Champ de fichier caché
+  const importBtn = document.getElementById('importBtn');
+  const importFile = document.getElementById('importFile');
   const folderNameInput = document.getElementById('folderName');
   const chatTitleInput = document.getElementById('chatTitle');
   const searchInput = document.getElementById('searchInput');
@@ -14,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
   if (currentTab && currentTab.url.includes("gemini.google.com")) {
     let cleanTitle = currentTab.title.replace(" - Gemini", "").replace("Google Gemini", "").trim();
-    chatTitleInput.value = cleanTitle || "Nouvelle conversation";
+    chatTitleInput.value = cleanTitle || chrome.i18n.getMessage("defaultTitle");
   }
 
   displayFolders();
@@ -29,29 +41,29 @@ document.addEventListener('DOMContentLoaded', async () => {
   saveBtn.addEventListener('click', async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab.url.includes("gemini.google.com")) {
-      alert("Veuillez utiliser cette extension sur une page Gemini.");
+      alert(chrome.i18n.getMessage("alertNotGemini"));
       return;
     }
 
-    const folderName = folderNameInput.value.trim() || "Général";
-    const finalChatTitle = chatTitleInput.value.trim() || "Conversation sans titre"; 
+    const folderName = folderNameInput.value.trim() || chrome.i18n.getMessage("defaultFolder");
+    const finalChatTitle = chatTitleInput.value.trim() || chrome.i18n.getMessage("defaultTitle");
     const chatUrl = tab.url;
 
     chrome.storage.sync.get({ folders: {} }, (data) => {
       let folders = data.folders;
       if (!folders[folderName]) folders[folderName] = [];
-      
+
       const isDuplicate = folders[folderName].some(chat => chat.url === chatUrl);
       if (!isDuplicate) {
         folders[folderName].push({ title: finalChatTitle, url: chatUrl });
       }
 
       chrome.storage.sync.set({ folders: folders }, () => {
-        folderNameInput.value = ""; 
-        searchInput.value = ""; 
+        folderNameInput.value = "";
+        searchInput.value = "";
         statusDiv.style.display = "block";
         setTimeout(() => { statusDiv.style.display = "none"; }, 2000);
-        displayFolders(folderName); 
+        displayFolders(folderName);
       });
     });
   });
@@ -60,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   exportBtn.addEventListener('click', () => {
     chrome.storage.sync.get({ folders: {} }, (data) => {
       if (Object.keys(data.folders).length === 0) {
-        alert("Vos dossiers sont vides, rien à exporter !");
+        alert(chrome.i18n.getMessage("alertEmptyExport"));
         return;
       }
       const dataString = JSON.stringify(data.folders, null, 2);
@@ -76,13 +88,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 3. Importer (NOUVEAU)
-  // Quand on clique sur le bouton, ça déclenche le champ de fichier caché
+  // 3. Importer
   importBtn.addEventListener('click', () => {
     importFile.click();
   });
 
-  // Quand un fichier est sélectionné
   importFile.addEventListener('change', (event) => {
     const file = event.target.files[0];
     if (!file) return;
@@ -91,41 +101,32 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.onload = (e) => {
       try {
         const importedData = JSON.parse(e.target.result);
-        
-        // Vérification basique du format
         if (typeof importedData !== 'object' || importedData === null) {
-          throw new Error("Format de fichier invalide");
+          throw new Error("Invalid Format");
         }
 
         chrome.storage.sync.get({ folders: {} }, (data) => {
           let currentFolders = data.folders;
 
-          // Fusion intelligente
           for (const [folderName, chats] of Object.entries(importedData)) {
-            if (!currentFolders[folderName]) {
-              currentFolders[folderName] = [];
-            }
-            
-            // On ajoute uniquement si le lien n'existe pas déjà dans ce dossier
+            if (!currentFolders[folderName]) currentFolders[folderName] = [];
             chats.forEach(importedChat => {
               if (importedChat.title && importedChat.url) {
                 const isDuplicate = currentFolders[folderName].some(chat => chat.url === importedChat.url);
-                if (!isDuplicate) {
-                  currentFolders[folderName].push(importedChat);
-                }
+                if (!isDuplicate) currentFolders[folderName].push(importedChat);
               }
             });
           }
 
           chrome.storage.sync.set({ folders: currentFolders }, () => {
-            alert("Importation réussie ! Tes données ont été fusionnées avec succès.");
-            importFile.value = ""; // Réinitialiser le champ pour pouvoir réimporter plus tard
+            alert(chrome.i18n.getMessage("alertImportSuccess"));
+            importFile.value = "";
             displayFolders();
           });
         });
 
       } catch (error) {
-        alert("Erreur lors de l'importation. Assure-toi qu'il s'agit bien d'un fichier JSON valide généré par cette extension.");
+        alert(chrome.i18n.getMessage("alertImportError"));
         importFile.value = "";
       }
     };
@@ -143,17 +144,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         const folderMatches = folderName.toLowerCase().includes(searchTerm);
         const matchingChats = chats.filter(chat => chat.title.toLowerCase().includes(searchTerm));
 
-        if (searchTerm && !folderMatches && matchingChats.length === 0) continue; 
-        
+        if (searchTerm && !folderMatches && matchingChats.length === 0) continue;
         hasResults = true;
 
         const folderDiv = document.createElement('div');
         folderDiv.className = 'folder';
-        
+
         const folderHeader = document.createElement('div');
         folderHeader.className = 'folder-header';
         folderHeader.innerHTML = `<span class="folder-icon">📁</span><div class="folder-name">${folderName}</div>`;
-        
+
         const folderContent = document.createElement('div');
         folderContent.className = 'folder-content';
 
@@ -162,7 +162,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         folderHeader.addEventListener('click', () => {
-          folderNameInput.value = folderName; 
+          folderNameInput.value = folderName;
           const isOpen = folderContent.style.display === 'block';
           folderContent.style.display = isOpen ? 'none' : 'block';
         });
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         let appendedChatsCount = 0;
 
         chats.forEach((chat, index) => {
-          if (searchTerm && !chat.title.toLowerCase().includes(searchTerm) && !folderMatches) return; 
+          if (searchTerm && !chat.title.toLowerCase().includes(searchTerm) && !folderMatches) return;
 
           appendedChatsCount++;
           const chatItem = document.createElement('div');
@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           link.className = 'chat-link';
           link.href = chat.url;
           link.target = '_blank';
-          link.title = chat.title; 
+          link.title = chat.title;
           link.textContent = `↳ ${chat.title}`;
 
           const actionsDiv = document.createElement('div');
@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           const editBtn = document.createElement('button');
           editBtn.className = 'action-btn edit-btn';
           editBtn.innerHTML = '✏️';
-          editBtn.title = 'Renommer';
+          editBtn.title = chrome.i18n.getMessage("btnRename");
           editBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             renameChat(folderName, index, chat.title);
@@ -198,9 +198,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           const delBtn = document.createElement('button');
           delBtn.className = 'action-btn delete-btn';
           delBtn.innerHTML = '❌';
-          delBtn.title = 'Supprimer';
+          delBtn.title = chrome.i18n.getMessage("btnDelete");
           delBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); 
+            e.stopPropagation();
             deleteChat(folderName, index);
           });
 
@@ -213,9 +213,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         folderDiv.appendChild(folderHeader);
-        if (appendedChatsCount > 0) {
-          folderDiv.appendChild(folderContent);
-        }
+        if (appendedChatsCount > 0) folderDiv.appendChild(folderContent);
         folderList.appendChild(folderDiv);
       }
 
@@ -225,12 +223,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 5. Renommer
   function renameChat(folderName, index, currentTitle) {
-    const newTitle = prompt("Nouveau nom de la conversation :", currentTitle);
+    const newTitle = prompt(chrome.i18n.getMessage("promptRename"), currentTitle);
     if (newTitle !== null && newTitle.trim() !== "") {
       chrome.storage.sync.get({ folders: {} }, (data) => {
         data.folders[folderName][index].title = newTitle.trim();
         chrome.storage.sync.set({ folders: data.folders }, () => {
-          displayFolders(folderName, searchInput.value.toLowerCase()); 
+          displayFolders(folderName, searchInput.value.toLowerCase());
         });
       });
     }
@@ -240,9 +238,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   function deleteChat(folderName, index) {
     chrome.storage.sync.get({ folders: {} }, (data) => {
       data.folders[folderName].splice(index, 1);
-      if (data.folders[folderName].length === 0) {
-        delete data.folders[folderName];
-      }
+      if (data.folders[folderName].length === 0) delete data.folders[folderName];
       chrome.storage.sync.set({ folders: data.folders }, () => {
         displayFolders(folderName, searchInput.value.toLowerCase()); 
       });

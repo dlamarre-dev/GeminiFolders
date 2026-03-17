@@ -80,23 +80,23 @@
   </style>
 </head>
 <body>
-  <h3><img src="icon.svg" alt="logo"> Dossiers Gemini</h3>
-  
-  <input type="text" id="searchInput" placeholder="🔍 Rechercher une conversation...">
+  <h3><img src="icon.svg" alt="logo"> <span id="appTitle"></span></h3>
+
+  <input type="text" id="searchInput">
   <hr>
-  
-  <input type="text" id="folderName" placeholder="Nom du dossier (ex: Projets Code)">
-  <input type="text" id="chatTitle" placeholder="Titre de la conversation">
-  
-  <button id="saveBtn" class="main-btn">Sauvegarder</button>
-  <div id="status">Conversation sauvegardée !</div>
-  
+
+  <input type="text" id="folderName">
+  <input type="text" id="chatTitle">
+
+  <button id="saveBtn" class="main-btn"></button>
+  <div id="status"></div>
+
   <div id="folderList"></div>
-  <div id="noResults">Aucun résultat trouvé 🕵️</div>
+  <div id="noResults"></div>
 
   <div class="footer-actions">
-    <button id="exportBtn" class="secondary-btn">💾 Exporter</button>
-    <button id="importBtn" class="secondary-btn">📂 Importer</button>
+    <button id="exportBtn" class="secondary-btn"></button>
+    <button id="importBtn" class="secondary-btn"></button>
     <input type="file" id="importFile" accept=".json" style="display: none;">
   </div>
 

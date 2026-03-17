@@ -1,0 +1,22 @@
+{
+  "extName": { "message": "Dossiers Gemini" },
+  "extDesc": { "message": "Organisez vos conversations Gemini dans des dossiers personnalisés." },
+  "appTitle": { "message": "Dossiers Gemini" },
+  "searchPlaceholder": { "message": "🔍 Rechercher une conversation..." },
+  "folderPlaceholder": { "message": "Nom du dossier (ex: Projets Code)" },
+  "chatPlaceholder": { "message": "Titre de la conversation" },
+  "saveBtn": { "message": "Sauvegarder" },
+  "statusSaved": { "message": "Conversation sauvegardée !" },
+  "noResults": { "message": "Aucun résultat trouvé 🕵️" },
+  "exportBtn": { "message": "💾 Exporter" },
+  "importBtn": { "message": "📂 Importer" },
+  "alertNotGemini": { "message": "Veuillez utiliser cette extension sur une page Gemini." },
+  "defaultFolder": { "message": "Général" },
+  "defaultTitle": { "message": "Nouvelle conversation" },
+  "promptRename": { "message": "Nouveau nom de la conversation :" },
+  "alertEmptyExport": { "message": "Vos dossiers sont vides, rien à exporter !" },
+  "alertImportSuccess": { "message": "Importation réussie ! Tes données ont été fusionnées avec succès." },
+  "alertImportError": { "message": "Erreur lors de l'importation. Assure-toi qu'il s'agit bien d'un fichier JSON valide généré par cette extension." },
+  "btnRename": { "message": "Renommer" },
+  "btnDelete": { "message": "Supprimer" }
+}
