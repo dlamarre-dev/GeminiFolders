@@ -1,7 +1,7 @@
 # 📁 Gemini Folders - Chrome Extension
 
-![Gemini Folders Hero Image](_Marketing/PromoEn.png) 
-
+![Gemini Folders Hero Image](Marketing/PromoEn.png) 
+*(Note: Create an 'images' folder in your repo and add your screenshot here)*
 
 **Gemini Folders** is a lightweight, bilingual (English/French) Chrome extension that allows you to organize your Google Gemini conversations into custom folders. Stop losing your best prompts in an endless history and build a structured workspace!
 
@@ -9,11 +9,13 @@
 
 ## ✨ Features
 
-* 📁 **Custom Folders:** Group your chats by projects, themes, or categories.
+* 📁 **Smart Folders:** Group your chats by projects, themes, or categories. You can now create empty folders in advance or delete them manually.
+* 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace on the fly.
+* 📌 **Pin Favorites:** Pin your most important folders to the top of the list for ultra-fast access.
+* 🤖 **Smart Title Detection:** No more typing! The extension automatically reads the Gemini interface to extract the exact name of your current conversation.
 * 🔍 **Instant Search:** Find any conversation quickly with a real-time search bar.
-* ✏️ **Quick Edit:** Rename your saved conversations for better clarity.
 * ☁️ **Cloud Sync:** Uses native `chrome.storage.sync` to keep your folders synchronized across all devices connected to your Google account.
-* 💾 **Import / Export:** Easily backup and restore your folder structure via JSON files.
+* 💾 **Import / Export:** Easily backup and restore your folder structure (including pinned folders) via JSON files.
 * 🎨 **Adaptive UI:** Automatically matches your system's Dark/Light mode and accent colors.
 * 🌍 **Bilingual:** Automatically detects your browser language (supports English and French).
 
@@ -34,14 +36,14 @@ If you want to test the code locally or contribute to the project:
 
 1. Open a conversation on [gemini.google.com](https://gemini.google.com).
 2. Click the **Gemini Folders** extension icon in your toolbar.
-3. Type a folder name (or select an existing one) and hit **Save**.
-4. Your conversation is now saved and easily accessible!
+3. The conversation title is automatically detected. Select a folder (or create a new one) and hit **Save**.
+4. Drag and drop items to reorganize, or use the 📌 icon to pin your favorite folders!
 
 ## 🔒 Privacy & Security
 
 This extension is built with privacy in mind. 
 * It **only** requests access to the `gemini.google.com` domain.
-* It reads the active tab's URL and Title **only** when you explicitly click the extension button.
+* It dynamically reads the active tab's content **only** when you explicitly click the extension button to generate a title.
 * All data is stored using Chrome's built-in sync storage. **No third-party servers** are used, and your data remains entirely yours.
 
 ## 💻 Built With
