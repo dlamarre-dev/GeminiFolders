@@ -89,6 +89,21 @@
       background-color: rgba(74, 144, 226, 0.1);
       border-radius: 4px;
     }
+
+    /* --- Styles pour les épingles --- */
+    .pin-divider {
+      border: 0;
+      height: 1px;
+      background: var(--border-color, #e0e0e0);
+      margin: 15px 0;
+    }
+    .pin-btn {
+      opacity: 0.5;
+      transition: opacity 0.2s;
+    }
+    .pin-btn.is-pinned {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>

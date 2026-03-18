@@ -82,14 +82,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 2. Exporter
+  // 2. Exporter (Mise à jour pour inclure les épingles)
   exportBtn.addEventListener('click', () => {
-    chrome.storage.sync.get({ folders: {} }, (data) => {
+    // NOUVEAU : On récupère à la fois les dossiers et les épingles
+    chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
       if (Object.keys(data.folders).length === 0) {
         alert(chrome.i18n.getMessage("alertEmptyExport"));
         return;
       }
-      const dataString = JSON.stringify(data.folders, null, 2);
+      // NOUVEAU : On exporte l'objet global "data" qui contient les deux clés
+      const dataString = JSON.stringify(data, null, 2);
       const blob = new Blob([dataString], { type: "application/json" });
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -102,7 +104,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 3. Importer
+  // 3. Importer (Mise à jour pour la rétrocompatibilité)
   importBtn.addEventListener('click', () => {
     importFile.click();
   });
@@ -119,10 +121,28 @@ document.addEventListener('DOMContentLoaded', async () => {
           throw new Error("Invalid Format");
         }
 
-        chrome.storage.sync.get({ folders: {} }, (data) => {
+        chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
           let currentFolders = data.folders;
+          let currentPinned = data.pinnedFolders;
 
-          for (const [folderName, chats] of Object.entries(importedData)) {
+          // --- GESTION DE LA RÉTROCOMPATIBILITÉ ---
+          let foldersToImport = {};
+          let pinsToImport = [];
+
+          // Si le JSON contient une clé "folders", c'est le nouveau format (v2.0)
+          if (importedData.folders) {
+            foldersToImport = importedData.folders;
+            if (Array.isArray(importedData.pinnedFolders)) {
+              pinsToImport = importedData.pinnedFolders;
+            }
+          } else {
+            // Sinon, c'est l'ancien format (v1.2) où tout l'objet est la liste des dossiers
+            foldersToImport = importedData;
+          }
+          // ----------------------------------------
+
+          // 1. Fusion des dossiers et conversations
+          for (const [folderName, chats] of Object.entries(foldersToImport)) {
             if (!currentFolders[folderName]) currentFolders[folderName] = [];
             chats.forEach(importedChat => {
               if (importedChat.title && importedChat.url) {
@@ -132,7 +152,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
           }
 
-          chrome.storage.sync.set({ folders: currentFolders }, () => {
+          // 2. Fusion des épingles (sans créer de doublons)
+          pinsToImport.forEach(pin => {
+            // On vérifie que l'épingle n'est pas déjà présente ET que le dossier existe bien
+            if (!currentPinned.includes(pin) && currentFolders[pin]) {
+              currentPinned.push(pin);
+            }
+          });
+
+          // Sauvegarde finale
+          chrome.storage.sync.set({ folders: currentFolders, pinnedFolders: currentPinned }, () => {
             alert(chrome.i18n.getMessage("alertImportSuccess"));
             importFile.value = "";
             displayFolders();
@@ -147,26 +176,52 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   });
 
-  // 4. Afficher et Filtrer les dossiers (Mise à jour pour Drag & Drop)
+// 4. Afficher et Filtrer les dossiers (Mise à jour pour Pinned)
   function displayFolders(openFolderName = null, searchTerm = "") {
-    chrome.storage.sync.get({ folders: {} }, (data) => {
+    chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
       folderList.innerHTML = "";
       const folders = data.folders;
+      const pinnedFolders = data.pinnedFolders;
       let hasResults = false;
 
-      for (const [folderName, chats] of Object.entries(folders)) {
+      // On trie les dossiers : les épinglés en premier, puis les autres
+      const sortedFolderNames = Object.keys(folders).sort((a, b) => {
+        const aPinned = pinnedFolders.includes(a);
+        const bPinned = pinnedFolders.includes(b);
+        if (aPinned && !bPinned) return -1;
+        if (!aPinned && bPinned) return 1;
+        return a.localeCompare(b); // Tri alphabétique secondaire
+      });
+
+      let hasPinned = false;
+      let transitionDone = false;
+
+      // On boucle sur la liste triée
+      sortedFolderNames.forEach((folderName) => {
+        const chats = folders[folderName];
         const folderMatches = folderName.toLowerCase().includes(searchTerm);
         const matchingChats = chats.filter(chat => chat.title.toLowerCase().includes(searchTerm));
 
-        if (searchTerm && !folderMatches && matchingChats.length === 0) continue;
+        if (searchTerm && !folderMatches && matchingChats.length === 0) return;
         hasResults = true;
+
+        const isPinned = pinnedFolders.includes(folderName);
+
+        // Insérer le diviseur visuel
+        if (isPinned) hasPinned = true;
+        if (!isPinned && hasPinned && !transitionDone && !searchTerm) {
+          const divider = document.createElement('hr');
+          divider.className = 'pin-divider';
+          folderList.appendChild(divider);
+          transitionDone = true;
+        }
 
         const folderDiv = document.createElement('div');
         folderDiv.className = 'folder';
 
-        // --- NOUVEAU : Écouteurs pour le Drop sur le dossier ---
+        // Écouteurs pour le Drop sur le dossier
         folderDiv.addEventListener('dragover', (e) => {
-          e.preventDefault(); // Nécessaire pour autoriser le drop
+          e.preventDefault();
           folderDiv.classList.add('drag-over');
         });
 
@@ -178,18 +233,14 @@ document.addEventListener('DOMContentLoaded', async () => {
           e.preventDefault();
           folderDiv.classList.remove('drag-over');
 
-          // On récupère les données de l'élément glissé
           const dragData = e.dataTransfer.getData('application/json');
           if (!dragData) return;
 
           const { sourceFolder, chatIndex } = JSON.parse(dragData);
-
-          // Si on le lâche dans le même dossier, on ne fait rien
           if (sourceFolder === folderName) return;
 
           moveChat(sourceFolder, folderName, chatIndex);
         });
-        // -------------------------------------------------------
 
         const folderHeader = document.createElement('div');
         folderHeader.className = 'folder-header';
@@ -200,31 +251,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         leftPart.style.display = 'flex';
         leftPart.innerHTML = `<span class="folder-icon">📁</span><div class="folder-name">${folderName}</div>`;
 
-        // --- NOUVEAU : Bouton pour supprimer le dossier entier ---
+        // Le conteneur pour les boutons du dossier
+        const actionsDiv = document.createElement('div');
+
+        // Bouton Épingler
+        const pinBtn = document.createElement('button');
+        pinBtn.className = `action-btn pin-btn ${isPinned ? 'is-pinned' : ''}`;
+        pinBtn.innerHTML = isPinned ? '📌' : '📍';
+        pinBtn.title = chrome.i18n.getMessage(isPinned ? "btnUnpin" : "btnPin");
+        pinBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          togglePin(folderName);
+        });
+        actionsDiv.appendChild(pinBtn);
+
+        // Bouton pour supprimer le dossier entier
         const delFolderBtn = document.createElement('button');
         delFolderBtn.className = 'action-btn delete-btn';
-        delFolderBtn.innerHTML = '🗑️'; // Une corbeille pour différencier du X des conversations
+        delFolderBtn.innerHTML = '🗑️';
         delFolderBtn.title = chrome.i18n.getMessage("btnDeleteFolder");
         delFolderBtn.addEventListener('click', (e) => {
-          e.stopPropagation(); // Empêche le dossier de s'ouvrir/se fermer quand on clique sur la corbeille
+          e.stopPropagation();
 
-          // Sécurité : demander confirmation si le dossier n'est pas vide
           if (chats.length > 0) {
             if (!confirm(chrome.i18n.getMessage("confirmDeleteFolder"))) return;
           }
 
-          // Supprimer le dossier de la base de données
-          chrome.storage.sync.get({ folders: {} }, (data) => {
+          chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
             delete data.folders[folderName];
-            chrome.storage.sync.set({ folders: data.folders }, () => {
+            // Nettoyage des épingles si on supprime le dossier
+            let updatedPinned = data.pinnedFolders.filter(name => name !== folderName);
+            chrome.storage.sync.set({ folders: data.folders, pinnedFolders: updatedPinned }, () => {
               displayFolders(null, searchInput.value.toLowerCase());
             });
           });
         });
+        actionsDiv.appendChild(delFolderBtn);
 
         folderHeader.appendChild(leftPart);
-        folderHeader.appendChild(delFolderBtn);
-        // ---------------------------------------------------------
+        folderHeader.appendChild(actionsDiv);
 
         const folderContent = document.createElement('div');
         folderContent.className = 'folder-content';
@@ -248,12 +313,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           const chatItem = document.createElement('div');
           chatItem.className = 'chat-item';
 
-          // --- NOUVEAU : Rendre l'élément draggable ---
+          // Rendre l'élément draggable
           chatItem.setAttribute('draggable', 'true');
 
           chatItem.addEventListener('dragstart', (e) => {
             chatItem.classList.add('dragging');
-            // On emballe les infos de l'élément pour le voyage
             const dataToTransfer = JSON.stringify({ sourceFolder: folderName, chatIndex: index });
             e.dataTransfer.setData('application/json', dataToTransfer);
             e.dataTransfer.effectAllowed = 'move';
@@ -262,7 +326,6 @@ document.addEventListener('DOMContentLoaded', async () => {
           chatItem.addEventListener('dragend', () => {
             chatItem.classList.remove('dragging');
           });
-          // --------------------------------------------
 
           const link = document.createElement('a');
           link.className = 'chat-link';
@@ -271,8 +334,9 @@ document.addEventListener('DOMContentLoaded', async () => {
           link.title = chat.title;
           link.textContent = `↳ ${chat.title}`;
 
-          const actionsDiv = document.createElement('div');
-          actionsDiv.className = 'chat-actions';
+          // Conteneur pour les boutons de la conversation
+          const chatActionsDiv = document.createElement('div');
+          chatActionsDiv.className = 'chat-actions';
 
           const editBtn = document.createElement('button');
           editBtn.className = 'action-btn edit-btn';
@@ -292,18 +356,19 @@ document.addEventListener('DOMContentLoaded', async () => {
             deleteChat(folderName, index);
           });
 
-          actionsDiv.appendChild(editBtn);
-          actionsDiv.appendChild(delBtn);
+          chatActionsDiv.appendChild(editBtn);
+          chatActionsDiv.appendChild(delBtn);
 
           chatItem.appendChild(link);
-          chatItem.appendChild(actionsDiv);
+          chatItem.appendChild(chatActionsDiv);
           folderContent.appendChild(chatItem);
         });
 
         folderDiv.appendChild(folderHeader);
         if (appendedChatsCount > 0) folderDiv.appendChild(folderContent);
         folderList.appendChild(folderDiv);
-      }
+
+      }); // Fin du forEach
 
       noResultsDiv.style.display = (searchTerm && !hasResults) ? 'block' : 'none';
     });
@@ -352,6 +417,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       chrome.storage.sync.set({ folders: folders }, () => {
         // On garde le dossier cible ouvert pour que l'utilisateur voie son action réussie
         displayFolders(targetFolder, searchInput.value.toLowerCase());
+      });
+    });
+  }
+  // 8. Épingler / Désépingler un dossier
+  function togglePin(folderName) {
+    chrome.storage.sync.get({ pinnedFolders: [] }, (data) => {
+      let pinned = data.pinnedFolders;
+
+      if (pinned.includes(folderName)) {
+        // S'il est déjà épinglé, on l'enlève de la liste
+        pinned = pinned.filter(name => name !== folderName);
+      } else {
+        // Sinon, on l'ajoute
+        pinned.push(folderName);
+      }
+
+      chrome.storage.sync.set({ pinnedFolders: pinned }, () => {
+        // On rafraîchit l'affichage en gardant la recherche active
+        displayFolders(null, searchInput.value.toLowerCase());
       });
     });
   }

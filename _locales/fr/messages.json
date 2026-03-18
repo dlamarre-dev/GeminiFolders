@@ -22,5 +22,7 @@
   "btnNewFolder": { "message": "➕ Nouveau dossier" },
   "promptNewFolder": { "message": "Nom du nouveau dossier :" },
   "btnDeleteFolder": { "message": "Supprimer le dossier" },
-  "confirmDeleteFolder": { "message": "Ce dossier contient des conversations. Voulez-vous vraiment le supprimer?" }
+  "confirmDeleteFolder": { "message": "Ce dossier contient des conversations. Voulez-vous vraiment le supprimer?" },
+  "btnPin": { "message": "Épingler" },
+  "btnUnpin": { "message": "Désépingler" }
 }
