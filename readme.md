@@ -1,7 +1,6 @@
 # 📁 Gemini Folders - Chrome Extension
 
-![Gemini Folders Hero Image](Marketing/PromoEn.png) 
-*(Note: Create an 'images' folder in your repo and add your screenshot here)*
+![Gemini Folders Hero Image](Marketing/PromoEn.png)
 
 **Gemini Folders** is a lightweight, bilingual (English/French) Chrome extension that allows you to organize your Google Gemini conversations into custom folders. Stop losing your best prompts in an endless history and build a structured workspace!
 
