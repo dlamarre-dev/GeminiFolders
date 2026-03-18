@@ -35,13 +35,54 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   });
-
-  // Pré-remplissage du titre
+// Pré-remplissage intelligent du titre
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
+
   if (currentTab && currentTab.url.includes("gemini.google.com")) {
-    let cleanTitle = currentTab.title.replace(" - Gemini", "").replace("Google Gemini", "").trim();
-    chatTitleInput.value = cleanTitle || chrome.i18n.getMessage("defaultTitle");
+
+    chrome.scripting.executeScript({
+      target: { tabId: currentTab.id },
+      func: () => {
+        // --- CE CODE S'EXÉCUTE DANS LA PAGE WEB ---
+
+        // Stratégie 1 : Le lien de la barre latérale (La plus robuste via l'URL)
+        const currentPath = window.location.pathname;
+        if (currentPath && currentPath.includes("/app/")) {
+          const links = document.querySelectorAll(`a[href="${currentPath}"]`);
+          for (let link of links) {
+            let text = link.innerText.trim();
+            if (text && text.length > 1) {
+              return text.split('\n')[0].trim();
+            }
+          }
+        }
+
+        // Stratégie 2 : Le titre de l'onglet (Si Google décide de le remettre un jour)
+        let docTitle = document.title.replace(" - Gemini", "").replace("Google Gemini", "").trim();
+        if (docTitle && docTitle !== "Gemini" && docTitle !== "Discussions" && docTitle !== "Chats") {
+            return docTitle;
+        }
+
+        // Stratégie 3 : En dernier recours, les premiers mots de ton prompt
+        const firstUserMessage = document.querySelector('[data-message-author-role="user"], message-content');
+        if (firstUserMessage && firstUserMessage.innerText) {
+          let excerpt = firstUserMessage.innerText.trim();
+          return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
+        }
+
+        return null;
+        // ------------------------------------------
+      }
+    }, (injectionResults) => {
+      // On met à jour l'interface avec le résultat
+      if (injectionResults && injectionResults[0] && injectionResults[0].result) {
+        chatTitleInput.value = injectionResults[0].result;
+      } else {
+        chatTitleInput.value = chrome.i18n.getMessage("defaultTitle");
+      }
+    });
   }
+
 
   displayFolders();
 
