@@ -18,5 +18,9 @@
   "alertImportSuccess": { "message": "Importation réussie ! Tes données ont été fusionnées avec succès." },
   "alertImportError": { "message": "Erreur lors de l'importation. Assure-toi qu'il s'agit bien d'un fichier JSON valide généré par cette extension." },
   "btnRename": { "message": "Renommer" },
-  "btnDelete": { "message": "Supprimer" }
+  "btnDelete": { "message": "Supprimer" },
+  "btnNewFolder": { "message": "➕ Nouveau dossier" },
+  "promptNewFolder": { "message": "Nom du nouveau dossier :" },
+  "btnDeleteFolder": { "message": "Supprimer le dossier" },
+  "confirmDeleteFolder": { "message": "Ce dossier contient des conversations. Voulez-vous vraiment le supprimer?" }
 }

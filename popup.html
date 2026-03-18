@@ -77,6 +77,18 @@
     .footer-actions { margin-top: 15px; display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border-color); padding-top: 10px; }
     .secondary-btn { flex: 1; background: var(--folder-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; transition: all 0.2s; }
     .secondary-btn:hover { background: var(--folder-hover); }
+
+    /* --- Styles pour le Drag & Drop --- */
+    .chat-item.dragging {
+      opacity: 0.5;
+      background-color: var(--hover-bg);
+    }
+
+    .folder.drag-over {
+      border: 2px dashed #4a90e2; /* Ou la couleur de ton choix */
+      background-color: rgba(74, 144, 226, 0.1);
+      border-radius: 4px;
+    }
   </style>
 </head>
 <body>
@@ -90,7 +102,7 @@
 
   <button id="saveBtn" class="main-btn"></button>
   <div id="status"></div>
-
+  <button id="newFolderBtn" class="secondary-btn" style="width: 100%; margin-bottom: 10px;"></button>
   <div id="folderList"></div>
   <div id="noResults"></div>
 
