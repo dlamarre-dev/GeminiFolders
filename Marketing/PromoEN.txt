@@ -1,0 +1,58 @@
+Do you use Google Gemini daily for work, coding, research, or content creation, but constantly lose your important prompts in an endless history? Gemini Folders is the extension you need.
+
+Transform your Gemini usage into a truly structured workspace by grouping your best conversations into projects, themes, or categories. No more wasting time scrolling to find an old chat!
+
+💡 Why is it better than simple bookmarks?
+Unlike classic bookmarks that eventually clutter your browser and mix with your daily websites, Gemini Folders offers a dedicated, isolated workspace. Say goodbye to tedious navigation in the bookmark manager: you get a custom menu, lightning-fast search exclusive to your chats, and quick management tools—all overlaid directly on your Gemini window without ever leaving it.
+
+🌟 MAIN FEATURES
+
+⚡ Quick Save (Right-Click): Save the active conversation directly to the folder of your choice via a simple right-click on the page, without even opening the extension!
+
+🖱️ Drag & Drop: Intuitively reorganize your workspace by dragging and dropping your conversations between folders.
+
+📁 Custom Folders & Pins: Organize your conversations by themes (e.g., "Code Projects", "Writing"). Pin (📌) your favorite folders to keep them always at the top of the list.
+
+⇅ Custom Sorting: Sort your folder content on the fly (Newest, Oldest, A to Z) using the built-in dropdown menu.
+
+🤖 Smart Detection: The extension automatically reads the page to pre-fill the exact title of your conversation. No more manual typing!
+
+🔍 Instant Search: Find any conversation in a fraction of a second with the real-time search bar.
+
+✏️ Full Editing: Easily rename your folders and conversations directly from the extension for absolute clarity.
+
+☁️ Cloud Sync: Thanks to Chrome's native storage, access your organization across all your desktop or laptop computers connected to your Google account.
+
+💾 Local Backup (Import / Export): Download all your data (including your pins) in JSON format with one click to create secure backups, and restore them at any time.
+
+🎨 "Material 3" Design & Bilingual: Enjoy an ultra-compact, fluid, and elegant interface that automatically adapts to your browser's language (English/French) and your system's Dark Mode.
+
+🛠️ HOW DOES IT WORK?
+
+Open an important conversation on gemini.google.com.
+
+Express Save: Right-click anywhere on the page, hover over "Save to Gemini Folders", and click your target folder.
+
+Via the Extension: Click the extension icon (remember to pin it to your toolbar!). The title is automatically detected. Expand the add panel (➕), choose a folder, and save!
+
+Use drag-and-drop to reorganize your chats, the 📌 icon to pin your folders, or ⇅ to sort them!
+
+🔒 PRIVACY & SECURITY
+
+This extension is built with privacy at its core. It only requests access to the Gemini domain and your context menu. It only reads the content of the active tab at the exact moment you decide to save a conversation to extract the title. Your folders are securely stored in your own browser's synced memory (Chrome Sync): no third-party servers are used, and your data remains entirely yours.
+
+📢 NEW IN VERSION 2.0:
+
+Drag & Drop: Fluid movement of conversations between folders.
+
+Context Menu: Ultra-fast saving via right-click on the page.
+
+Custom Sorting: Options to sort by date (ascending/descending) and alphabetically.
+
+Pinning & Renaming: Ability to pin and rename existing folders.
+
+Auto-detection: Smart extraction of the current conversation's title.
+
+Visual Overhaul: New compact "Material 3" design with a collapsible panel.
+
+Internationalization: 100% automatic bilingual support (English and French).

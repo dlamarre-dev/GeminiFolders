@@ -1,0 +1,58 @@
+Vous utilisez Google Gemini au quotidien pour le travail, le code, la recherche ou la création, mais vous perdez constamment vos prompts importants dans un historique infini ? Gemini Folders est l'extension qu'il vous faut.
+
+Transformez votre utilisation de Gemini en un véritable espace de travail structuré en regroupant vos meilleures conversations par projets, thématiques ou catégories. Fini le temps perdu à scroller pour retrouver un ancien chat !
+
+💡 Pourquoi est-ce mieux que de simples favoris (bookmarks) ?
+Contrairement aux favoris classiques qui finissent par encombrer votre navigateur et se mélanger avec vos sites web quotidiens, Gemini Folders vous offre un espace de travail dédié et isolé. Fini la navigation fastidieuse dans le gestionnaire de favoris : vous bénéficiez d'un menu sur mesure, d'une recherche ultra-rapide exclusive à vos chats et d'outils de gestion rapides, le tout superposé directement sur votre fenêtre Gemini sans jamais la quitter.
+
+🌟 FONCTIONNALITÉS PRINCIPALES
+
+⚡ Sauvegarde Rapide (Clic Droit) : Sauvegardez la conversation active directement dans le dossier de votre choix via un simple clic droit sur la page, sans même ouvrir l'extension !
+
+🖱️ Drag & Drop (Glisser-Déposer) : Réorganisez votre espace de travail intuitivement en glissant vos conversations d'un dossier à l'autre à la souris.
+
+📁 Dossiers sur mesure & Épingles : Classez vos conversations par thèmes (ex: "Projets Code", "Rédactions"). Épinglez (📌) vos dossiers favoris pour les garder toujours en haut de la liste.
+
+⇅ Tri Personnalisé : Triez le contenu de vos dossiers à la volée (Plus récents, Plus anciens, De A à Z) grâce au menu déroulant intégré.
+
+🤖 Détection Intelligente : L'extension lit automatiquement la page pour pré-remplir le titre exact de votre conversation. Fini la saisie manuelle !
+
+🔍 Recherche instantanée : Retrouvez n'importe quelle conversation en une fraction de seconde grâce à la barre de recherche en temps réel.
+
+✏️ Édition complète : Renommez facilement vos dossiers et vos conversations directement depuis l'extension pour une clarté absolue.
+
+☁️ Synchronisation Cloud : Grâce au stockage natif de Chrome, retrouvez votre organisation sur tous vos ordinateurs de bureau ou portables connectés à votre compte Google.
+
+💾 Sauvegarde locale (Import / Export) : Téléchargez toutes vos données (y compris vos épingles) au format JSON en un clic pour créer des sauvegardes de sécurité, et restaurez-les à tout moment.
+
+🎨 Design "Material 3" & Bilingue : Profitez d'une interface ultra-compacte, fluide et élégante qui s'adapte automatiquement à la langue de votre navigateur (Français/Anglais) et au mode sombre (Dark Mode) de votre système.
+
+🛠️ COMMENT ÇA MARCHE ?
+
+Ouvrez une conversation importante sur gemini.google.com.
+
+Sauvegarde express : Faites un clic droit n'importe où sur la page, survolez "Sauvegarder dans Gemini Folders" et cliquez sur votre dossier cible.
+
+Via l'extension : Cliquez sur l'icône de l'extension (pensez à l'épingler à votre barre d'outils !). Le titre est détecté automatiquement. Dépliez le panneau d'ajout (➕), choisissez un dossier et sauvegardez !
+
+Utilisez le glisser-déposer pour réorganiser vos chats, l'icône 📌 pour épingler vos dossiers, ou ⇅ pour les trier !
+
+🔒 CONFIDENTIALITÉ & SÉCURITÉ
+
+Cette extension est conçue avec la confidentialité au cœur de son fonctionnement. Elle ne demande l'accès qu'au domaine de Gemini et à votre menu contextuel. Elle ne lit le contenu de l'onglet actif qu'au moment exact où vous décidez de sauvegarder une conversation pour en extraire le titre. Vos dossiers sont stockés en toute sécurité dans la mémoire synchronisée de votre propre navigateur (Chrome Sync) : aucun serveur tiers n'est utilisé et vos données restent entièrement les vôtres.
+
+📢 NOUVEAUTÉS DE LA VERSION 2.0 :
+
+Drag & Drop : Déplacement fluide des conversations entre les dossiers.
+
+Menu contextuel : Sauvegarde ultra-rapide via le clic droit sur la page.
+
+Tri personnalisé : Options de tri par date (croissant/décroissant) et alphabétique.
+
+Épinglage & Renommage : Possibilité d'épingler et de renommer les dossiers existants.
+
+Auto-détection : Extraction intelligente du titre de la conversation en cours.
+
+Refonte visuelle : Nouveau design "Material 3" compact avec panneau repliable.
+
+Internationalisation : Support 100% bilingue (Français et Anglais) automatique.
