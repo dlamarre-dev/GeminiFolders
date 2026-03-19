@@ -109,7 +109,12 @@
 <body>
   <h3><img src="icon.svg" alt="logo"> <span id="appTitle"></span></h3>
 
-  <input type="text" id="searchInput">
+  <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+    <input type="text" id="searchInput" style="margin-bottom: 0; flex-grow: 1;">
+    <select id="sortSelect" class="secondary-btn" style="margin-bottom: 0; width: auto; padding: 0 5px;">
+    </select>
+  </div>
+  <hr style="margin-top: 0;">
   <hr>
 
   <input type="text" id="folderName">

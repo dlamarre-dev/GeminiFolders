@@ -35,6 +35,40 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   });
+  const sortSelect = document.getElementById('sortSelect');
+
+  // Remplir les options du menu
+  sortSelect.innerHTML = `
+    <option value="dateAsc">${chrome.i18n.getMessage("sortOldest")}</option>
+    <option value="dateDesc">${chrome.i18n.getMessage("sortNewest")}</option>
+    <option value="alphaAsc">${chrome.i18n.getMessage("sortAlpha")}</option>
+  `;
+
+  // Charger la préférence de tri de l'utilisateur (ou "dateAsc" par défaut)
+  chrome.storage.sync.get({ sortPref: 'dateAsc' }, (data) => {
+    sortSelect.value = data.sortPref;
+  });
+
+  // Quand l'utilisateur change le tri, on sauvegarde et on rafraîchit
+  sortSelect.addEventListener('change', (e) => {
+    chrome.storage.sync.set({ sortPref: e.target.value }, () => {
+
+      // On cherche quel dossier est actuellement ouvert à l'écran ---
+      let currentOpenFolder = null;
+      const folderElements = document.querySelectorAll('.folder');
+
+      folderElements.forEach(folder => {
+        const content = folder.querySelector('.folder-content');
+        if (content && content.style.display === 'block') {
+          currentOpenFolder = folder.querySelector('.folder-name').textContent;
+        }
+      });
+      // -------------------------------------------------------------------------
+
+      // On rafraîchit l'affichage en gardant ce dossier ouvert
+      displayFolders(currentOpenFolder, searchInput.value.toLowerCase());
+    });
+  });
 
   // Pré-remplissage intelligent du titre
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -105,7 +139,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       const isDuplicate = folders[folderName].some(chat => chat.url === chatUrl);
       if (!isDuplicate) {
-        folders[folderName].push({ title: finalChatTitle, url: chatUrl });
+        folders[folderName].push({
+          title: finalChatTitle,
+          url: chatUrl,
+          timestamp: Date.now()
+        });
       }
 
       chrome.storage.sync.set({ folders: folders }, () => {
@@ -212,29 +250,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   });
 
-// 4. Afficher et Filtrer les dossiers (Mise à jour pour Pinned)
+// 4. Afficher et Filtrer les dossiers (Mise à jour pour le Tri)
   function displayFolders(openFolderName = null, searchTerm = "") {
-    chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
+    // On récupère aussi sortPref ---
+    chrome.storage.sync.get({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc' }, (data) => {
       folderList.innerHTML = "";
       const folders = data.folders;
       const pinnedFolders = data.pinnedFolders;
+      const sortPref = data.sortPref; // On stocke la préférence
       let hasResults = false;
 
-      // On trie les dossiers : les épinglés en premier, puis les autres
       const sortedFolderNames = Object.keys(folders).sort((a, b) => {
         const aPinned = pinnedFolders.includes(a);
         const bPinned = pinnedFolders.includes(b);
         if (aPinned && !bPinned) return -1;
         if (!aPinned && bPinned) return 1;
-        return a.localeCompare(b); // Tri alphabétique secondaire
+        return a.localeCompare(b);
       });
 
       let hasPinned = false;
       let transitionDone = false;
 
-      // On boucle sur la liste triée
       sortedFolderNames.forEach((folderName) => {
-        const chats = folders[folderName];
+        let chats = folders[folderName]; // On utilise 'let' car on va trier ce tableau
+
+        // La logique de tri JavaScript ---
+        chats.sort((a, b) => {
+          // Fallback : si c'est une ancienne conversation sans date, on met 0
+          const timeA = a.timestamp || 0;
+          const timeB = b.timestamp || 0;
+
+          if (sortPref === 'dateDesc') return timeB - timeA; // Plus récent
+          if (sortPref === 'dateAsc') return timeA - timeB;  // Plus ancien
+          if (sortPref === 'alphaAsc') return a.title.localeCompare(b.title); // A à Z
+          return 0;
+        });
+        // ----------------------------------------------
+
         const folderMatches = folderName.toLowerCase().includes(searchTerm);
         const matchingChats = chats.filter(chat => chat.title.toLowerCase().includes(searchTerm));
 
@@ -269,14 +321,14 @@ document.addEventListener('DOMContentLoaded', async () => {
           e.preventDefault();
           folderDiv.classList.remove('drag-over');
 
-          // On utilise text/plain pour éviter les blocages de sécurité
           const dragData = e.dataTransfer.getData('text/plain');
           if (!dragData) return;
 
-          const { sourceFolder, chatIndex } = JSON.parse(dragData);
+          // NOUVEAU : On extrait chatUrl de la valise
+          const { sourceFolder, chatUrl } = JSON.parse(dragData);
           if (sourceFolder === folderName) return;
 
-          moveChat(sourceFolder, folderName, chatIndex);
+          moveChat(sourceFolder, folderName, chatUrl);
         });
 
         const folderHeader = document.createElement('div');
@@ -355,8 +407,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           chatItem.addEventListener('dragstart', (e) => {
             chatItem.classList.add('dragging');
-            const dataToTransfer = JSON.stringify({ sourceFolder: folderName, chatIndex: index });
-            e.dataTransfer.setData('application/json', dataToTransfer);
+            //On utilise chat.url au lieu de index
+            const dataToTransfer = JSON.stringify({ sourceFolder: folderName, chatUrl: chat.url });
+            e.dataTransfer.setData('text/plain', dataToTransfer);
             e.dataTransfer.effectAllowed = 'move';
           });
 
@@ -383,7 +436,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           editBtn.title = chrome.i18n.getMessage("btnRename");
           editBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            renameChat(folderName, index, chat.title);
+            //On passe chat.url
+            renameChat(folderName, chat.url, chat.title);
           });
 
           const delBtn = document.createElement('button');
@@ -392,7 +446,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           delBtn.title = chrome.i18n.getMessage("btnDelete");
           delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            deleteChat(folderName, index);
+            //On passe chat.url
+            deleteChat(folderName, chat.url);
           });
 
           chatActionsDiv.appendChild(editBtn);
@@ -412,38 +467,50 @@ document.addEventListener('DOMContentLoaded', async () => {
       noResultsDiv.style.display = (searchTerm && !hasResults) ? 'block' : 'none';
     });
   }
-
   // 5. Renommer
-  function renameChat(folderName, index, currentTitle) {
+  function renameChat(folderName, chatUrl, currentTitle) {
     const newTitle = prompt(chrome.i18n.getMessage("promptRename"), currentTitle);
     if (newTitle !== null && newTitle.trim() !== "") {
       chrome.storage.sync.get({ folders: {} }, (data) => {
-        data.folders[folderName][index].title = newTitle.trim();
-        chrome.storage.sync.set({ folders: data.folders }, () => {
-          displayFolders(folderName, searchInput.value.toLowerCase());
-        });
+        let folders = data.folders;
+        // On trouve le vrai index dans la base de données via l'URL
+        const realIndex = folders[folderName].findIndex(c => c.url === chatUrl);
+        if (realIndex !== -1) {
+          folders[folderName][realIndex].title = newTitle.trim();
+          chrome.storage.sync.set({ folders: folders }, () => {
+            displayFolders(folderName, searchInput.value.toLowerCase());
+          });
+        }
       });
     }
   }
 
   // 6. Supprimer
-  function deleteChat(folderName, index) {
+  function deleteChat(folderName, chatUrl) {
     chrome.storage.sync.get({ folders: {} }, (data) => {
-      data.folders[folderName].splice(index, 1);
-      chrome.storage.sync.set({ folders: data.folders }, () => {
-        displayFolders(folderName, searchInput.value.toLowerCase()); 
-      });
+      let folders = data.folders;
+      const realIndex = folders[folderName].findIndex(c => c.url === chatUrl);
+      if (realIndex !== -1) {
+        folders[folderName].splice(realIndex, 1);
+        chrome.storage.sync.set({ folders: folders }, () => {
+          displayFolders(folderName, searchInput.value.toLowerCase());
+        });
+      }
     });
   }
+
   // 7. Déplacer une conversation (Drag & Drop)
-  function moveChat(sourceFolder, targetFolder, chatIndex) {
+  function moveChat(sourceFolder, targetFolder, chatUrl) {
     chrome.storage.sync.get({ folders: {} }, (data) => {
       let folders = data.folders;
 
-      // On retire la conversation du dossier source
-      const chatToMove = folders[sourceFolder].splice(chatIndex, 1)[0];
+      const realIndex = folders[sourceFolder].findIndex(c => c.url === chatUrl);
+      if (realIndex === -1) return; // Sécurité
 
-      // On s'assure que le dossier cible existe (au cas où)
+      // On retire la conversation du dossier source
+      const chatToMove = folders[sourceFolder].splice(realIndex, 1)[0];
+
+      // On s'assure que le dossier cible existe
       if (!folders[targetFolder]) folders[targetFolder] = [];
 
       // Petite vérification anti-doublon dans le dossier cible
@@ -452,9 +519,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         folders[targetFolder].push(chatToMove);
       }
 
-      // On sauvegarde la nouvelle hiérarchie et on rafraîchit l'interface
       chrome.storage.sync.set({ folders: folders }, () => {
-        // On garde le dossier cible ouvert pour que l'utilisateur voie son action réussie
         displayFolders(targetFolder, searchInput.value.toLowerCase());
       });
     });

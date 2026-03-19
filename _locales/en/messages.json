@@ -24,5 +24,8 @@
   "btnDeleteFolder": { "message": "Delete folder" },
   "confirmDeleteFolder": { "message": "This folder contains conversations. Are you sure you want to delete it?" },
   "btnPin": { "message": "Pin" },
-  "btnUnpin": { "message": "Unpin" }
+  "btnUnpin": { "message": "Unpin" },
+  "sortNewest": { "message": "Newest" },
+  "sortOldest": { "message": "Oldest" },
+  "sortAlpha": { "message": "A to Z" }
 }

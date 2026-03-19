@@ -24,5 +24,8 @@
   "btnDeleteFolder": { "message": "Supprimer le dossier" },
   "confirmDeleteFolder": { "message": "Ce dossier contient des conversations. Voulez-vous vraiment le supprimer?" },
   "btnPin": { "message": "Épingler" },
-  "btnUnpin": { "message": "Désépingler" }
+  "btnUnpin": { "message": "Désépingler" },
+  "sortNewest": { "message": "Plus récents" },
+  "sortOldest": { "message": "Plus anciens" },
+  "sortAlpha": { "message": "De A à Z" }
 }
