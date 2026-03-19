@@ -31,5 +31,8 @@
   "ctxMenuSave": { "message": "Sauvegarder dans Gemini Folders" },
   "ctxMenuNoFolder": { "message": "(Aucun dossier - Ouvrez l'extension)" },
   "btnToggleAdd": { "message": "Ajouter une conversation" },
-  "btnCancel": { "message": "Fermer" }
+  "btnCancel": { "message": "Fermer" },
+  "btnRenameFolder": { "message": "Renommer le dossier" },
+  "promptRenameFolder": { "message": "Nouveau nom du dossier :" },
+  "errorFolderExists": { "message": "Un dossier avec ce nom existe déjà." }
 }

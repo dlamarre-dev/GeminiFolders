@@ -31,5 +31,8 @@
   "ctxMenuSave": { "message": "Save to Gemini Folders" },
   "ctxMenuNoFolder": { "message": "(No folders - Open extension)" },
   "btnToggleAdd": { "message": "Add a conversation" },
-  "btnCancel": { "message": "Close" }
+  "btnCancel": { "message": "Close" },
+  "btnRenameFolder": { "message": "Rename folder" },
+  "promptRenameFolder": { "message": "New folder name:" },
+  "errorFolderExists": { "message": "A folder with this name already exists." }
 }

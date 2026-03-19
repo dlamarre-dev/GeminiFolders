@@ -387,6 +387,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         actionsDiv.appendChild(pinBtn);
 
+        // Bouton Renommer le dossier
+        const editFolderBtn = document.createElement('button');
+        editFolderBtn.className = 'action-btn edit-btn';
+        editFolderBtn.innerHTML = '✏️';
+        editFolderBtn.title = chrome.i18n.getMessage("btnRenameFolder");
+        editFolderBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          renameFolder(folderName);
+        });
+        actionsDiv.appendChild(editFolderBtn);
+
         // Bouton pour supprimer le dossier entier
         const delFolderBtn = document.createElement('button');
         delFolderBtn.className = 'action-btn delete-btn';
@@ -590,6 +601,42 @@ document.addEventListener('DOMContentLoaded', async () => {
       chrome.storage.sync.set({ pinnedFolders: pinned }, () => {
         // On rafraîchit l'affichage en gardant la recherche active
         displayFolders(null, searchInput.value.toLowerCase());
+      });
+    });
+  }
+  // 9. Renommer un dossier
+  function renameFolder(oldName) {
+    const newName = prompt(chrome.i18n.getMessage("promptRenameFolder"), oldName);
+
+    // Si l'utilisateur annule, laisse vide, ou ne change pas le nom
+    if (!newName || newName.trim() === "" || newName.trim() === oldName) return;
+
+    const trimmedNewName = newName.trim();
+
+    chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
+      let folders = data.folders;
+      let pinned = data.pinnedFolders;
+
+      // On vérifie qu'on n'écrase pas un autre dossier
+      if (folders[trimmedNewName]) {
+        alert(chrome.i18n.getMessage("errorFolderExists") || "Ce dossier existe déjà.");
+        return;
+      }
+
+      // 1. On transfère toutes les conversations vers le nouveau nom
+      folders[trimmedNewName] = folders[oldName];
+      // 2. On supprime l'ancien dossier
+      delete folders[oldName];
+
+      // 3. On met à jour la liste des épingles si ce dossier y figurait
+      const pinIndex = pinned.indexOf(oldName);
+      if (pinIndex !== -1) {
+        pinned[pinIndex] = trimmedNewName;
+      }
+
+      chrome.storage.sync.set({ folders: folders, pinnedFolders: pinned }, () => {
+        // On rafraîchit l'affichage en gardant le dossier ouvert
+        displayFolders(trimmedNewName, searchInput.value.toLowerCase());
       });
     });
   }
