@@ -35,17 +35,15 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   });
-// Pré-remplissage intelligent du titre
+
+  // Pré-remplissage intelligent du titre
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   if (currentTab && currentTab.url.includes("gemini.google.com")) {
-
     chrome.scripting.executeScript({
       target: { tabId: currentTab.id },
       func: () => {
         // --- CE CODE S'EXÉCUTE DANS LA PAGE WEB ---
-
-        // Stratégie 1 : Le lien de la barre latérale (La plus robuste via l'URL)
         const currentPath = window.location.pathname;
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
@@ -57,13 +55,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         }
 
-        // Stratégie 2 : Le titre de l'onglet (Si Google décide de le remettre un jour)
         let docTitle = document.title.replace(" - Gemini", "").replace("Google Gemini", "").trim();
         if (docTitle && docTitle !== "Gemini" && docTitle !== "Discussions" && docTitle !== "Chats") {
             return docTitle;
         }
 
-        // Stratégie 3 : En dernier recours, les premiers mots de ton prompt
         const firstUserMessage = document.querySelector('[data-message-author-role="user"], message-content');
         if (firstUserMessage && firstUserMessage.innerText) {
           let excerpt = firstUserMessage.innerText.trim();
@@ -74,7 +70,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // ------------------------------------------
       }
     }, (injectionResults) => {
-      // On met à jour l'interface avec le résultat
       if (injectionResults && injectionResults[0] && injectionResults[0].result) {
         chatTitleInput.value = injectionResults[0].result;
       } else {
@@ -83,7 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-
+  // Initialisation de l'affichage
   displayFolders();
 
   // Écouteur pour la recherche
@@ -274,7 +269,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           e.preventDefault();
           folderDiv.classList.remove('drag-over');
 
-          const dragData = e.dataTransfer.getData('application/json');
+          // On utilise text/plain pour éviter les blocages de sécurité
+          const dragData = e.dataTransfer.getData('text/plain');
           if (!dragData) return;
 
           const { sourceFolder, chatIndex } = JSON.parse(dragData);
@@ -374,6 +370,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           link.target = '_blank';
           link.title = chat.title;
           link.textContent = `↳ ${chat.title}`;
+
+          link.setAttribute('draggable', 'false');
 
           // Conteneur pour les boutons de la conversation
           const chatActionsDiv = document.createElement('div');
