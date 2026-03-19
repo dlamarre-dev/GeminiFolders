@@ -53,20 +53,15 @@ document.addEventListener('DOMContentLoaded', async () => {
   sortSelect.addEventListener('change', (e) => {
     chrome.storage.sync.set({ sortPref: e.target.value }, () => {
 
-      // On cherche quel dossier est actuellement ouvert à l'écran ---
-      let currentOpenFolder = null;
-      const folderElements = document.querySelectorAll('.folder');
-
-      folderElements.forEach(folder => {
+      let openFolders = [];
+      document.querySelectorAll('.folder').forEach(folder => {
         const content = folder.querySelector('.folder-content');
         if (content && content.style.display === 'block') {
-          currentOpenFolder = folder.querySelector('.folder-name').textContent;
+          openFolders.push(folder.querySelector('.folder-name').textContent);
         }
       });
-      // -------------------------------------------------------------------------
 
-      // On rafraîchit l'affichage en gardant ce dossier ouvert
-      displayFolders(currentOpenFolder, searchInput.value.toLowerCase());
+      displayFolders(openFolders, searchInput.value.toLowerCase());
     });
   });
 
@@ -251,8 +246,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
 // 4. Afficher et Filtrer les dossiers (Mise à jour pour le Tri)
-  function displayFolders(openFolderName = null, searchTerm = "") {
-    // On récupère aussi sortPref ---
+  function displayFolders(openFoldersArg = [], searchTerm = "") {
+    // Permet d'accepter soit un nom de dossier (texte), soit une liste (tableau)
+    let openFolders = [];
+    if (typeof openFoldersArg === 'string') openFolders = [openFoldersArg];
+    else if (Array.isArray(openFoldersArg)) openFolders = openFoldersArg;
+
     chrome.storage.sync.get({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc' }, (data) => {
       folderList.innerHTML = "";
       const folders = data.folders;
@@ -383,7 +382,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         const folderContent = document.createElement('div');
         folderContent.className = 'folder-content';
 
-        if (searchTerm || folderName === openFolderName) {
+        // On vérifie si le nom du dossier fait partie de la liste des dossiers ouverts
+        if (searchTerm || openFolders.includes(folderName)) {
           folderContent.style.display = 'block';
         }
 
@@ -519,8 +519,24 @@ document.addEventListener('DOMContentLoaded', async () => {
         folders[targetFolder].push(chatToMove);
       }
 
+      // --- NOUVEAU : On mémorise tous les dossiers actuellement ouverts ---
+      let openFolders = [];
+      document.querySelectorAll('.folder').forEach(folder => {
+        const content = folder.querySelector('.folder-content');
+        if (content && content.style.display === 'block') {
+          openFolders.push(folder.querySelector('.folder-name').textContent);
+        }
+      });
+
+      // On s'assure que le dossier de destination sera aussi ouvert
+      if (!openFolders.includes(targetFolder)) {
+        openFolders.push(targetFolder);
+      }
+      // -------------------------------------------------------------------
+
       chrome.storage.sync.set({ folders: folders }, () => {
-        displayFolders(targetFolder, searchInput.value.toLowerCase());
+        // On envoie la liste complète à l'affichage
+        displayFolders(openFolders, searchInput.value.toLowerCase());
       });
     });
   }
