@@ -27,6 +27,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   const noResultsDiv = document.getElementById('noResults');
   const newFolderBtn = document.getElementById('newFolderBtn');
   newFolderBtn.title = chrome.i18n.getMessage("btnNewFolder");
+  const toggleAddPanelBtn = document.getElementById('toggleAddPanelBtn');
+  const addConversationPanel = document.getElementById('addConversationPanel');
+
+  toggleAddPanelBtn.addEventListener('click', () => {
+    const isHidden = addConversationPanel.style.display === 'none';
+    addConversationPanel.style.display = isHidden ? 'block' : 'none';
+
+    // On change le texte et l'icône selon l'état du panneau
+    toggleAddPanelBtn.textContent = isHidden
+      ? "➖ " + chrome.i18n.getMessage("btnCancel")
+      : "➕ " + chrome.i18n.getMessage("btnToggleAdd");
+  });
 
   newFolderBtn.addEventListener('click', () => {
     const name = prompt(chrome.i18n.getMessage("promptNewFolder"));
