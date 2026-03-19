@@ -27,5 +27,7 @@
   "btnUnpin": { "message": "Unpin" },
   "sortNewest": { "message": "Newest" },
   "sortOldest": { "message": "Oldest" },
-  "sortAlpha": { "message": "A to Z" }
+  "sortAlpha": { "message": "A to Z" },
+  "ctxMenuSave": { "message": "Save to Gemini Folders" },
+  "ctxMenuNoFolder": { "message": "(No folders - Open extension)" }
 }
