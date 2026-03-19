@@ -52,7 +52,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     const targetFolder = info.menuItemId.replace("folder_", "");
 
     // On récupère le titre par défaut traduit
-    const fallbackTitle = chrome.i18n.getMessage("defaultTitle") || "Nouvelle conversation";
+    const fallbackTitle = chrome.i18n.getMessage("defaultTitle") || "New conversation";
 
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
@@ -78,7 +78,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       }
     }, (results) => {
       // Pareil ici en cas d'échec total du script
-      let finalTitle = chrome.i18n.getMessage("defaultTitle") || "Nouvelle conversation";
+      let finalTitle = chrome.i18n.getMessage("defaultTitle") || "New conversation";
       if (results && results[0] && results[0].result) {
         finalTitle = results[0].result;
       }

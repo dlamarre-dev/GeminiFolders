@@ -12,7 +12,7 @@
   "importBtn": { "message": "📂 Import" },
   "alertNotGemini": { "message": "Please use this extension on a Gemini page." },
   "defaultFolder": { "message": "General" },
-  "defaultTitle": { "message": "Untitled conversation" },
+  "defaultTitle": { "message": "New conversation" },
   "promptRename": { "message": "New conversation name:" },
   "alertEmptyExport": { "message": "Your folders are empty, nothing to export!" },
   "alertImportSuccess": { "message": "Import successful! Your data has been merged successfully." },
