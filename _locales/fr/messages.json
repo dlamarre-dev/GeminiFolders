@@ -19,7 +19,7 @@
   "alertImportError": { "message": "Erreur lors de l'importation. Assure-toi qu'il s'agit bien d'un fichier JSON valide généré par cette extension." },
   "btnRename": { "message": "Renommer" },
   "btnDelete": { "message": "Supprimer" },
-  "btnNewFolder": { "message": "➕ Nouveau dossier" },
+  "btnNewFolder": { "message": "➕ Dossier" },
   "promptNewFolder": { "message": "Nom du nouveau dossier :" },
   "btnDeleteFolder": { "message": "Supprimer le dossier" },
   "confirmDeleteFolder": { "message": "Ce dossier contient des conversations. Voulez-vous vraiment le supprimer?" },
@@ -29,5 +29,7 @@
   "sortOldest": { "message": "Plus anciens" },
   "sortAlpha": { "message": "De A à Z" },
   "ctxMenuSave": { "message": "Sauvegarder dans Gemini Folders" },
-  "ctxMenuNoFolder": { "message": "(Aucun dossier - Ouvrez l'extension)" }
+  "ctxMenuNoFolder": { "message": "(Aucun dossier - Ouvrez l'extension)" },
+  "btnToggleAdd": { "message": "Ajouter un chat" },
+  "btnCancel": { "message": "Fermer" }
 }

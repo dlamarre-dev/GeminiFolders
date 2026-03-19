@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('noResults').textContent = chrome.i18n.getMessage("noResults");
   document.getElementById('exportBtn').textContent = chrome.i18n.getMessage("exportBtn");
   document.getElementById('importBtn').textContent = chrome.i18n.getMessage("importBtn");
+  document.getElementById('toggleAddPanelBtn').textContent = "➕ " + chrome.i18n.getMessage("btnToggleAdd");
   // -------------------------------------------
 
   const folderList = document.getElementById('folderList');
@@ -36,6 +37,17 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   });
   const sortSelect = document.getElementById('sortSelect');
+  const toggleAddPanelBtn = document.getElementById('toggleAddPanelBtn');
+  const addConversationPanel = document.getElementById('addConversationPanel');
+
+  toggleAddPanelBtn.addEventListener('click', () => {
+    const isHidden = addConversationPanel.style.display === 'none';
+    addConversationPanel.style.display = isHidden ? 'block' : 'none';
+    // On change le texte et l'icône selon l'état du panneau
+    toggleAddPanelBtn.textContent = isHidden
+      ? "➖ " + chrome.i18n.getMessage("btnCancel")
+      : "➕ " + chrome.i18n.getMessage("btnToggleAdd");
+  });
 
   // Remplir les options du menu
   sortSelect.innerHTML = `
@@ -143,6 +155,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       chrome.storage.sync.set({ folders: folders }, () => {
         folderNameInput.value = "";
+        addConversationPanel.style.display = 'none';
+        toggleAddPanelBtn.textContent = "➕ " + chrome.i18n.getMessage("btnToggleAdd");
         searchInput.value = "";
         statusDiv.style.display = "block";
         setTimeout(() => { statusDiv.style.display = "none"; }, 2000);

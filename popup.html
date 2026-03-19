@@ -113,16 +113,19 @@
     <input type="text" id="searchInput" style="margin-bottom: 0; flex-grow: 1;">
     <select id="sortSelect" class="secondary-btn" style="margin-bottom: 0; width: auto; padding: 0 5px;">
     </select>
-  </div>
-  <hr style="margin-top: 0;">
-  <hr>
+  </div> <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+        <button id="toggleAddPanelBtn" class="main-btn" style="margin: 0; padding: 7px; font-size: 13px; flex: 2;"></button>
+        <button id="newFolderBtn" class="secondary-btn" style="margin: 0; padding: 7px; font-size: 13px; flex: 1; display: flex; align-items: center; justify-content: center;"></button>
+      </div>
 
-  <input type="text" id="folderName">
-  <input type="text" id="chatTitle">
+      <div id="addConversationPanel" style="display: none; background: var(--folder-bg); padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 15px;">
+        <input type="text" id="folderName" style="margin-bottom: 10px;">
+        <input type="text" id="chatTitle" style="margin-bottom: 10px;">
+        <button id="saveBtn" class="main-btn" style="margin: 0; padding: 7px; font-size: 13px;"></button>
+      </div>
 
-  <button id="saveBtn" class="main-btn"></button>
-  <div id="status"></div>
-  <button id="newFolderBtn" class="secondary-btn" style="width: 100%; margin-bottom: 10px;"></button>
+      <div id="status"></div>
+      <hr style="margin-top: 0; margin-bottom: 15px;">
   <div id="folderList"></div>
   <div id="noResults"></div>
 
