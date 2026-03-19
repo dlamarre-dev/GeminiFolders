@@ -30,6 +30,6 @@
   "sortAlpha": { "message": "De A à Z" },
   "ctxMenuSave": { "message": "Sauvegarder dans Gemini Folders" },
   "ctxMenuNoFolder": { "message": "(Aucun dossier - Ouvrez l'extension)" },
-  "btnToggleAdd": { "message": "Ajouter un chat" },
+  "btnToggleAdd": { "message": "Ajouter une conversation" },
   "btnCancel": { "message": "Fermer" }
 }

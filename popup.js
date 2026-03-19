@@ -10,6 +10,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('exportBtn').textContent = chrome.i18n.getMessage("exportBtn");
   document.getElementById('importBtn').textContent = chrome.i18n.getMessage("importBtn");
   document.getElementById('toggleAddPanelBtn').textContent = "➕ " + chrome.i18n.getMessage("btnToggleAdd");
+  document.getElementById('sortNewest').textContent = chrome.i18n.getMessage("sortNewest");
+  document.getElementById('sortOldest').textContent = chrome.i18n.getMessage("sortOldest");
+  document.getElementById('sortAlpha').textContent = chrome.i18n.getMessage("sortAlpha");
   // -------------------------------------------
 
   const folderList = document.getElementById('folderList');
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const statusDiv = document.getElementById('status');
   const noResultsDiv = document.getElementById('noResults');
   const newFolderBtn = document.getElementById('newFolderBtn');
-  newFolderBtn.textContent = chrome.i18n.getMessage("btnNewFolder");
+  newFolderBtn.title = chrome.i18n.getMessage("btnNewFolder");
 
   newFolderBtn.addEventListener('click', () => {
     const name = prompt(chrome.i18n.getMessage("promptNewFolder"));
@@ -36,46 +39,51 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     }
   });
-  const sortSelect = document.getElementById('sortSelect');
-  const toggleAddPanelBtn = document.getElementById('toggleAddPanelBtn');
-  const addConversationPanel = document.getElementById('addConversationPanel');
+  // --- NOUVELLE LOGIQUE DE TRI ---
+  const sortToggleBtn = document.getElementById('sortToggleBtn');
+  const sortMenu = document.getElementById('sortMenu');
+  const sortItems = document.querySelectorAll('.dropdown-item');
 
-  toggleAddPanelBtn.addEventListener('click', () => {
-    const isHidden = addConversationPanel.style.display === 'none';
-    addConversationPanel.style.display = isHidden ? 'block' : 'none';
-    // On change le texte et l'icône selon l'état du panneau
-    toggleAddPanelBtn.textContent = isHidden
-      ? "➖ " + chrome.i18n.getMessage("btnCancel")
-      : "➕ " + chrome.i18n.getMessage("btnToggleAdd");
+  // 1. Ouvrir/Fermer le menu au clic
+  sortToggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation(); // Empêche le clic de se propager et de fermer le menu tout de suite
+    sortMenu.classList.toggle('show');
   });
 
-  // Remplir les options du menu
-  sortSelect.innerHTML = `
-    <option value="dateAsc">${chrome.i18n.getMessage("sortOldest")}</option>
-    <option value="dateDesc">${chrome.i18n.getMessage("sortNewest")}</option>
-    <option value="alphaAsc">${chrome.i18n.getMessage("sortAlpha")}</option>
-  `;
+  // 2. Fermer le menu si on clique n'importe où ailleurs sur la page
+  document.addEventListener('click', () => {
+    sortMenu.classList.remove('show');
+  });
 
-  // Charger la préférence de tri de l'utilisateur (ou "dateAsc" par défaut)
+  // 3. Charger la préférence sauvegardée et mettre en surbrillance l'option active
   chrome.storage.sync.get({ sortPref: 'dateAsc' }, (data) => {
-    sortSelect.value = data.sortPref;
+    const activeItem = document.querySelector(`.dropdown-item[data-value="${data.sortPref}"]`);
+    if (activeItem) activeItem.classList.add('active');
   });
 
-  // Quand l'utilisateur change le tri, on sauvegarde et on rafraîchit
-  sortSelect.addEventListener('change', (e) => {
-    chrome.storage.sync.set({ sortPref: e.target.value }, () => {
+  // 4. Gérer le clic sur une option de tri
+  sortItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const selectedSort = item.getAttribute('data-value');
 
-      let openFolders = [];
-      document.querySelectorAll('.folder').forEach(folder => {
-        const content = folder.querySelector('.folder-content');
-        if (content && content.style.display === 'block') {
-          openFolders.push(folder.querySelector('.folder-name').textContent);
-        }
+      // Mettre à jour visuellement l'option active
+      sortItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+
+      // Sauvegarder et rafraîchir en gardant les dossiers ouverts
+      chrome.storage.sync.set({ sortPref: selectedSort }, () => {
+        let openFolders = [];
+        document.querySelectorAll('.folder').forEach(folder => {
+          const content = folder.querySelector('.folder-content');
+          if (content && content.style.display === 'block') {
+            openFolders.push(folder.querySelector('.folder-name').textContent);
+          }
+        });
+        displayFolders(openFolders, searchInput.value.toLowerCase());
       });
-
-      displayFolders(openFolders, searchInput.value.toLowerCase());
     });
   });
+  // -------------------------------
 
   // Pré-remplissage intelligent du titre
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });

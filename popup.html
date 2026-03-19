@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    /* Variables dynamiques pour le mode Clair (par défaut) */
+    /* --- Variables : Style Google Material --- */
     :root {
       --bg-color: #ffffff;
-      --text-color: #333333;
-      --border-color: #cccccc;
+      --text-color: #202124;
+      --border-color: #dadce0;
       --folder-bg: #f8f9fa;
-      --folder-hover: #e8eaed;
-      --accent-color: #1a73e8; /* Bleu Gemini par défaut */
+      --folder-hover: #f1f3f4;
+      --accent-color: #1a73e8; /* Bleu Google */
+      --accent-hover: #1557b0;
       --delete-color: #d93025;
       --input-bg: #ffffff;
-      --muted-text: #777777;
+      --muted-text: #5f6368;
+      --shadow-sm: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+      --shadow-hover: 0 1px 3px 0 rgba(60,64,67,0.3), 0 4px 8px 3px rgba(60,64,67,0.15);
     }
 
-    /* Détection automatique du mode Sombre de ton navigateur */
     @media (prefers-color-scheme: dark) {
       :root {
         --bg-color: #202124;
@@ -24,99 +26,301 @@
         --border-color: #5f6368;
         --folder-bg: #303134;
         --folder-hover: #3c4043;
-        --accent-color: #8ab4f8; /* Bleu plus clair pour ressortir */
+        --accent-color: #8ab4f8;
+        --accent-hover: #aecbf9;
         --delete-color: #f28b82;
         --input-bg: #202124;
         --muted-text: #9aa0a6;
+        --shadow-sm: 0 1px 2px 0 rgba(0,0,0,0.3), 0 1px 3px 1px rgba(0,0,0,0.15);
+        --shadow-hover: 0 1px 3px 0 rgba(0,0,0,0.3), 0 4px 8px 3px rgba(0,0,0,0.15);
       }
     }
 
-    /* Utilisation de la couleur de thème du système si le navigateur le permet */
-    @supports (color: AccentColor) {
-      :root {
-        --accent-color: AccentColor;
-      }
+    /* --- Base --- */
+    body {
+      /* Typographie plus moderne et propre aux systèmes OS */
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      width: 360px; /* Un tout petit peu plus large pour respirer */
+      padding: 16px;
+      margin: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      transition: background-color 0.2s ease;
     }
 
-    /* Application du style dynamique */
-    body { font-family: Arial, sans-serif; width: 340px; padding: 12px; margin: 0; background-color: var(--bg-color); color: var(--text-color); transition: all 0.2s; }
-    
-    h3 { margin-top: 0; color: var(--accent-color); margin-bottom: 15px; display: flex; align-items: center; gap: 8px;}
-    h3 img { width: 20px; height: 20px; } /* Pour la petite icône dans le titre */
+    h3 {
+      margin-top: 0;
+      color: var(--text-color);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    h3 img { width: 24px; height: 24px; }
 
-    input { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 4px; background-color: var(--input-bg); color: var(--text-color); }
-    input:focus { outline: 2px solid var(--accent-color); border-color: transparent; }
-    
-    #searchInput { border-color: var(--accent-color); margin-bottom: 15px; border-width: 2px; }
-    
-    button.main-btn { width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box; border: none; border-radius: 4px; background-color: var(--accent-color); color: #fff; cursor: pointer; font-weight: bold; margin-top: 5px; opacity: 0.9;}
-    button.main-btn:hover { opacity: 1; filter: brightness(1.1); }
-    
-    #status { color: #34a853; font-size: 12px; display: none; margin-bottom: 10px; text-align: center; font-weight: bold; }
-    hr { border: 0; border-top: 1px solid var(--border-color); margin: 5px 0 15px 0; }
+    /* --- Inputs & Selects --- */
+    input, select {
+      width: 100%;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 8px; /* Plus arrondi */
+      background-color: var(--input-bg);
+      color: var(--text-color);
+      font-size: 13px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+    input:focus, select:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Halo de focus moderne */
+    }
 
-    .folder { margin-top: 5px; border: 1px solid var(--border-color); border-radius: 4px; overflow: hidden; }
-    .folder-header { display: flex; align-items: center; cursor: pointer; background: var(--folder-bg); padding: 8px 10px; transition: background 0.2s; }
+    /* --- Boutons --- */
+    button { font-family: inherit; cursor: pointer; transition: all 0.2s ease; }
+
+    .main-btn {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--accent-color);
+      color: #fff;
+      font-weight: 600;
+      font-size: 13px;
+      box-shadow: var(--shadow-sm); /* Petite ombre portée */
+    }
+    .main-btn:hover {
+      background-color: var(--accent-hover);
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px); /* Soulèvement au survol */
+    }
+    .main-btn:active { transform: translateY(0); }
+
+    .secondary-btn {
+      background: var(--folder-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-color);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .secondary-btn:hover {
+      background: var(--folder-hover);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* --- Dossiers --- */
+    .folder {
+      margin-top: 10px;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      background: var(--bg-color);
+      box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: box-shadow 0.2s ease;
+    }
+    .folder:hover { box-shadow: var(--shadow-sm); }
+
+    .folder-header {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      background: var(--folder-bg);
+      padding: 10px 14px;
+      transition: background 0.2s ease;
+    }
     .folder-header:hover { background: var(--folder-hover); }
-    .folder-name { font-weight: bold; flex-grow: 1; font-size: 14px; color: var(--text-color); }
-    .folder-icon { margin-right: 6px; }
-    
-    .folder-content { display: none; padding: 8px 10px; background: var(--bg-color); border-top: 1px solid var(--border-color); }
-    .chat-item { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+    .folder-name { font-weight: 600; flex-grow: 1; font-size: 14px; color: var(--text-color); }
+    .folder-icon { margin-right: 8px; font-size: 16px; }
+
+    /* --- Contenu des dossiers (Conversations) --- */
+    .folder-content { padding: 8px; background: var(--bg-color); border-top: 1px solid var(--border-color); }
+    .chat-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 6px 8px;
+      margin-bottom: 2px;
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .chat-item:hover { background: var(--folder-hover); } /* Surlignage léger au survol */
     .chat-item:last-child { margin-bottom: 0; }
-    .chat-link { font-size: 12px; color: var(--accent-color); text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex-grow: 1; margin-right: 8px; }
+
+    .chat-link {
+      font-size: 13px;
+      color: var(--accent-color);
+      text-decoration: none;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      flex-grow: 1;
+      margin-right: 8px;
+      padding: 2px 0;
+    }
     .chat-link:hover { text-decoration: underline; }
-    
-    .chat-actions { display: flex; gap: 4px; flex-shrink: 0; }
-    .action-btn { cursor: pointer; border: none; background: none; padding: 2px 4px; border-radius: 3px; font-size: 11px; opacity: 0.7; }
-    .action-btn:hover { opacity: 1; background: var(--folder-hover); }
-    .delete-btn { color: var(--delete-color); }
-    
-    #noResults { text-align: center; color: var(--muted-text); margin-top: 15px; font-size: 13px; display: none; }
-    
-    .footer-actions { margin-top: 15px; display: flex; justify-content: space-between; gap: 8px; border-top: 1px solid var(--border-color); padding-top: 10px; }
-    .secondary-btn { flex: 1; background: var(--folder-bg); border: 1px solid var(--border-color); color: var(--text-color); padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; transition: all 0.2s; }
-    .secondary-btn:hover { background: var(--folder-hover); }
 
-    /* --- Styles pour le Drag & Drop --- */
-    .chat-item.dragging {
-      opacity: 0.5;
-      background-color: var(--hover-bg);
+    /* --- Boutons d'action (Icones) --- */
+    .action-btn {
+      border: none;
+      background: transparent;
+      padding: 4px 6px;
+      border-radius: 6px;
+      font-size: 13px;
+      opacity: 0.6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .action-btn:hover { opacity: 1; background: var(--border-color); }
+    .delete-btn:hover { color: var(--delete-color); } /* On a retiré le background rouge, il sera gris par défaut ! */
+
+    /* --- Drag & Drop et Épingles --- */
+    .chat-item.dragging { opacity: 0.4; background-color: var(--folder-hover); border: 1px dashed var(--accent-color); }
+    .folder.drag-over { border: 2px dashed var(--accent-color); background-color: rgba(26, 115, 232, 0.05); }
+
+    .pin-divider { border-top: 2px dotted var(--border-color); margin: 16px 0; background: transparent; height: 0; }
+    .pin-btn.is-pinned { opacity: 1; } /* On a retiré la rotation pour garder le cadre droit */
+
+    /* --- Textes de statut et Footer --- */
+    #status { color: #1e8e3e; font-size: 12px; display: none; margin-top: 10px; margin-bottom: 0; text-align: center; font-weight: bold; }
+    #noResults { text-align: center; color: var(--muted-text); margin: 20px 0; font-size: 13px; display: none; }
+
+    .footer-actions { margin-top: 16px; display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 12px; }
+    hr { border: 0; border-top: 1px solid var(--border-color); margin: 16px 0; opacity: 0.5; }
+
+    /* --- Correction de la hauteur et alignement des boutons --- */
+
+    /* 1. On force les boutons à se mettre en rangée horizontale */
+    .chat-actions,
+    .folder-header > div:last-child {
+      display: flex !important;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
     }
 
-    .folder.drag-over {
-      border: 2px dashed #4a90e2; /* Ou la couleur de ton choix */
-      background-color: rgba(74, 144, 226, 0.1);
-      border-radius: 4px;
+    /* 2. On réduit l'espacement intérieur (padding) pour amincir les lignes */
+    .folder-header {
+      padding: 8px 16px; /* On met 16px de marge sur les côtés de l'en-tête */
     }
 
-    /* --- Styles pour les épingles --- */
-    .pin-divider {
-      border: 0;
-      height: 1px;
-      background: var(--border-color, #e0e0e0);
-      margin: 15px 0;
+    .folder-content {
+      padding: 8px; /* Le conteneur intérieur garde 8px */
     }
-    .pin-btn {
-      opacity: 0.5;
-      transition: opacity 0.2s;
+
+    .chat-item {
+      padding: 4px 8px; /* L'item ajoute 8px. Total = 16px ! */
     }
-    .pin-btn.is-pinned {
-      opacity: 1;
+
+    /* 3. On ajuste les boutons d'action pour qu'ils soient bien proportionnés */
+    .action-btn {
+      padding: 4px;
+      width: 24px;
+      height: 24px;
+    }
+    /* --- Ultra-Compact & Alignement à droite --- */
+
+    /* 1. Rapprocher les icônes entre elles */
+    .chat-actions,
+    .folder-header > div:last-child {
+      gap: 0px !important; /* Retire l'espace vide entre les boutons */
+    }
+
+    /* 2. Réduire la taille des boutons d'action */
+    .action-btn {
+      padding: 2px !important;
+      width: 22px !important; /* Plus petits (étaient à 24px) */
+      height: 22px !important;
+      font-size: 12px !important;
+    }
+
+    /* 3. Coller au bord droit (Alignement parfait à 6px du bord) */
+    .folder-header {
+      padding: 6px 6px 6px 12px !important; /* 6px de marge à droite */
+    }
+
+    .folder-content {
+      padding: 2px 6px 4px 12px !important; /* 6px de marge à droite pour le conteneur */
+    }
+
+    .chat-item {
+      padding: 2px 0px 2px 4px !important; /* 0px à droite : on s'appuie sur la marge du conteneur */
+      margin-bottom: 0px !important;
+    }
+
+    /* 4. Réduire la hauteur globale des conversations */
+    .chat-link {
+      font-size: 12.5px !important; /* Texte un poil plus petit */
+      padding: 0 !important;
+    }
+    /* --- Menu de Tri Personnalisé --- */
+    .dropdown-container {
+      position: relative;
+      display: flex;
+    }
+
+    .custom-dropdown {
+      display: none; /* Caché par défaut */
+      position: absolute;
+      right: 0;
+      top: 110%;
+      background-color: var(--bg-color);
+      min-width: 150px;
+      box-shadow: var(--shadow-hover);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      z-index: 100;
+      overflow: hidden;
+    }
+
+    .custom-dropdown.show { display: block; } /* Classe pour l'afficher */
+
+    .dropdown-item {
+      padding: 10px 14px;
+      font-size: 13px;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: background 0.2s;
+    }
+
+    .dropdown-item:hover { background-color: var(--folder-hover); }
+
+    .dropdown-item.active {
+      color: var(--accent-color);
+      font-weight: bold;
+      background-color: rgba(26, 115, 232, 0.05); /* Léger fond bleu pour l'élément sélectionné */
     }
   </style>
 </head>
 <body>
   <h3><img src="icon.svg" alt="logo"> <span id="appTitle"></span></h3>
 
-  <div style="display: flex; gap: 8px; margin-bottom: 15px;">
-    <input type="text" id="searchInput" style="margin-bottom: 0; flex-grow: 1;">
-    <select id="sortSelect" class="secondary-btn" style="margin-bottom: 0; width: auto; padding: 0 5px;">
-    </select>
-  </div> <div style="display: flex; gap: 8px; margin-bottom: 15px;">
-        <button id="toggleAddPanelBtn" class="main-btn" style="margin: 0; padding: 7px; font-size: 13px; flex: 2;"></button>
-        <button id="newFolderBtn" class="secondary-btn" style="margin: 0; padding: 7px; font-size: 13px; flex: 1; display: flex; align-items: center; justify-content: center;"></button>
+  <div style="display: flex; gap: 8px; margin-bottom: 15px; position: relative; align-items: center;">
+    <input type="text" id="searchInput" style="margin-bottom: 0; flex-grow: 1; height: 38px;">
+
+    <div class="dropdown-container" style="height: 38px;">
+      <button id="sortToggleBtn" class="secondary-btn" title="Trier" style="margin: 0; padding: 0; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0;">⇅</button>
+
+      <div id="sortMenu" class="custom-dropdown">
+        <div class="dropdown-item" data-value="dateDesc" id="sortNewest"></div>
+        <div class="dropdown-item" data-value="dateAsc" id="sortOldest"></div>
+        <div class="dropdown-item" data-value="alphaAsc" id="sortAlpha"></div>
       </div>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 8px; margin-bottom: 15px;">
+    <button id="toggleAddPanelBtn" class="main-btn" style="margin: 0; padding: 0 10px; height: 38px; font-size: 13px; flex-grow: 1;"></button>
+
+    <button id="newFolderBtn" class="secondary-btn" style="margin: 0; padding: 0; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0;">+ 📁</button>
+  </div>
 
       <div id="addConversationPanel" style="display: none; background: var(--folder-bg); padding: 12px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 15px;">
         <input type="text" id="folderName" style="margin-bottom: 10px;">

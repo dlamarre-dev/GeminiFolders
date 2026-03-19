@@ -8,15 +8,17 @@
 
 ## ✨ Features
 
-* 📁 **Smart Folders:** Group your chats by projects, themes, or categories. You can now create empty folders in advance or delete them manually.
-* 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace on the fly.
+* ⚡ **Quick Save (Right-Click):** Save the current conversation directly to any of your folders using the right-click context menu, without even opening the extension popup!
+* ⇅ **Custom Sorting:** Sort your saved conversations on the fly by Newest, Oldest, or Alphabetically (A-Z) using the dedicated dropdown menu.
+* 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace intuitively.
+* 🎨 **Modern Material UI:** Enjoy a sleek, ultra-compact, and responsive design with a collapsible "Add" panel, clean hover effects, and pixel-perfect icons.
+* 📁 **Smart Folders:** Group your chats by projects, themes, or categories. Create empty folders in advance and manage them easily.
 * 📌 **Pin Favorites:** Pin your most important folders to the top of the list for ultra-fast access.
-* 🤖 **Smart Title Detection:** No more typing! The extension automatically reads the Gemini interface to extract the exact name of your current conversation.
+* 🤖 **Smart Title Detection:** No more typing! The extension automatically reads the Gemini interface to extract the exact name of your current conversation in the background.
 * 🔍 **Instant Search:** Find any conversation quickly with a real-time search bar.
 * ☁️ **Cloud Sync:** Uses native `chrome.storage.sync` to keep your folders synchronized across all devices connected to your Google account.
 * 💾 **Import / Export:** Easily backup and restore your folder structure (including pinned folders) via JSON files.
-* 🎨 **Adaptive UI:** Automatically matches your system's Dark/Light mode and accent colors.
-* 🌍 **Bilingual:** Automatically detects your browser language (supports English and French).
+* 🌍 **Bilingual & Adaptive:** Automatically detects your browser language (supports English and French) and matches your system's Dark/Light mode.
 
 ## 🚀 Installation
 
@@ -34,15 +36,15 @@ If you want to test the code locally or contribute to the project:
 ## 🛠️ Usage
 
 1. Open a conversation on [gemini.google.com](https://gemini.google.com).
-2. Click the **Gemini Folders** extension icon in your toolbar.
-3. The conversation title is automatically detected. Select a folder (or create a new one) and hit **Save**.
-4. Drag and drop items to reorganize, or use the 📌 icon to pin your favorite folders!
+2. **To save via the Context Menu:** Right-click anywhere on the page, hover over "Save to Gemini Folders", and click your target folder.
+3. **To save via the Extension:** Click the **Gemini Folders** icon in your toolbar. The title is automatically detected. Expand the add panel (➕), select or create a folder, and hit **Save**.
+4. Drag and drop items to reorganize, use the 📌 icon to pin your favorite folders, or use the ⇅ dropdown to sort them!
 
 ## 🔒 Privacy & Security
 
 This extension is built with privacy in mind. 
-* It **only** requests access to the `gemini.google.com` domain.
-* It dynamically reads the active tab's content **only** when you explicitly click the extension button to generate a title.
+* It **only** requests access to the `gemini.google.com` domain and the context menu.
+* It dynamically reads the active tab's content **only** when you explicitly save a conversation to generate a title.
 * All data is stored using Chrome's built-in sync storage. **No third-party servers** are used, and your data remains entirely yours.
 
 ## 💻 Built With
@@ -50,3 +52,4 @@ This extension is built with privacy in mind.
 * HTML5 / CSS3
 * Vanilla JavaScript
 * Chrome Extension API (Manifest V3)
+* Service Workers (Background Scripts)
