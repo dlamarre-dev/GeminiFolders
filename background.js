@@ -58,6 +58,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       target: { tabId: tab.id },
       args: [fallbackTitle], // <-- NOUVEAU: On passe la variable au script injecté
       func: (defaultFallback) => {
+        // Plan A
+        const topTitle = document.querySelector('[data-test-id="conversation-title"]');
+        if (topTitle && topTitle.textContent) {
+          let text = topTitle.textContent.trim();
+          if (text.length > 0) return text;
+        }
+
+        // Plan B
         const currentPath = window.location.pathname;
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
@@ -67,14 +75,15 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
           }
         }
 
+        // Plan C
         let docTitle = document.title || "";
         let cleanTitle = docTitle.split(' - ')[0].trim();
         const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
-
         if (!ignoreList.includes(cleanTitle.toLowerCase())) {
             return cleanTitle;
         }
 
+        // Plan D
         const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
         if (firstMsg && firstMsg.textContent) {
           let excerpt = firstMsg.textContent.trim();

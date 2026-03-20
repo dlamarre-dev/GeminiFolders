@@ -104,43 +104,38 @@ document.addEventListener('DOMContentLoaded', async () => {
     chrome.scripting.executeScript({
       target: { tabId: currentTab.id },
       func: () => {
-      // --- 🕵️‍♂️ DÉBOGAGE GEMINI FOLDERS ---
-        console.log("=== DEBUG GEMINI FOLDERS ===");
-        console.log("1. window.location.pathname :", window.location.pathname);
-        console.log("2. document.title :", document.title);
-        console.log("3. User Agent :", navigator.userAgent); // Pour voir si Windows se déclare différemment
-        // ------------------------------------
-        // Plan A : Le menu latéral (s'il est affiché à l'écran)
+      // Plan A : Le titre officiel en haut de la page (Ultra robuste)
+        const topTitle = document.querySelector('[data-test-id="conversation-title"]');
+        if (topTitle && topTitle.textContent) {
+          let text = topTitle.textContent.trim();
+          if (text.length > 0) return text;
+        }
+
+        // Plan B : Le menu latéral (si le Plan A échoue ou si l'UI change)
         const currentPath = window.location.pathname;
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
-          console.log("4. Liens trouvés dans le menu :", links.length); // On compte les liens trouvés
           for (let link of links) {
             let text = link.textContent.trim();
-            console.log("5. Titre extrait via le menu :", text.split('\n')[0].trim());
             if (text && text.length > 1) return text.split('\n')[0].trim();
           }
         }
 
-        // Plan B : Le titre de l'onglet (La méthode la plus robuste)
+        // Plan C : Le titre de l'onglet
         let docTitle = document.title || "";
-        // On coupe au niveau du tiret (ex: "Mon super titre - Gemini" -> "Mon super titre")
         let cleanTitle = docTitle.split(' - ')[0].trim();
-        console.log("6. Titre nettoyé via document.title :", cleanTitle);
         const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
-
         if (!ignoreList.includes(cleanTitle.toLowerCase())) {
             return cleanTitle;
         }
 
-        // Plan C : Le premier message de l'utilisateur (avec plus de sélecteurs)
+        // Plan D : Le premier message de l'utilisateur
         const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
         if (firstMsg && firstMsg.textContent) {
           let excerpt = firstMsg.textContent.trim();
-          console.log("7. Titre extrait via premier message :", excerpt.substring(0, 40));
           return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
         }
-        console.log("8. ÉCHEC TOTAL : Aucun titre trouvé.");
+
         return null;
       }
     }, (injectionResults) => {
