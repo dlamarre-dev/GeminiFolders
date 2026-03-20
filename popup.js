@@ -104,41 +104,41 @@ document.addEventListener('DOMContentLoaded', async () => {
     chrome.scripting.executeScript({
       target: { tabId: currentTab.id },
       func: () => {
-        // --- CE CODE S'EXÉCUTE DANS LA PAGE WEB ---
+      // --- 🕵️‍♂️ DÉBOGAGE GEMINI FOLDERS ---
+        console.log("=== DEBUG GEMINI FOLDERS ===");
+        console.log("1. window.location.pathname :", window.location.pathname);
+        console.log("2. document.title :", document.title);
+        console.log("3. User Agent :", navigator.userAgent); // Pour voir si Windows se déclare différemment
+        // ------------------------------------
+        // Plan A : Le menu latéral (s'il est affiché à l'écran)
         const currentPath = window.location.pathname;
-
-        // 1. Chercher dans le menu latéral (en utilisant textContent qui ignore le CSS)
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
           for (let link of links) {
-            let text = link.textContent.trim(); // <-- La magie est ici ! (textContent au lieu de innerText)
-            if (text && text.length > 1) {
-              return text.split('\n')[0].trim();
-            }
+            let text = link.textContent.trim();
+            if (text && text.length > 1) return text.split('\n')[0].trim();
           }
         }
 
-        // 2. Fallback plus robuste sur le titre de l'onglet
-        let docTitle = document.title;
-        const suffixes = [" - Gemini", " - Google Gemini", "Google Gemini", "Gemini"];
-        suffixes.forEach(suffix => {
-            docTitle = docTitle.replace(suffix, "");
-        });
-        docTitle = docTitle.trim();
+        // Plan B : Le titre de l'onglet (La méthode la plus robuste)
+        let docTitle = document.title || "";
+        // On coupe au niveau du tiret (ex: "Mon super titre - Gemini" -> "Mon super titre")
+        let cleanTitle = docTitle.split(' - ')[0].trim();
 
-        if (docTitle && docTitle !== "Discussions" && docTitle !== "Chats" && docTitle !== "Nouvelle conversation" && docTitle !== "New conversation") {
-            return docTitle;
+        const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
+
+        if (!ignoreList.includes(cleanTitle.toLowerCase())) {
+            return cleanTitle;
         }
 
-        // 3. Dernier recours : le premier message de l'utilisateur
-        const firstUserMessage = document.querySelector('[data-message-author-role="user"], message-content');
-        if (firstUserMessage && firstUserMessage.textContent) {
-          let excerpt = firstUserMessage.textContent.trim();
+        // Plan C : Le premier message de l'utilisateur (avec plus de sélecteurs)
+        const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
+        if (firstMsg && firstMsg.textContent) {
+          let excerpt = firstMsg.textContent.trim();
           return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
         }
 
         return null;
-        // ------------------------------------------
       }
     }, (injectionResults) => {
       if (injectionResults && injectionResults[0] && injectionResults[0].result) {

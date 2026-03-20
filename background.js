@@ -59,29 +59,28 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       args: [fallbackTitle], // <-- NOUVEAU: On passe la variable au script injecté
       func: (defaultFallback) => {
         const currentPath = window.location.pathname;
-
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
           for (let link of links) {
-            let text = link.textContent.trim(); // <-- textContent
+            let text = link.textContent.trim();
             if (text && text.length > 1) return text.split('\n')[0].trim();
           }
         }
 
-        let docTitle = document.title;
-        const suffixes = [" - Gemini", " - Google Gemini", "Google Gemini", "Gemini"];
-        suffixes.forEach(suffix => { docTitle = docTitle.replace(suffix, ""); });
-        docTitle = docTitle.trim();
+        let docTitle = document.title || "";
+        let cleanTitle = docTitle.split(' - ')[0].trim();
+        const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
 
-        if (docTitle && docTitle !== "Discussions" && docTitle !== "Chats" && docTitle !== "Nouvelle conversation" && docTitle !== "New conversation") {
-            return docTitle;
+        if (!ignoreList.includes(cleanTitle.toLowerCase())) {
+            return cleanTitle;
         }
 
-        const firstUserMessage = document.querySelector('[data-message-author-role="user"], message-content');
-        if (firstUserMessage && firstUserMessage.textContent) {
-          let excerpt = firstUserMessage.textContent.trim();
+        const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
+        if (firstMsg && firstMsg.textContent) {
+          let excerpt = firstMsg.textContent.trim();
           return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
         }
+
         return defaultFallback;
       }
     }, (results) => {
