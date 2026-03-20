@@ -106,24 +106,34 @@ document.addEventListener('DOMContentLoaded', async () => {
       func: () => {
         // --- CE CODE S'EXÉCUTE DANS LA PAGE WEB ---
         const currentPath = window.location.pathname;
+
+        // 1. Chercher dans le menu latéral (en utilisant textContent qui ignore le CSS)
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
           for (let link of links) {
-            let text = link.innerText.trim();
+            let text = link.textContent.trim(); // <-- La magie est ici ! (textContent au lieu de innerText)
             if (text && text.length > 1) {
               return text.split('\n')[0].trim();
             }
           }
         }
 
-        let docTitle = document.title.replace(" - Gemini", "").replace("Google Gemini", "").trim();
-        if (docTitle && docTitle !== "Gemini" && docTitle !== "Discussions" && docTitle !== "Chats") {
+        // 2. Fallback plus robuste sur le titre de l'onglet
+        let docTitle = document.title;
+        const suffixes = [" - Gemini", " - Google Gemini", "Google Gemini", "Gemini"];
+        suffixes.forEach(suffix => {
+            docTitle = docTitle.replace(suffix, "");
+        });
+        docTitle = docTitle.trim();
+
+        if (docTitle && docTitle !== "Discussions" && docTitle !== "Chats" && docTitle !== "Nouvelle conversation" && docTitle !== "New conversation") {
             return docTitle;
         }
 
+        // 3. Dernier recours : le premier message de l'utilisateur
         const firstUserMessage = document.querySelector('[data-message-author-role="user"], message-content');
-        if (firstUserMessage && firstUserMessage.innerText) {
-          let excerpt = firstUserMessage.innerText.trim();
+        if (firstUserMessage && firstUserMessage.textContent) {
+          let excerpt = firstUserMessage.textContent.trim();
           return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
         }
 

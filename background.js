@@ -57,24 +57,32 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       args: [fallbackTitle], // <-- NOUVEAU: On passe la variable au script injecté
-      func: (defaultFallback) => { // <-- NOUVEAU: Le script reçoit la variable
+      func: (defaultFallback) => {
         const currentPath = window.location.pathname;
+
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
           for (let link of links) {
-            let text = link.innerText.trim();
+            let text = link.textContent.trim(); // <-- textContent
             if (text && text.length > 1) return text.split('\n')[0].trim();
           }
         }
-        let docTitle = document.title.replace(" - Gemini", "").replace("Google Gemini", "").trim();
-        if (docTitle && docTitle !== "Gemini" && docTitle !== "Discussions" && docTitle !== "Chats") return docTitle;
+
+        let docTitle = document.title;
+        const suffixes = [" - Gemini", " - Google Gemini", "Google Gemini", "Gemini"];
+        suffixes.forEach(suffix => { docTitle = docTitle.replace(suffix, ""); });
+        docTitle = docTitle.trim();
+
+        if (docTitle && docTitle !== "Discussions" && docTitle !== "Chats" && docTitle !== "Nouvelle conversation" && docTitle !== "New conversation") {
+            return docTitle;
+        }
 
         const firstUserMessage = document.querySelector('[data-message-author-role="user"], message-content');
-        if (firstUserMessage && firstUserMessage.innerText) {
-          let excerpt = firstUserMessage.innerText.trim();
+        if (firstUserMessage && firstUserMessage.textContent) {
+          let excerpt = firstUserMessage.textContent.trim();
           return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
         }
-        return defaultFallback; // On utilise la traduction !
+        return defaultFallback;
       }
     }, (results) => {
       // Pareil ici en cas d'échec total du script
