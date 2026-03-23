@@ -287,18 +287,18 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   });
 
-// 4. Afficher et Filtrer les dossiers (Mise à jour pour le Tri)
+// 4. Afficher et Filtrer les dossiers
   function displayFolders(openFoldersArg = [], searchTerm = "") {
-    // Permet d'accepter soit un nom de dossier (texte), soit une liste (tableau)
+    // On ajoute 'openFolders: []' pour récupérer l'état de nos dossiers sauvegardés
     let openFolders = [];
     if (typeof openFoldersArg === 'string') openFolders = [openFoldersArg];
     else if (Array.isArray(openFoldersArg)) openFolders = openFoldersArg;
-
-    chrome.storage.sync.get({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc' }, (data) => {
+    chrome.storage.sync.get({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc', openFolders: [] }, (data) => {
       folderList.innerHTML = "";
       const folders = data.folders;
       const pinnedFolders = data.pinnedFolders;
-      const sortPref = data.sortPref; // On stocke la préférence
+      const sortPref = data.sortPref;
+      let savedOpenFolders = data.openFolders; // L'état mémorisé des dossiers ouverts
       let hasResults = false;
 
       const sortedFolderNames = Object.keys(folders).sort((a, b) => {
@@ -313,20 +313,16 @@ document.addEventListener('DOMContentLoaded', async () => {
       let transitionDone = false;
 
       sortedFolderNames.forEach((folderName) => {
-        let chats = folders[folderName]; // On utilise 'let' car on va trier ce tableau
+        let chats = folders[folderName];
 
-        // La logique de tri JavaScript ---
         chats.sort((a, b) => {
-          // Fallback : si c'est une ancienne conversation sans date, on met 0
           const timeA = a.timestamp || 0;
           const timeB = b.timestamp || 0;
-
-          if (sortPref === 'dateDesc') return timeB - timeA; // Plus récent
-          if (sortPref === 'dateAsc') return timeA - timeB;  // Plus ancien
-          if (sortPref === 'alphaAsc') return a.title.localeCompare(b.title); // A à Z
+          if (sortPref === 'dateDesc') return timeB - timeA;
+          if (sortPref === 'dateAsc') return timeA - timeB;
+          if (sortPref === 'alphaAsc') return a.title.localeCompare(b.title);
           return 0;
         });
-        // ----------------------------------------------
 
         const folderMatches = folderName.toLowerCase().includes(searchTerm);
         const matchingChats = chats.filter(chat => chat.title.toLowerCase().includes(searchTerm));
@@ -336,7 +332,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const isPinned = pinnedFolders.includes(folderName);
 
-        // Insérer le diviseur visuel
         if (isPinned) hasPinned = true;
         if (!isPinned && hasPinned && !transitionDone && !searchTerm) {
           const divider = document.createElement('hr');
@@ -348,7 +343,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const folderDiv = document.createElement('div');
         folderDiv.className = 'folder';
 
-        // Écouteurs pour le Drop sur le dossier
         folderDiv.addEventListener('dragover', (e) => {
           e.preventDefault();
           folderDiv.classList.add('drag-over');
@@ -361,14 +355,10 @@ document.addEventListener('DOMContentLoaded', async () => {
         folderDiv.addEventListener('drop', (e) => {
           e.preventDefault();
           folderDiv.classList.remove('drag-over');
-
           const dragData = e.dataTransfer.getData('text/plain');
           if (!dragData) return;
-
-          // NOUVEAU : On extrait chatUrl de la valise
           const { sourceFolder, chatUrl } = JSON.parse(dragData);
           if (sourceFolder === folderName) return;
-
           moveChat(sourceFolder, folderName, chatUrl);
         });
 
@@ -379,12 +369,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const leftPart = document.createElement('div');
         leftPart.style.display = 'flex';
-        leftPart.innerHTML = `<span class="folder-icon">📁</span><div class="folder-name">${folderName}</div>`;
 
-        // Le conteneur pour les boutons du dossier
+        // --- NOUVEAU : Icône de dossier différente si vide (📁) ou plein (📂) ---
+        const isEmpty = chats.length === 0;
+        const folderIcon = isEmpty ? '📁' : '🗂️';
+        leftPart.innerHTML = `<span class="folder-icon">${folderIcon}</span><div class="folder-name">${folderName}</div>`;
+        // -----------------------------------------------------------------------
+
         const actionsDiv = document.createElement('div');
 
-        // Bouton Épingler
         const pinBtn = document.createElement('button');
         pinBtn.className = `action-btn pin-btn ${isPinned ? 'is-pinned' : ''}`;
         pinBtn.innerHTML = isPinned ? '📌' : '📍';
@@ -395,7 +388,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         actionsDiv.appendChild(pinBtn);
 
-        // Bouton Renommer le dossier
         const editFolderBtn = document.createElement('button');
         editFolderBtn.className = 'action-btn edit-btn';
         editFolderBtn.innerHTML = '✏️';
@@ -406,21 +398,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         actionsDiv.appendChild(editFolderBtn);
 
-        // Bouton pour supprimer le dossier entier
         const delFolderBtn = document.createElement('button');
         delFolderBtn.className = 'action-btn delete-btn';
         delFolderBtn.innerHTML = '🗑️';
         delFolderBtn.title = chrome.i18n.getMessage("btnDeleteFolder");
         delFolderBtn.addEventListener('click', (e) => {
           e.stopPropagation();
-
           if (chats.length > 0) {
             if (!confirm(chrome.i18n.getMessage("confirmDeleteFolder"))) return;
           }
-
           chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
             delete data.folders[folderName];
-            // Nettoyage des épingles si on supprime le dossier
             let updatedPinned = data.pinnedFolders.filter(name => name !== folderName);
             chrome.storage.sync.set({ folders: data.folders, pinnedFolders: updatedPinned }, () => {
               displayFolders(null, searchInput.value.toLowerCase());
@@ -435,16 +423,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         const folderContent = document.createElement('div');
         folderContent.className = 'folder-content';
 
-        // On vérifie si le nom du dossier fait partie de la liste des dossiers ouverts
-        if (searchTerm || openFolders.includes(folderName)) {
-          folderContent.style.display = 'block';
+        // --- CORRECTION : Gestion intelligente de l'état Ouvert/Fermé ---
+        let isFolderOpen = false;
+
+        if (searchTerm) {
+          // Si on cherche, on ouvre automatiquement si ça correspond
+          isFolderOpen = true;
+        } else {
+          // Sinon, on se fie à l'historique mémorisé (par défaut, on considère que ce n'est pas ouvert sauf si sauvegardé)
+          isFolderOpen = savedOpenFolders.includes(folderName) || openFolders.includes(folderName);
         }
+
+        // Fixe le bug du double clic en définissant explicitement block ou none dès la création
+        folderContent.style.display = isFolderOpen ? 'block' : 'none';
 
         folderHeader.addEventListener('click', () => {
           folderNameInput.value = folderName;
-          const isOpen = folderContent.style.display === 'block';
-          folderContent.style.display = isOpen ? 'none' : 'block';
+          const isCurrentlyOpen = folderContent.style.display === 'block';
+          folderContent.style.display = isCurrentlyOpen ? 'none' : 'block';
+
+          // On sauvegarde le nouvel état dans Chrome Sync seulement si on ne fait pas de recherche
+          if (!searchTerm) {
+            chrome.storage.sync.get({ openFolders: [] }, (storageData) => {
+              let currentOpen = storageData.openFolders;
+              if (isCurrentlyOpen) {
+                // On le ferme : on le retire de la liste
+                currentOpen = currentOpen.filter(name => name !== folderName);
+              } else {
+                // On l'ouvre : on l'ajoute à la liste
+                if (!currentOpen.includes(folderName)) currentOpen.push(folderName);
+              }
+              chrome.storage.sync.set({ openFolders: currentOpen });
+            });
+          }
         });
+        // ----------------------------------------------------------------
 
         let appendedChatsCount = 0;
 
@@ -554,7 +567,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 7. Déplacer une conversation (Drag & Drop)
   function moveChat(sourceFolder, targetFolder, chatUrl) {
-    chrome.storage.sync.get({ folders: {} }, (data) => {
+    chrome.storage.sync.get({ folders: {}, openFolders: [] }, (data) => {
       let folders = data.folders;
 
       const realIndex = folders[sourceFolder].findIndex(c => c.url === chatUrl);
@@ -566,13 +579,13 @@ document.addEventListener('DOMContentLoaded', async () => {
       // On s'assure que le dossier cible existe
       if (!folders[targetFolder]) folders[targetFolder] = [];
 
-      // Petite vérification anti-doublon dans le dossier cible
+      // Anti-doublon dans le dossier cible
       const isDuplicate = folders[targetFolder].some(chat => chat.url === chatToMove.url);
       if (!isDuplicate) {
         folders[targetFolder].push(chatToMove);
       }
 
-      // --- NOUVEAU : On mémorise tous les dossiers actuellement ouverts ---
+      // On mémorise tous les dossiers actuellement ouverts
       let openFolders = [];
       document.querySelectorAll('.folder').forEach(folder => {
         const content = folder.querySelector('.folder-content');
@@ -585,12 +598,12 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!openFolders.includes(targetFolder)) {
         openFolders.push(targetFolder);
       }
-      // -------------------------------------------------------------------
 
-      chrome.storage.sync.set({ folders: folders }, () => {
-        // On envoie la liste complète à l'affichage
+      // --- CORRECTION : On sauvegarde 'folders' ET le nouvel état de 'openFolders' ---
+      chrome.storage.sync.set({ folders: folders, openFolders: openFolders }, () => {
         displayFolders(openFolders, searchInput.value.toLowerCase());
       });
+      // --------------------------------------------------------------------------------
     });
   }
   // 8. Épingler / Désépingler un dossier
