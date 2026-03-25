@@ -25,7 +25,7 @@ Unlike classic bookmarks that eventually clutter your browser and mix with your 
 
 💾 Local Backup (Import / Export): Download all your data (including your pins) in JSON format with one click to create secure backups, and restore them at any time.
 
-🎨 "Material 3" Design & Bilingual: Enjoy an ultra-compact, fluid, and elegant interface that automatically adapts to your browser's language (English/French) and your system's Dark Mode.
+🎨 "Material 3" Design & Multilingual: Enjoy an ultra-compact, fluid, and elegant interface that automatically adapts to your system's Dark Mode and your browser's language (English, French, Spanish, Portuguese, German, and Japanese).
 
 🛠️ HOW DOES IT WORK?
 
@@ -41,18 +41,12 @@ Use drag-and-drop to reorganize your chats, the 📌 icon to pin your folders, o
 
 This extension is built with privacy at its core. It only requests access to the Gemini domain and your context menu. It only reads the content of the active tab at the exact moment you decide to save a conversation to extract the title. Your folders are securely stored in your own browser's synced memory (Chrome Sync): no third-party servers are used, and your data remains entirely yours.
 
-📢 NEW IN VERSION 2.0:
+📢 CHANGELOG:
 
-Drag & Drop: Fluid movement of conversations between folders.
+Version 2.1 (Global Update): 🌍 Gemini Folders is now fully localized! The extension automatically translates to Spanish, Brazilian Portuguese, German, and Japanese, in addition to English and French.
 
-Context Menu: Ultra-fast saving via right-click on the page.
+Version 2.0.2 (UX Improvements): Smart Memory (remembers open/closed folders), Visual Cues (distinct icons 📁/🗂️ for empty vs. full folders), and minor display fixes.
 
-Custom Sorting: Options to sort by date (ascending/descending) and alphabetically.
+Version 2.0.1: Fixed an issue with title retrieval happening on some browsers.
 
-Pinning & Renaming: Ability to pin and rename existing folders.
-
-Auto-detection: Smart extraction of the current conversation's title.
-
-Visual Overhaul: New compact "Material 3" design with a collapsible panel.
-
-Internationalization: 100% automatic bilingual support (English and French).
+Version 2.0: Major overhaul adding Drag & Drop, Context Menu (right-click save), Custom Sorting, Pinning & Renaming, Auto-detection, and a new Material 3 design.
