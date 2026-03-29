@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <style>
-    /* --- Variables : Style Google Material --- */
+    /* --- Variables: Google Material Style --- */
     :root {
       --bg-color: #ffffff;
       --text-color: #202124;
       --border-color: #dadce0;
       --folder-bg: #f8f9fa;
       --folder-hover: #f1f3f4;
-      --accent-color: #1a73e8; /* Bleu Google */
+      --accent-color: #1a73e8; /* Google Blue */
       --accent-hover: #1557b0;
       --delete-color: #d93025;
       --input-bg: #ffffff;
@@ -38,9 +38,9 @@
 
     /* --- Base --- */
     body {
-      /* Typographie plus moderne et propre aux systèmes OS */
+      /* More modern typography specific to OS systems */
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      width: 360px; /* Un tout petit peu plus large pour respirer */
+      width: 360px; /* Slightly wider to let it breathe */
       padding: 16px;
       margin: 0;
       background-color: var(--bg-color);
@@ -67,7 +67,7 @@
       margin-bottom: 12px;
       box-sizing: border-box;
       border: 1px solid var(--border-color);
-      border-radius: 8px; /* Plus arrondi */
+      border-radius: 8px; /* More rounded */
       background-color: var(--input-bg);
       color: var(--text-color);
       font-size: 13px;
@@ -76,10 +76,10 @@
     }
     input:focus, select:focus {
       border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Halo de focus moderne */
+      box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2); /* Modern focus halo */
     }
 
-    /* --- Boutons --- */
+    /* --- Buttons --- */
     button { font-family: inherit; cursor: pointer; transition: all 0.2s ease; }
 
     .main-btn {
@@ -91,12 +91,12 @@
       color: #fff;
       font-weight: 600;
       font-size: 13px;
-      box-shadow: var(--shadow-sm); /* Petite ombre portée */
+      box-shadow: var(--shadow-sm); /* Small drop shadow */
     }
     .main-btn:hover {
       background-color: var(--accent-hover);
       box-shadow: var(--shadow-hover);
-      transform: translateY(-1px); /* Soulèvement au survol */
+      transform: translateY(-1px); /* Lift on hover */
     }
     .main-btn:active { transform: translateY(0); }
 
@@ -114,7 +114,7 @@
       box-shadow: var(--shadow-sm);
     }
 
-    /* --- Dossiers --- */
+    /* --- Folders --- */
     .folder {
       margin-top: 10px;
       border: 1px solid var(--border-color);
@@ -138,7 +138,7 @@
     .folder-name { font-weight: 600; flex-grow: 1; font-size: 14px; color: var(--text-color); }
     .folder-icon { margin-right: 8px; font-size: 16px; }
 
-    /* --- Contenu des dossiers (Conversations) --- */
+    /* --- Folder Content (Conversations) --- */
     .folder-content { padding: 8px; background: var(--bg-color); border-top: 1px solid var(--border-color); }
     .chat-item {
       display: flex;
@@ -149,7 +149,7 @@
       border-radius: 6px;
       transition: background 0.2s;
     }
-    .chat-item:hover { background: var(--folder-hover); } /* Surlignage léger au survol */
+    .chat-item:hover { background: var(--folder-hover); } /* Light highlight on hover */
     .chat-item:last-child { margin-bottom: 0; }
 
     .chat-link {
@@ -165,7 +165,7 @@
     }
     .chat-link:hover { text-decoration: underline; }
 
-    /* --- Boutons d'action (Icones) --- */
+    /* --- Action Buttons (Icons) --- */
     .action-btn {
       border: none;
       background: transparent;
@@ -178,25 +178,25 @@
       justify-content: center;
     }
     .action-btn:hover { opacity: 1; background: var(--border-color); }
-    .delete-btn:hover { color: var(--delete-color); } /* On a retiré le background rouge, il sera gris par défaut ! */
+    .delete-btn:hover { color: var(--delete-color); } /* Removed the red background, it will be gray by default! */
 
-    /* --- Drag & Drop et Épingles --- */
+    /* --- Drag & Drop and Pins --- */
     .chat-item.dragging { opacity: 0.4; background-color: var(--folder-hover); border: 1px dashed var(--accent-color); }
     .folder.drag-over { border: 2px dashed var(--accent-color); background-color: rgba(26, 115, 232, 0.05); }
 
     .pin-divider { border-top: 2px dotted var(--border-color); margin: 16px 0; background: transparent; height: 0; }
-    .pin-btn.is-pinned { opacity: 1; } /* On a retiré la rotation pour garder le cadre droit */
+    .pin-btn.is-pinned { opacity: 1; } /* Removed rotation to keep the frame straight */
 
-    /* --- Textes de statut et Footer --- */
+    /* --- Status Texts and Footer --- */
     #status { color: #1e8e3e; font-size: 12px; display: none; margin-top: 10px; margin-bottom: 0; text-align: center; font-weight: bold; }
     #noResults { text-align: center; color: var(--muted-text); margin: 20px 0; font-size: 13px; display: none; }
 
     .footer-actions { margin-top: 16px; display: flex; justify-content: space-between; gap: 10px; border-top: 1px solid var(--border-color); padding-top: 12px; }
     hr { border: 0; border-top: 1px solid var(--border-color); margin: 16px 0; opacity: 0.5; }
 
-    /* --- Correction de la hauteur et alignement des boutons --- */
+    /* --- Height correction and button alignment --- */
 
-    /* 1. On force les boutons à se mettre en rangée horizontale */
+    /* 1. Force buttons into a horizontal row */
     .chat-actions,
     .folder-header > div:last-child {
       display: flex !important;
@@ -206,68 +206,68 @@
       flex-shrink: 0;
     }
 
-    /* 2. On réduit l'espacement intérieur (padding) pour amincir les lignes */
+    /* 2. Reduce internal spacing (padding) to thin the lines */
     .folder-header {
-      padding: 8px 16px; /* On met 16px de marge sur les côtés de l'en-tête */
+      padding: 8px 16px; /* Put 16px margin on the sides of the header */
     }
 
     .folder-content {
-      padding: 8px; /* Le conteneur intérieur garde 8px */
+      padding: 8px; /* Inner container keeps 8px */
     }
 
     .chat-item {
-      padding: 4px 8px; /* L'item ajoute 8px. Total = 16px ! */
+      padding: 4px 8px; /* Item adds 8px. Total = 16px! */
     }
 
-    /* 3. On ajuste les boutons d'action pour qu'ils soient bien proportionnés */
+    /* 3. Adjust action buttons to be well proportioned */
     .action-btn {
       padding: 4px;
       width: 24px;
       height: 24px;
     }
-    /* --- Ultra-Compact & Alignement à droite --- */
+    /* --- Ultra-Compact & Right Alignment --- */
 
-    /* 1. Rapprocher les icônes entre elles */
+    /* 1. Bring icons closer together */
     .chat-actions,
     .folder-header > div:last-child {
-      gap: 0px !important; /* Retire l'espace vide entre les boutons */
+      gap: 0px !important; /* Remove empty space between buttons */
     }
 
-    /* 2. Réduire la taille des boutons d'action */
+    /* 2. Reduce action button size */
     .action-btn {
       padding: 2px !important;
-      width: 22px !important; /* Plus petits (étaient à 24px) */
+      width: 22px !important; /* Smaller (were 24px) */
       height: 22px !important;
       font-size: 12px !important;
     }
 
-    /* 3. Coller au bord droit (Alignement parfait à 6px du bord) */
+    /* 3. Stick to the right edge (Perfect alignment 6px from the edge) */
     .folder-header {
-      padding: 6px 6px 6px 12px !important; /* 6px de marge à droite */
+      padding: 6px 6px 6px 12px !important; /* 6px right margin */
     }
 
     .folder-content {
-      padding: 2px 6px 4px 12px !important; /* 6px de marge à droite pour le conteneur */
+      padding: 2px 6px 4px 12px !important; /* 6px right margin for container */
     }
 
     .chat-item {
-      padding: 2px 0px 2px 4px !important; /* 0px à droite : on s'appuie sur la marge du conteneur */
+      padding: 2px 0px 2px 4px !important; /* 0px on right: rely on container margin */
       margin-bottom: 0px !important;
     }
 
-    /* 4. Réduire la hauteur globale des conversations */
+    /* 4. Reduce overall height of conversations */
     .chat-link {
-      font-size: 12.5px !important; /* Texte un poil plus petit */
+      font-size: 12.5px !important; /* Slightly smaller text */
       padding: 0 !important;
     }
-    /* --- Menu de Tri Personnalisé --- */
+    /* --- Custom Sort Menu --- */
     .dropdown-container {
       position: relative;
       display: flex;
     }
 
     .custom-dropdown {
-      display: none; /* Caché par défaut */
+      display: none; /* Hidden by default */
       position: absolute;
       right: 0;
       top: 110%;
@@ -280,7 +280,7 @@
       overflow: hidden;
     }
 
-    .custom-dropdown.show { display: block; } /* Classe pour l'afficher */
+    .custom-dropdown.show { display: block; } /* Class to show it */
 
     .dropdown-item {
       padding: 10px 14px;
@@ -295,7 +295,7 @@
     .dropdown-item.active {
       color: var(--accent-color);
       font-weight: bold;
-      background-color: rgba(26, 115, 232, 0.05); /* Léger fond bleu pour l'élément sélectionné */
+      background-color: rgba(26, 115, 232, 0.05); /* Light blue background for the selected item */
     }
   </style>
 </head>

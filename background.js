@@ -1,7 +1,7 @@
-// 1. Fonction pour reconstruire le menu contextuel
+// 1. Function to rebuild the context menu
 function updateContextMenu() {
   chrome.contextMenus.removeAll(() => {
-    // On crée le menu parent principal avec la traduction
+    // Create the main parent menu with translation
     chrome.contextMenus.create({
       id: "gemini-folders-parent",
       title: chrome.i18n.getMessage("ctxMenuSave"),
@@ -9,7 +9,7 @@ function updateContextMenu() {
       documentUrlPatterns: ["*://gemini.google.com/*"]
     });
 
-    // On va chercher les dossiers de l'utilisateur
+    // Fetch the user's folders
     chrome.storage.sync.get({ folders: {} }, (data) => {
       const folderNames = Object.keys(data.folders);
 
@@ -24,7 +24,7 @@ function updateContextMenu() {
         return;
       }
 
-      // On crée un sous-menu pour chaque dossier
+      // Create a submenu for each folder
       folderNames.sort().forEach(folder => {
         chrome.contextMenus.create({
           id: `folder_${folder}`,
@@ -37,7 +37,7 @@ function updateContextMenu() {
   });
 }
 
-// 2. Mettre à jour le menu au démarrage et quand les dossiers changent
+// 2. Update the menu on startup and when folders change
 chrome.runtime.onInstalled.addListener(updateContextMenu);
 chrome.runtime.onStartup.addListener(updateContextMenu);
 chrome.storage.onChanged.addListener((changes, namespace) => {
@@ -46,17 +46,17 @@ chrome.storage.onChanged.addListener((changes, namespace) => {
   }
 });
 
-// 3. Écouter les clics sur le menu
+// 3. Listen for menu clicks
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.parentMenuItemId === "gemini-folders-parent") {
     const targetFolder = info.menuItemId.replace("folder_", "");
 
-    // On récupère le titre par défaut traduit
+    // Get the translated default title
     const fallbackTitle = chrome.i18n.getMessage("defaultTitle") || "New conversation";
 
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      args: [fallbackTitle], // <-- NOUVEAU: On passe la variable au script injecté
+      args: [fallbackTitle], // <-- NEW: Pass the variable to the injected script
       func: (defaultFallback) => {
         // Plan A
         const topTitle = document.querySelector('[data-test-id="conversation-title"]');
@@ -93,13 +93,13 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
         return defaultFallback;
       }
     }, (results) => {
-      // Pareil ici en cas d'échec total du script
+      // Same here in case of total script failure
       let finalTitle = chrome.i18n.getMessage("defaultTitle") || "New conversation";
       if (results && results[0] && results[0].result) {
         finalTitle = results[0].result;
       }
 
-      // Sauvegarde dans la base de données
+      // Save to the database
       chrome.storage.sync.get({ folders: {} }, (data) => {
         let folders = data.folders;
         if (!folders[targetFolder]) folders[targetFolder] = [];

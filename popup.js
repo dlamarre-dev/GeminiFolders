@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', async () => {
-  // --- NOUVEAU : Traduction de l'interface ---
   document.getElementById('appTitle').textContent = chrome.i18n.getMessage("appTitle");
   document.getElementById('searchInput').placeholder = chrome.i18n.getMessage("searchPlaceholder");
   document.getElementById('folderName').placeholder = chrome.i18n.getMessage("folderPlaceholder");
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('sortNewest').textContent = chrome.i18n.getMessage("sortNewest");
   document.getElementById('sortOldest').textContent = chrome.i18n.getMessage("sortOldest");
   document.getElementById('sortAlpha').textContent = chrome.i18n.getMessage("sortAlpha");
-  // -------------------------------------------
 
   const folderList = document.getElementById('folderList');
   const saveBtn = document.getElementById('saveBtn');
@@ -34,7 +32,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const isHidden = addConversationPanel.style.display === 'none';
     addConversationPanel.style.display = isHidden ? 'block' : 'none';
 
-    // On change le texte et l'icône selon l'état du panneau
+    // Change text and icon based on panel state
     toggleAddPanelBtn.textContent = isHidden
       ? "➖ " + chrome.i18n.getMessage("btnCancel")
       : "➕ " + chrome.i18n.getMessage("btnToggleAdd");
@@ -45,44 +43,43 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (name && name.trim()) {
       chrome.storage.sync.get({ folders: {} }, (data) => {
         if (!data.folders[name.trim()]) {
-          data.folders[name.trim()] = []; // Crée le dossier vide
+          data.folders[name.trim()] = []; // Create empty folder
           chrome.storage.sync.set({ folders: data.folders }, () => displayFolders());
         }
       });
     }
   });
-  // --- NOUVELLE LOGIQUE DE TRI ---
   const sortToggleBtn = document.getElementById('sortToggleBtn');
   const sortMenu = document.getElementById('sortMenu');
   const sortItems = document.querySelectorAll('.dropdown-item');
 
-  // 1. Ouvrir/Fermer le menu au clic
+  // 1. Open/Close menu on click
   sortToggleBtn.addEventListener('click', (e) => {
-    e.stopPropagation(); // Empêche le clic de se propager et de fermer le menu tout de suite
+    e.stopPropagation(); // Prevent click from propagating and closing the menu immediately
     sortMenu.classList.toggle('show');
   });
 
-  // 2. Fermer le menu si on clique n'importe où ailleurs sur la page
+  // 2. Close menu if clicking anywhere else on the page
   document.addEventListener('click', () => {
     sortMenu.classList.remove('show');
   });
 
-  // 3. Charger la préférence sauvegardée et mettre en surbrillance l'option active
+  // 3. Load saved preference and highlight active option
   chrome.storage.sync.get({ sortPref: 'dateAsc' }, (data) => {
     const activeItem = document.querySelector(`.dropdown-item[data-value="${data.sortPref}"]`);
     if (activeItem) activeItem.classList.add('active');
   });
 
-  // 4. Gérer le clic sur une option de tri
+  // 4. Handle click on a sort option
   sortItems.forEach(item => {
     item.addEventListener('click', () => {
       const selectedSort = item.getAttribute('data-value');
 
-      // Mettre à jour visuellement l'option active
+      // Visually update the active option
       sortItems.forEach(i => i.classList.remove('active'));
       item.classList.add('active');
 
-      // Sauvegarder et rafraîchir en gardant les dossiers ouverts
+      // Save and refresh while keeping folders open
       chrome.storage.sync.set({ sortPref: selectedSort }, () => {
         let openFolders = [];
         document.querySelectorAll('.folder').forEach(folder => {
@@ -97,21 +94,21 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
   // -------------------------------
 
-  // Pré-remplissage intelligent du titre
+  // Smart title pre-filling
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
   if (currentTab && currentTab.url.includes("gemini.google.com")) {
     chrome.scripting.executeScript({
       target: { tabId: currentTab.id },
       func: () => {
-      // Plan A : Le titre officiel en haut de la page (Ultra robuste)
+      // Plan A: Official title at the top of the page (Ultra robust)
         const topTitle = document.querySelector('[data-test-id="conversation-title"]');
         if (topTitle && topTitle.textContent) {
           let text = topTitle.textContent.trim();
           if (text.length > 0) return text;
         }
 
-        // Plan B : Le menu latéral (si le Plan A échoue ou si l'UI change)
+        // Plan B: Sidebar menu (if Plan A fails or UI changes)
         const currentPath = window.location.pathname;
         if (currentPath && currentPath.includes("/app/")) {
           const links = document.querySelectorAll(`a[href="${currentPath}"]`);
@@ -121,7 +118,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           }
         }
 
-        // Plan C : Le titre de l'onglet
+        // Plan C: Tab title
         let docTitle = document.title || "";
         let cleanTitle = docTitle.split(' - ')[0].trim();
         const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
@@ -129,7 +126,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             return cleanTitle;
         }
 
-        // Plan D : Le premier message de l'utilisateur
+        // Plan D: User's first message
         const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
         if (firstMsg && firstMsg.textContent) {
           let excerpt = firstMsg.textContent.trim();
@@ -147,16 +144,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // Initialisation de l'affichage
+  // Initialize display
   displayFolders();
 
-  // Écouteur pour la recherche
+  // Search listener
   searchInput.addEventListener('input', (e) => {
     const searchTerm = e.target.value.toLowerCase();
     displayFolders(null, searchTerm);
   });
 
-  // 1. Sauvegarder
+  // 1. Save
   saveBtn.addEventListener('click', async () => {
     let [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     if (!tab.url.includes("gemini.google.com")) {
@@ -193,15 +190,15 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 2. Exporter (Mise à jour pour inclure les épingles)
+  // 2. Export (Updated to include pins)
   exportBtn.addEventListener('click', () => {
-    // NOUVEAU : On récupère à la fois les dossiers et les épingles
+    // NEW: Retrieve both folders and pins
     chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
       if (Object.keys(data.folders).length === 0) {
         alert(chrome.i18n.getMessage("alertEmptyExport"));
         return;
       }
-      // NOUVEAU : On exporte l'objet global "data" qui contient les deux clés
+      // NEW: Export the global "data" object containing both keys
       const dataString = JSON.stringify(data, null, 2);
       const blob = new Blob([dataString], { type: "application/json" });
       const url = URL.createObjectURL(blob);
@@ -215,7 +212,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // 3. Importer (Mise à jour pour la rétrocompatibilité)
+  // 3. Import (Updated for backward compatibility)
   importBtn.addEventListener('click', () => {
     importFile.click();
   });
@@ -236,23 +233,23 @@ document.addEventListener('DOMContentLoaded', async () => {
           let currentFolders = data.folders;
           let currentPinned = data.pinnedFolders;
 
-          // --- GESTION DE LA RÉTROCOMPATIBILITÉ ---
+          // --- BACKWARD COMPATIBILITY MANAGEMENT ---
           let foldersToImport = {};
           let pinsToImport = [];
 
-          // Si le JSON contient une clé "folders", c'est le nouveau format (v2.0)
+          // If JSON contains a "folders" key, it's the new format (v2.0)
           if (importedData.folders) {
             foldersToImport = importedData.folders;
             if (Array.isArray(importedData.pinnedFolders)) {
               pinsToImport = importedData.pinnedFolders;
             }
           } else {
-            // Sinon, c'est l'ancien format (v1.2) où tout l'objet est la liste des dossiers
+            // Otherwise, it's the old format (v1.2) where the whole object is the folder list
             foldersToImport = importedData;
           }
           // ----------------------------------------
 
-          // 1. Fusion des dossiers et conversations
+          // 1. Merge folders and conversations
           for (const [folderName, chats] of Object.entries(foldersToImport)) {
             if (!currentFolders[folderName]) currentFolders[folderName] = [];
             chats.forEach(importedChat => {
@@ -263,15 +260,15 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
           }
 
-          // 2. Fusion des épingles (sans créer de doublons)
+          // 2. Merge pins (without creating duplicates)
           pinsToImport.forEach(pin => {
-            // On vérifie que l'épingle n'est pas déjà présente ET que le dossier existe bien
+            // Check that the pin isn't already present AND that the folder exists
             if (!currentPinned.includes(pin) && currentFolders[pin]) {
               currentPinned.push(pin);
             }
           });
 
-          // Sauvegarde finale
+          // Final save
           chrome.storage.sync.set({ folders: currentFolders, pinnedFolders: currentPinned }, () => {
             alert(chrome.i18n.getMessage("alertImportSuccess"));
             importFile.value = "";
@@ -287,9 +284,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.readAsText(file);
   });
 
-// 4. Afficher et Filtrer les dossiers
+// 4. Display and Filter folders
   function displayFolders(openFoldersArg = [], searchTerm = "") {
-    // On ajoute 'openFolders: []' pour récupérer l'état de nos dossiers sauvegardés
+    // Add 'openFolders: []' to retrieve the state of saved folders
     let openFolders = [];
     if (typeof openFoldersArg === 'string') openFolders = [openFoldersArg];
     else if (Array.isArray(openFoldersArg)) openFolders = openFoldersArg;
@@ -298,7 +295,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       const folders = data.folders;
       const pinnedFolders = data.pinnedFolders;
       const sortPref = data.sortPref;
-      let savedOpenFolders = data.openFolders; // L'état mémorisé des dossiers ouverts
+      let savedOpenFolders = data.openFolders; // Memorized state of open folders
       let hasResults = false;
 
       const sortedFolderNames = Object.keys(folders).sort((a, b) => {
@@ -370,7 +367,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const leftPart = document.createElement('div');
         leftPart.style.display = 'flex';
 
-        // --- NOUVEAU : Icône de dossier différente si vide (📁) ou plein (📂) ---
+        // --- NEW: Different folder icon if empty (📁) or full (🗂️) ---
         const isEmpty = chats.length === 0;
         const folderIcon = isEmpty ? '📁' : '🗂️';
         leftPart.innerHTML = `<span class="folder-icon">${folderIcon}</span><div class="folder-name">${folderName}</div>`;
@@ -423,18 +420,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         const folderContent = document.createElement('div');
         folderContent.className = 'folder-content';
 
-        // --- CORRECTION : Gestion intelligente de l'état Ouvert/Fermé ---
+        // --- Smart Open/Closed state management ---
         let isFolderOpen = false;
 
         if (searchTerm) {
-          // Si on cherche, on ouvre automatiquement si ça correspond
+          // If searching, open automatically if it matches
           isFolderOpen = true;
         } else {
-          // Sinon, on se fie à l'historique mémorisé (par défaut, on considère que ce n'est pas ouvert sauf si sauvegardé)
+          // Otherwise, rely on memorized history (default is closed unless saved)
           isFolderOpen = savedOpenFolders.includes(folderName) || openFolders.includes(folderName);
         }
 
-        // Fixe le bug du double clic en définissant explicitement block ou none dès la création
+        // Fix double-click bug by explicitly setting block or none upon creation
         folderContent.style.display = isFolderOpen ? 'block' : 'none';
 
         folderHeader.addEventListener('click', () => {
@@ -442,15 +439,15 @@ document.addEventListener('DOMContentLoaded', async () => {
           const isCurrentlyOpen = folderContent.style.display === 'block';
           folderContent.style.display = isCurrentlyOpen ? 'none' : 'block';
 
-          // On sauvegarde le nouvel état dans Chrome Sync seulement si on ne fait pas de recherche
+          // Save new state in Chrome Sync only if not searching
           if (!searchTerm) {
             chrome.storage.sync.get({ openFolders: [] }, (storageData) => {
               let currentOpen = storageData.openFolders;
               if (isCurrentlyOpen) {
-                // On le ferme : on le retire de la liste
+                // Close it: remove from the list
                 currentOpen = currentOpen.filter(name => name !== folderName);
               } else {
-                // On l'ouvre : on l'ajoute à la liste
+                // Open it: add to the list
                 if (!currentOpen.includes(folderName)) currentOpen.push(folderName);
               }
               chrome.storage.sync.set({ openFolders: currentOpen });
@@ -468,12 +465,12 @@ document.addEventListener('DOMContentLoaded', async () => {
           const chatItem = document.createElement('div');
           chatItem.className = 'chat-item';
 
-          // Rendre l'élément draggable
+          // Make the element draggable
           chatItem.setAttribute('draggable', 'true');
 
           chatItem.addEventListener('dragstart', (e) => {
             chatItem.classList.add('dragging');
-            //On utilise chat.url au lieu de index
+            // Use chat.url instead of index
             const dataToTransfer = JSON.stringify({ sourceFolder: folderName, chatUrl: chat.url });
             e.dataTransfer.setData('text/plain', dataToTransfer);
             e.dataTransfer.effectAllowed = 'move';
@@ -492,7 +489,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           link.setAttribute('draggable', 'false');
 
-          // Conteneur pour les boutons de la conversation
+          // Container for conversation buttons
           const chatActionsDiv = document.createElement('div');
           chatActionsDiv.className = 'chat-actions';
 
@@ -502,7 +499,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           editBtn.title = chrome.i18n.getMessage("btnRename");
           editBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            //On passe chat.url
+            // Pass chat.url
             renameChat(folderName, chat.url, chat.title);
           });
 
@@ -512,7 +509,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           delBtn.title = chrome.i18n.getMessage("btnDelete");
           delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
-            //On passe chat.url
+            // Pass chat.url
             deleteChat(folderName, chat.url);
           });
 
@@ -528,18 +525,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (appendedChatsCount > 0) folderDiv.appendChild(folderContent);
         folderList.appendChild(folderDiv);
 
-      }); // Fin du forEach
+      }); // End of forEach
 
       noResultsDiv.style.display = (searchTerm && !hasResults) ? 'block' : 'none';
     });
   }
-  // 5. Renommer
+  // 5. Rename
   function renameChat(folderName, chatUrl, currentTitle) {
     const newTitle = prompt(chrome.i18n.getMessage("promptRename"), currentTitle);
     if (newTitle !== null && newTitle.trim() !== "") {
       chrome.storage.sync.get({ folders: {} }, (data) => {
         let folders = data.folders;
-        // On trouve le vrai index dans la base de données via l'URL
+        // Find the real index in the database via URL
         const realIndex = folders[folderName].findIndex(c => c.url === chatUrl);
         if (realIndex !== -1) {
           folders[folderName][realIndex].title = newTitle.trim();
@@ -551,7 +548,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
   }
 
-  // 6. Supprimer
+  // 6. Delete
   function deleteChat(folderName, chatUrl) {
     chrome.storage.sync.get({ folders: {} }, (data) => {
       let folders = data.folders;
@@ -565,27 +562,27 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   }
 
-  // 7. Déplacer une conversation (Drag & Drop)
+  // 7. Move a conversation (Drag & Drop)
   function moveChat(sourceFolder, targetFolder, chatUrl) {
     chrome.storage.sync.get({ folders: {}, openFolders: [] }, (data) => {
       let folders = data.folders;
 
       const realIndex = folders[sourceFolder].findIndex(c => c.url === chatUrl);
-      if (realIndex === -1) return; // Sécurité
+      if (realIndex === -1) return; // Security
 
-      // On retire la conversation du dossier source
+      // Remove conversation from source folder
       const chatToMove = folders[sourceFolder].splice(realIndex, 1)[0];
 
-      // On s'assure que le dossier cible existe
+      // Ensure target folder exists
       if (!folders[targetFolder]) folders[targetFolder] = [];
 
-      // Anti-doublon dans le dossier cible
+      // Prevent duplicates in target folder
       const isDuplicate = folders[targetFolder].some(chat => chat.url === chatToMove.url);
       if (!isDuplicate) {
         folders[targetFolder].push(chatToMove);
       }
 
-      // On mémorise tous les dossiers actuellement ouverts
+      // Memorize all currently open folders
       let openFolders = [];
       document.querySelectorAll('.folder').forEach(folder => {
         const content = folder.querySelector('.folder-content');
@@ -594,42 +591,42 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
       });
 
-      // On s'assure que le dossier de destination sera aussi ouvert
+      // Ensure destination folder will also be open
       if (!openFolders.includes(targetFolder)) {
         openFolders.push(targetFolder);
       }
 
-      // --- CORRECTION : On sauvegarde 'folders' ET le nouvel état de 'openFolders' ---
+      // --- Save 'folders' AND the new state of 'openFolders' ---
       chrome.storage.sync.set({ folders: folders, openFolders: openFolders }, () => {
         displayFolders(openFolders, searchInput.value.toLowerCase());
       });
       // --------------------------------------------------------------------------------
     });
   }
-  // 8. Épingler / Désépingler un dossier
+  // 8. Pin / Unpin a folder
   function togglePin(folderName) {
     chrome.storage.sync.get({ pinnedFolders: [] }, (data) => {
       let pinned = data.pinnedFolders;
 
       if (pinned.includes(folderName)) {
-        // S'il est déjà épinglé, on l'enlève de la liste
+        // If already pinned, remove from list
         pinned = pinned.filter(name => name !== folderName);
       } else {
-        // Sinon, on l'ajoute
+        // Otherwise, add it
         pinned.push(folderName);
       }
 
       chrome.storage.sync.set({ pinnedFolders: pinned }, () => {
-        // On rafraîchit l'affichage en gardant la recherche active
+        // Refresh display while keeping search active
         displayFolders(null, searchInput.value.toLowerCase());
       });
     });
   }
-  // 9. Renommer un dossier
+  // 9. Rename a folder
   function renameFolder(oldName) {
     const newName = prompt(chrome.i18n.getMessage("promptRenameFolder"), oldName);
 
-    // Si l'utilisateur annule, laisse vide, ou ne change pas le nom
+    // If user cancels, leaves empty, or doesn't change name
     if (!newName || newName.trim() === "" || newName.trim() === oldName) return;
 
     const trimmedNewName = newName.trim();
@@ -638,25 +635,25 @@ document.addEventListener('DOMContentLoaded', async () => {
       let folders = data.folders;
       let pinned = data.pinnedFolders;
 
-      // On vérifie qu'on n'écrase pas un autre dossier
+      // Check we are not overwriting another folder
       if (folders[trimmedNewName]) {
-        alert(chrome.i18n.getMessage("errorFolderExists") || "Ce dossier existe déjà.");
+        alert(chrome.i18n.getMessage("errorFolderExists") || "This folder already exists");
         return;
       }
 
-      // 1. On transfère toutes les conversations vers le nouveau nom
+      // 1. Transfer all conversations to the new name
       folders[trimmedNewName] = folders[oldName];
-      // 2. On supprime l'ancien dossier
+      // 2. Delete the old folder
       delete folders[oldName];
 
-      // 3. On met à jour la liste des épingles si ce dossier y figurait
+      // 3. Update pin list if this folder was in it
       const pinIndex = pinned.indexOf(oldName);
       if (pinIndex !== -1) {
         pinned[pinIndex] = trimmedNewName;
       }
 
       chrome.storage.sync.set({ folders: folders, pinnedFolders: pinned }, () => {
-        // On rafraîchit l'affichage en gardant le dossier ouvert
+        // Refresh display while keeping folder open
         displayFolders(trimmedNewName, searchInput.value.toLowerCase());
       });
     });
