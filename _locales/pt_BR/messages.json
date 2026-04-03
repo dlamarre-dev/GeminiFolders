@@ -34,5 +34,7 @@
   "btnCancel": { "message": "Fechar" },
   "btnRenameFolder": { "message": "Renomear pasta" },
   "promptRenameFolder": { "message": "Novo nome da pasta:" },
-  "errorFolderExists": { "message": "Já existe uma pasta com este nome." }
+  "errorFolderExists": { "message": "Já existe uma pasta com este nome." },
+  "storageCalc": { "message": "Calculando espaço..." },
+  "storageInfo": { "message": "Armazenamento: {used} KB / {max} KB ({pct}%)" }
 }

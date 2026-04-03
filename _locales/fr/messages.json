@@ -34,5 +34,7 @@
   "btnCancel": { "message": "Fermer" },
   "btnRenameFolder": { "message": "Renommer le dossier" },
   "promptRenameFolder": { "message": "Nouveau nom du dossier :" },
-  "errorFolderExists": { "message": "Un dossier avec ce nom existe déjà." }
+  "errorFolderExists": { "message": "Un dossier avec ce nom existe déjà." },
+  "storageCalc": { "message": "Calcul de l'espace..." },
+  "storageInfo": { "message": "Stockage : {used} Ko / {max} Ko ({pct}%)" }
 }

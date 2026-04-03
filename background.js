@@ -1,3 +1,4 @@
+importScripts('lz-string.min.js', 'utils.js');
 // 1. Function to rebuild the context menu
 function updateContextMenu() {
   chrome.contextMenus.removeAll(() => {
@@ -10,7 +11,7 @@ function updateContextMenu() {
     });
 
     // Fetch the user's folders
-    chrome.storage.sync.get({ folders: {} }, (data) => {
+    loadData({ folders: {} }, (data) => {
       const folderNames = Object.keys(data.folders);
 
       if (folderNames.length === 0) {
@@ -41,7 +42,7 @@ function updateContextMenu() {
 chrome.runtime.onInstalled.addListener(updateContextMenu);
 chrome.runtime.onStartup.addListener(updateContextMenu);
 chrome.storage.onChanged.addListener((changes, namespace) => {
-  if (namespace === 'sync' && changes.folders) {
+  if (namespace === 'sync' && (changes.folders || changes.foldersDataCompressed)) {
     updateContextMenu();
   }
 });
@@ -100,7 +101,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
       }
 
       // Save to the database
-      chrome.storage.sync.get({ folders: {} }, (data) => {
+      loadData({ folders: {} }, (data) => {
         let folders = data.folders;
         if (!folders[targetFolder]) folders[targetFolder] = [];
 
@@ -111,7 +112,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
             url: tab.url,
             timestamp: Date.now()
           });
-          chrome.storage.sync.set({ folders: folders });
+          saveData({ folders: folders });
         }
       });
     });

@@ -11,6 +11,8 @@
 * ⚡ **Quick Save (Right-Click):** Save the current conversation directly to any of your folders using the right-click context menu, without even opening the extension popup!
 * ⇅ **Custom Sorting:** Sort your saved conversations on the fly by Newest, Oldest, or Alphabetically (A-Z) using the dedicated dropdown menu.
 * 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace intuitively.
+* 🗜️ **Ultra-Efficient Compression:** Automatically compresses your synced data using LZString, maximizing Chrome's native storage capacity so you can save hundreds of conversations securely.
+* 📊 **Storage Tracker:** A sleek visual progress bar keeps you informed of your available cloud storage capacity in real-time, complete with detailed tooltips.
 * 🎨 **Modern Material UI:** Enjoy a sleek, ultra-compact, and responsive design with a collapsible "Add" panel, clean hover effects, and pixel-perfect icons.
 * 📁 **Smart Folders:** Group your chats by projects, themes, or categories. Create empty folders in advance and manage them easily.
 * 📌 **Pin Favorites:** Pin your most important folders to the top of the list for ultra-fast access.
@@ -53,3 +55,4 @@ This extension is built with privacy in mind.
 * Vanilla JavaScript
 * Chrome Extension API (Manifest V3)
 * Service Workers (Background Scripts)
+* LZ-String (Data Compression)

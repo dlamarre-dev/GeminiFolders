@@ -34,5 +34,7 @@
   "btnCancel": { "message": "Schließen" },
   "btnRenameFolder": { "message": "Ordner umbenennen" },
   "promptRenameFolder": { "message": "Neuer Ordnername:" },
-  "errorFolderExists": { "message": "Ein Ordner mit diesem Namen existiert bereits." }
+  "errorFolderExists": { "message": "Ein Ordner mit diesem Namen existiert bereits." },
+  "storageCalc": { "message": "Speicher wird berechnet..." },
+  "storageInfo": { "message": "Speicher: {used} KB / {max} KB ({pct}%)" }
 }

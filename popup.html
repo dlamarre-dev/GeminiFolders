@@ -297,6 +297,34 @@
       font-weight: bold;
       background-color: rgba(26, 115, 232, 0.05); /* Light blue background for the selected item */
     }
+
+    .storage-container {
+      flex-grow: 1; /* Prend tout l'espace disponible entre les deux boutons */
+      margin: 0 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      cursor: help; /* Curseur d'aide au survol */
+    }
+
+    .storage-bar {
+      height: 6px;
+      background-color: var(--border-color);
+      border-radius: 4px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .storage-fill {
+      height: 100%;
+      width: 0%;
+      background-color: var(--accent-color);
+      transition: width 0.4s ease, background-color 0.4s ease;
+    }
+
+    .storage-fill.warning {
+      background-color: var(--delete-color); /* Devient rouge */
+    }
   </style>
 </head>
 <body>
@@ -333,12 +361,21 @@
   <div id="folderList"></div>
   <div id="noResults"></div>
 
-  <div class="footer-actions">
+  <div class="footer-actions" style="align-items: center;">
     <button id="exportBtn" class="secondary-btn"></button>
+
+    <div class="storage-container" id="storageTooltip" title="">
+      <div class="storage-bar">
+        <div id="storageFill" class="storage-fill"></div>
+      </div>
+    </div>
+
     <button id="importBtn" class="secondary-btn"></button>
     <input type="file" id="importFile" accept=".json" style="display: none;">
   </div>
 
+  <script src="lz-string.min.js"></script>
+  <script src="utils.js"></script>
   <script src="popup.js"></script>
 </body>
 </html>

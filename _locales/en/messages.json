@@ -34,5 +34,7 @@
   "btnCancel": { "message": "Close" },
   "btnRenameFolder": { "message": "Rename folder" },
   "promptRenameFolder": { "message": "New folder name:" },
-  "errorFolderExists": { "message": "A folder with this name already exists." }
+  "errorFolderExists": { "message": "A folder with this name already exists." },
+  "storageCalc": { "message": "Calculating space..." },
+  "storageInfo": { "message": "Storage: {used} KB / {max} KB ({pct}%)" }
 }

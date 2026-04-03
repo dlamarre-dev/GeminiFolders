@@ -34,5 +34,7 @@
   "btnCancel": { "message": "Cerrar" },
   "btnRenameFolder": { "message": "Renombrar carpeta" },
   "promptRenameFolder": { "message": "Nuevo nombre de la carpeta:" },
-  "errorFolderExists": { "message": "Ya existe una carpeta con este nombre." }
+  "errorFolderExists": { "message": "Ya existe una carpeta con este nombre." },
+  "storageCalc": { "message": "Calculando espacio..." },
+  "storageInfo": { "message": "Almacenamiento: {used} KB / {max} KB ({pct}%)" }
 }

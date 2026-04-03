@@ -34,5 +34,7 @@
   "btnCancel": { "message": "閉じる" },
   "btnRenameFolder": { "message": "フォルダ名を変更" },
   "promptRenameFolder": { "message": "新しいフォルダ名：" },
-  "errorFolderExists": { "message": "この名前のフォルダはすでに存在します。" }
+  "errorFolderExists": { "message": "この名前のフォルダはすでに存在します。" },
+  "storageCalc": { "message": "容量を計算中..." },
+  "storageInfo": { "message": "ストレージ：{used} KB / {max} KB ({pct}%)" }
 }

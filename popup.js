@@ -41,10 +41,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   newFolderBtn.addEventListener('click', () => {
     const name = prompt(chrome.i18n.getMessage("promptNewFolder"));
     if (name && name.trim()) {
-      chrome.storage.sync.get({ folders: {} }, (data) => {
+      loadData({ folders: {} }, (data) => {
         if (!data.folders[name.trim()]) {
           data.folders[name.trim()] = []; // Create empty folder
-          chrome.storage.sync.set({ folders: data.folders }, () => displayFolders());
+          saveData({ folders: data.folders }, () => displayFolders());
         }
       });
     }
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // 3. Load saved preference and highlight active option
-  chrome.storage.sync.get({ sortPref: 'dateAsc' }, (data) => {
+  loadData({ sortPref: 'dateAsc' }, (data) => {
     const activeItem = document.querySelector(`.dropdown-item[data-value="${data.sortPref}"]`);
     if (activeItem) activeItem.classList.add('active');
   });
@@ -80,7 +80,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       item.classList.add('active');
 
       // Save and refresh while keeping folders open
-      chrome.storage.sync.set({ sortPref: selectedSort }, () => {
+      saveData({ sortPref: selectedSort }, () => {
         let openFolders = [];
         document.querySelectorAll('.folder').forEach(folder => {
           const content = folder.querySelector('.folder-content');
@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const finalChatTitle = chatTitleInput.value.trim() || chrome.i18n.getMessage("defaultTitle");
     const chatUrl = tab.url;
 
-    chrome.storage.sync.get({ folders: {} }, (data) => {
+    loadData({ folders: {} }, (data) => {
       let folders = data.folders;
       if (!folders[folderName]) folders[folderName] = [];
 
@@ -178,7 +178,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
       }
 
-      chrome.storage.sync.set({ folders: folders }, () => {
+      saveData({ folders: folders }, () => {
         folderNameInput.value = "";
         addConversationPanel.style.display = 'none';
         toggleAddPanelBtn.textContent = "➕ " + chrome.i18n.getMessage("btnToggleAdd");
@@ -192,13 +192,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 2. Export (Updated to include pins)
   exportBtn.addEventListener('click', () => {
-    // NEW: Retrieve both folders and pins
-    chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
+    // Retrieve both folders and pins
+    loadData({ folders: {}, pinnedFolders: [] }, (data) => {
       if (Object.keys(data.folders).length === 0) {
         alert(chrome.i18n.getMessage("alertEmptyExport"));
         return;
       }
-      // NEW: Export the global "data" object containing both keys
+      // Export the global "data" object containing both keys
       const dataString = JSON.stringify(data, null, 2);
       const blob = new Blob([dataString], { type: "application/json" });
       const url = URL.createObjectURL(blob);
@@ -229,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           throw new Error("Invalid Format");
         }
 
-        chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
+        loadData({ folders: {}, pinnedFolders: [] }, (data) => {
           let currentFolders = data.folders;
           let currentPinned = data.pinnedFolders;
 
@@ -269,7 +269,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           });
 
           // Final save
-          chrome.storage.sync.set({ folders: currentFolders, pinnedFolders: currentPinned }, () => {
+          saveData({ folders: currentFolders, pinnedFolders: currentPinned }, () => {
             alert(chrome.i18n.getMessage("alertImportSuccess"));
             importFile.value = "";
             displayFolders();
@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     let openFolders = [];
     if (typeof openFoldersArg === 'string') openFolders = [openFoldersArg];
     else if (Array.isArray(openFoldersArg)) openFolders = openFoldersArg;
-    chrome.storage.sync.get({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc', openFolders: [] }, (data) => {
+    loadData({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc', openFolders: [] }, (data) => {
       folderList.innerHTML = "";
       const folders = data.folders;
       const pinnedFolders = data.pinnedFolders;
@@ -404,10 +404,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (chats.length > 0) {
             if (!confirm(chrome.i18n.getMessage("confirmDeleteFolder"))) return;
           }
-          chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
+          loadData({ folders: {}, pinnedFolders: [] }, (data) => {
             delete data.folders[folderName];
             let updatedPinned = data.pinnedFolders.filter(name => name !== folderName);
-            chrome.storage.sync.set({ folders: data.folders, pinnedFolders: updatedPinned }, () => {
+            saveData({ folders: data.folders, pinnedFolders: updatedPinned }, () => {
               displayFolders(null, searchInput.value.toLowerCase());
             });
           });
@@ -441,7 +441,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           // Save new state in Chrome Sync only if not searching
           if (!searchTerm) {
-            chrome.storage.sync.get({ openFolders: [] }, (storageData) => {
+            loadData({ openFolders: [] }, (storageData) => {
               let currentOpen = storageData.openFolders;
               if (isCurrentlyOpen) {
                 // Close it: remove from the list
@@ -450,7 +450,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 // Open it: add to the list
                 if (!currentOpen.includes(folderName)) currentOpen.push(folderName);
               }
-              chrome.storage.sync.set({ openFolders: currentOpen });
+              saveData({ openFolders: currentOpen });
             });
           }
         });
@@ -534,13 +534,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   function renameChat(folderName, chatUrl, currentTitle) {
     const newTitle = prompt(chrome.i18n.getMessage("promptRename"), currentTitle);
     if (newTitle !== null && newTitle.trim() !== "") {
-      chrome.storage.sync.get({ folders: {} }, (data) => {
+      loadData({ folders: {} }, (data) => {
         let folders = data.folders;
         // Find the real index in the database via URL
         const realIndex = folders[folderName].findIndex(c => c.url === chatUrl);
         if (realIndex !== -1) {
           folders[folderName][realIndex].title = newTitle.trim();
-          chrome.storage.sync.set({ folders: folders }, () => {
+          saveData({ folders: folders }, () => {
             displayFolders(folderName, searchInput.value.toLowerCase());
           });
         }
@@ -550,12 +550,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 6. Delete
   function deleteChat(folderName, chatUrl) {
-    chrome.storage.sync.get({ folders: {} }, (data) => {
+    loadData({ folders: {} }, (data) => {
       let folders = data.folders;
       const realIndex = folders[folderName].findIndex(c => c.url === chatUrl);
       if (realIndex !== -1) {
         folders[folderName].splice(realIndex, 1);
-        chrome.storage.sync.set({ folders: folders }, () => {
+        saveData({ folders: folders }, () => {
           displayFolders(folderName, searchInput.value.toLowerCase());
         });
       }
@@ -564,7 +564,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 7. Move a conversation (Drag & Drop)
   function moveChat(sourceFolder, targetFolder, chatUrl) {
-    chrome.storage.sync.get({ folders: {}, openFolders: [] }, (data) => {
+    loadData({ folders: {}, openFolders: [] }, (data) => {
       let folders = data.folders;
 
       const realIndex = folders[sourceFolder].findIndex(c => c.url === chatUrl);
@@ -597,7 +597,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       }
 
       // --- Save 'folders' AND the new state of 'openFolders' ---
-      chrome.storage.sync.set({ folders: folders, openFolders: openFolders }, () => {
+      saveData({ folders: folders, openFolders: openFolders }, () => {
         displayFolders(openFolders, searchInput.value.toLowerCase());
       });
       // --------------------------------------------------------------------------------
@@ -605,7 +605,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   // 8. Pin / Unpin a folder
   function togglePin(folderName) {
-    chrome.storage.sync.get({ pinnedFolders: [] }, (data) => {
+    loadData({ pinnedFolders: [] }, (data) => {
       let pinned = data.pinnedFolders;
 
       if (pinned.includes(folderName)) {
@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         pinned.push(folderName);
       }
 
-      chrome.storage.sync.set({ pinnedFolders: pinned }, () => {
+      saveData({ pinnedFolders: pinned }, () => {
         // Refresh display while keeping search active
         displayFolders(null, searchInput.value.toLowerCase());
       });
@@ -631,7 +631,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const trimmedNewName = newName.trim();
 
-    chrome.storage.sync.get({ folders: {}, pinnedFolders: [] }, (data) => {
+    loadData({ folders: {}, pinnedFolders: [] }, (data) => {
       let folders = data.folders;
       let pinned = data.pinnedFolders;
 
@@ -652,10 +652,66 @@ document.addEventListener('DOMContentLoaded', async () => {
         pinned[pinIndex] = trimmedNewName;
       }
 
-      chrome.storage.sync.set({ folders: folders, pinnedFolders: pinned }, () => {
+      saveData({ folders: folders, pinnedFolders: pinned }, () => {
         // Refresh display while keeping folder open
         displayFolders(trimmedNewName, searchInput.value.toLowerCase());
       });
     });
   }
+
+  const storageTooltip = document.getElementById('storageTooltip');
+  if (storageTooltip) {
+    storageTooltip.title = chrome.i18n.getMessage("storageCalc") || "Calcul...";
+  }
+
+  function updateStorageBar() {
+
+    chrome.storage.sync.getBytesInUse(null, (bytesInUse) => {
+      if (chrome.runtime.lastError) {
+        console.error("❌ [StorageBar] Erreur de l'API :", chrome.runtime.lastError);
+        return;
+      }
+
+      const currentBytes = bytesInUse || 0;
+      const maxBytes = chrome.storage.sync.QUOTA_BYTES || 102400;
+      const percentage = (currentBytes / maxBytes) * 100;
+
+      const storageFill = document.getElementById('storageFill');
+      const storageTooltip = document.getElementById('storageTooltip');
+
+      if (!storageFill || !storageTooltip) {
+        return;
+      }
+
+      storageFill.style.width = `${Math.min(percentage, 100)}%`;
+
+      const kbUsed = (currentBytes / 1024).toFixed(1);
+      const kbMax = (maxBytes / 1024).toFixed(0);
+
+      let infoTemplate = chrome.i18n.getMessage("storageInfo");
+
+      if (infoTemplate) {
+        storageTooltip.title = infoTemplate
+          .replace("{used}", kbUsed)
+          .replace("{max}", kbMax)
+          .replace("{pct}", percentage.toFixed(1));
+      } else {
+        storageTooltip.title = `${kbUsed} Ko / ${kbMax} Ko (${percentage.toFixed(1)}%)`;
+      }
+
+      if (percentage > 90) {
+        storageFill.classList.add('warning');
+      } else {
+        storageFill.classList.remove('warning');
+      }
+    });
+  }
+
+  chrome.storage.onChanged.addListener((changes, namespace) => {
+    if (namespace === 'sync') {
+      setTimeout(updateStorageBar, 100);
+    }
+  });
+
+  updateStorageBar();
 });
