@@ -1,52 +1,39 @@
-Vous utilisez Google Gemini au quotidien pour le travail, le code, la recherche ou la création, mais vous perdez constamment vos prompts importants dans un historique infini ? Gemini Folders est l'extension qu'il vous faut.
+Vous utilisez Google Gemini au quotidien pour le travail, le code, la recherche ou la création, mais vous perdez constamment vos prompts importants dans un historique infini ?
+Gemini Folders est l'extension qu'il vous faut.
 
 Transformez votre utilisation de Gemini en un véritable espace de travail structuré en regroupant vos meilleures conversations par projets, thématiques ou catégories. Fini le temps perdu à scroller pour retrouver un ancien chat !
 
 💡 Pourquoi est-ce mieux que de simples favoris (bookmarks) ?
-Contrairement aux favoris classiques qui finissent par encombrer votre navigateur et se mélanger avec vos sites web quotidiens, Gemini Folders vous offre un espace de travail dédié et isolé. Fini la navigation fastidieuse dans le gestionnaire de favoris : vous bénéficiez d'un menu sur mesure, d'une recherche ultra-rapide exclusive à vos chats et d'outils de gestion rapides, le tout superposé directement sur votre fenêtre Gemini sans jamais la quitter.
+Contrairement aux favoris classiques qui finissent par encombrer votre navigateur, Gemini Folders vous offre un espace de travail dédié et isolé avec un menu sur mesure, une recherche ultra-rapide et des outils de gestion rapides, le tout superposé directement sur votre fenêtre Gemini.
 
 🌟 FONCTIONNALITÉS PRINCIPALES
 
-⚡ Sauvegarde Rapide (Clic Droit) : Sauvegardez la conversation active directement dans le dossier de votre choix via un simple clic droit sur la page !
-
-🖱️ Drag & Drop (Glisser-Déposer) : Réorganisez votre espace de travail intuitivement en glissant vos conversations d'un dossier à l'autre.
-
-📁 Dossiers sur mesure & Épingles : Classez vos conversations par thèmes. Épinglez (📌) vos dossiers favoris pour les garder en haut de la liste.
-
+⚡ Sauvegarde Rapide (Clic Droit & Raccourcis) : Sauvegardez la conversation via un simple clic droit, ou utilisez le raccourci clavier (Ctrl+Shift+S ou Cmd+Shift+S sur Mac) pour l'envoyer instantanément dans "⚡ Sauvegardes Rapides" !
+☑️ Sélection Multiple (Bulk Actions) : Sélectionnez plusieurs conversations avec des cases à cocher pour les déplacer ou les supprimer en un seul clic.
+📑 Groupes d'onglets (Tab Groups) : Ouvrez tout un dossier en un clic dans un groupe d'onglets Chrome natif et coloré.
+😃 Émojis personnalisés : Commencez le nom de votre dossier par un émoji (ex: "💻 Code") pour remplacer l'icône de dossier par défaut.
+🖱️ Drag & Drop (Glisser-Déposer) : Réorganisez votre espace de travail intuitivement.
+🗜️ Compression ultra-efficace : Compresse automatiquement vos données (LZString) pour maximiser le stockage natif de Chrome et sauvegarder des centaines de chats.
+📊 Traqueur de stockage : Une barre de progression visuelle vous indique votre espace cloud disponible en temps réel.
+📁 Dossiers sur mesure & Épingles : Classez vos conversations et épinglez (📌) vos favoris en haut de la liste.
 ⇅ Tri Personnalisé : Triez le contenu de vos dossiers à la volée (Plus récents, Plus anciens, De A à Z).
-
-🤖 Détection Intelligente : L'extension lit automatiquement la page pour pré-remplir le titre exact de votre conversation.
-
-🔍 Recherche instantanée : Retrouvez n'importe quelle conversation en une fraction de seconde grâce à la barre de recherche.
-
-✏️ Édition complète : Renommez facilement vos dossiers et vos conversations directement depuis l'extension.
-
-☁️ Synchronisation Cloud : Retrouvez votre organisation sur tous vos ordinateurs connectés à votre compte Google.
-
-💾 Sauvegarde locale (Import / Export) : Téléchargez toutes vos données au format JSON en un clic.
-
-🎨 Design "Material 3" & Multilingue : Profitez d'une interface ultra-compacte, fluide et élégante qui s'adapte automatiquement au mode sombre et à la langue de votre navigateur (Français, Anglais, Espagnol, Portugais, Allemand et Japonais).
+🤖 Détection Intelligente & Recherche : Pré-remplissage automatique du titre exact de votre conversation et barre de recherche instantanée.
+☁️ Synchronisation Cloud & Backup : Retrouvez votre organisation sur tous vos ordinateurs et exportez vos données en JSON.
+🎨 Design "Material 3" & Multilingue : Interface ultra-compacte qui s'adapte au mode sombre et à 6 langues.
 
 🛠️ COMMENT ÇA MARCHE ?
 
 Ouvrez une conversation importante sur gemini.google.com.
-
-Sauvegarde express : Faites un clic droit sur la page, survolez "Sauvegarder dans Gemini Folders" et cliquez sur votre dossier.
-
-Via l'extension : Cliquez sur l'icône de l'extension (épinglez-la !). Le titre est détecté automatiquement. Choisissez un dossier et sauvegardez !
-
-Utilisez le glisser-déposer pour réorganiser, l'icône 📌 pour épingler, ou ⇅ pour trier !
+Sauvegarde express : Utilisez Ctrl+Shift+S, ou faites un clic droit sur la page > "Sauvegarder dans Gemini Folders".
+Via l'extension : Cliquez sur l'icône, choisissez un dossier et sauvegardez !
+Cochez les cases pour des actions groupées, ouvrez vos dossiers en onglets (📑), et utilisez le glisser-déposer pour réorganiser !
 
 🔒 CONFIDENTIALITÉ & SÉCURITÉ
-
-Conçue avec la confidentialité au cœur de son fonctionnement. Elle ne demande l'accès qu'au domaine de Gemini et ne lit le contenu de l'onglet actif qu'au moment exact de la sauvegarde. Vos dossiers sont stockés dans la mémoire synchronisée de votre propre navigateur (Chrome Sync) : aucun serveur tiers n'est utilisé.
+Conçue avec la confidentialité au cœur de son fonctionnement. Elle ne demande l'accès qu'à Gemini et ne lit l'onglet actif qu'au moment de la sauvegarde. Stockage localisé via Chrome Sync : aucun serveur tiers.
 
 📢 MISES À JOUR :
-
+Version 3.0 (Mise à jour Productivité) : Ajout des raccourcis clavier, sélection multiple (cases à cocher), groupes d'onglets, émojis personnalisés, compression des données et barre de stockage !
 Version 2.1 (Mise à jour mondiale) : 🌍 Gemini Folders est désormais entièrement localisé en espagnol, portugais brésilien, allemand et japonais, en plus du français et de l'anglais !
-
 Version 2.0.2 (Améliorations UX) : Mémorisation intelligente des dossiers ouverts/fermés, repères visuels (📁/🗂️) pour les dossiers pleins et vides, et correctifs mineurs.
-
 Version 2.0.1 : Correction d'un problème de récupération du titre sur certains navigateurs.
-
 Version 2.0 : Refonte majeure ajoutant le Drag & Drop, le menu contextuel, le tri personnalisé, l'épinglage et le nouveau design Material 3.

@@ -8,7 +8,10 @@
 
 ## ✨ Features
 
-* ⚡ **Quick Save (Right-Click):** Save the current conversation directly to any of your folders using the right-click context menu, without even opening the extension popup!
+* ⚡ **Quick Save (Context Menu & Shortcuts):** Save the current conversation directly to any folder using the right-click menu, or use the global keyboard shortcut (`Ctrl+Shift+S` or `Cmd+Shift+S` on Mac) to instantly send it to a "⚡ Quick Saves" folder!
+* ☑️ **Bulk Actions (Multi-Select):** Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
+* 📑 **Tab Groups Integration:** Open an entire folder of conversations with a single click. They will automatically open in a native, color-coded Chrome Tab Group for ultimate project management.
+* 😃 **Custom Folder Emojis:** Start your folder name with an emoji (e.g., "💻 Code" or "🌍 Travel") and the extension will automatically use it as the folder's icon instead of the default one.
 * ⇅ **Custom Sorting:** Sort your saved conversations on the fly by Newest, Oldest, or Alphabetically (A-Z) using the dedicated dropdown menu.
 * 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace intuitively.
 * 🗜️ **Ultra-Efficient Compression:** Automatically compresses your synced data using LZString, maximizing Chrome's native storage capacity so you can save hundreds of conversations securely.
@@ -38,9 +41,9 @@ If you want to test the code locally or contribute to the project:
 ## 🛠️ Usage
 
 1. Open a conversation on [gemini.google.com](https://gemini.google.com).
-2. **To save via the Context Menu:** Right-click anywhere on the page, hover over "Save to Gemini Folders", and click your target folder.
+2. **To save instantly:** Press `Ctrl+Shift+S` (`Cmd+Shift+S` on Mac) to save to Quick Saves, or right-click anywhere on the page and hover over "Save to Gemini Folders".
 3. **To save via the Extension:** Click the **Gemini Folders** icon in your toolbar. The title is automatically detected. Expand the add panel (➕), select or create a folder, and hit **Save**.
-4. Drag and drop items to reorganize, use the 📌 icon to pin your favorite folders, or use the ⇅ dropdown to sort them!
+4. Drag and drop items, use checkboxes for bulk actions, open folders as Tab Groups (📑), or use the 📌 icon to pin your favorites!
 
 ## 🔒 Privacy & Security
 

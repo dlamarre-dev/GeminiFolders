@@ -1,52 +1,39 @@
-Nutzt du Google Gemini täglich für die Arbeit, zum Programmieren, Recherchieren oder für die Content-Erstellung, aber verlierst ständig deine wichtigen Prompts in einem endlosen Verlauf? Gemini-Ordner ist die Erweiterung, die du brauchst.
+Nutzt du Google Gemini täglich für die Arbeit, zum Programmieren, Recherchieren oder für die Content-Erstellung, aber verlierst ständig deine wichtigen Prompts in einem endlosen Verlauf?
+Gemini-Ordner ist die Erweiterung, die du brauchst.
 
 Verwandle deine Gemini-Nutzung in einen strukturierten Arbeitsbereich, indem du deine besten Unterhaltungen in Projekten, Themen oder Kategorien gruppierst. Keine Zeitverschwendung mehr beim Scrollen nach alten Chats!
 
 💡 Warum ist es besser als einfache Lesezeichen?
-Im Gegensatz zu klassischen Lesezeichen, die deinen Browser überladen, bietet Gemini-Ordner einen dedizierten, isolierten Arbeitsbereich. Verabschiede dich von der mühsamen Navigation: Du erhältst ein maßgeschneidertes Menü, eine blitzschnelle Suche exklusiv für deine Chats und schnelle Verwaltungstools – alles direkt über deinem Gemini-Fenster.
+Im Gegensatz zu klassischen Lesezeichen bietet Gemini-Ordner einen dedizierten, isolierten Arbeitsbereich mit einer blitzschnellen Suche und Verwaltungstools – alles direkt über deinem Gemini-Fenster.
 
 🌟 HAUPTFUNKTIONEN
 
-⚡ Schnellspeichern (Rechtsklick): Speichere die aktive Unterhaltung direkt in den Ordner deiner Wahl über einen einfachen Rechtsklick auf der Seite!
-
-🖱️ Drag & Drop: Reorganisiere deinen Arbeitsbereich intuitiv, indem du deine Unterhaltungen zwischen Ordnern verschiebst.
-
-📁 Benutzerdefinierte Ordner & Anheften: Organisiere deine Chats nach Themen. Hefte (📌) deine Lieblingsordner an, um sie immer oben zu behalten.
-
+⚡ Schnellspeichern (Rechtsklick & Tastenkombinationen): Speichere die Unterhaltung per Rechtsklick, oder nutze die Tastenkombination (Strg+Umschalt+S oder Cmd+Shift+S auf dem Mac), um sie sofort an "⚡ Schnellspeicherungen" zu senden!
+☑️ Massenaktionen (Mehrfachauswahl): Wähle mehrere Unterhaltungen mit Kontrollkästchen aus, um sie stapelweise zu verschieben oder zu löschen.
+📑 Tab-Gruppen-Integration: Öffne einen ganzen Ordner mit einem Klick in einer farbcodierten Chrome-Tab-Gruppe.
+😃 Benutzerdefinierte Emojis: Beginne deinen Ordnernamen mit einem Emoji (z. B. "💻 Code"), um es automatisch als Ordnersymbol zu verwenden.
+🖱️ Drag & Drop: Reorganisiere deinen Arbeitsbereich intuitiv.
+🗜️ Hocheffiziente Komprimierung: Komprimiert automatisch deine Daten (LZString), um den nativen Speicherplatz von Chrome zu maximieren.
+📊 Speicher-Tracker: Ein visueller Fortschrittsbalken informiert dich in Echtzeit über deine Cloud-Kapazität.
+📁 Benutzerdefinierte Ordner & Anheften: Organisiere deine Chats und hefte (📌) Favoriten an.
 ⇅ Benutzerdefinierte Sortierung: Sortiere deine Ordnerinhalte im Handumdrehen (Neueste, Älteste, A bis Z).
-
-🤖 Intelligente Erkennung: Die Erweiterung liest automatisch die Seite, um den genauen Titel deiner Unterhaltung vorauszufüllen.
-
+🤖 Intelligente Erkennung: Die Erweiterung füllt den genauen Titel deiner Unterhaltung automatisch aus.
 🔍 Schnelle Suche: Finde jede Unterhaltung in Sekundenbruchteilen.
-
-✏️ Vollständige Bearbeitung: Benenne deine Ordner und Unterhaltungen einfach direkt aus der Erweiterung um.
-
-☁️ Cloud-Synchronisierung: Greife auf allen Computern, die mit deinem Google-Konto verbunden sind, auf deine Organisation zu.
-
-💾 Lokales Backup (Import / Export): Lade alle deine Daten mit einem Klick im JSON-Format herunter.
-
-🎨 "Material 3" Design & Mehrsprachig: Genieße eine ultrakompakte, flüssige Benutzeroberfläche, die sich automatisch an den Dark Mode und die Sprache deines Browsers anpasst (Englisch, Französisch, Spanisch, Portugiesisch, Deutsch und Japanisch).
+☁️ Cloud-Synchronisierung & Backup: Greife überall auf deine Organisation zu und lade Daten im JSON-Format herunter.
 
 🛠️ WIE FUNKTIONIERT ES?
 
 Öffne eine wichtige Unterhaltung auf gemini.google.com.
-
-Express-Speichern: Rechtsklicke auf die Seite, fahre über "In Gemini Folders speichern" und klicke auf deinen Zielordner.
-
-Über die Erweiterung: Klicke auf das Erweiterungssymbol. Der Titel wird automatisch erkannt. Ordner wählen und speichern!
-
-Nutze Drag & Drop zum Reorganisieren, 📌 zum Anheften oder ⇅ zum Sortieren!
+Express-Speichern: Drücke Strg+Umschalt+S oder klicke mit der rechten Maustaste auf die Seite.
+Über die Erweiterung: Klicke auf das Symbol, wähle einen Ordner und speichere!
+Nutze Kontrollkästchen für Massenaktionen, öffne Ordner in Tabs (📑) oder nutze Drag & Drop!
 
 🔒 DATENSCHUTZ & SICHERHEIT
-
-Der Datenschutz steht im Mittelpunkt. Die Erweiterung fordert nur Zugriff auf die Gemini-Domain an und liest den Inhalt des aktiven Tabs nur in dem Moment, in dem du speicherst. Deine Ordner werden sicher im Speicher deines eigenen Browsers (Chrome Sync) abgelegt: Es werden keine Drittanbieter-Server verwendet.
+Der Datenschutz steht im Mittelpunkt. Deine Ordner werden sicher im Speicher deines eigenen Browsers (Chrome Sync) abgelegt: Es werden keine Drittanbieter-Server verwendet.
 
 📢 ÄNDERUNGSPROTOKOLL:
-
+Version 3.0 (Das ultimative Produktivitäts-Update): Tastenkombinationen, Massenaktionen (Mehrfachauswahl), Tab-Gruppen, benutzerdefinierte Emojis, Datenkomprimierung und Speicher-Tracker!
 Version 2.1 (Globales Update): 🌍 Gemini-Ordner ist jetzt vollständig lokalisiert! Die Erweiterung übersetzt sich automatisch ins Spanische, Brasilianische Portugiesisch, Deutsche und Japanische, zusätzlich zu Englisch und Französisch.
-
 Version 2.0.2 (UX-Verbesserungen): Intelligentes Gedächtnis (merkt sich geöffnete/geschlossene Ordner), visuelle Hinweise (Symbole 📁/🗂️) und kleine Korrekturen.
-
 Version 2.0.1: Ein Problem beim Abrufen von Titeln in einigen Browsern wurde behoben.
-
 Version 2.0: Großes Update mit Drag & Drop, Kontextmenü, Sortierung, Anheften und neuem Material 3 Design.

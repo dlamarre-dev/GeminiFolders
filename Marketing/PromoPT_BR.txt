@@ -1,52 +1,38 @@
-Você usa o Google Gemini diariamente para trabalho, código, pesquisa ou criação de conteúdo, mas perde constantemente seus prompts importantes em um histórico infinito? Pastas Gemini é a extensão de que você precisa.
+Você usa o Google Gemini diariamente para trabalho, código, pesquisa ou criação de conteúdo, mas perde constantemente seus prompts importantes em um histórico infinito?
+Pastas Gemini é a extensão de que você precisa.
 
 Transforme seu uso do Gemini em um espaço de trabalho estruturado, agrupando suas melhores conversas por projetos, temas ou categorias. Chega de perder tempo rolando a página para encontrar um chat antigo!
 
 💡 Por que é melhor do que simples favoritos (bookmarks)?
-Ao contrário dos favoritos clássicos que acabam bagunçando seu navegador, Pastas Gemini oferece um espaço de trabalho dedicado e isolado. Diga adeus à navegação tediosa: você tem um menu personalizado, uma pesquisa ultrarrápida exclusiva para seus chats e ferramentas de gerenciamento rápido, tudo sobreposto diretamente na sua janela do Gemini.
+Ao contrário dos favoritos clássicos que acabam bagunçando seu navegador, Pastas Gemini oferece um espaço de trabalho dedicado e isolado, com pesquisa ultrarrápida e ferramentas de gerenciamento diretamente na sua janela do Gemini.
 
 🌟 PRINCIPAIS RECURSOS
 
-⚡ Salvamento Rápido (Clique com o botão direito): Salve a conversa ativa diretamente na pasta de sua escolha com um simples clique com o botão direito na página!
-
-🖱️ Drag & Drop: Reorganize seu espaço de trabalho intuitivamente arrastando e soltando suas conversas entre as pastas.
-
-📁 Pastas Personalizadas e Fixação: Organize suas conversas por temas. Fixe (📌) suas pastas favoritas para mantê-las sempre no topo.
-
-⇅ Classificação Personalizada: Classifique o conteúdo das pastas (Mais recentes, Mais antigos, A a Z).
-
-🤖 Detecção Inteligente: A extensão lê automaticamente a página para preencher o título exato da sua conversa.
-
-🔍 Pesquisa Instantânea: Encontre qualquer conversa em uma fração de segundo com a barra de pesquisa.
-
-✏️ Edição Completa: Renomeie facilmente suas pastas e conversas diretamente da extensão.
-
-☁️ Sincronização na Nuvem: Acesse sua organização em todos os seus computadores conectados à sua conta do Google.
-
-💾 Backup Local (Importar / Exportar): Baixe todos os seus dados em formato JSON com um clique.
-
-🎨 Design "Material 3" e Multilíngue: Desfrute de uma interface ultra-compacta, fluida e elegante que se adapta automaticamente ao Modo Escuro do sistema e ao idioma do seu navegador (Inglês, Francês, Espanhol, Português, Alemão e Japonês).
+⚡ Salvamento Rápido (Menu de Contexto e Atalhos): Salve a conversa ativa com um clique com o botão direito, ou use o atalho de teclado (Ctrl+Shift+S ou Cmd+Shift+S no Mac) para enviar instantaneamente para "⚡ Salvamentos Rápidos"!
+☑️ Ações em Massa (Seleção Múltipla): Selecione várias conversas com caixas de seleção para movê-las ou excluí-las de uma só vez.
+📑 Grupos de Guias (Tab Groups): Abra uma pasta inteira em um Grupo de Guias nativo e colorido do Chrome com um único clique.
+😃 Emojis Personalizados: Comece o nome da sua pasta com um emoji (ex: "💻 Código") para que a extensão o use automaticamente como ícone.
+🖱️ Drag & Drop: Reorganize seu espaço de trabalho arrastando e soltando suas conversas.
+🗜️ Compressão ultraeficiente: Comprime automaticamente seus dados para maximizar o armazenamento nativo do Chrome.
+📊 Rastreador de Armazenamento: Uma barra de progresso visual mostra a capacidade disponível na nuvem em tempo real.
+📁 Pastas Personalizadas e Fixação: Organize suas conversas e fixe (📌) as mais importantes.
+⇅ Classificação Personalizada: Classifique o conteúdo (Mais recentes, Mais antigos, A a Z).
+🤖 Detecção Inteligente e Pesquisa: Preenche o título exato da sua conversa e permite encontrá-la em uma fração de segundo.
+☁️ Sincronização e Backup: Acesse suas pastas em todos os seus computadores e exporte em JSON.
 
 🛠️ COMO FUNCIONA?
 
 Abra uma conversa importante em gemini.google.com.
-
-Salvamento Expresso: Clique com o botão direito na página, passe o mouse sobre "Salvar no Gemini Folders" e clique na pasta de destino.
-
-Pela Extensão: Clique no ícone da extensão. O título é detectado automaticamente. Escolha uma pasta e salve!
-
-Use arrastar e soltar para reorganizar, o ícone 📌 para fixar, ou ⇅ para classificar!
+Salvamento Expresso: Pressione Ctrl+Shift+S, ou clique com o botão direito na página e escolha "Salvar no Gemini Folders".
+Pela Extensão: Clique no ícone da extensão, escolha uma pasta e salve!
+Use as caixas de seleção para ações em massa, abra pastas em guias (📑) ou arraste e solte para organizar!
 
 🔒 PRIVACIDADE E SEGURANÇA
-
-Construída com a privacidade como prioridade. Ela solicita acesso apenas ao domínio do Gemini e lê o conteúdo da guia ativa apenas no momento exato em que você decide salvar. Suas pastas são armazenadas com segurança na memória sincronizada do seu próprio navegador (Chrome Sync): nenhum servidor de terceiros é usado.
+Construída com a privacidade como prioridade. Solicita acesso apenas ao Gemini e armazena suas pastas com segurança na memória sincronizada do seu próprio navegador (Chrome Sync).
 
 📢 ATUALIZAÇÕES:
-
+Versão 3.0 (Atualização Máxima de Produtividade): Atalhos de teclado, Ações em massa, Grupos de guias, Emojis personalizados, Compressão de dados e Rastreador de armazenamento!
 Versão 2.1 (Atualização Global): 🌍 Pastas Gemini agora é totalmente localizada! A extensão se traduz automaticamente para Espanhol, Português do Brasil, Alemão e Japonês, além de Inglês e Francês.
-
 Versão 2.0.2 (Melhorias de UX): Memória inteligente (lembra pastas abertas/fechadas), dicas visuais (ícones 📁/🗂️ para pastas vazias vs. cheias) e pequenas correções de tela.
-
 Versão 2.0.1: Corrigido um problema com a recuperação de títulos em alguns navegadores.
-
 Versão 2.0: Grande reformulação adicionando Drag & Drop, Menu de Contexto, Classificação, Fixação e novo design Material 3.

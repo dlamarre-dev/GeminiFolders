@@ -1,52 +1,39 @@
-¿Utilizas Google Gemini a diario para el trabajo, la programación, la investigación o la creación de contenidos, pero pierdes constantemente tus prompts en un historial infinito? Carpetas Gemini es la extensión que necesitas.
+¿Utilizas Google Gemini a diario para el trabajo, la programación, la investigación o la creación de contenidos, pero pierdes constantemente tus prompts en un historial infinito?
+Carpetas Gemini es la extensión que necesitas.
 
 Transforma tu uso de Gemini en un verdadero espacio de trabajo estructurado agrupando tus mejores conversaciones en proyectos, temas o categorías. ¡No pierdas más tiempo buscando un chat antiguo!
 
 💡 ¿Por qué es mejor que los simples marcadores?
-A diferencia de los marcadores clásicos que acaban desordenando tu navegador, Carpetas Gemini ofrece un espacio de trabajo dedicado y aislado. Despídete de la tediosa navegación: obtienes un menú a medida, una búsqueda ultrarrápida exclusiva para tus chats y herramientas de gestión rápidas, todo superpuesto directamente en tu ventana de Gemini.
+A diferencia de los marcadores clásicos que acaban desordenando tu navegador, Carpetas Gemini ofrece un espacio de trabajo dedicado y aislado con un menú a medida, búsqueda ultrarrápida y herramientas de gestión superpuestas en tu ventana de Gemini.
 
 🌟 CARACTERÍSTICAS PRINCIPALES
 
-⚡ Guardado Rápido (Clic derecho): Guarda la conversación activa en la carpeta que elijas mediante un simple clic derecho en la página.
-
-🖱️ Drag & Drop: Reorganiza tu espacio de trabajo arrastrando y soltando tus conversaciones entre carpetas.
-
-📁 Carpetas Personalizadas y Pines: Organiza tus chats por temas. Fija (📌) tus carpetas favoritas para mantenerlas en la parte superior.
-
-⇅ Ordenación Personalizada: Ordena el contenido de tus carpetas sobre la marcha (Más recientes, Más antiguos, De la A a la Z).
-
+⚡ Guardado Rápido (Menú contextual y Atajos): Guarda la conversación mediante un clic derecho, o utiliza el atajo de teclado (Ctrl+Shift+S o Cmd+Shift+S en Mac) para enviarla al instante a "⚡ Guardados Rápidos".
+☑️ Acciones en Lote (Selección múltiple): Selecciona varias conversaciones con casillas de verificación para moverlas o eliminarlas en grupo, ahorrándote decenas de clics.
+📑 Grupos de Pestañas: Abre toda una carpeta con un solo clic en un Grupo de Pestañas nativo de Chrome, organizado por colores.
+😃 Emojis Personalizados: Empieza el nombre de tu carpeta con un emoji (ej. "💻 Código") y la extensión lo usará como icono automáticamente.
+🖱️ Drag & Drop: Reorganiza tu espacio de trabajo arrastrando y soltando tus conversaciones.
+🗜️ Compresión ultraeficiente: Comprime automáticamente tus datos sincronizados para maximizar la capacidad de almacenamiento nativo de Chrome.
+📊 Rastreador de almacenamiento: Una barra de progreso visual te informa de tu capacidad en la nube en tiempo real.
+📁 Carpetas Personalizadas y Pines: Organiza tus chats y fija (📌) tus favoritos.
+⇅ Ordenación Personalizada: Ordena el contenido sobre la marcha (Más recientes, Más antiguos, De la A a la Z).
 🤖 Detección Inteligente: La extensión lee automáticamente la página para prellenar el título exacto de tu conversación.
-
 🔍 Búsqueda Instantánea: Encuentra cualquier conversación en una fracción de segundo.
-
-✏️ Edición Completa: Renombra fácilmente tus carpetas y conversaciones directamente desde la extensión.
-
-☁️ Sincronización en la Nube: Accede a tu organización en todos tus ordenadores conectados a tu cuenta de Google.
-
-💾 Copia de Seguridad Local (Importar / Exportar): Descarga todos tus datos en formato JSON con un solo clic.
-
-🎨 Diseño "Material 3" y Multilingüe: Disfruta de una interfaz ultra-compacta que se adapta automáticamente al Modo Oscuro y al idioma de tu navegador (Inglés, Francés, Español, Portugués, Alemán y Japonés).
+☁️ Sincronización en la Nube y Backup: Accede a tu organización en todos tus ordenadores y descarga tus datos en JSON.
 
 🛠️ ¿CÓMO FUNCIONA?
 
 Abre una conversación importante en gemini.google.com.
-
-Guardado Exprés: Haz clic derecho en cualquier parte de la página, pasa el ratón por "Guardar en Gemini Folders" y haz clic en tu carpeta.
-
-A través de la extensión: Haz clic en el icono (¡fíjalo en tu barra de herramientas!). El título se detecta automáticamente. ¡Elige una carpeta y guarda!
-
-Usa arrastrar y soltar para reorganizar, el icono 📌 para fijar o ⇅ para ordenar.
+Guardado Exprés: Presiona Ctrl+Shift+S, o haz clic derecho en la página y selecciona "Guardar en Gemini Folders".
+A través de la extensión: Haz clic en el icono. El título se detecta automáticamente. ¡Elige una carpeta y guarda!
+Utiliza las casillas para acciones en lote, abre carpetas como grupos de pestañas (📑) o arrastra y suelta para organizar.
 
 🔒 PRIVACIDAD Y SEGURIDAD
-
-Construida pensando en la privacidad. Solo solicita acceso al dominio de Gemini y solo lee el contenido de la pestaña activa en el momento exacto en que decides guardar. Tus carpetas se almacenan de forma segura en la memoria de tu propio navegador (Chrome Sync): no se utilizan servidores de terceros.
+Construida pensando en la privacidad. Solo solicita acceso al dominio de Gemini y guarda tus datos de forma segura en la memoria de tu propio navegador (Chrome Sync): no se utilizan servidores de terceros.
 
 📢 REGISTRO DE CAMBIOS:
-
+Versión 3.0 (La gran actualización de productividad): ¡Añadidos atajos de teclado, acciones en lote, grupos de pestañas, emojis personalizados, compresión de datos y un rastreador de almacenamiento!
 Versión 2.1 (Actualización Global): 🌍 ¡Carpetas Gemini ahora está completamente localizada! La extensión se traduce automáticamente al español, portugués brasileño, alemán y japonés, además de inglés y francés.
-
 Versión 2.0.2 (Mejoras UX): Memoria inteligente (recuerda carpetas abiertas/cerradas), señales visuales (iconos 📁/🗂️ para carpetas vacías/llenas) y correcciones menores.
-
 Versión 2.0.1: Solucionado un problema con la recuperación de títulos en algunos navegadores.
-
 Versión 2.0: Gran actualización que añade Drag & Drop, Menú contextual, Ordenación, Fijación y un nuevo diseño Material 3.
