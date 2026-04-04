@@ -1,40 +1,40 @@
 // utils.js
 
-// Remplace chrome.storage.sync.get
+// Replaces chrome.storage.sync.get
 function loadData(defaults, callback) {
   const keysToGet = { ...defaults };
   if ('folders' in defaults) {
-    keysToGet.foldersDataCompressed = null; // On demande la clé compressée
+    keysToGet.foldersDataCompressed = null; // We request the compressed key
   }
 
   chrome.storage.sync.get(keysToGet, (data) => {
     if ('folders' in defaults) {
       if (data.foldersDataCompressed) {
-        // Cas 1 : Données compressées trouvées
+        // Case 1: Compressed data found
         data.folders = JSON.parse(LZString.decompressFromUTF16(data.foldersDataCompressed));
       } else if (data.folders && Object.keys(data.folders).length > 0) {
-        // Cas 2 : Migration silencieuse (anciennes données)
+        // Case 2: Silent migration (legacy data)
         saveData({ folders: data.folders });
       } else {
-        // Cas 3 : Vide
+        // Case 3: Empty
         data.folders = defaults.folders;
       }
-      delete data.foldersDataCompressed; // On nettoie avant d'envoyer au reste de l'app
+      delete data.foldersDataCompressed; // Clean up before passing to the rest of the app
     }
     callback(data);
   });
 }
 
-// Remplace chrome.storage.sync.set
+// Replaces chrome.storage.sync.set
 function saveData(dataToSave, callback) {
   const finalSave = { ...dataToSave };
 
   if (finalSave.folders) {
-    // Compression de la clé 'folders' uniquement
+    // Compressing only the 'folders' key
     finalSave.foldersDataCompressed = LZString.compressToUTF16(JSON.stringify(finalSave.folders));
     delete finalSave.folders;
 
-    // Nettoyage de l'ancienne clé pour libérer de l'espace
+    // Cleaning up the old key to free up space
     chrome.storage.sync.remove('folders');
   }
 
