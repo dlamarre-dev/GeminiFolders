@@ -27,10 +27,24 @@ function updateContextMenu() {
 
       // Create a submenu for each folder
       folderNames.sort().forEach(folder => {
+        const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/u;
+        const match = folder.match(emojiRegex);
+
+        let menuTitle = folder;
+        if (match) {
+          const customIcon = match[1]; // The emoji
+          const displayName = folder.replace(emojiRegex, '');
+          // One space only between emoji and - name
+          menuTitle = `${customIcon} ${displayName}`;
+        } else {
+          // Default behaviour
+          menuTitle = `📁 ${folder}`;
+        }
+
         chrome.contextMenus.create({
           id: `folder_${folder}`,
           parentId: "gemini-folders-parent",
-          title: `📁 ${folder}`,
+          title: menuTitle,
           contexts: ["page"]
         });
       });

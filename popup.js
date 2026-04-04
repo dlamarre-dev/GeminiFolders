@@ -367,11 +367,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         const leftPart = document.createElement('div');
         leftPart.style.display = 'flex';
 
-        // --- NEW: Different folder icon if empty (📁) or full (🗂️) ---
+        // --- Different folder icon if empty (📁) or full (🗂️) ---
+        const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/u;
+        const match = folderName.match(emojiRegex);
+
+        let customIcon = null;
+        let displayName = folderName;
+
+        if (match) {
+          customIcon = match[1]; // Emoji found
+          displayName = folderName.replace(emojiRegex, ''); // Name without emoji
+        }
+
         const isEmpty = chats.length === 0;
-        const folderIcon = isEmpty ? '📁' : '🗂️';
-        leftPart.innerHTML = `<span class="folder-icon">${folderIcon}</span><div class="folder-name">${folderName}</div>`;
-        // -----------------------------------------------------------------------
+        // If there is a custom emoji we use it, otherwise default.
+        const folderIcon = customIcon ? customIcon : (isEmpty ? '📁' : '🗂️');
+
+        leftPart.innerHTML = `<span class="folder-icon">${folderIcon}</span><div class="folder-name">${displayName}</div>`;
 
         const actionsDiv = document.createElement('div');
 
