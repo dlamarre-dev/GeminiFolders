@@ -42,5 +42,9 @@
   "toastSaved": { "message": "✅ ¡Guardado en Carpetas Gemini!" },
   "btnOpenGroup": { "message": "Abrir en grupo de pestañas" },
   "confirmOpenManyTabs": { "message": "¿Realmente quieres abrir {count} pestañas al mismo tiempo?" },
-  "errorTabGroup": { "message": "Error: No se pudo crear el grupo de pestañas. ¿Has aceptado los nuevos permisos?" }
+  "errorTabGroup": { "message": "Error: No se pudo crear el grupo de pestañas. ¿Has aceptado los nuevos permisos?" },
+  "bulkSelected": { "message": "{count} seleccionado(s)" },
+  "bulkMove": { "message": "Mover a..." },
+  "bulkDelete": { "message": "Eliminar" },
+  "confirmBulkDelete": { "message": "¿Realmente quieres eliminar estas {count} conversaciones?" }
 }

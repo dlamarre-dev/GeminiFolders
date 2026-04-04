@@ -42,5 +42,9 @@
   "toastSaved": { "message": "✅ In Gemini-Ordner gespeichert!" },
   "btnOpenGroup": { "message": "In Tab-Gruppe öffnen" },
   "confirmOpenManyTabs": { "message": "Möchten Sie wirklich {count} Tabs gleichzeitig öffnen?" },
-  "errorTabGroup": { "message": "Fehler: Tab-Gruppe konnte nicht erstellt werden. Haben Sie die neuen Berechtigungen akzeptiert?" }
+  "errorTabGroup": { "message": "Fehler: Tab-Gruppe konnte nicht erstellt werden. Haben Sie die neuen Berechtigungen akzeptiert?" },
+  "bulkSelected": { "message": "{count} ausgewählt" },
+  "bulkMove": { "message": "Verschieben nach..." },
+  "bulkDelete": { "message": "Löschen" },
+  "confirmBulkDelete": { "message": "Möchten Sie diese {count} Unterhaltungen wirklich löschen?" }
 }

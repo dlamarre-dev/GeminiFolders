@@ -42,5 +42,9 @@
   "toastSaved": { "message": "✅ Sauvegardé dans Dossiers Gemini !" },
   "btnOpenGroup": { "message": "Ouvrir dans un groupe d'onglets" },
   "confirmOpenManyTabs": { "message": "Voulez-vous vraiment ouvrir {count} onglets en même temps ?" },
-  "errorTabGroup": { "message": "Erreur : Impossible de créer le groupe d'onglets. Avez-vous accepté les nouvelles permissions ?" }
+  "errorTabGroup": { "message": "Erreur : Impossible de créer le groupe d'onglets. Avez-vous accepté les nouvelles permissions ?" },
+  "bulkSelected": { "message": "{count} sélectionné(s)" },
+  "bulkMove": { "message": "Déplacer vers..." },
+  "bulkDelete": { "message": "Supprimer" },
+  "confirmBulkDelete": { "message": "Voulez-vous vraiment supprimer ces {count} conversations ?" }
 }

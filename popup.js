@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('sortOldest').textContent = chrome.i18n.getMessage("sortOldest");
   document.getElementById('sortAlpha').textContent = chrome.i18n.getMessage("sortAlpha");
 
+  let selectedChats = [];
   const folderList = document.getElementById('folderList');
   const saveBtn = document.getElementById('saveBtn');
   const exportBtn = document.getElementById('exportBtn');
@@ -489,6 +490,26 @@ document.addEventListener('DOMContentLoaded', async () => {
           const chatItem = document.createElement('div');
           chatItem.className = 'chat-item';
 
+          //Multiple selection
+          const checkbox = document.createElement('input');
+          checkbox.type = 'checkbox';
+          checkbox.className = 'chat-checkbox';
+          checkbox.dataset.folder = folderName;
+          checkbox.dataset.url = chat.url;
+          // Keep checkbox if redraw
+          if (selectedChats.some(c => c.url === chat.url)) checkbox.checked = true;
+
+          checkbox.addEventListener('change', (e) => {
+            if (e.target.checked) {
+              selectedChats.push({ folder: folderName, url: chat.url, chatObj: chat });
+            } else {
+              selectedChats = selectedChats.filter(c => c.url !== chat.url);
+            }
+            updateBulkActionBar();
+          });
+
+          chatItem.appendChild(checkbox);
+
           // Make the element draggable
           chatItem.setAttribute('draggable', 'true');
 
@@ -509,7 +530,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           link.href = chat.url;
           link.target = '_blank';
           link.title = chat.title;
-          link.textContent = `↳ ${chat.title}`;
+          link.textContent = chat.title;
 
           link.setAttribute('draggable', 'false');
 
@@ -785,4 +806,103 @@ document.addEventListener('DOMContentLoaded', async () => {
       alert(alertMsg);
     }
   }
+
+  // --- 11. BULK ACTIONS ---
+  const bulkActionBar = document.getElementById('bulkActionBar');
+  const bulkCount = document.getElementById('bulkCount');
+  const bulkMoveSelect = document.getElementById('bulkMoveSelect');
+  const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
+  const bulkCancelBtn = document.getElementById('bulkCancelBtn');
+
+  function updateBulkActionBar() {
+    if (selectedChats.length > 0) {
+      bulkActionBar.style.display = 'flex';
+
+      // Update text
+      let countMsg = chrome.i18n.getMessage("bulkSelected") || "{count} selected";
+      bulkCount.textContent = countMsg.replace("{count}", selectedChats.length);
+
+      // Refresh folder list
+      loadData({ folders: {} }, (data) => {
+        bulkMoveSelect.innerHTML = `<option value="" disabled selected>${chrome.i18n.getMessage("bulkMove") || "Move to..."}</option>`;
+        Object.keys(data.folders).sort().forEach(folder => {
+          // Détection d'émoji pour ajouter le dossier par défaut si besoin
+          const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/u;
+          const hasCustomEmoji = emojiRegex.test(folder);
+          const iconPrefix = hasCustomEmoji ? '' : '📁 ';
+
+          const option = document.createElement('option');
+          option.value = folder;
+          option.textContent = `${iconPrefix}${folder}`;
+          bulkMoveSelect.appendChild(option);
+        });
+      });
+    } else {
+      bulkActionBar.style.display = 'none';
+      bulkMoveSelect.innerHTML = ''; // Cleanup
+    }
+  }
+
+  // Cancel selection
+  bulkCancelBtn.addEventListener('click', () => {
+    selectedChats = [];
+    displayFolders(null, searchInput.value.toLowerCase()); // Redessine pour décocher
+    updateBulkActionBar();
+  });
+
+  // Delete selected
+  bulkDeleteBtn.addEventListener('click', () => {
+    let confirmMsg = chrome.i18n.getMessage("confirmBulkDelete") || "Delete these {count} conversations?";
+    if (!confirm(confirmMsg.replace("{count}", selectedChats.length))) return;
+
+    loadData({ folders: {} }, (data) => {
+      let folders = data.folders;
+
+      selectedChats.forEach(item => {
+        if (folders[item.folder]) {
+          folders[item.folder] = folders[item.folder].filter(c => c.url !== item.url);
+        }
+      });
+
+      saveData({ folders: folders }, () => {
+        selectedChats = []; // Vider la sélection
+        displayFolders(null, searchInput.value.toLowerCase());
+        updateBulkActionBar();
+      });
+    });
+  });
+
+  // Move selected
+  bulkMoveSelect.addEventListener('change', (e) => {
+    const targetFolder = e.target.value;
+    if (!targetFolder) return;
+
+    loadData({ folders: {}, openFolders: [] }, (data) => {
+      let folders = data.folders;
+      let openFolders = data.openFolders;
+
+      if (!folders[targetFolder]) folders[targetFolder] = [];
+
+      selectedChats.forEach(item => {
+        // 1. Remove from source folder
+        if (folders[item.folder]) {
+          folders[item.folder] = folders[item.folder].filter(c => c.url !== item.url);
+        }
+        // 2. Add to target folder (no duplicate)
+        const isDuplicate = folders[targetFolder].some(c => c.url === item.url);
+        if (!isDuplicate) {
+          folders[targetFolder].push(item.chatObj);
+        }
+      });
+
+      // Open target folder
+      if (!openFolders.includes(targetFolder)) openFolders.push(targetFolder);
+
+      saveData({ folders: folders, openFolders: openFolders }, () => {
+        selectedChats = []; // Empty selection
+        displayFolders(openFolders, searchInput.value.toLowerCase());
+        updateBulkActionBar();
+      });
+    });
+  });
 });

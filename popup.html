@@ -328,6 +328,36 @@
     .storage-fill.warning {
       background-color: var(--delete-color); /* Devient rouge */
     }
+    /* --- Bulk Actions --- */
+    .chat-checkbox {
+      margin: 0 8px 0 0;
+      cursor: pointer;
+      accent-color: var(--accent-color);
+      width: 14px;
+      height: 14px;
+    }
+
+    #bulkActionBar {
+      position: sticky;
+      bottom: 0;
+      background: var(--folder-bg);
+      padding: 10px 12px;
+      border-top: 1px solid var(--border-color);
+      box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+      display: none;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 10;
+      margin: 0 -16px -16px -16px;
+    }
+
+    #bulkMoveSelect {
+      margin: 0;
+      padding: 4px 24px 4px 8px;
+      height: 28px;
+      font-size: 12px;
+      width: 150px;
+    }
   </style>
 </head>
 <body>
@@ -352,6 +382,15 @@
   <hr style="margin-top: 0; margin-bottom: 10px;">
   <div id="folderList"></div>
   <div id="noResults"></div>
+
+  <div id="bulkActionBar">
+    <span id="bulkCount" style="font-size: 13px; font-weight: 600; color: var(--accent-color);">0 selected</span>
+    <div style="display: flex; gap: 6px; align-items: center;">
+      <select id="bulkMoveSelect"></select>
+      <button id="bulkDeleteBtn" title="Supprimer" style="background: var(--delete-color); color: white; border: none; padding: 4px 8px; border-radius: 6px; cursor: pointer;">🗑️</button>
+      <button id="bulkCancelBtn" class="secondary-btn" style="padding: 4px 8px; height: 28px;">✕</button>
+    </div>
+  </div>
 
   <div class="footer-actions" style="align-items: center;">
     <button id="exportBtn" class="secondary-btn"></button>

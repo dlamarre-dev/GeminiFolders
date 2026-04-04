@@ -42,5 +42,9 @@
   "toastSaved": { "message": "✅ Salvo no Pastas Gemini!" },
   "btnOpenGroup": { "message": "Abrir em grupo de guias" },
   "confirmOpenManyTabs": { "message": "Você realmente deseja abrir {count} guias ao mesmo tempo?" },
-  "errorTabGroup": { "message": "Erro: Não foi possível criar o grupo de guias. Você aceitou as novas permissões?" }
+  "errorTabGroup": { "message": "Erro: Não foi possível criar o grupo de guias. Você aceitou as novas permissões?" },
+  "bulkSelected": { "message": "{count} selecionado(s)" },
+  "bulkMove": { "message": "Mover para..." },
+  "bulkDelete": { "message": "Excluir" },
+  "confirmBulkDelete": { "message": "Tem certeza de que deseja excluir estas {count} conversas?" }
 }

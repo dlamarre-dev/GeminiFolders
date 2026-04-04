@@ -42,5 +42,9 @@
   "toastSaved": { "message": "✅ Gemini フォルダに保存しました！" },
   "btnOpenGroup": { "message": "タブグループで開く" },
   "confirmOpenManyTabs": { "message": "本当に {count} 個のタブを同時に開きますか？" },
-  "errorTabGroup": { "message": "エラー：タブグループを作成できません。新しい権限を承認しましたか？" }
+  "errorTabGroup": { "message": "エラー：タブグループを作成できません。新しい権限を承認しましたか？" },
+  "bulkSelected": { "message": "{count} 件選択中" },
+  "bulkMove": { "message": "移動先..." },
+  "bulkDelete": { "message": "削除" },
+  "confirmBulkDelete": { "message": "これら {count} 件の会話を本当に削除しますか？" }
 }
