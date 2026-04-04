@@ -39,5 +39,8 @@
   "storageInfo": { "message": "Storage: {used} KB / {max} KB ({pct}%)" },
   "cmdQuickSave": { "message": "Save conversation" },
   "quickSaveFolder": { "message": "⚡ Quick Saves" },
-  "toastSaved": { "message": "✅ Saved to Gemini Folders!" }
+  "toastSaved": { "message": "✅ Saved to Gemini Folders!" },
+  "btnOpenGroup": { "message": "Open in Tab Group" },
+  "confirmOpenManyTabs": { "message": "Do you really want to open {count} tabs at the same time?" },
+  "errorTabGroup": { "message": "Error: Unable to create the tab group. Have you accepted the new permissions?" }
 }

@@ -39,5 +39,8 @@
   "storageInfo": { "message": "Speicher: {used} KB / {max} KB ({pct}%)" },
   "cmdQuickSave": { "message": "Unterhaltung speichern" },
   "quickSaveFolder": { "message": "⚡ Schnellspeicherungen" },
-  "toastSaved": { "message": "✅ In Gemini-Ordner gespeichert!" }
+  "toastSaved": { "message": "✅ In Gemini-Ordner gespeichert!" },
+  "btnOpenGroup": { "message": "In Tab-Gruppe öffnen" },
+  "confirmOpenManyTabs": { "message": "Möchten Sie wirklich {count} Tabs gleichzeitig öffnen?" },
+  "errorTabGroup": { "message": "Fehler: Tab-Gruppe konnte nicht erstellt werden. Haben Sie die neuen Berechtigungen akzeptiert?" }
 }

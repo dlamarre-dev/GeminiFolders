@@ -39,5 +39,8 @@
   "storageInfo": { "message": "ストレージ：{used} KB / {max} KB ({pct}%)" },
   "cmdQuickSave": { "message": "会話を保存" },
   "quickSaveFolder": { "message": "⚡ クイック保存" },
-  "toastSaved": { "message": "✅ Gemini フォルダに保存しました！" }
+  "toastSaved": { "message": "✅ Gemini フォルダに保存しました！" },
+  "btnOpenGroup": { "message": "タブグループで開く" },
+  "confirmOpenManyTabs": { "message": "本当に {count} 個のタブを同時に開きますか？" },
+  "errorTabGroup": { "message": "エラー：タブグループを作成できません。新しい権限を承認しましたか？" }
 }

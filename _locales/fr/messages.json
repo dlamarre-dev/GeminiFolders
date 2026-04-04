@@ -39,5 +39,8 @@
   "storageInfo": { "message": "Stockage : {used} Ko / {max} Ko ({pct}%)" },
   "cmdQuickSave": { "message": "Sauvegarder la conversation" },
   "quickSaveFolder": { "message": "⚡ Sauvegardes Rapides" },
-  "toastSaved": { "message": "✅ Sauvegardé dans Dossiers Gemini !" }
+  "toastSaved": { "message": "✅ Sauvegardé dans Dossiers Gemini !" },
+  "btnOpenGroup": { "message": "Ouvrir dans un groupe d'onglets" },
+  "confirmOpenManyTabs": { "message": "Voulez-vous vraiment ouvrir {count} onglets en même temps ?" },
+  "errorTabGroup": { "message": "Erreur : Impossible de créer le groupe d'onglets. Avez-vous accepté les nouvelles permissions ?" }
 }

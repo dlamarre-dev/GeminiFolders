@@ -385,6 +385,18 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         actionsDiv.appendChild(pinBtn);
 
+        if (!isEmpty) {
+          const openGroupBtn = document.createElement('button');
+          openGroupBtn.className = 'action-btn open-group-btn';
+          openGroupBtn.innerHTML = '📑';
+          openGroupBtn.title = chrome.i18n.getMessage("btnOpenGroup") || "Open in Tab Group";
+          openGroupBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openFolderInTabGroup(folderName, chats);
+          });
+          actionsDiv.appendChild(openGroupBtn);
+        }
+
         const editFolderBtn = document.createElement('button');
         editFolderBtn.className = 'action-btn edit-btn';
         editFolderBtn.innerHTML = '✏️';
@@ -714,4 +726,51 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   updateStorageBar();
+
+  // 10. Open folder in Chrome Active Tab group
+  async function openFolderInTabGroup(folderName, chats) {
+    if (chats.length === 0) return;
+
+    if (chats.length > 10) {
+      let confirmMsg = chrome.i18n.getMessage("confirmOpenManyTabs");
+      if (confirmMsg) {
+        confirmMsg = confirmMsg.replace("{count}", chats.length);
+      } else {
+        confirmMsg = `Open ${chats.length} tabs?`;
+      }
+
+      if (!confirm(confirmMsg)) {
+        return;
+      }
+    }
+
+    try {
+      const tabIds = [];
+
+      // 1. Create all tabs in background
+      for (const chat of chats) {
+        const tab = await chrome.tabs.create({ url: chat.url, active: false });
+        tabIds.push(tab.id);
+      }
+
+      // 2. Group tabs
+      if (tabIds.length > 0) {
+        const groupId = await chrome.tabs.group({ tabIds: tabIds });
+
+        // 3. Customize group
+        await chrome.tabGroups.update(groupId, {
+          title: folderName,
+          color: "blue", // Options: grey, blue, red, yellow, green, pink, purple, cyan, orange
+          collapsed: false
+        });
+
+        // 4. Focus on first tab
+        await chrome.tabs.update(tabIds[0], { active: true });
+      }
+    } catch (error) {
+      console.error("Tab Group Creation Error:", error);
+      const alertMsg = chrome.i18n.getMessage("errorTabGroup") || "Error creating tab group. Check permissions.";
+      alert(alertMsg);
+    }
+  }
 });

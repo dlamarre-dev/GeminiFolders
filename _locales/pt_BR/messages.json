@@ -39,5 +39,8 @@
   "storageInfo": { "message": "Armazenamento: {used} KB / {max} KB ({pct}%)" },
   "cmdQuickSave": { "message": "Salvar conversa" },
   "quickSaveFolder": { "message": "⚡ Salvamentos Rápidos" },
-  "toastSaved": { "message": "✅ Salvo no Pastas Gemini!" }
+  "toastSaved": { "message": "✅ Salvo no Pastas Gemini!" },
+  "btnOpenGroup": { "message": "Abrir em grupo de guias" },
+  "confirmOpenManyTabs": { "message": "Você realmente deseja abrir {count} guias ao mesmo tempo?" },
+  "errorTabGroup": { "message": "Erro: Não foi possível criar o grupo de guias. Você aceitou as novas permissões?" }
 }

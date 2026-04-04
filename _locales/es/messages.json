@@ -39,5 +39,8 @@
   "storageInfo": { "message": "Almacenamiento: {used} KB / {max} KB ({pct}%)" },
   "cmdQuickSave": { "message": "Guardar conversación" },
   "quickSaveFolder": { "message": "⚡ Guardados Rápidos" },
-  "toastSaved": { "message": "✅ ¡Guardado en Carpetas Gemini!" }
+  "toastSaved": { "message": "✅ ¡Guardado en Carpetas Gemini!" },
+  "btnOpenGroup": { "message": "Abrir en grupo de pestañas" },
+  "confirmOpenManyTabs": { "message": "¿Realmente quieres abrir {count} pestañas al mismo tiempo?" },
+  "errorTabGroup": { "message": "Error: No se pudo crear el grupo de pestañas. ¿Has aceptado los nuevos permisos?" }
 }
