@@ -28,7 +28,7 @@
   "sortNewest": { "message": "Más recientes" },
   "sortOldest": { "message": "Más antiguos" },
   "sortAlpha": { "message": "De A a Z" },
-  "ctxMenuSave": { "message": "Guardar en Gemini Folders" },
+  "ctxMenuSave": { "message": "Guardar en Carpetas Gemini" },
   "ctxMenuNoFolder": { "message": "(Sin carpetas - Abre la extensión)" },
   "btnToggleAdd": { "message": "Añadir una conversación" },
   "btnCancel": { "message": "Cerrar" },
@@ -36,5 +36,8 @@
   "promptRenameFolder": { "message": "Nuevo nombre de la carpeta:" },
   "errorFolderExists": { "message": "Ya existe una carpeta con este nombre." },
   "storageCalc": { "message": "Calculando espacio..." },
-  "storageInfo": { "message": "Almacenamiento: {used} KB / {max} KB ({pct}%)" }
+  "storageInfo": { "message": "Almacenamiento: {used} KB / {max} KB ({pct}%)" },
+  "cmdQuickSave": { "message": "Guardar conversación" },
+  "quickSaveFolder": { "message": "⚡ Guardados Rápidos" },
+  "toastSaved": { "message": "✅ ¡Guardado en Carpetas Gemini!" }
 }

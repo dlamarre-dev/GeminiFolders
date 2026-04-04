@@ -28,7 +28,7 @@
   "sortNewest": { "message": "新しい順" },
   "sortOldest": { "message": "古い順" },
   "sortAlpha": { "message": "A から Z" },
-  "ctxMenuSave": { "message": "Gemini Folders に保存" },
+  "ctxMenuSave": { "message": "Gemini フォルダに保存" },
   "ctxMenuNoFolder": { "message": "(フォルダなし - 拡張機能を開く)" },
   "btnToggleAdd": { "message": "会話を追加" },
   "btnCancel": { "message": "閉じる" },
@@ -36,5 +36,8 @@
   "promptRenameFolder": { "message": "新しいフォルダ名：" },
   "errorFolderExists": { "message": "この名前のフォルダはすでに存在します。" },
   "storageCalc": { "message": "容量を計算中..." },
-  "storageInfo": { "message": "ストレージ：{used} KB / {max} KB ({pct}%)" }
+  "storageInfo": { "message": "ストレージ：{used} KB / {max} KB ({pct}%)" },
+  "cmdQuickSave": { "message": "会話を保存" },
+  "quickSaveFolder": { "message": "⚡ クイック保存" },
+  "toastSaved": { "message": "✅ Gemini フォルダに保存しました！" }
 }

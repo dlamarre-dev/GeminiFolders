@@ -28,7 +28,7 @@
   "sortNewest": { "message": "Neueste" },
   "sortOldest": { "message": "Älteste" },
   "sortAlpha": { "message": "Von A bis Z" },
-  "ctxMenuSave": { "message": "In Gemini Folders speichern" },
+  "ctxMenuSave": { "message": "In Gemini-Ordner speichern" },
   "ctxMenuNoFolder": { "message": "(Kein Ordner - Erweiterung öffnen)" },
   "btnToggleAdd": { "message": "Unterhaltung hinzufügen" },
   "btnCancel": { "message": "Schließen" },
@@ -36,5 +36,8 @@
   "promptRenameFolder": { "message": "Neuer Ordnername:" },
   "errorFolderExists": { "message": "Ein Ordner mit diesem Namen existiert bereits." },
   "storageCalc": { "message": "Speicher wird berechnet..." },
-  "storageInfo": { "message": "Speicher: {used} KB / {max} KB ({pct}%)" }
+  "storageInfo": { "message": "Speicher: {used} KB / {max} KB ({pct}%)" },
+  "cmdQuickSave": { "message": "Unterhaltung speichern" },
+  "quickSaveFolder": { "message": "⚡ Schnellspeicherungen" },
+  "toastSaved": { "message": "✅ In Gemini-Ordner gespeichert!" }
 }

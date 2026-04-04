@@ -28,7 +28,7 @@
   "sortNewest": { "message": "Mais recentes" },
   "sortOldest": { "message": "Mais antigos" },
   "sortAlpha": { "message": "De A a Z" },
-  "ctxMenuSave": { "message": "Salvar no Gemini Folders" },
+  "ctxMenuSave": { "message": "Salvar no Pastas Gemini" },
   "ctxMenuNoFolder": { "message": "(Nenhuma pasta - Abra a extensão)" },
   "btnToggleAdd": { "message": "Adicionar uma conversa" },
   "btnCancel": { "message": "Fechar" },
@@ -36,5 +36,8 @@
   "promptRenameFolder": { "message": "Novo nome da pasta:" },
   "errorFolderExists": { "message": "Já existe uma pasta com este nome." },
   "storageCalc": { "message": "Calculando espaço..." },
-  "storageInfo": { "message": "Armazenamento: {used} KB / {max} KB ({pct}%)" }
+  "storageInfo": { "message": "Armazenamento: {used} KB / {max} KB ({pct}%)" },
+  "cmdQuickSave": { "message": "Salvar conversa" },
+  "quickSaveFolder": { "message": "⚡ Salvamentos Rápidos" },
+  "toastSaved": { "message": "✅ Salvo no Pastas Gemini!" }
 }

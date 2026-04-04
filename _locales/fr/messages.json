@@ -28,7 +28,7 @@
   "sortNewest": { "message": "Plus récents" },
   "sortOldest": { "message": "Plus anciens" },
   "sortAlpha": { "message": "De A à Z" },
-  "ctxMenuSave": { "message": "Sauvegarder dans Gemini Folders" },
+  "ctxMenuSave": { "message": "Sauvegarder dans Dossiers Gemini" },
   "ctxMenuNoFolder": { "message": "(Aucun dossier - Ouvrez l'extension)" },
   "btnToggleAdd": { "message": "Ajouter une conversation" },
   "btnCancel": { "message": "Fermer" },
@@ -36,5 +36,8 @@
   "promptRenameFolder": { "message": "Nouveau nom du dossier :" },
   "errorFolderExists": { "message": "Un dossier avec ce nom existe déjà." },
   "storageCalc": { "message": "Calcul de l'espace..." },
-  "storageInfo": { "message": "Stockage : {used} Ko / {max} Ko ({pct}%)" }
+  "storageInfo": { "message": "Stockage : {used} Ko / {max} Ko ({pct}%)" },
+  "cmdQuickSave": { "message": "Sauvegarder la conversation" },
+  "quickSaveFolder": { "message": "⚡ Sauvegardes Rapides" },
+  "toastSaved": { "message": "✅ Sauvegardé dans Dossiers Gemini !" }
 }
