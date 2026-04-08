@@ -516,6 +516,10 @@ document.addEventListener('DOMContentLoaded', async () => {
           chatItem.setAttribute('draggable', 'true');
 
           chatItem.addEventListener('dragstart', (e) => {
+            if (document.body.classList.contains('bulk-active')) {
+              e.preventDefault();
+              return;
+            }
             chatItem.classList.add('dragging');
             document.body.classList.add('is-dragging');
             folderDiv.classList.add('is-source-folder');
@@ -556,7 +560,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           const delBtn = document.createElement('button');
           delBtn.className = 'action-btn delete-btn';
-          delBtn.innerHTML = '❌';
+          delBtn.innerHTML = '🗑️';
           delBtn.title = chrome.i18n.getMessage("btnDelete");
           delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -819,10 +823,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   const bulkMoveSelect = document.getElementById('bulkMoveSelect');
   const bulkDeleteBtn = document.getElementById('bulkDeleteBtn');
   const bulkCancelBtn = document.getElementById('bulkCancelBtn');
+  bulkCancelBtn.title = chrome.i18n.getMessage("bulkCancel") || "Cancel";
 
   function updateBulkActionBar() {
     if (selectedChats.length > 0) {
       bulkActionBar.style.display = 'flex';
+      document.body.classList.add('bulk-active');
 
       // Update text
       let countMsg = chrome.i18n.getMessage("bulkSelected") || "{count} selected";
@@ -845,6 +851,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     } else {
       bulkActionBar.style.display = 'none';
+      document.body.classList.remove('bulk-active');
       bulkMoveSelect.innerHTML = ''; // Cleanup
     }
   }

@@ -46,5 +46,6 @@
   "bulkSelected": { "message": "{count} ausgewählt" },
   "bulkMove": { "message": "Verschieben nach..." },
   "bulkDelete": { "message": "Löschen" },
-  "confirmBulkDelete": { "message": "Möchten Sie diese {count} Unterhaltungen wirklich löschen?" }
+  "confirmBulkDelete": { "message": "Möchten Sie diese {count} Unterhaltungen wirklich löschen?" },
+  "bulkCancel": { "message": "Auswahl aufheben" }
 }
