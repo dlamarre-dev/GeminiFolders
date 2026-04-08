@@ -32,6 +32,7 @@ Utiliza las casillas para acciones en lote, abre carpetas como grupos de pestañ
 Construida pensando en la privacidad. Solo solicita acceso al dominio de Gemini y guarda tus datos de forma segura en la memoria de tu propio navegador (Chrome Sync): no se utilizan servidores de terceros.
 
 📢 REGISTRO DE CAMBIOS:
+Versión 3.1 (Refinamientos de UX): ¡Estabilización del Drag & Drop, casillas rediseñadas para el modo oscuro, bloqueo inteligente de la interfaz durante las acciones en lote y alineación perfecta en Mac!
 Versión 3.0 (La gran actualización de productividad): ¡Añadidos atajos de teclado, acciones en lote, grupos de pestañas, emojis personalizados, compresión de datos y un rastreador de almacenamiento!
 Versión 2.1 (Actualización Global): 🌍 ¡Carpetas Gemini ahora está completamente localizada! La extensión se traduce automáticamente al español, portugués brasileño, alemán y japonés, además de inglés y francés.
 Versión 2.0.2 (Mejoras UX): Memoria inteligente (recuerda carpetas abiertas/cerradas), señales visuales (iconos 📁/🗂️ para carpetas vacías/llenas) y correcciones menores.

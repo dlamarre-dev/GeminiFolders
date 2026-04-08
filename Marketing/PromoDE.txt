@@ -32,6 +32,7 @@ Nutze Kontrollkästchen für Massenaktionen, öffne Ordner in Tabs (📑) oder n
 Der Datenschutz steht im Mittelpunkt. Deine Ordner werden sicher im Speicher deines eigenen Browsers (Chrome Sync) abgelegt: Es werden keine Drittanbieter-Server verwendet.
 
 📢 ÄNDERUNGSPROTOKOLL:
+Version 3.1 (UX-Optimierungen): Stabilisiertes Drag & Drop, optimierte Dark-Mode-Kontrollkästchen, intelligente UI-Sperrung bei Massenaktionen und perfekte Textausrichtung unter Mac!
 Version 3.0 (Das ultimative Produktivitäts-Update): Tastenkombinationen, Massenaktionen (Mehrfachauswahl), Tab-Gruppen, benutzerdefinierte Emojis, Datenkomprimierung und Speicher-Tracker!
 Version 2.1 (Globales Update): 🌍 Gemini-Ordner ist jetzt vollständig lokalisiert! Die Erweiterung übersetzt sich automatisch ins Spanische, Brasilianische Portugiesisch, Deutsche und Japanische, zusätzlich zu Englisch und Französisch.
 Version 2.0.2 (UX-Verbesserungen): Intelligentes Gedächtnis (merkt sich geöffnete/geschlossene Ordner), visuelle Hinweise (Symbole 📁/🗂️) und kleine Korrekturen.

@@ -35,6 +35,7 @@ Use checkboxes for bulk actions, open folders as Tab Groups (📑), or use drag-
 Built with privacy at its core. It only requests access to the Gemini domain and reads the content of the active tab at the exact moment you save. Your folders are securely stored in Chrome Sync: no third-party servers are used.
 
 📢 CHANGELOG:
+Version 3.1 (UX Refinements): Stabilized Drag & Drop, redesigned dark mode checkboxes, added smart UI locking during bulk actions, and perfect text alignment on Mac!
 Version 3.0 (The Ultimate Productivity Update): Added Keyboard Shortcuts, Bulk Actions (multi-select checkboxes), Tab Groups integration, Custom Emojis, LZString data compression, and a real-time Storage Tracker!
 Version 2.1 (Global Update): 🌍 Gemini Folders is now fully localized! The extension automatically translates to Spanish, Brazilian Portuguese, German, and Japanese, in addition to English and French.
 Version 2.0.2 (UX Improvements): Smart Memory (remembers open/closed folders), Visual Cues (distinct icons 📁/🗂️ for empty vs. full folders), and minor display fixes.

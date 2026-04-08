@@ -31,6 +31,7 @@ Use as caixas de seleção para ações em massa, abra pastas em guias (📑) ou
 Construída com a privacidade como prioridade. Solicita acesso apenas ao Gemini e armazena suas pastas com segurança na memória sincronizada do seu próprio navegador (Chrome Sync).
 
 📢 ATUALIZAÇÕES:
+Versão 3.1 (Refinamentos de UX): Estabilização do Drag & Drop, caixas de seleção adaptadas ao modo escuro, bloqueio inteligente da interface durante ações em massa e alinhamento perfeito no Mac!
 Versão 3.0 (Atualização Máxima de Produtividade): Atalhos de teclado, Ações em massa, Grupos de guias, Emojis personalizados, Compressão de dados e Rastreador de armazenamento!
 Versão 2.1 (Atualização Global): 🌍 Pastas Gemini agora é totalmente localizada! A extensão se traduz automaticamente para Espanhol, Português do Brasil, Alemão e Japonês, além de Inglês e Francês.
 Versão 2.0.2 (Melhorias de UX): Memória inteligente (lembra pastas abertas/fechadas), dicas visuais (ícones 📁/🗂️ para pastas vazias vs. cheias) e pequenas correções de tela.

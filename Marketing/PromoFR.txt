@@ -32,6 +32,7 @@ Cochez les cases pour des actions groupées, ouvrez vos dossiers en onglets (�
 Conçue avec la confidentialité au cœur de son fonctionnement. Elle ne demande l'accès qu'à Gemini et ne lit l'onglet actif qu'au moment de la sauvegarde. Stockage localisé via Chrome Sync : aucun serveur tiers.
 
 📢 MISES À JOUR :
+Version 3.1 (Améliorations UX) : Stabilisation du Drag & Drop, cases à cocher adaptées au mode sombre, verrouillage intelligent de l'interface lors des actions groupées et alignement parfait sur Mac !
 Version 3.0 (Mise à jour Productivité) : Ajout des raccourcis clavier, sélection multiple (cases à cocher), groupes d'onglets, émojis personnalisés, compression des données et barre de stockage !
 Version 2.1 (Mise à jour mondiale) : 🌍 Gemini Folders est désormais entièrement localisé en espagnol, portugais brésilien, allemand et japonais, en plus du français et de l'anglais !
 Version 2.0.2 (Améliorations UX) : Mémorisation intelligente des dossiers ouverts/fermés, repères visuels (📁/🗂️) pour les dossiers pleins et vides, et correctifs mineurs.
