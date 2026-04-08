@@ -138,8 +138,25 @@
       transition: background 0.2s ease;
     }
     .folder-header:hover { background: var(--folder-hover); }
-    .folder-name { font-weight: 600; flex-grow: 1; font-size: 14px; color: var(--text-color); }
-    .folder-icon { margin-right: 8px; font-size: 16px; }
+    .folder-name {
+      font-weight: 600;
+      flex-grow: 1;
+      font-size: 14px;
+      color: var(--text-color);
+      line-height: 1;
+      display: flex;
+      align-items: center;
+    }
+
+    .folder-icon {
+      margin-right: 8px;
+      font-size: 16px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
 
     /* --- Folder Content (Conversations) --- */
     .folder-content { padding: 8px; background: var(--bg-color); border-top: 1px solid var(--border-color); }
