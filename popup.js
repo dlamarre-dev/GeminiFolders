@@ -343,7 +343,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         folderDiv.addEventListener('dragover', (e) => {
           e.preventDefault();
-          folderDiv.classList.add('drag-over');
+          if (!folderDiv.classList.contains('is-source-folder')) {
+            folderDiv.classList.add('drag-over');
+          }
         });
 
         folderDiv.addEventListener('dragleave', () => {
@@ -515,6 +517,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           chatItem.addEventListener('dragstart', (e) => {
             chatItem.classList.add('dragging');
+            document.body.classList.add('is-dragging');
+            folderDiv.classList.add('is-source-folder');
             // Use chat.url instead of index
             const dataToTransfer = JSON.stringify({ sourceFolder: folderName, chatUrl: chat.url });
             e.dataTransfer.setData('text/plain', dataToTransfer);
@@ -523,6 +527,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           chatItem.addEventListener('dragend', () => {
             chatItem.classList.remove('dragging');
+            document.body.classList.remove('is-dragging');
+            folderDiv.classList.remove('is-source-folder');
           });
 
           const link = document.createElement('a');

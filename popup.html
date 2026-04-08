@@ -189,7 +189,13 @@
 
     .pin-divider { border-top: 2px dotted var(--border-color); margin: 16px 0; background: transparent; height: 0; }
     .pin-btn.is-pinned { opacity: 1; } /* Removed rotation to keep the frame straight */
-
+    body.is-dragging .folder * {
+      pointer-events: none;
+    }
+    body.is-dragging .dragging,
+    body.is-dragging .dragging * {
+      pointer-events: auto !important;
+    }
     /* --- Status Texts and Footer --- */
     #status { color: #1e8e3e; font-size: 12px; display: none; margin-top: 10px; margin-bottom: 0; text-align: center; font-weight: bold; }
     #noResults { text-align: center; color: var(--muted-text); margin: 20px 0; font-size: 13px; display: none; }
@@ -358,6 +364,8 @@
       font-size: 12px;
       width: 150px;
     }
+
+
   </style>
 </head>
 <body>
