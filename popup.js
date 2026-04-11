@@ -54,6 +54,40 @@ document.addEventListener('DOMContentLoaded', async () => {
   const sortMenu = document.getElementById('sortMenu');
   const sortItems = document.querySelectorAll('.dropdown-item');
 
+  // --- MOBILE SYNC (BOOKMARKS) ---
+  const syncBookmarksToggle = document.getElementById('syncBookmarksToggle');
+  const syncBookmarksLabel = document.getElementById('syncBookmarksLabel');
+
+  syncBookmarksLabel.title = chrome.i18n.getMessage("syncBookmarksTooltip") || "Creates a synced folder in your Chrome bookmarks to access your conversations on your phone.";
+
+  // Load toggle state
+  chrome.storage.sync.get(['syncBookmarksEnabled'], (data) => {
+    syncBookmarksToggle.checked = !!data.syncBookmarksEnabled;
+  });
+
+  // When user clicks on toggle
+  syncBookmarksToggle.addEventListener('change', (e) => {
+    const isEnabled = e.target.checked;
+    chrome.storage.sync.set({ syncBookmarksEnabled: isEnabled }, () => {
+      if (isEnabled) {
+        // Immediate sync
+        loadData({ folders: {}, pinnedFolders: [] }, (data) => {
+          if (typeof syncToBookmarksTree === 'function') {
+            syncToBookmarksTree(data.folders, data.pinnedFolders);
+          }
+        });
+      } else {
+        // Clear bookmarks when user untoggles
+        const masterFolderName = chrome.i18n.getMessage("masterFolderName") || "Gemini Folders (Sync)";
+
+        chrome.bookmarks.search({ title: masterFolderName }, (results) => {
+          const exactMatch = results.find(r => r.title === masterFolderName && !r.url);
+          if (exactMatch) chrome.bookmarks.removeTree(exactMatch.id);
+        });
+      }
+    });
+  });
+
   // 1. Open/Close menu on click
   sortToggleBtn.addEventListener('click', (e) => {
     e.stopPropagation(); // Prevent click from propagating and closing the menu immediately
@@ -371,7 +405,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         leftPart.style.display = 'flex';
 
         // --- Different folder icon if empty (📁) or full (🗂️) ---
-        const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/u;
+        const emojiRegex = /^((?:\p{Emoji_Presentation}|\p{Extended_Pictographic})\uFE0F?)\s*/u;
         const match = folderName.match(emojiRegex);
 
         let customIcon = null;
@@ -839,7 +873,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         bulkMoveSelect.innerHTML = `<option value="" disabled selected>${chrome.i18n.getMessage("bulkMove") || "Move to..."}</option>`;
         Object.keys(data.folders).sort().forEach(folder => {
           // Détection d'émoji pour ajouter le dossier par défaut si besoin
-          const emojiRegex = /^(\p{Emoji_Presentation}|\p{Extended_Pictographic})\s*/u;
+          const emojiRegex = /^((?:\p{Emoji_Presentation}|\p{Extended_Pictographic})\uFE0F?)\s*/u;
           const hasCustomEmoji = emojiRegex.test(folder);
           const iconPrefix = hasCustomEmoji ? '' : '📁 ';
 

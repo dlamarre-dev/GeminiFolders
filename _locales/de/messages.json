@@ -47,5 +47,7 @@
   "bulkMove": { "message": "Verschieben nach..." },
   "bulkDelete": { "message": "Löschen" },
   "confirmBulkDelete": { "message": "Möchten Sie diese {count} Unterhaltungen wirklich löschen?" },
-  "bulkCancel": { "message": "Auswahl aufheben" }
+  "bulkCancel": { "message": "Auswahl aufheben" },
+  "masterFolderName": { "message": "Gemini-Ordner (Sync)" },
+  "syncBookmarksTooltip": { "message": "Erstellt einen synchronisierten Ordner in Ihren Chrome-Lesezeichen, um auf Ihrem Telefon auf Ihre Unterhaltungen zuzugreifen." }
 }

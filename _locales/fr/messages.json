@@ -47,5 +47,7 @@
   "bulkMove": { "message": "Déplacer vers..." },
   "bulkDelete": { "message": "Supprimer" },
   "confirmBulkDelete": { "message": "Voulez-vous vraiment supprimer ces {count} conversations ?" },
-  "bulkCancel": { "message": "Annuler la sélection" }
+  "bulkCancel": { "message": "Annuler la sélection" },
+  "masterFolderName": { "message": "Dossiers Gemini (Sync)" },
+  "syncBookmarksTooltip": { "message": "Crée un dossier synchronisé dans vos favoris Chrome pour accéder à vos conversations sur votre téléphone." }
 }

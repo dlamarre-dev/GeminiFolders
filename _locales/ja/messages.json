@@ -47,5 +47,7 @@
   "bulkMove": { "message": "移動先..." },
   "bulkDelete": { "message": "削除" },
   "confirmBulkDelete": { "message": "これら {count} 件の会話を本当に削除しますか？" },
-  "bulkCancel": { "message": "選択をキャンセル" }
+  "bulkCancel": { "message": "選択をキャンセル" },
+  "masterFolderName": { "message": "Gemini フォルダ (Sync)" },
+  "syncBookmarksTooltip": { "message": "Chromeのブックマークに同期されたフォルダを作成し、スマートフォンから会話にアクセスできるようにします。" }
 }

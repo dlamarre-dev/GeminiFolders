@@ -47,5 +47,7 @@
   "bulkMove": { "message": "Mover a..." },
   "bulkDelete": { "message": "Eliminar" },
   "confirmBulkDelete": { "message": "¿Realmente quieres eliminar estas {count} conversaciones?" },
-  "bulkCancel": { "message": "Cancelar selección" }
+  "bulkCancel": { "message": "Cancelar selección" },
+  "masterFolderName": { "message": "Carpetas Gemini (Sync)" },
+  "syncBookmarksTooltip": { "message": "Crea una carpeta sincronizada en tus marcadores de Chrome para acceder a tus conversaciones en tu teléfono." }
 }
