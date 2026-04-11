@@ -36,6 +36,7 @@ Built with privacy at its core. It only requests access to Gemini and only reads
 
 🤝 OPEN SOURCE PROJECT
 Gemini Folders is a passionately developed open-source project. Transparency and respecting your privacy are our priorities. Are you a developer or just curious? Check out our code, follow the update history, or contribute to the project (clickable link directly in the extension) on GitHub: https://github.com/dlamarre-dev/GeminiFolders
+
 📢 CHANGELOG:
 Version 3.2 (Mobile & Open Source): Mobile synchronization via Chrome bookmarks, smart sorting of your pinned folders, ultra-compact footer, and official transition to Open Source with an integrated GitHub link!
 Version 3.1 (UX Refinements): Stabilized Drag & Drop, redesigned dark mode checkboxes, added smart UI locking during bulk actions, and perfect text alignment on Mac!
