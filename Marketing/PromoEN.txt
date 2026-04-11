@@ -1,40 +1,43 @@
-Do you use Google Gemini daily for work, coding, research, or content creation, but constantly lose your important prompts in an endless history?
+Do you use Google Gemini daily for work, coding, research, or creation, but constantly lose your important prompts in an endless history?
 Gemini Folders is the extension you need.
 
-Transform your Gemini usage into a truly structured workspace by grouping your best conversations into projects, themes, or categories.
-No more wasting time scrolling to find an old chat!
+Transform your Gemini usage into a truly structured workspace by grouping your best conversations by projects, themes, or categories. No more time wasted scrolling to find an old chat!
 
 💡 Why is it better than simple bookmarks?
-Unlike classic bookmarks that eventually clutter your browser and mix with your daily websites, Gemini Folders offers a dedicated, isolated workspace.
-Say goodbye to tedious navigation in the bookmark manager: you get a custom menu, lightning-fast search exclusive to your chats, and quick management tools—all overlaid directly on your Gemini window without ever leaving it.
+Unlike classic bookmarks that end up cluttering your browser, Gemini Folders offers a dedicated, isolated management interface overlaid directly on your Gemini window.
+And for when you're on the go? The extension now includes a silent mobile "bridge": an option that creates a single mirror folder in your bookmarks, allowing you to access your conversations on your phone!
 
 🌟 MAIN FEATURES
 
-⚡ Quick Save (Context Menu & Shortcuts): Save the active conversation directly to the folder of your choice via a simple right-click on the page, or use the global keyboard shortcut (Ctrl+Shift+S or Cmd+Shift+S on Mac) to instantly send it to a "⚡ Quick Saves" folder!
-☑️ Bulk Actions (Multi-Select): Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
-📑 Tab Groups Integration: Open an entire folder of conversations with a single click. They will automatically open in a native, color-coded Chrome Tab Group for ultimate project management.
-😃 Custom Folder Emojis: Start your folder name with an emoji (e.g., "💻 Code" or "🌍 Travel") and the extension will automatically use it as the folder's icon instead of the default one.
-🖱️ Drag & Drop: Intuitively reorganize your workspace by dragging and dropping your conversations between folders.
-🗜️ Ultra-Efficient Compression: Automatically compresses your synced data using LZString, maximizing Chrome's native storage capacity so you can save hundreds of conversations securely.
-📊 Storage Tracker: A sleek visual progress bar keeps you informed of your available cloud storage capacity in real-time.
-📁 Custom Folders & Pins: Organize your conversations by themes. Pin (📌) your favorite folders to keep them always at the top of the list.
-⇅ Custom Sorting: Sort your folder content on the fly (Newest, Oldest, A to Z).
-🤖 Smart Detection: The extension automatically reads the page to pre-fill the exact title of your conversation. No more manual typing!
-🔍 Instant Search: Find any conversation in a fraction of a second with the real-time search bar.
-☁️ Cloud Sync & Backup: Access your organization across all computers connected to your Google account, and download backups in JSON format.
-🎨 "Material 3" Design & Multilingual: Enjoy an ultra-compact, fluid interface that automatically adapts to Dark Mode and your browser's language.
+⚡ Quick Save (Right-Click & Shortcuts): Save the conversation with a simple right-click, or use the keyboard shortcut (Ctrl+Shift+S or Cmd+Shift+S on Mac) to instantly send it to "⚡ Quick Saves"!
+☑️ Bulk Actions (Multi-Select): Select multiple conversations with checkboxes to move or delete them in a single click.
+📑 Tab Groups: Open an entire folder in one click within a native, colorful Chrome tab group.
+😃 Custom Emojis: Start your folder name with an emoji (e.g., "💻 Code") to replace the default folder icon.
+🖱️ Drag & Drop: Reorganize your workspace intuitively.
+📱 Mobile Sync: Access your conversations on the go! A simple toggle generates a smart folder in your Chrome bookmarks, perfectly mirroring your structure (Pinned folders > Quick Saves > A to Z) on your smartphone.
+🗜️ Ultra-efficient Compression: Automatically compresses your data (LZString) to maximize Chrome's native storage and save hundreds of chats.
+📊 Storage Tracker: A visual progress bar shows your available cloud space in real time.
+📁 Custom Folders & Pins: Organize your conversations and pin (📌) your favorites to the top of the list with smart sorting.
+⇅ Custom Sorting: Sort your folder contents on the fly (Newest, Oldest, A to Z).
+🤖 Smart Detection & Search: Auto-fills the exact title of your conversation and features an instant search bar.
+☁️ Cloud Sync & Backup: Access your organization across all your computers and export your data as JSON.
+🎨 "Material 3" Design & Multilingual: Ultra-compact interface (with a newly redesigned footer) that adapts to dark mode and 6 languages.
 
 🛠️ HOW DOES IT WORK?
 
 Open an important conversation on gemini.google.com.
-Express Save: Press Ctrl+Shift+S to quick-save, or right-click anywhere on the page and hover over "Save to Gemini Folders".
-Via the Extension: Click the extension icon. The title is automatically detected. Expand the add panel (➕), choose a folder, and save!
-Use checkboxes for bulk actions, open folders as Tab Groups (📑), or use drag-and-drop to reorganize!
+Express save: Use Ctrl+Shift+S, or right-click on the page > "Save to Gemini Folders".
+Via the extension: Click the icon, choose a folder, and save!
+For Mobile: Check the 📱 icon in the footer to send your folders to your phone.
+Check the boxes for bulk actions, open your folders in tabs (📑), and use drag and drop to reorganize!
 
 🔒 PRIVACY & SECURITY
-Built with privacy at its core. It only requests access to the Gemini domain and reads the content of the active tab at the exact moment you save. Your folders are securely stored in Chrome Sync: no third-party servers are used.
+Built with privacy at its core. It only requests access to Gemini and only reads the active tab when saving. It requires "Bookmarks" permission solely to generate your mobile sync folder (if enabled). Localized storage via Chrome Sync: no third-party servers, no telemetry.
 
+🤝 OPEN SOURCE PROJECT
+Gemini Folders is a passionately developed open-source project. Transparency and respecting your privacy are our priorities. Are you a developer or just curious? Check out our code, follow the update history, or contribute to the project (clickable link directly in the extension) on GitHub: https://github.com/dlamarre-dev/GeminiFolders
 📢 CHANGELOG:
+Version 3.2 (Mobile & Open Source): Mobile synchronization via Chrome bookmarks, smart sorting of your pinned folders, ultra-compact footer, and official transition to Open Source with an integrated GitHub link!
 Version 3.1 (UX Refinements): Stabilized Drag & Drop, redesigned dark mode checkboxes, added smart UI locking during bulk actions, and perfect text alignment on Mac!
 Version 3.0 (The Ultimate Productivity Update): Added Keyboard Shortcuts, Bulk Actions (multi-select checkboxes), Tab Groups integration, Custom Emojis, LZString data compression, and a real-time Storage Tracker!
 Version 2.1 (Global Update): 🌍 Gemini Folders is now fully localized! The extension automatically translates to Spanish, Brazilian Portuguese, German, and Japanese, in addition to English and French.

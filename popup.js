@@ -88,6 +88,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
+  const githubLink = document.getElementById('githubLink');
+  const manifestData = chrome.runtime.getManifest();
+  githubLink.title = `GitHub - v${manifestData.version}`;
+
   // 1. Open/Close menu on click
   sortToggleBtn.addEventListener('click', (e) => {
     e.stopPropagation(); // Prevent click from propagating and closing the menu immediately
