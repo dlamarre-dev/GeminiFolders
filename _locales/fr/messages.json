@@ -49,5 +49,10 @@
   "confirmBulkDelete": { "message": "Voulez-vous vraiment supprimer ces {count} conversations ?" },
   "bulkCancel": { "message": "Annuler la sélection" },
   "masterFolderName": { "message": "Dossiers Gemini (Sync)" },
-  "syncBookmarksTooltip": { "message": "Crée un dossier synchronisé dans vos favoris Chrome pour accéder à vos conversations sur votre téléphone." }
+  "syncBookmarksTooltip": { "message": "Crée un dossier synchronisé dans vos favoris Chrome pour accéder à vos conversations sur votre téléphone." },
+  "reviewTitle": { "message": "⭐ Aimez-vous Dossiers Gemini ?" },
+  "reviewMessage": { "message": "Votre soutien aide énormément ce projet open source !" },
+  "reviewRateBtn": { "message": "Noter 5 étoiles" },
+  "reviewLaterBtn": { "message": "Plus tard" },
+  "reviewNoBtn": { "message": "Non merci" }
 }

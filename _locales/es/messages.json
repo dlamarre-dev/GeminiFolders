@@ -49,5 +49,10 @@
   "confirmBulkDelete": { "message": "¿Realmente quieres eliminar estas {count} conversaciones?" },
   "bulkCancel": { "message": "Cancelar selección" },
   "masterFolderName": { "message": "Carpetas Gemini (Sync)" },
-  "syncBookmarksTooltip": { "message": "Crea una carpeta sincronizada en tus marcadores de Chrome para acceder a tus conversaciones en tu teléfono." }
+  "syncBookmarksTooltip": { "message": "Crea una carpeta sincronizada en tus marcadores de Chrome para acceder a tus conversaciones en tu teléfono." },
+  "reviewTitle": { "message": "⭐ ¿Te gusta Carpetas Gemini?" },
+  "reviewMessage": { "message": "¡Tu apoyo ayuda enormemente a este proyecto de código abierto!" },
+  "reviewRateBtn": { "message": "Calificar 5 estrellas" },
+  "reviewLaterBtn": { "message": "Más tarde" },
+  "reviewNoBtn": { "message": "No, gracias" }
 }

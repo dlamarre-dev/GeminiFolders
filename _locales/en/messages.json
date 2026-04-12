@@ -49,5 +49,10 @@
   "confirmBulkDelete": { "message": "Are you sure you want to delete these {count} conversations?" },
   "bulkCancel": { "message": "Cancel selection" },
   "masterFolderName": { "message": "Gemini Folders (Sync)" },
-  "syncBookmarksTooltip": { "message": "Creates a synced folder in your Chrome bookmarks to access your conversations on your phone." }
+  "syncBookmarksTooltip": { "message": "Creates a synced folder in your Chrome bookmarks to access your conversations on your phone." },
+  "reviewTitle": { "message": "⭐ Are you enjoying Gemini Folders?" },
+  "reviewMessage": { "message": "Your support helps this open-source project immensely!" },
+  "reviewRateBtn": { "message": "Rate 5 stars" },
+  "reviewLaterBtn": { "message": "Maybe later" },
+  "reviewNoBtn": { "message": "No thanks" }
 }

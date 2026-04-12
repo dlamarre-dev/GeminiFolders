@@ -49,5 +49,10 @@
   "confirmBulkDelete": { "message": "Möchten Sie diese {count} Unterhaltungen wirklich löschen?" },
   "bulkCancel": { "message": "Auswahl aufheben" },
   "masterFolderName": { "message": "Gemini-Ordner (Sync)" },
-  "syncBookmarksTooltip": { "message": "Erstellt einen synchronisierten Ordner in Ihren Chrome-Lesezeichen, um auf Ihrem Telefon auf Ihre Unterhaltungen zuzugreifen." }
+  "syncBookmarksTooltip": { "message": "Erstellt einen synchronisierten Ordner in Ihren Chrome-Lesezeichen, um auf Ihrem Telefon auf Ihre Unterhaltungen zuzugreifen." },
+  "reviewTitle": { "message": "⭐ Gefällt Ihnen Gemini-Ordner?" },
+  "reviewMessage": { "message": "Ihre Unterstützung hilft diesem Open-Source-Projekt enorm!" },
+  "reviewRateBtn": { "message": "5 Sterne vergeben" },
+  "reviewLaterBtn": { "message": "Später" },
+  "reviewNoBtn": { "message": "Nein danke" }
 }

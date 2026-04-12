@@ -44,6 +44,12 @@ function saveData(dataToSave, callback) {
         syncToBookmarksTree(folders, pinned); // We pass both arguments
       }
     });
+    // Increment save counter
+    chrome.storage.local.get(['usageStats'], (data) => {
+      let stats = data.usageStats || { saves: 0, opens: 0 };
+      stats.saves += 1;
+      chrome.storage.local.set({ usageStats: stats });
+    });
     if (callback) callback();
   });
 }

@@ -49,5 +49,10 @@
   "confirmBulkDelete": { "message": "これら {count} 件の会話を本当に削除しますか？" },
   "bulkCancel": { "message": "選択をキャンセル" },
   "masterFolderName": { "message": "Gemini フォルダ (Sync)" },
-  "syncBookmarksTooltip": { "message": "Chromeのブックマークに同期されたフォルダを作成し、スマートフォンから会話にアクセスできるようにします。" }
+  "syncBookmarksTooltip": { "message": "Chromeのブックマークに同期されたフォルダを作成し、スマートフォンから会話にアクセスできるようにします。" },
+  "reviewTitle": { "message": "⭐ Gemini フォルダ をお楽しみですか？" },
+  "reviewMessage": { "message": "皆様のサポートがこのオープンソースプロジェクトの大きな力になります！" },
+  "reviewRateBtn": { "message": "5つ星で評価" },
+  "reviewLaterBtn": { "message": "後で" },
+  "reviewNoBtn": { "message": "いいえ、結構です" }
 }

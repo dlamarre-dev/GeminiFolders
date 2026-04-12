@@ -956,4 +956,45 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
     });
   });
+
+  // --- REVIEW BANNER ---
+  const reviewBanner = document.getElementById('reviewBanner');
+  document.getElementById('reviewTitleTxt').textContent = chrome.i18n.getMessage("reviewTitle") || "⭐ Are you enjoying Gemini Folders?";
+  document.getElementById('reviewMessageTxt').textContent = chrome.i18n.getMessage("reviewMessage") || "Your support helps this open-source project immensely!";
+  document.getElementById('btnReviewRate').textContent = chrome.i18n.getMessage("reviewRateBtn") || "Rate 5 stars";
+  document.getElementById('btnReviewLater').textContent = chrome.i18n.getMessage("reviewLaterBtn") || "Maybe later";
+  document.getElementById('btnReviewNo').textContent = chrome.i18n.getMessage("reviewNoBtn") || "No thanks";
+
+  chrome.storage.local.get(['usageStats', 'reviewState'], (data) => {
+    let stats = data.usageStats || { saves: 0, opens: 0 };
+    let reviewState = data.reviewState || { status: 'pending', nextPromptDate: 0 };
+
+    stats.opens += 1;
+    chrome.storage.local.set({ usageStats: stats });
+
+    if (reviewState.status === 'rated' || reviewState.status === 'dismissed') return;
+
+    const meetsThreshold = stats.saves >= 10 || stats.opens >= 50;
+    const isTimeForLater = reviewState.status === 'later' && Date.now() > reviewState.nextPromptDate;
+
+    if ((reviewState.status === 'pending' && meetsThreshold) || isTimeForLater) {
+      reviewBanner.style.display = 'block';
+    }
+
+    document.getElementById('btnReviewRate').addEventListener('click', () => {
+      chrome.storage.local.set({ reviewState: { status: 'rated' } });
+      reviewBanner.style.display = 'none';
+    });
+
+    document.getElementById('btnReviewLater').addEventListener('click', () => {
+      const nextDate = Date.now() + (5 * 24 * 60 * 60 * 1000);
+      chrome.storage.local.set({ reviewState: { status: 'later', nextPromptDate: nextDate } });
+      reviewBanner.style.display = 'none';
+    });
+
+    document.getElementById('btnReviewNo').addEventListener('click', () => {
+      chrome.storage.local.set({ reviewState: { status: 'dismissed' } });
+      reviewBanner.style.display = 'none';
+    });
+  });
 });

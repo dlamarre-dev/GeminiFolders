@@ -49,5 +49,10 @@
   "confirmBulkDelete": { "message": "Tem certeza de que deseja excluir estas {count} conversas?" },
   "bulkCancel": { "message": "Cancelar seleção" },
   "masterFolderName": { "message": "Pastas Gemini (Sync)" },
-  "syncBookmarksTooltip": { "message": "Cria uma pasta sincronizada nos seus favoritos do Chrome para acessar suas conversas no seu celular." }
+  "syncBookmarksTooltip": { "message": "Cria uma pasta sincronizada nos seus favoritos do Chrome para acessar suas conversas no seu celular." },
+  "reviewTitle": { "message": "⭐ Você está gostando do Pastas Gemini?" },
+  "reviewMessage": { "message": "Seu apoio ajuda imensamente este projeto de código aberto!" },
+  "reviewRateBtn": { "message": "Avaliar 5 estrelas" },
+  "reviewLaterBtn": { "message": "Mais tarde" },
+  "reviewNoBtn": { "message": "Não, obrigado" }
 }
