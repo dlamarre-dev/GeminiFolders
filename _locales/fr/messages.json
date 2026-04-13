@@ -54,5 +54,7 @@
   "reviewMessage": { "message": "Votre soutien aide énormément ce projet open source !" },
   "reviewRateBtn": { "message": "Noter 5 étoiles" },
   "reviewLaterBtn": { "message": "Plus tard" },
-  "reviewNoBtn": { "message": "Non merci" }
+  "reviewNoBtn": { "message": "Non merci" },
+  "modalBtnCancel": { "message": "Annuler" },
+  "modalBtnConfirm": { "message": "Confirmer" }
 }
