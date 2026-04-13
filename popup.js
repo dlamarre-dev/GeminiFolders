@@ -946,6 +946,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       type: 'confirm'
     });
 
+    if (!isSure) return;
+
     loadData({ folders: {} }, (data) => {
       let folders = data.folders;
 
