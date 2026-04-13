@@ -41,8 +41,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   newFolderBtn.addEventListener('click',async () => {
     const name = await showCustomModal({
-        title: chrome.i18n.getMessage("promptNewFolder") || "New folder:\n(Tip: Start with an emoji! Win+. or Cmd+Ctrl+Space)",
-        type: 'prompt'
+        title: chrome.i18n.getMessage("promptNewFolder") || "New folder:",
+        type: 'prompt',
+        placeholder: chrome.i18n.getMessage("emojiTipPlaceholder") || "Tip: Start with an emoji! (Win+. or Cmd+Ctrl+Space)"
     });
     if (name && name.trim()) {
       loadData({ folders: {} }, (data) => {
@@ -740,9 +741,10 @@ document.addEventListener('DOMContentLoaded', async () => {
   // 9. Rename a folder
   async function renameFolder(oldName) {
     const newName = await showCustomModal({
-      title: chrome.i18n.getMessage("promptRenameFolder") || "New name:(Tip: Start with an emoji! Win+. or Cmd+Ctrl+Space)",
+      title: chrome.i18n.getMessage("promptRenameFolder") || "New name:",
       type: 'prompt',
-      defaultValue: oldName
+      defaultValue: oldName,
+      placeholder: chrome.i18n.getMessage("emojiTipPlaceholder") || "Tip: Start with an emoji! (Win+. or Cmd+Ctrl+Space)"
     });
 
     // If user cancels, leaves empty, or doesn't change name
@@ -1041,7 +1043,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // --- CUSTOM MODAL ---
-  function showCustomModal({ title, message = '', type = 'confirm', defaultValue = '' }) {
+  function showCustomModal({ title, message = '', type = 'confirm', defaultValue = '', placeholder = '' }) {
     return new Promise((resolve) => {
       const modal = document.getElementById('customModal');
       const titleEl = document.getElementById('modalTitle');
@@ -1061,6 +1063,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       if (type === 'prompt') {
         inputEl.value = defaultValue;
+        inputEl.placeholder = placeholder;
         inputEl.style.display = 'block';
         setTimeout(() => inputEl.focus(), 100);
       } else {

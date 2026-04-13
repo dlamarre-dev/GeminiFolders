@@ -20,7 +20,7 @@
   "btnRename": { "message": "Umbenennen" },
   "btnDelete": { "message": "Löschen" },
   "btnNewFolder": { "message": "➕ Ordner" },
-  "promptNewFolder": { "message": "Neuer Ordner:\n(Tipp: Beginnen Sie mit einem Emoji! Win+. oder Cmd+Ctrl+Leertaste)" },
+  "promptNewFolder": { "message": "Neuer Ordner:" },
   "btnDeleteFolder": { "message": "Ordner löschen" },
   "confirmDeleteFolder": { "message": "Dieser Ordner enthält Unterhaltungen. Möchtest du ihn wirklich löschen?" },
   "btnPin": { "message": "Anheften" },
@@ -33,7 +33,7 @@
   "btnToggleAdd": { "message": "Unterhaltung hinzufügen" },
   "btnCancel": { "message": "Schließen" },
   "btnRenameFolder": { "message": "Ordner umbenennen" },
-  "promptRenameFolder": { "message": "Neuer Name:\n(Tipp: Beginnen Sie mit einem Emoji! Win+. oder Cmd+Ctrl+Leertaste)" },
+  "promptRenameFolder": { "message": "Neuer Name:" },
   "errorFolderExists": { "message": "Ein Ordner mit diesem Namen existiert bereits." },
   "storageCalc": { "message": "Speicher wird berechnet..." },
   "storageInfo": { "message": "Speicher: {used} KB / {max} KB ({pct}%)" },
@@ -56,5 +56,6 @@
   "reviewLaterBtn": { "message": "Später" },
   "reviewNoBtn": { "message": "Nein danke" },
   "modalBtnCancel": { "message": "Abbrechen" },
-  "modalBtnConfirm": { "message": "Bestätigen" }
+  "modalBtnConfirm": { "message": "Bestätigen" },
+  "emojiTipPlaceholder": { "message": "Tipp: Emoji zuerst (Win+. / ⌘⌃Leertaste)" }
 }

@@ -20,7 +20,7 @@
   "btnRename": { "message": "Renomear" },
   "btnDelete": { "message": "Excluir" },
   "btnNewFolder": { "message": "➕ Pasta" },
-  "promptNewFolder": { "message": "Nova pasta:\n(Dica: Comece com um emoji! Win+. ou Cmd+Ctrl+Espaço)" },
+  "promptNewFolder": { "message": "Nova pasta:" },
   "btnDeleteFolder": { "message": "Excluir pasta" },
   "confirmDeleteFolder": { "message": "Esta pasta contém conversas. Tem certeza de que deseja excluí-la?" },
   "btnPin": { "message": "Fixar" },
@@ -33,7 +33,7 @@
   "btnToggleAdd": { "message": "Adicionar uma conversa" },
   "btnCancel": { "message": "Fechar" },
   "btnRenameFolder": { "message": "Renomear pasta" },
-  "promptRenameFolder": { "message": "Novo nome:\n(Dica: Comece com um emoji! Win+. ou Cmd+Ctrl+Espaço)" },
+  "promptRenameFolder": { "message": "Novo nome:" },
   "errorFolderExists": { "message": "Já existe uma pasta com este nome." },
   "storageCalc": { "message": "Calculando espaço..." },
   "storageInfo": { "message": "Armazenamento: {used} KB / {max} KB ({pct}%)" },
@@ -56,5 +56,6 @@
   "reviewLaterBtn": { "message": "Mais tarde" },
   "reviewNoBtn": { "message": "Não, obrigado" },
   "modalBtnCancel": { "message": "Cancelar" },
-  "modalBtnConfirm": { "message": "Confirmar" }
+  "modalBtnConfirm": { "message": "Confirmar" },
+  "emojiTipPlaceholder": { "message": "Dica: Inicie com emoji (Win+. / ⌘⌃Espaço)" }
 }

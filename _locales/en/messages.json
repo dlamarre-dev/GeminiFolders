@@ -20,7 +20,7 @@
   "btnRename": { "message": "Rename" },
   "btnDelete": { "message": "Delete" },
   "btnNewFolder": { "message": "➕ Folder" },
-  "promptNewFolder": { "message": "New folder:\n(Tip: Start with an emoji! Win+. or Cmd+Ctrl+Space)" },
+  "promptNewFolder": { "message": "New folder:" },
   "btnDeleteFolder": { "message": "Delete folder" },
   "confirmDeleteFolder": { "message": "This folder contains conversations. Are you sure you want to delete it?" },
   "btnPin": { "message": "Pin" },
@@ -33,7 +33,7 @@
   "btnToggleAdd": { "message": "Add a conversation" },
   "btnCancel": { "message": "Close" },
   "btnRenameFolder": { "message": "Rename folder" },
-  "promptRenameFolder": { "message": "New name:\n(Tip: Start with an emoji! Win+. or Cmd+Ctrl+Space)" },
+  "promptRenameFolder": { "message": "New name:" },
   "errorFolderExists": { "message": "A folder with this name already exists." },
   "storageCalc": { "message": "Calculating space..." },
   "storageInfo": { "message": "Storage: {used} KB / {max} KB ({pct}%)" },
@@ -56,5 +56,6 @@
   "reviewLaterBtn": { "message": "Maybe later" },
   "reviewNoBtn": { "message": "No thanks" },
   "modalBtnCancel": { "message": "Cancel" },
-  "modalBtnConfirm": { "message": "Confirm" }
+  "modalBtnConfirm": { "message": "Confirm" },
+  "emojiTipPlaceholder": { "message": "Tip: Start with emoji (Win+. / ⌘⌃Space)" }
 }

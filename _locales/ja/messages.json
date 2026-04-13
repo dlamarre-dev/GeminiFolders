@@ -20,7 +20,7 @@
   "btnRename": { "message": "名前を変更" },
   "btnDelete": { "message": "削除" },
   "btnNewFolder": { "message": "➕ フォルダ" },
-  "promptNewFolder": { "message": "新しいフォルダ：\n(ヒント: 絵文字から始めてみましょう！ Win+. または Cmd+Ctrl+Space)" },
+  "promptNewFolder": { "message": "新しいフォルダ：" },
   "btnDeleteFolder": { "message": "フォルダを削除" },
   "confirmDeleteFolder": { "message": "このフォルダには会話が含まれています。本当に削除しますか？" },
   "btnPin": { "message": "ピン留め" },
@@ -33,7 +33,7 @@
   "btnToggleAdd": { "message": "会話を追加" },
   "btnCancel": { "message": "閉じる" },
   "btnRenameFolder": { "message": "フォルダ名を変更" },
-  "promptRenameFolder": { "message": "新しい名前：\n(ヒント: 絵文字から始めてみましょう！ Win+. または Cmd+Ctrl+Space)" },
+  "promptRenameFolder": { "message": "新しい名前：" },
   "errorFolderExists": { "message": "この名前のフォルダはすでに存在します。" },
   "storageCalc": { "message": "容量を計算中..." },
   "storageInfo": { "message": "ストレージ：{used} KB / {max} KB ({pct}%)" },
@@ -56,5 +56,6 @@
   "reviewLaterBtn": { "message": "後で" },
   "reviewNoBtn": { "message": "いいえ、結構です" },
   "modalBtnCancel": { "message": "キャンセル" },
-  "modalBtnConfirm": { "message": "確認" }
+  "modalBtnConfirm": { "message": "確認" },
+  "emojiTipPlaceholder": { "message": "ヒント：絵文字で開始（Win+. / ⌘⌃スペース）" }
 }

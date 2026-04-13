@@ -20,7 +20,7 @@
   "btnRename": { "message": "Renommer" },
   "btnDelete": { "message": "Supprimer" },
   "btnNewFolder": { "message": "➕ Dossier" },
-  "promptNewFolder": { "message": "Nouveau dossier :\n(Astuce : Commencez par un émoji ! Win+. ou Cmd+Ctrl+Espace)" },
+  "promptNewFolder": { "message": "Nouveau dossier :" },
   "btnDeleteFolder": { "message": "Supprimer le dossier" },
   "confirmDeleteFolder": { "message": "Ce dossier contient des conversations. Voulez-vous vraiment le supprimer?" },
   "btnPin": { "message": "Épingler" },
@@ -33,7 +33,7 @@
   "btnToggleAdd": { "message": "Ajouter une conversation" },
   "btnCancel": { "message": "Fermer" },
   "btnRenameFolder": { "message": "Renommer le dossier" },
-  "promptRenameFolder": { "message": "Nouveau nom :\n(Astuce : Commencez par un émoji ! Win+. ou Cmd+Ctrl+Espace)" },
+  "promptRenameFolder": { "message": "Nouveau nom :" },
   "errorFolderExists": { "message": "Un dossier avec ce nom existe déjà." },
   "storageCalc": { "message": "Calcul de l'espace..." },
   "storageInfo": { "message": "Stockage : {used} Ko / {max} Ko ({pct}%)" },
@@ -56,5 +56,6 @@
   "reviewLaterBtn": { "message": "Plus tard" },
   "reviewNoBtn": { "message": "Non merci" },
   "modalBtnCancel": { "message": "Annuler" },
-  "modalBtnConfirm": { "message": "Confirmer" }
+  "modalBtnConfirm": { "message": "Confirmer" },
+  "emojiTipPlaceholder": { "message": "Astuce : Émoji au début (Win+. / ⌘⌃Espace)" }
 }
