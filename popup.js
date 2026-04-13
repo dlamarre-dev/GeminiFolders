@@ -75,18 +75,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     chrome.storage.sync.set({ syncBookmarksEnabled: isEnabled }, () => {
       if (isEnabled) {
         // Immediate sync
-        loadData({ folders: {}, pinnedFolders: [] }, (data) => {
+        loadData({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc' }, (fullData) => {
           if (typeof syncToBookmarksTree === 'function') {
-            syncToBookmarksTree(data.folders, data.pinnedFolders);
+            syncToBookmarksTree(fullData.folders, fullData.pinnedFolders, fullData.sortPref);
           }
         });
       } else {
         // Clear bookmarks when user untoggles
         const masterFolderName = chrome.i18n.getMessage("masterFolderName") || "Gemini Folders (Sync)";
 
-        chrome.bookmarks.search({ title: masterFolderName }, (results) => {
-          const exactMatch = results.find(r => r.title === masterFolderName && !r.url);
-          if (exactMatch) chrome.bookmarks.removeTree(exactMatch.id);
+        chrome.bookmarks.search({ title: masterFolderName }, async (results) => {
+          for (const node of results) {
+            if (!node.url && node.title === masterFolderName) {
+              await new Promise(r => chrome.bookmarks.removeTree(node.id, r));
+            }
+          }
         });
       }
     });
@@ -133,6 +136,16 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
         displayFolders(openFolders, searchInput.value.toLowerCase());
       });
+    });
+    // --- Start mobile sync if activated ---
+    chrome.storage.sync.get(['syncBookmarksEnabled'], (syncData) => {
+      if (syncData.syncBookmarksEnabled) {
+        loadData({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc' }, (fullData) => {
+          if (typeof syncToBookmarksTree === 'function') {
+            syncToBookmarksTree(fullData.folders, fullData.pinnedFolders, fullData.sortPref);
+          }
+        });
+      }
     });
   });
   // -------------------------------
@@ -352,12 +365,35 @@ document.addEventListener('DOMContentLoaded', async () => {
       let savedOpenFolders = data.openFolders; // Memorized state of open folders
       let hasResults = false;
 
+      // Folder sorting
       const sortedFolderNames = Object.keys(folders).sort((a, b) => {
         const aPinned = pinnedFolders.includes(a);
         const bPinned = pinnedFolders.includes(b);
+
+        // Pinned first
         if (aPinned && !bPinned) return -1;
         if (!aPinned && bPinned) return 1;
-        return a.localeCompare(b);
+
+        if (sortPref === 'alphaAsc') {
+          return a.localeCompare(b);
+        } else {
+          // Sort by date
+          const getFolderTime = (folderName) => {
+            const chats = folders[folderName];
+            if (!chats || chats.length === 0) return 0;
+
+            if (sortPref === 'dateDesc') return Math.max(...chats.map(c => c.timestamp || 0));
+            return Math.min(...chats.map(c => c.timestamp || Date.now()));
+          };
+
+          const timeA = getFolderTime(a);
+          const timeB = getFolderTime(b);
+
+          if (sortPref === 'dateDesc') return timeB - timeA;
+          if (sortPref === 'dateAsc') return timeA - timeB;
+        }
+
+        return a.localeCompare(b); // Fallback
       });
 
       let hasPinned = false;
