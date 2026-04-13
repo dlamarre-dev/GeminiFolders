@@ -17,7 +17,7 @@
 * 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace intuitively.
 * 🗜️ **Ultra-Efficient Compression:** Automatically compresses your synced data using LZString, maximizing Chrome's native storage capacity so you can save hundreds of conversations securely.
 * 📊 **Storage Tracker:** A sleek visual progress bar keeps you informed of your available cloud storage capacity in real-time, complete with detailed tooltips.
-* 🎨 **Modern Material UI:** Enjoy a sleek, ultra-compact footer, a collapsible "Add" panel, clean hover effects, and pixel-perfect icons.
+* 🎨 **Modern Material UI:** Enjoy a fully seamless experience with custom Material 3 modal dialogs (no more native browser popups!), a sleek ultra-compact footer, a collapsible "Add" panel, and clean hover effects.
 * 📁 **Smart Folders:** Group your chats by projects, themes, or categories. Create empty folders in advance and manage them easily.
 * 📌 **Pin Favorites:** Pin your most important folders to the top of the list for ultra-fast access.
 * 🤖 **Smart Title Detection:** No more typing! The extension automatically reads the Gemini interface to extract the exact name of your current conversation in the background.
