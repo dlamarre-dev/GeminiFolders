@@ -1054,7 +1054,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (reviewState.status === 'rated' || reviewState.status === 'dismissed') return;
 
-    const meetsThreshold = stats.saves >= 10 || stats.opens >= 50;
+    const meetsThreshold = stats.saves >= 15 || stats.opens >= 50;
     const isTimeForLater = reviewState.status === 'later' && Date.now() > reviewState.nextPromptDate;
 
     if ((reviewState.status === 'pending' && meetsThreshold) || isTimeForLater) {
