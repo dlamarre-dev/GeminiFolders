@@ -1,47 +1,46 @@
-Você usa o Google Gemini todos os dias para trabalho, código, pesquisa ou criação, mas perde constantemente seus prompts importantes em um histórico infinito?
-Gemini Folders é a extensão que você precisa.
+Você usa o Google Gemini diariamente para o trabalho, código, pesquisa ou criação, mas perde constantemente seus prompts importantes em um histórico infinito?
+Pastas Gemini é a extensão que você precisa.
 
-Transforme seu uso do Gemini em um verdadeiro espaço de trabalho estruturado, agrupando suas melhores conversas por projetos, temas ou categorias. Chega de perder tempo rolando a tela para encontrar um chat antigo!
+Transforme seu uso do Gemini em um verdadeiro espaço de trabalho estruturado agrupando suas melhores conversas por projetos, temas ou categorias. Chega de perder tempo rolando a tela para encontrar um chat antigo!
 
 💡 Por que é melhor do que simples favoritos (bookmarks)?
-Ao contrário dos favoritos clássicos que acabam sobrecarregando seu navegador, Gemini Folders oferece uma interface de gerenciamento dedicada, isolada e sobreposta diretamente na sua janela do Gemini.
-E quando você estiver na rua? A extensão agora integra uma "ponte" mobile silenciosa: uma opção que cria uma única pasta espelho nos seus favoritos para permitir que você consulte suas conversas no seu celular!
+Ao contrário dos favoritos clássicos que acabam entulhando o seu navegador, o Pastas Gemini oferece a você uma interface de gerenciamento dedicada, isolada e sobreposta diretamente na sua janela do Gemini.
+E para quando estiver em movimento? A extensão agora integra uma "ponte" móvel silenciosa: uma opção que cria uma única pasta espelho em seus favoritos para permitir que você consulte suas conversas no seu celular!
 
 🌟 PRINCIPAIS FUNCIONALIDADES
-
-⚡ Salvamento Rápido (Clique Direito e Atalhos): Salve a conversa com um simples clique direito, ou use o atalho de teclado (Ctrl+Shift+S ou Cmd+Shift+S no Mac) para enviá-la instantaneamente para "⚡ Salvamentos Rápidos"!
+⚡ Salvamento Rápido (Clique Direito e Atalhos): Salve a conversa através de um simples clique com o botão direito, ou use o atalho de teclado (Ctrl+Shift+S ou Cmd+Shift+S no Mac) para enviá-la instantaneamente para "⚡ Salvamentos Rápidos"!
 ☑️ Seleção Múltipla (Bulk Actions): Selecione várias conversas com caixas de seleção para movê-las ou excluí-las com um único clique.
-📑 Grupos de Guias (Tab Groups): Abra uma pasta inteira com um clique em um grupo de guias nativo e colorido do Chrome.
-😃 Emojis Personalizados: Comece o nome da sua pasta com um emoji (ex: "💻 Código") para substituir o ícone de pasta padrão.
+📑 Grupos de abas (Tab Groups): Abra uma pasta inteira em um clique em um grupo de abas nativo e colorido do Chrome.
+😃 Emojis personalizados: Comece o nome da sua pasta com um emoji (ex: "💻 Código") para substituir o ícone de pasta padrão.
 🖱️ Drag & Drop (Arraste e Solte): Reorganize seu espaço de trabalho de forma intuitiva.
-📱 Sincronização Mobile: Acesse suas conversas de qualquer lugar! Um simples botão gera uma pasta inteligente nos seus favoritos do Chrome, reproduzindo perfeitamente sua estrutura (Pastas fixadas > Salvamentos > A a Z) no seu smartphone.
-🗜️ Compressão Ultraeficiente: Comprime automaticamente seus dados (LZString) para maximizar o armazenamento nativo do Chrome e salvar centenas de chats.
-📊 Rastreador de Armazenamento: Uma barra de progresso visual mostra o espaço disponível na nuvem em tempo real.
-📁 Pastas Personalizadas e Fixadas: Classifique suas conversas e fixe (📌) seus favoritos no topo da lista com uma classificação inteligente.
-⇅ Classificação Personalizada: Ordene o conteúdo das suas pastas instantaneamente (Mais recentes, Mais antigas, De A a Z).
+📱 Sincronização Móvel: Acesse suas conversas em qualquer lugar! Um simples interruptor gera uma pasta inteligente nos seus favoritos do Chrome, reproduzindo perfeitamente a sua árvore de pastas e a sua ordem de classificação personalizada no seu smartphone.
+🗜️ Compressão ultraeficiente: Comprime automaticamente seus dados (LZString) para maximizar o armazenamento nativo do Chrome e salvar centenas de chats com segurança.
+📊 Rastreador de armazenamento: Uma barra de progresso visual indica seu espaço na nuvem disponível em tempo real.
+📁 Pastas sob medida e Fixados: Classifique suas conversas e fixe (📌) seus favoritos no topo da lista com uma classificação inteligente.
+⇅ Classificação Personalizada: Ordene suas pastas e conversas em tempo real (Mais recentes, Mais antigas, De A a Z) com reflexo direto na sincronização móvel.
 🤖 Detecção Inteligente e Pesquisa: Preenchimento automático do título exato da sua conversa e barra de pesquisa instantânea.
 ☁️ Sincronização na Nuvem e Backup: Encontre sua organização em todos os seus computadores e exporte seus dados em JSON.
-🎨 Design "Material 3" e Multilíngue: Interface ultracompacta (com um rodapé redesenhado) que se adapta ao modo escuro e a 6 idiomas.
+🎨 Design "Material 3" e Multilíngue: Interface ultracompacta com novas caixas de diálogo sob medida, que se adapta perfeitamente ao modo escuro e agora suporta 16 idiomas globais!
 
 🛠️ COMO FUNCIONA?
-
 Abra uma conversa importante em gemini.google.com.
-Salvamento expresso: Use Ctrl+Shift+S, ou clique com o botão direito na página > "Salvar em Gemini Folders".
+Salvamento expresso: Use Ctrl+Shift+S, ou clique com o botão direito na página > "Salvar no Pastas Gemini".
 Pela extensão: Clique no ícone, escolha uma pasta e salve!
-Para o Mobile: Marque o ícone 📱 no rodapé para enviar suas pastas para o seu celular.
-Marque as caixas para ações em massa, abra suas pastas em guias (📑) e use arrastar e soltar para reorganizar!
+Para o Celular: Marque o ícone 📱 no rodapé para enviar suas pastas para o seu telefone.
+Marque as caixas para ações em grupo, abra suas pastas em abas (📑) e use arrastar e soltar para reorganizar!
 
 🔒 PRIVACIDADE E SEGURANÇA
-Projetada com a privacidade no centro de seu funcionamento. Ela solicita acesso apenas ao Gemini e lê a guia ativa somente no momento do salvamento. Requer a permissão de "Favoritos" (bookmarks) apenas para gerar sua pasta de sincronização mobile (se você a ativar). Armazenamento localizado via Chrome Sync: sem servidores de terceiros, sem telemetria.
+Projetada com a privacidade no centro de seu funcionamento. Ela solicita acesso apenas ao Gemini e lê a aba ativa apenas no momento do salvamento. Ela requer a permissão "Favoritos" (bookmarks) apenas para gerar a sua pasta de sincronização móvel (se você a ativar). Armazenamento localizado via Chrome Sync: sem servidores de terceiros, sem telemetria.
 
-🤝 PROJETO OPEN SOURCE
-Gemini Folders é um projeto de código aberto desenvolvido com paixão. A transparência e o respeito à sua privacidade são nossas prioridades. Você é desenvolvedor ou apenas curioso? Venha consultar nosso código, acompanhar o histórico de atualizações ou contribuir com o projeto (link clicável diretamente na extensão) no GitHub: https://github.com/dlamarre-dev/GeminiFolders
+🤝 PROJETO CÓDIGO ABERTO
+Pastas Gemini é um projeto de código aberto desenvolvido com paixão. A transparência e o respeito pela sua privacidade são as nossas prioridades. Você é um desenvolvedor ou simplesmente curioso? Venha conferir nosso código, seguir o histórico de atualizações ou contribuir com o projeto (link clicável diretamente na extensão) no GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
 📢 ATUALIZAÇÕES:
-Versão 3.2 (Mobile e Open Source): Sincronização mobile através dos favoritos do Chrome, classificação inteligente de suas pastas fixadas, rodapé ultracompacto e transição oficial para Open Source com link integrado para o GitHub!
-Versão 3.1 (Refinamentos de UX): Estabilização do Drag & Drop, caixas de seleção adaptadas ao modo escuro, bloqueio inteligente da interface durante ações em massa e alinhamento perfeito no Mac!
-Versão 3.0 (Atualização Máxima de Produtividade): Atalhos de teclado, Ações em massa, Grupos de guias, Emojis personalizados, Compressão de dados e Rastreador de armazenamento!
-Versão 2.1 (Atualização Global): 🌍 Pastas Gemini agora é totalmente localizada! A extensão se traduz automaticamente para Espanhol, Português do Brasil, Alemão e Japonês, além de Inglês e Francês.
-Versão 2.0.2 (Melhorias de UX): Memória inteligente (lembra pastas abertas/fechadas), dicas visuais (ícones 📁/🗂️ para pastas vazias vs. cheias) e pequenas correções de tela.
-Versão 2.0.1: Corrigido um problema com a recuperação de títulos em alguns navegadores.
-Versão 2.0: Grande reformulação adicionando Drag & Drop, Menu de Contexto, Classificação, Fixação e novo design Material 3.
+Versão 3.3 (Design Premium & Internacional): Novas caixas de diálogo Material 3 100% sob medida (adeus aos alertas nativos!), sincronização móvel baseada na sua ordem de classificação, interface aprimorada e expansão global com a adição de 10 novos idiomas!
+Versão 3.2 (Celular & Código Aberto): Sincronização móvel inteligente através dos favoritos do Chrome, classificação inteligente de suas pastas fixadas, rodapé ultracompacto e transição oficial para Código Aberto com link do GitHub integrado!
+Versão 3.1 (Melhorias de UX): Estabilização do Drag & Drop, caixas de seleção adaptadas ao modo escuro, bloqueio inteligente da interface durante ações em grupo e alinhamento perfeito no Mac!
+Versão 3.0 (Atualização de Produtividade): Adição de atalhos de teclado, seleção múltipla (caixas de seleção), grupos de abas, emojis personalizados, compressão de dados e barra de armazenamento!
+Versão 2.1 (Atualização mundial): 🌍 Pastas Gemini agora está totalmente localizado em espanhol, português brasileiro, alemão e japonês, além de francês e inglês!
+Versão 2.0.2 (Melhorias de UX): Memorização inteligente de pastas abertas/fechadas, dicas visuais (📁/🗂️) para pastas cheias e vazias, e pequenas correções.
+Versão 2.0.1: Correção de um problema de recuperação de título em certos navegadores.
+Versão 2.0: Grande reformulação adicionando Drag & Drop, menu contextual, classificação personalizada, fixação e o novo design Material 3.

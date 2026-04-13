@@ -1,47 +1,46 @@
-¿Utilizas Google Gemini a diario para el trabajo, programar, investigar o crear, pero pierdes constantemente tus prompts importantes en un historial infinito?
-Gemini Folders es la extensión que necesitas.
+¿Utilizas Google Gemini a diario para el trabajo, el código, la investigación o la creación, pero pierdes constantemente tus prompts importantes en un historial infinito?
+Carpetas Gemini es la extensión que necesitas.
 
-Transforma tu uso de Gemini en un verdadero espacio de trabajo estructurado agrupando tus mejores conversaciones por proyectos, temas o categorías. ¡Se acabó el perder tiempo haciendo scroll para encontrar un chat antiguo!
+Transforma tu uso de Gemini en un verdadero espacio de trabajo estructurado agrupando tus mejores conversaciones por proyectos, temas o categorías. ¡Se acabó el tiempo perdido haciendo scroll para encontrar un chat antiguo!
 
 💡 ¿Por qué es mejor que los simples marcadores (bookmarks)?
-A diferencia de los marcadores clásicos que acaban saturando tu navegador, Gemini Folders te ofrece una interfaz de gestión dedicada, aislada y superpuesta directamente en tu ventana de Gemini.
-¿Y para cuando estás en movimiento? La extensión integra ahora un "puente" móvil silencioso: ¡una opción que crea una única carpeta espejo en tus marcadores para permitirte consultar tus conversaciones en tu teléfono!
+A diferencia de los marcadores clásicos que acaban saturando tu navegador, Carpetas Gemini te ofrece una interfaz de gestión dedicada, aislada y superpuesta directamente en tu ventana de Gemini.
+¿Y para tus desplazamientos? La extensión ahora integra un "puente" móvil silencioso: ¡una opción que crea una única carpeta espejo en tus marcadores para que puedas consultar tus conversaciones en tu teléfono!
 
 🌟 CARACTERÍSTICAS PRINCIPALES
-
-⚡ Guardado Rápido (Clic Derecho y Atajos): ¡Guarda la conversación con un simple clic derecho, o usa el atajo de teclado (Ctrl+Shift+S o Cmd+Shift+S en Mac) para enviarla instantáneamente a "⚡ Guardados Rápidos"!
-☑️ Selección Múltiple (Bulk Actions): Selecciona múltiples conversaciones con casillas de verificación para moverlas o eliminarlas en un solo clic.
-📑 Grupos de Pestañas (Tab Groups): Abre toda una carpeta con un clic en un grupo de pestañas de Chrome nativo y colorido.
-😃 Emojis Personalizados: Comienza el nombre de tu carpeta con un emoji (ej. "💻 Código") para reemplazar el icono de carpeta predeterminado.
+⚡ Guardado Rápido (Clic derecho y Atajos): ¡Guarda la conversación a través de un simple clic derecho, o usa el atajo de teclado (Ctrl+Shift+S o Cmd+Shift+S en Mac) para enviarla instantáneamente a "⚡ Guardados Rápidos"!
+☑️ Selección Múltiple (Bulk Actions): Selecciona varias conversaciones con casillas de verificación para moverlas o eliminarlas en un solo clic.
+📑 Grupos de pestañas (Tab Groups): Abre toda una carpeta con un clic en un grupo de pestañas de Chrome nativo y colorido.
+😃 Emojis personalizados: Empieza el nombre de tu carpeta con un emoji (ej: "💻 Código") para reemplazar el icono de carpeta por defecto.
 🖱️ Drag & Drop (Arrastrar y Soltar): Reorganiza tu espacio de trabajo de forma intuitiva.
-📱 Sincronización Móvil: ¡Accede a tus conversaciones en cualquier lugar! Un simple interruptor genera una carpeta inteligente en tus marcadores de Chrome, reproduciendo perfectamente tu estructura (Carpetas fijadas > Guardados Rápidos > A a la Z) en tu smartphone.
-🗜️ Compresión Ultraeficiente: Comprime automáticamente tus datos (LZString) para maximizar el almacenamiento nativo de Chrome y guardar cientos de chats.
-📊 Rastreador de Almacenamiento: Una barra de progreso visual te muestra el espacio disponible en la nube en tiempo real.
-📁 Carpetas a Medida y Fijadas: Clasifica tus conversaciones y fija (📌) tus favoritas en la parte superior de la lista con una clasificación inteligente.
-⇅ Clasificación Personalizada: Ordena el contenido de tus carpetas al instante (Más recientes, Más antiguas, De la A a la Z).
-🤖 Detección Inteligente y Búsqueda: Relleno automático del título exacto de tu conversación y barra de búsqueda instantánea.
-☁️ Sincronización en la Nube y Copia de Seguridad: Encuentra tu organización en todos tus ordenadores y exporta tus datos en JSON.
-🎨 Diseño "Material 3" y Multilingüe: Interfaz ultracompacta (con un pie de página rediseñado) que se adapta al modo oscuro y a 6 idiomas.
+📱 Sincronización Móvil: ¡Accede a tus conversaciones en movimiento! Un simple interruptor genera una carpeta inteligente en tus marcadores de Chrome, reproduciendo perfectamente tu árbol de carpetas y tu orden de clasificación personalizado en tu smartphone.
+🗜️ Compresión ultraeficiente: Comprime automáticamente tus datos (LZString) para maximiser el almacenamiento nativo de Chrome y guardar cientos de chats.
+📊 Rastreador de almacenamiento: Una barra de progreso visual te indica tu espacio en la nube disponible en tiempo real.
+📁 Carpetas a medida y Pines: Clasifica tus conversaciones y fija (📌) tus favoritos en la parte superior de la lista con una clasificación inteligente.
+⇅ Clasificación Personalizada: Ordena tus carpetas y conversaciones sobre la marcha (Más recientes, Más antiguos, De la A a la Z) con repercusión directa en la sincronización móvil.
+🤖 Detección Inteligente y Búsqueda: Relleno previo automático del título exacto de tu conversación y barra de búsqueda instantánea.
+☁️ Sincronización en la Nube y Backup: Encuentra tu organización en todos tus ordenadores y exporta tus datos en JSON.
+🎨 Diseño "Material 3" y Multilingüe: Interfaz ultracompacta dotada de cuadros de diálogo totalmente nuevos a medida, que se adapta perfectamente al modo oscuro y ahora soporta 16 idiomas mundiales.
 
 🛠️ ¿CÓMO FUNCIONA?
-
 Abre una conversación importante en gemini.google.com.
-Guardado exprés: Usa Ctrl+Shift+S, o haz clic derecho en la página > "Guardar en Gemini Folders".
-A través de la extensión: Haz clic en el icono, elige una carpeta ¡y guarda!
+Guardado exprés: Usa Ctrl+Shift+S, o haz clic derecho en la página > "Guardar en Carpetas Gemini".
+A través de la extensión: ¡Haz clic en el icono, elige una carpeta y guarda!
 Para el Móvil: Marca el icono 📱 en el pie de página para enviar tus carpetas a tu teléfono.
-¡Marca las casillas para acciones grupales, abre tus carpetas en pestañas (📑) y usa arrastrar y soltar para reorganizar!
+¡Marca las casillas para acciones grupales, abre tus carpetas en pestañas (📑) y utiliza arrastrar y soltar para reorganizar!
 
 🔒 PRIVACIDAD Y SEGURIDAD
-Diseñada con la privacidad en el centro de su funcionamiento. Solo solicita acceso a Gemini y solo lee la pestaña activa al momento de guardar. Requiere el permiso de "Marcadores" (bookmarks) únicamente para generar tu carpeta de sincronización móvil (si la activas). Almacenamiento localizado vía Chrome Sync: sin servidores de terceros, sin telemetría.
+Diseñada con la privacidad en el centro de su funcionamiento. Solo solicita acceso a Gemini y no lee la pestaña activa hasta el momento de guardar. Requiere el permiso "Marcadores" (bookmarks) únicamente para generar tu carpeta de sincronización móvil (si la activas). Almacenamiento localizado a través de Chrome Sync: sin servidores de terceros, sin telemetría.
 
-🤝 PROYECTO OPEN SOURCE
-Gemini Folders es un proyecto de código abierto desarrollado con pasión. La transparencia y el respeto a tu privacidad son nuestras prioridades. ¿Eres desarrollador o simplemente curioso? Ven a consultar nuestro código, sigue el historial de actualizaciones o contribuye al proyecto (enlace en el que se puede hacer clic directamente en la extensión) en GitHub: https://github.com/dlamarre-dev/GeminiFolders
+🤝 PROYECTO DE CÓDIGO ABIERTO
+Carpetas Gemini es un proyecto de código abierto desarrollado con pasión. La transparencia y el respeto por tu privacidad son nuestras prioridades. ¿Eres desarrollador o simplemente curioso? Ven a consultar nuestro código, sigue el historial de actualizaciones o contribuye al proyecto (enlace en el que se puede hacer clic directamente en la extensión) en GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
-📢 REGISTRO DE CAMBIOS:
-Versión 3.2 (Móvil y Open Source): ¡Sincronización móvil a través de los marcadores de Chrome, clasificación inteligente de tus carpetas fijadas, pie de página ultracompacto y transición oficial a Open Source con enlace a GitHub integrado!
-Versión 3.1 (Refinamientos de UX): ¡Estabilización del Drag & Drop, casillas rediseñadas para el modo oscuro, bloqueo inteligente de la interfaz durante las acciones en lote y alineación perfecta en Mac!
-Versión 3.0 (La gran actualización de productividad): ¡Añadidos atajos de teclado, acciones en lote, grupos de pestañas, emojis personalizados, compresión de datos y un rastreador de almacenamiento!
-Versión 2.1 (Actualización Global): 🌍 ¡Carpetas Gemini ahora está completamente localizada! La extensión se traduce automáticamente al español, portugués brasileño, alemán y japonés, además de inglés y francés.
-Versión 2.0.2 (Mejoras UX): Memoria inteligente (recuerda carpetas abiertas/cerradas), señales visuales (iconos 📁/🗂️ para carpetas vacías/llenas) y correcciones menores.
-Versión 2.0.1: Solucionado un problema con la recuperación de títulos en algunos navegadores.
-Versión 2.0: Gran actualización que añade Drag & Drop, Menú contextual, Ordenación, Fijación y un nuevo diseño Material 3.
+📢 ACTUALIZACIONES:
+Versión 3.3 (Diseño Premium e Internacional): ¡Nuevos cuadros de diálogo Material 3 100% a medida (adiós a las alertas nativas!), sincronización móvil calcada de tu orden de clasificación, interfaz depurada y expansión mundial con la adición de 10 nuevos idiomas!
+Versión 3.2 (Móvil y Código Abierto): ¡Sincronización móvil inteligente a través de los marcadores de Chrome, clasificación inteligente de tus carpetas fijadas, pie de página ultracompacto y paso oficial a Código Abierto con enlace de GitHub integrado!
+Versión 3.1 (Mejoras UX): ¡Estabilización del Drag & Drop, casillas de verificación adaptadas al modo oscuro, bloqueo inteligente de la interfaz durante las acciones grupales y alineación perfecta en Mac!
+Versión 3.0 (Actualización de Productividad): ¡Adición de atajos de teclado, selección múltiple (casillas de verificación), grupos de pestañas, emojis personalizados, compresión de datos y barra de almacenamiento!
+Versión 2.1 (Actualización mundial): 🌍 ¡Carpetas Gemini ahora está completamente localizado en español, portugués brasileño, alemán y japonés, además de francés e inglés!
+Versión 2.0.2 (Mejoras UX): Memorización inteligente de carpetas abiertas/cerradas, marcas visuales (📁/🗂️) para carpetas llenas y vacías, y correcciones menores.
+Versión 2.0.1: Corrección de un problema de recuperación del título en ciertos navegadores.
+Versión 2.0: Gran rediseño que añade Drag & Drop, el menú contextual, la clasificación personalizada, la fijación y el nuevo diseño Material 3.

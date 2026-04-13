@@ -1,47 +1,46 @@
 Do you use Google Gemini daily for work, coding, research, or creation, but constantly lose your important prompts in an endless history?
 Gemini Folders is the extension you need.
 
-Transform your Gemini usage into a truly structured workspace by grouping your best conversations by projects, themes, or categories. No more time wasted scrolling to find an old chat!
+Transform your use of Gemini into a true structured workspace by grouping your best conversations by projects, themes, or categories. No more time wasted scrolling to find an old chat!
 
 💡 Why is it better than simple bookmarks?
-Unlike classic bookmarks that end up cluttering your browser, Gemini Folders offers a dedicated, isolated management interface overlaid directly on your Gemini window.
-And for when you're on the go? The extension now includes a silent mobile "bridge": an option that creates a single mirror folder in your bookmarks, allowing you to access your conversations on your phone!
+Unlike classic bookmarks that end up cluttering your browser, Gemini Folders offers you a dedicated, isolated management interface overlaid directly on your Gemini window.
+And for when you're on the go? The extension now includes a silent mobile "bridge": an option that creates a single mirror folder in your bookmarks to let you access your conversations on your phone!
 
 🌟 MAIN FEATURES
-
-⚡ Quick Save (Right-Click & Shortcuts): Save the conversation with a simple right-click, or use the keyboard shortcut (Ctrl+Shift+S or Cmd+Shift+S on Mac) to instantly send it to "⚡ Quick Saves"!
+⚡ Quick Save (Right Click & Shortcuts): Save the conversation via a simple right-click, or use the keyboard shortcut (Ctrl+Shift+S or Cmd+Shift+S on Mac) to send it instantly to "⚡ Quick Saves"!
 ☑️ Bulk Actions (Multi-Select): Select multiple conversations with checkboxes to move or delete them in a single click.
-📑 Tab Groups: Open an entire folder in one click within a native, colorful Chrome tab group.
+📑 Tab Groups: Open an entire folder in one click in a native, colorful Chrome tab group.
 😃 Custom Emojis: Start your folder name with an emoji (e.g., "💻 Code") to replace the default folder icon.
 🖱️ Drag & Drop: Reorganize your workspace intuitively.
-📱 Mobile Sync: Access your conversations on the go! A simple toggle generates a smart folder in your Chrome bookmarks, perfectly mirroring your structure (Pinned folders > Quick Saves > A to Z) on your smartphone.
+📱 Mobile Sync: Access your conversations on the go! A simple switch generates a smart folder in your Chrome bookmarks, perfectly replicating your folder tree and custom sort order on your smartphone.
 🗜️ Ultra-efficient Compression: Automatically compresses your data (LZString) to maximize Chrome's native storage and save hundreds of chats.
-📊 Storage Tracker: A visual progress bar shows your available cloud space in real time.
-📁 Custom Folders & Pins: Organize your conversations and pin (📌) your favorites to the top of the list with smart sorting.
-⇅ Custom Sorting: Sort your folder contents on the fly (Newest, Oldest, A to Z).
-🤖 Smart Detection & Search: Auto-fills the exact title of your conversation and features an instant search bar.
-☁️ Cloud Sync & Backup: Access your organization across all your computers and export your data as JSON.
-🎨 "Material 3" Design & Multilingual: Ultra-compact interface (with a newly redesigned footer) that adapts to dark mode and 6 languages.
+📊 Storage Tracker: A visual progress bar shows your available cloud space in real-time.
+📁 Custom Folders & Pins: Categorize your conversations and pin (📌) your favorites to the top of the list with smart sorting.
+⇅ Custom Sorting: Sort your folders and conversations on the fly (Newest, Oldest, A to Z) with direct reflection on the mobile sync.
+🤖 Smart Detection & Search: Automatic pre-filling of your exact conversation title and instant search bar.
+☁️ Cloud Sync & Backup: Find your organization across all your computers and export your data in JSON.
+🎨 "Material 3" Design & Multilingual: Ultra-compact interface with all-new custom dialog boxes, which adapts perfectly to dark mode and now supports 16 global languages!
 
-🛠️ HOW DOES IT WORK?
-
+🛠️ HOW IT WORKS?
 Open an important conversation on gemini.google.com.
 Express save: Use Ctrl+Shift+S, or right-click on the page > "Save to Gemini Folders".
-Via the extension: Click the icon, choose a folder, and save!
+Via the extension: Click on the icon, choose a folder, and save!
 For Mobile: Check the 📱 icon in the footer to send your folders to your phone.
 Check the boxes for bulk actions, open your folders in tabs (📑), and use drag and drop to reorganize!
 
 🔒 PRIVACY & SECURITY
-Built with privacy at its core. It only requests access to Gemini and only reads the active tab when saving. It requires "Bookmarks" permission solely to generate your mobile sync folder (if enabled). Localized storage via Chrome Sync: no third-party servers, no telemetry.
+Designed with privacy at the heart of its operation. It only requests access to Gemini and only reads the active tab at the moment of saving. It requires the "Bookmarks" permission only to generate your mobile sync folder (if you enable it). Localized storage via Chrome Sync: no third-party servers, no telemetry.
 
 🤝 OPEN SOURCE PROJECT
-Gemini Folders is a passionately developed open-source project. Transparency and respecting your privacy are our priorities. Are you a developer or just curious? Check out our code, follow the update history, or contribute to the project (clickable link directly in the extension) on GitHub: https://github.com/dlamarre-dev/GeminiFolders
+Gemini Folders is an open-source project developed with passion. Transparency and respect for your privacy are our priorities. Are you a developer or simply curious? Come check out our code, follow the update history, or contribute to the project (clickable link directly in the extension) on GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
-📢 CHANGELOG:
-Version 3.2 (Mobile & Open Source): Mobile synchronization via Chrome bookmarks, smart sorting of your pinned folders, ultra-compact footer, and official transition to Open Source with an integrated GitHub link!
-Version 3.1 (UX Refinements): Stabilized Drag & Drop, redesigned dark mode checkboxes, added smart UI locking during bulk actions, and perfect text alignment on Mac!
-Version 3.0 (The Ultimate Productivity Update): Added Keyboard Shortcuts, Bulk Actions (multi-select checkboxes), Tab Groups integration, Custom Emojis, LZString data compression, and a real-time Storage Tracker!
-Version 2.1 (Global Update): 🌍 Gemini Folders is now fully localized! The extension automatically translates to Spanish, Brazilian Portuguese, German, and Japanese, in addition to English and French.
-Version 2.0.2 (UX Improvements): Smart Memory (remembers open/closed folders), Visual Cues (distinct icons 📁/🗂️ for empty vs. full folders), and minor display fixes.
-Version 2.0.1: Fixed an issue with title retrieval happening on some browsers.
-Version 2.0: Major overhaul adding Drag & Drop, Context Menu (right-click save), Custom Sorting, Pinning & Renaming, Auto-detection, and a new Material 3 design.
+📢 UPDATES:
+Version 3.3 (Premium & International Design): New 100% custom Material 3 dialog boxes (goodbye native alerts!), mobile sync mapped to your sort order, refined interface, and global expansion with the addition of 10 new languages!
+Version 3.2 (Mobile & Open Source): Clever mobile sync via Chrome bookmarks, smart sorting of your pinned folders, ultra-compact footer, and official transition to Open Source with integrated GitHub link!
+Version 3.1 (UX Improvements): Stabilization of Drag & Drop, checkboxes adapted to dark mode, smart locking of the interface during bulk actions, and perfect alignment on Mac!
+Version 3.0 (Productivity Update): Added keyboard shortcuts, multiple selection (checkboxes), tab groups, custom emojis, data compression, and storage bar!
+Version 2.1 (Global Update): 🌍 Gemini Folders is now fully localized in Spanish, Brazilian Portuguese, German, and Japanese, in addition to French and English!
+Version 2.0.2 (UX Improvements): Smart memorization of open/closed folders, visual cues (📁/🗂️) for full and empty folders, and minor fixes.
+Version 2.0.1: Fixed a title retrieval issue on certain browsers.
+Version 2.0: Major overhaul adding Drag & Drop, context menu, custom sorting, pinning, and new Material 3 design.

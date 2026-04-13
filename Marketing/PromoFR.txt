@@ -1,32 +1,30 @@
 Vous utilisez Google Gemini au quotidien pour le travail, le code, la recherche ou la création, mais vous perdez constamment vos prompts importants dans un historique infini ?
-Gemini Folders est l'extension qu'il vous faut.
+Dossiers Gemini est l'extension qu'il vous faut.
 
 Transformez votre utilisation de Gemini en un véritable espace de travail structuré en regroupant vos meilleures conversations par projets, thématiques ou catégories. Fini le temps perdu à scroller pour retrouver un ancien chat !
 
 💡 Pourquoi est-ce mieux que de simples favoris (bookmarks) ?
-Contrairement aux favoris classiques qui finissent par encombrer votre navigateur, Gemini Folders vous offre une interface de gestion dédiée, isolée et superposée directement sur votre fenêtre Gemini.
+Contrairement aux favoris classiques qui finissent par encombrer votre navigateur, Dossiers Gemini vous offre une interface de gestion dédiée, isolée et superposée directement sur votre fenêtre Gemini.
 Et pour vos déplacements ? L'extension intègre désormais un "pont" mobile silencieux : une option qui crée un unique dossier miroir dans vos favoris pour vous permettre de consulter vos conversations sur votre téléphone !
 
 🌟 FONCTIONNALITÉS PRINCIPALES
-
 ⚡ Sauvegarde Rapide (Clic Droit & Raccourcis) : Sauvegardez la conversation via un simple clic droit, ou utilisez le raccourci clavier (Ctrl+Shift+S ou Cmd+Shift+S sur Mac) pour l'envoyer instantanément dans "⚡ Sauvegardes Rapides" !
 ☑️ Sélection Multiple (Bulk Actions) : Sélectionnez plusieurs conversations avec des cases à cocher pour les déplacer ou les supprimer en un seul clic.
 📑 Groupes d'onglets (Tab Groups) : Ouvrez tout un dossier en un clic dans un groupe d'onglets Chrome natif et coloré.
 😃 Émojis personnalisés : Commencez le nom de votre dossier par un émoji (ex: "💻 Code") pour remplacer l'icône de dossier par défaut.
 🖱️ Drag & Drop (Glisser-Déposer) : Réorganisez votre espace de travail intuitivement.
-📱 Synchronisation Mobile : Accédez à vos conversations en déplacement ! Un simple interrupteur génère un dossier intelligent dans vos favoris Chrome, reproduisant parfaitement votre arborescence (Dossiers épinglés > Sauvegardes > A à Z) sur votre smartphone.
+📱 Synchronisation Mobile : Accédez à vos conversations en déplacement ! Un simple interrupteur génère un dossier intelligent dans vos favoris Chrome, reproduisant parfaitement votre arborescence et votre ordre de tri personnalisé sur votre smartphone.
 🗜️ Compression ultra-efficace : Compresse automatiquement vos données (LZString) pour maximiser le stockage natif de Chrome et sauvegarder des centaines de chats.
 📊 Traqueur de stockage : Une barre de progression visuelle vous indique votre espace cloud disponible en temps réel.
 📁 Dossiers sur mesure & Épingles : Classez vos conversations et épinglez (📌) vos favoris en haut de la liste avec un tri intelligent.
-⇅ Tri Personnalisé : Triez le contenu de vos dossiers à la volée (Plus récents, Plus anciens, De A à Z).
+⇅ Tri Personnalisé : Triez vos dossiers et conversations à la volée (Plus récents, Plus anciens, De A à Z) avec répercussion directe sur la synchronisation mobile.
 🤖 Détection Intelligente & Recherche : Pré-remplissage automatique du titre exact de votre conversation et barre de recherche instantanée.
 ☁️ Synchronisation Cloud & Backup : Retrouvez votre organisation sur tous vos ordinateurs et exportez vos données en JSON.
-🎨 Design "Material 3" & Multilingue : Interface ultra-compacte (avec nouveau pied de page repensé) qui s'adapte au mode sombre et à 6 langues.
+🎨 Design "Material 3" & Multilingue : Interface ultra-compacte dotée de toutes nouvelles boîtes de dialogue sur mesure, qui s'adapte parfaitement au mode sombre et prend désormais en charge 16 langues mondiales !
 
 🛠️ COMMENT ÇA MARCHE ?
-
 Ouvrez une conversation importante sur gemini.google.com.
-Sauvegarde express : Utilisez Ctrl+Shift+S, ou faites un clic droit sur la page > "Sauvegarder dans Gemini Folders".
+Sauvegarde express : Utilisez Ctrl+Shift+S, ou faites un clic droit sur la page > "Sauvegarder dans Dossiers Gemini".
 Via l'extension : Cliquez sur l'icône, choisissez un dossier et sauvegardez !
 Pour le Mobile : Cochez l'icône 📱 dans le pied de page pour envoyer vos dossiers vers votre téléphone.
 Cochez les cases pour des actions groupées, ouvrez vos dossiers en onglets (📑), et utilisez le glisser-déposer pour réorganiser !
@@ -35,13 +33,14 @@ Cochez les cases pour des actions groupées, ouvrez vos dossiers en onglets (�
 Conçue avec la confidentialité au cœur de son fonctionnement. Elle ne demande l'accès qu'à Gemini et ne lit l'onglet actif qu'au moment de la sauvegarde. Elle requiert la permission "Favoris" (bookmarks) uniquement pour générer votre dossier de synchronisation mobile (si vous l'activez). Stockage localisé via Chrome Sync : aucun serveur tiers, aucune télémétrie.
 
 🤝 PROJET OPEN SOURCE
-Gemini Folders est un projet open source développé avec passion. La transparence et le respect de votre vie privée sont nos priorités. Vous êtes développeur ou simplement curieux ? Venez consulter notre code, suivre l'historique des mises à jour ou contribuer au projet (lien cliquable directement dans l'extension) sur GitHub : https://github.com/dlamarre-dev/GeminiFolders
+Dossiers Gemini est un projet open source développé avec passion. La transparence et le respect de votre vie privée sont nos priorités. Vous êtes développeur ou simplement curieux ? Venez consulter notre code, suivre l'historique des mises à jour ou contribuer au projet (lien cliquable directement dans l'extension) sur GitHub : https://github.com/dlamarre-dev/GeminiFolders
 
 📢 MISES À JOUR :
+Version 3.3 (Design Premium & International) : Nouvelles boîtes de dialogue Material 3 100% sur mesure (adieu les alertes natives !), synchronisation mobile calquée sur votre ordre de tri, interface épurée et expansion mondiale avec l'ajout de 10 nouvelles langues !
 Version 3.2 (Mobile & Open Source) : Synchronisation mobile astucieuse via les favoris Chrome, tri intelligent de vos dossiers épinglés, pied de page ultra-compact et passage officiel en Open Source avec lien GitHub intégré !
 Version 3.1 (Améliorations UX) : Stabilisation du Drag & Drop, cases à cocher adaptées au mode sombre, verrouillage intelligent de l'interface lors des actions groupées et alignement parfait sur Mac !
 Version 3.0 (Mise à jour Productivité) : Ajout des raccourcis clavier, sélection multiple (cases à cocher), groupes d'onglets, émojis personnalisés, compression des données et barre de stockage !
-Version 2.1 (Mise à jour mondiale) : 🌍 Gemini Folders est désormais entièrement localisé en espagnol, portugais brésilien, allemand et japonais, en plus du français et de l'anglais !
+Version 2.1 (Mise à jour mondiale) : 🌍 Dossiers Gemini est désormais entièrement localisé en espagnol, portugais brésilien, allemand et japonais, en plus du français et de l'anglais !
 Version 2.0.2 (Améliorations UX) : Mémorisation intelligente des dossiers ouverts/fermés, repères visuels (📁/🗂️) pour les dossiers pleins et vides, et correctifs mineurs.
 Version 2.0.1 : Correction d'un problème de récupération du titre sur certains navigateurs.
 Version 2.0 : Refonte majeure ajoutant le Drag & Drop, le menu contextuel, le tri personnalisé, l'épinglage et le nouveau design Material 3.

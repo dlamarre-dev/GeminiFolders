@@ -1,0 +1,46 @@
+Utilizați Google Gemini zilnic pentru muncă, programare, cercetare sau creație, dar vă pierdeți constant prompturile importante într-un istoric infinit?
+Foldere Gemini (Gemini Folders) este extensia de care aveți nevoie.
+
+Transformați utilizarea Gemini într-un adevărat spațiu de lucru structurat, grupând cele mai bune conversații pe proiecte, teme sau categorii. Gata cu timpul pierdut derulând pentru a găsi un chat vechi!
+
+💡 De ce este mai bine decât simplele marcaje (bookmarks)?
+Spre deosebire de marcajele clasice care ajung să vă aglomereze browserul, Foldere Gemini vă oferă o interfață de gestionare dedicată, izolată și suprapusă direct pe fereastra Gemini.
+Și pentru deplasări? Extensia integrează acum o „punte” mobilă silențioasă: o opțiune care creează un singur folder oglindă în marcajele dvs. pentru a vă permite să vizualizați conversațiile pe telefon!
+
+🌟 FUNCȚIONALITĂȚI PRINCIPALE
+⚡ Salvare Rapidă (Click Dreapta & Scurtături): Salvați conversația printr-un simplu click dreapta sau utilizați scurtătura de tastatură (Ctrl+Shift+S sau Cmd+Shift+S pe Mac) pentru a o trimite instantaneu în „⚡ Salvări Rapide”!
+☑️ Selecție Multiplă (Bulk Actions): Selectați mai multe conversații cu casete de selectare pentru a le muta sau șterge dintr-un singur click.
+📑 Grupuri de file (Tab Groups): Deschideți un întreg folder dintr-un click într-un grup de file Chrome nativ și colorat.
+😃 Emoji personalizate: Începeți numele folderului dvs. cu un emoji (ex: „💻 Cod”) pentru a înlocui pictograma implicită a folderului.
+🖱️ Drag & Drop (Tragere și Plasare): Reorganizați-vă spațiul de lucru în mod intuitiv.
+📱 Sincronizare Mobilă: Accesați conversațiile din mers! Un simplu comutator generează un folder inteligent în marcajele Chrome, reproducând perfect structura folderelor și ordinea de sortare personalizată pe smartphone-ul dvs.
+🗜️ Compresie ultra-eficientă: Comprimă automat datele (LZString) pentru a maximiza stocarea nativă Chrome și pentru a salva sute de chat-uri în siguranță.
+📊 Urmăritor de stocare: O bară de progres vizuală vă indică spațiul cloud disponibil în timp real.
+📁 Foldere personalizate & Fixări: Clasificați-vă conversațiile și fixați (📌) favoritele în partea de sus a listei cu o sortare inteligentă.
+⇅ Sortare Personalizată: Sortați folderele și conversațiile din mers (Cele mai noi, Cele mai vechi, De la A la Z) cu repercusiune directă asupra sincronizării mobile.
+🤖 Detecție Inteligentă & Căutare: Precompletare automată a titlului exact al conversației și bară de căutare instantanee.
+☁️ Sincronizare Cloud & Backup: Găsiți-vă organizarea pe toate computerele și exportați-vă datele în format JSON.
+🎨 Design „Material 3” & Multilingv: Interfață ultra-compactă dotată cu ferestre de dialog complet noi personalizate, care se adaptează perfect la modul întunecat și acceptă acum 16 limbi globale!
+
+🛠️ CUM FUNCȚIONEAZĂ?
+Deschideți o conversație importantă pe gemini.google.com.
+Salvare expres: Utilizați Ctrl+Shift+S sau faceți click dreapta pe pagină > „Salvează în Foldere Gemini”.
+Prin intermediul extensiei: Faceți click pe pictogramă, alegeți un folder și salvați!
+Pentru Mobil: Bifați pictograma 📱 din subsol pentru a trimite folderele către telefonul dvs.
+Bifați casetele pentru acțiuni de grup, deschideți folderele în file (📑) și utilizați drag and drop pentru a reorganiza!
+
+🔒 CONFIDENȚIALITATE & SECURITATE
+Conceput cu confidențialitatea în centrul funcționării sale. Solicită acces doar la Gemini și citește fila activă doar în momentul salvării. Solicită permisiunea „Marcaje” (bookmarks) exclusiv pentru a genera folderul dvs. de sincronizare mobilă (dacă îl activați). Stocare localizată prin Chrome Sync: fără servere terțe, fără telemetrie.
+
+🤝 PROIECT OPEN SOURCE
+Foldere Gemini este un proiect open source dezvoltat cu pasiune. Transparența și respectul pentru viața dvs. privată sunt prioritățile noastre. Sunteți dezvoltator sau pur și simplu curios? Veniți să consultați codul nostru, să urmăriți istoricul actualizărilor sau să contribuiți la proiect (link pe care se poate face click direct în extensie) pe GitHub: https://github.com/dlamarre-dev/GeminiFolders
+
+📢 ACTUALIZĂRI:
+Versiunea 3.3 (Design Premium & Internațional): Noi ferestre de dialog Material 3, 100% personalizate (adio alertelor native!), sincronizare mobilă bazată pe ordinea dvs. de sortare, interfață rafinată și expansiune globală prin adăugarea a 10 limbi noi!
+Versiunea 3.2 (Mobil & Open Source): Sincronizare mobilă ingenioasă prin intermediul marcajelor Chrome, sortare inteligentă a folderelor fixate, subsol ultra-compact și trecerea oficială la Open Source cu link GitHub integrat!
+Versiunea 3.1 (Îmbunătățiri UX): Stabilizarea funcției Drag & Drop, casete de selectare adaptate la modul întunecat, blocarea inteligentă a interfeței în timpul acțiunilor de grup și aliniere perfectă pe Mac!
+Versiunea 3.0 (Actualizare Productivitate): Adăugarea scurtăturilor de tastatură, selecție multiplă (casete de selectare), grupuri de file, emoji-uri personalizate, compresia datelor și bara de stocare!
+Versiunea 2.1 (Actualizare Globală): 🌍 Foldere Gemini este acum complet localizat în spaniolă, portugheză braziliană, germană și japoneză, pe lângă franceză și engleză!
+Versiunea 2.0.2 (Îmbunătățiri UX): Memorarea inteligentă a folderelor deschise/închise, indicii vizuale (📁/🗂️) pentru folderele pline și goale, precum și corecții minore.
+Versiunea 2.0.1: Corectarea unei probleme de recuperare a titlului pe anumite browsere.
+Versiunea 2.0: Revizuire majoră care adaugă Drag & Drop, meniul contextual, sortarea personalizată, fixarea și noul design Material 3.

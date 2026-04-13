@@ -1,0 +1,46 @@
+Utiliza o Google Gemini no dia a dia para trabalho, código, pesquisa ou criação, mas perde constantemente os seus prompts importantes num histórico infinito?
+Pastas Gemini é a extensão de que precisa.
+
+Transforme a sua utilização do Gemini num verdadeiro espaço de trabalho estruturado, agrupando as suas melhores conversas por projetos, temas ou categorias. Fim do tempo perdido a fazer scroll para encontrar um chat antigo!
+
+💡 Porque é melhor do que simples marcadores (bookmarks)?
+Ao contrário dos marcadores clássicos que acabam por entulhar o seu navegador, o Pastas Gemini oferece-lhe uma interface de gestão dedicada, isolada e sobreposta diretamente na sua janela do Gemini.
+E para as suas deslocações? A extensão integra agora uma "ponte" móvel silenciosa: uma opção que cria uma única pasta espelho nos seus marcadores para lhe permitir consultar as suas conversas no seu telemóvel!
+
+🌟 FUNCIONALIDADES PRINCIPAIS
+⚡ Guardar Rápido (Clique Direito e Atalhos): Guarde a conversa através de um simples clique direito, ou utilize o atalho de teclado (Ctrl+Shift+S ou Cmd+Shift+S no Mac) para a enviar instantaneamente para "⚡ Guardados Rápidos"!
+☑️ Seleção Múltipla (Bulk Actions): Selecione várias conversas com caixas de verificação para as mover ou eliminar num só clique.
+📑 Grupos de separadores (Tab Groups): Abra toda uma pasta num clique num grupo de separadores nativo e colorido do Chrome.
+😃 Emojis personalizados: Comece o nome da sua pasta com um emoji (ex: "💻 Código") para substituir o ícone de pasta predefinido.
+🖱️ Drag & Drop (Arraste e Solte): Reorganize o seu espaço de trabalho de forma intuitiva.
+📱 Sincronização Móvel: Aceda às suas conversas em qualquer lugar! Um simples interruptor gera uma pasta inteligente nos seus marcadores do Chrome, reproduzindo perfeitamente a sua árvore de pastas e a sua ordem de ordenação personalizada no seu smartphone.
+🗜️ Compressão ultraeficiente: Comprime automaticamente os seus dados (LZString) para maximizar o armazenamento nativo do Chrome e guardar centenas de chats com segurança.
+📊 Rastreador de armazenamento: Uma barra de progresso visual indica o seu espaço na nuvem disponível em tempo real.
+📁 Pastas à medida e Fixados: Classifique as suas conversas e fixe (📌) os seus favoritos no topo da lista com uma ordenação inteligente.
+⇅ Ordenação Personalizada: Ordene as suas pastas e conversas em tempo real (Mais recentes, Mais antigas, De A a Z) com reflexo direto na sincronização móvel.
+🤖 Deteção Inteligente e Pesquisa: Preenchimento automático do título exato da sua conversa e barra de pesquisa instantânea.
+☁️ Sincronização na Nuvem e Backup: Encontre a sua organização em todos os seus computadores e exporte os seus dados em JSON.
+🎨 Design "Material 3" e Multilingue: Interface ultracompacta com novas caixas de diálogo à medida, que se adapta perfeitamente ao modo escuro e suporta agora 16 idiomas globais!
+
+🛠️ COMO FUNCIONA?
+Abra uma conversa importante em gemini.google.com.
+Guardar expresso: Utilize Ctrl+Shift+S, ou clique com o botão direito na página > "Guardar no Pastas Gemini".
+Através da extensão: Clique no ícone, escolha uma pasta e guarde!
+Para o Telemóvel: Marque o ícone 📱 no rodapé para enviar as suas pastas para o seu telefone.
+Marque as caixas para ações em grupo, abra as suas pastas em separadores (📑) e utilize arrastar e soltar para reorganizar!
+
+🔒 PRIVACIDADE E SEGURANÇA
+Concebida com a privacidade no centro do seu funcionamento. Solicita acesso apenas ao Gemini e lê o separador ativo apenas no momento de guardar. Requer a permissão "Marcadores" (bookmarks) apenas para gerar a sua pasta de sincronização móvel (se a ativar). Armazenamento localizado via Chrome Sync: sem servidores de terceiros, sem telemetria.
+
+🤝 PROJETO CÓDIGO ABERTO
+Pastas Gemini é um projeto de código aberto desenvolvido com paixão. A transparência e o respeito pela sua privacidade são as nossas prioridades. É programador ou simplesmente curioso? Venha consultar o nosso código, seguir o histórico de atualizações ou contribuir para o projeto (ligação clicável diretamente na extensão) no GitHub: https://github.com/dlamarre-dev/GeminiFolders
+
+📢 ATUALIZAÇÕES:
+Versão 3.3 (Design Premium & Internacional): Novas caixas de diálogo Material 3 100% à medida (adeus aos alertas nativos!), sincronização móvel baseada na sua ordem de ordenação, interface depurada e expansão global com a adição de 10 novos idiomas!
+Versão 3.2 (Telemóvel & Código Aberto): Sincronização móvel inteligente através dos marcadores do Chrome, ordenação inteligente das suas pastas fixadas, rodapé ultracompacto e transição oficial para Código Aberto com ligação do GitHub integrada!
+Versão 3.1 (Melhorias de UX): Estabilização do Drag & Drop, caixas de verificação adaptadas ao modo escuro, bloqueio inteligente da interface durante ações em grupo e alinhamento perfeito no Mac!
+Versão 3.0 (Atualização de Produtividade): Adição de atalhos de teclado, seleção múltipla (caixas de verificação), grupos de separadores, emojis personalizados, compressão de dados e barra de armazenamento!
+Versão 2.1 (Atualização mundial): 🌍 Pastas Gemini está agora totalmente localizado em espanhol, português do Brasil, alemão e japonês, além de francês e inglês!
+Versão 2.0.2 (Melhorias de UX): Memorização inteligente de pastas abertas/fechadas, marcas visuais (📁/🗂️) para pastas cheias e vazias, e pequenas correções.
+Versão 2.0.1: Correção de um problema de recuperação de título em certos navegadores.
+Versão 2.0: Grande reformulação adicionando Drag & Drop, menu contextual, ordenação personalizada, fixação e o novo design Material 3.

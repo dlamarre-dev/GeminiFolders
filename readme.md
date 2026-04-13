@@ -8,12 +8,12 @@
 
 ## ✨ Features
 
-* 📱 **Mobile Sync (Bookmarks Bridge):** Access your conversations on the go! Toggle the mobile sync to create a smart, one-way synced folder in your Chrome Bookmarks. It perfectly mirrors your extension's layout (Pinned folders > Quick Saves > A-Z) right on your phone.
+* 📱 **Mobile Sync (Bookmarks Bridge):** Access your conversations on the go! Toggle the mobile sync to create a smart, one-way synced folder in your Chrome Bookmarks. It perfectly mirrors your extension's layout and **your custom sort order** right on your phone.
 * ⚡ **Quick Save (Context Menu & Shortcuts):** Save the current conversation directly to any folder using the right-click menu, or use the global keyboard shortcut (`Ctrl+Shift+S` or `Cmd+Shift+S` on Mac) to instantly send it to a "⚡ Quick Saves" folder!
 * ☑️ **Bulk Actions (Multi-Select):** Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
 * 📑 **Tab Groups Integration:** Open an entire folder of conversations with a single click. They will automatically open in a native, color-coded Chrome Tab Group for ultimate project management.
 * 😃 **Custom Folder Emojis:** Start your folder name with an emoji (e.g., "💻 Code" or "🌍 Travel") and the extension will automatically use it as the folder's icon instead of the default one.
-* ⇅ **Custom Sorting:** Sort your saved conversations on the fly by Newest, Oldest, or Alphabetically (A-Z) using the dedicated dropdown menu.
+* ⇅ **Custom Sorting:** Sort your folders and saved conversations on the fly by Newest, Oldest, or Alphabetically (A-Z) using the dedicated dropdown menu, **with changes reflecting instantly in your mobile sync**.
 * 🖱️ **Drag & Drop:** Easily move saved conversations between folders to reorganize your workspace intuitively.
 * 🗜️ **Ultra-Efficient Compression:** Automatically compresses your synced data using LZString, maximizing Chrome's native storage capacity so you can save hundreds of conversations securely.
 * 📊 **Storage Tracker:** A sleek visual progress bar keeps you informed of your available cloud storage capacity in real-time, complete with detailed tooltips.
@@ -24,7 +24,7 @@
 * 🔍 **Instant Search:** Find any conversation quickly with a real-time search bar.
 * ☁️ **Cloud Sync:** Uses native `chrome.storage.sync` to keep your folders synchronized across all devices connected to your Google account.
 * 💾 **Import / Export:** Easily backup and restore your folder structure (including pinned folders) via JSON files.
-* 🌍 **Multilingual & Adaptive:** Automatically detects your browser language (supports English, French, Spanish, Brazilian Portuguese, German, and Japanese) and matches your system's Dark/Light mode.
+* 🌍 **Multilingual & Adaptive:** Automatically detects your browser language (now supporting **16 languages** worldwide!) and matches your system's Dark/Light mode.
 * 🤝 **Open Source:** Fully transparent code with a dynamic GitHub version link integrated right into the extension's footer.
 
 ## 🚀 Installation

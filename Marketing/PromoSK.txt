@@ -1,0 +1,46 @@
+Používate Google Gemini denne na prácu, programovanie, výskum alebo tvorbu, ale neustále strácate svoje dôležité výzvy (prompty) v nekonečnej histórii?
+Priečinky Gemini (Gemini Folders) je rozšírenie, ktoré potrebujete.
+
+Premeňte svoje používanie Gemini na skutočne štruktúrovaný pracovný priestor zoskupením najlepších konverzácií podľa projektov, tém alebo kategórií. Koniec strácania času rolovaním pri hľadaní starého chatu!
+
+💡 Prečo je to lepšie ako obyčajné záložky (bookmarks)?
+Na rozdiel od klasických záložiek, ktoré nakoniec zahltia váš prehliadač, vám Priečinky Gemini ponúkajú vyhradené, izolované rozhranie pre správu prekrývajúce priamo okno Gemini.
+A čo na cestách? Rozšírenie teraz obsahuje tichý mobilný „most“: možnosť, ktorá vytvorí jediný zrkadlový priečinok vo vašich záložkách, aby ste si mohli prezerať konverzácie na svojom telefóne!
+
+🌟 HLAVNÉ FUNKCIE
+⚡ Rýchle uloženie (Pravé tlačidlo a skratky): Uložte konverzáciu jednoduchým kliknutím pravým tlačidlom myši, alebo použite klávesovú skratku (Ctrl+Shift+S alebo Cmd+Shift+S na Macu) a odošlite ju okamžite do „⚡ Rýchle uloženie“!
+☑️ Viacnásobný výber (Bulk Actions): Vyberte viacero konverzácií pomocou zaškrtávacích políčok a presuňte ich alebo ich vymažte jedným kliknutím.
+📑 Skupiny kariet (Tab Groups): Otvorte celý priečinok jedným kliknutím v natívnej, farebnej skupine kariet Chrome.
+😃 Vlastné Emojis: Začnite názov priečinka emotikonom (napr. „💻 Kód“), aby ste nahradili predvolenú ikonu priečinka.
+🖱️ Drag & Drop (Potiahnuť a pustiť): Intuitívne preorganizujte svoj pracovný priestor.
+📱 Mobilná synchronizácia: Získajte prístup k svojim konverzáciám aj na cestách! Jednoduchý prepínač vygeneruje šikovný priečinok vo vašich záložkách Chrome, ktorý na vašom smartfóne dokonale replikuje štruktúru vašich priečinkov a vaše vlastné poradie triedenia.
+🗜️ Ultra-efektívna kompresia: Automaticky komprimuje vaše dáta (LZString), aby sa maximalizovalo natívne úložisko Chrome a bezpečne sa uložili stovky chatov.
+📊 Sledovanie úložiska: Vizuálny ukazovateľ priebehu vám v reálnom čase ukazuje dostupné miesto v cloude.
+📁 Vlastné priečinky a Pripínanie: Roztrieďte svoje konverzácie a pripnite (📌) svoje obľúbené položky na začiatok zoznamu pomocou inteligentného triedenia.
+⇅ Vlastné triedenie: Zoraďte svoje priečinky a konverzácie za behu (Najnovšie, Najstaršie, Od A po Z) s priamym dopadom na mobilnú synchronizáciu.
+🤖 Inteligentná detekcia a vyhľadávanie: Automatické predvyplnenie presného názvu vašej konverzácie a okamžitý vyhľadávací panel.
+☁️ Cloud synchronizácia a záloha: Nájdite svoju organizáciu na všetkých svojich počítačoch a exportujte svoje dáta vo formáte JSON.
+🎨 Dizajn „Material 3“ a viacjazyčnosť: Ultrakompaktné rozhranie vybavené úplne novými dialógovými oknami na mieru, ktoré sa dokonale prispôsobí tmavému režimu a teraz podporuje 16 svetových jazykov!
+
+🛠️ AKO TO FUNGUJE?
+Otvorte dôležitú konverzáciu na gemini.google.com.
+Expresné uloženie: Použite Ctrl+Shift+S alebo kliknite pravým tlačidlom na stránku > „Uložiť do Priečinkov Gemini“.
+Cez rozšírenie: Kliknite na ikonu, vyberte priečinok a uložte!
+Pre mobil: Zaškrtnite ikonu 📱 v pätičke a odošlite svoje priečinky do telefónu.
+Zaškrtnite políčka pre hromadné akcie, otvorte svoje priečinky na kartách (📑) a na preorganizovanie použite potiahnutie a pustenie!
+
+🔒 SÚKROMIE A BEZPEČNOSŤ
+Navrhnuté so súkromím v srdci svojho fungovania. Vyžaduje iba prístup k Gemini a aktívnu kartu číta iba v momente ukladania. Vyžaduje oprávnenie „Záložky“ (bookmarks) výlučne na generovanie vášho mobilného synchronizačného priečinka (ak ho aktivujete). Lokalizované úložisko cez Chrome Sync: žiadne servery tretích strán, žiadna telemetria.
+
+🤝 OPEN SOURCE PROJEKT
+Priečinky Gemini je open source projekt vyvíjaný s vášňou. Transparentnosť a rešpekt k vášmu súkromiu sú našou prioritou. Ste vývojár alebo len zvedavý? Príďte sa pozrieť na náš kód, sledujte históriu aktualizácií alebo prispejte do projektu (klikací odkaz priamo v rozšírení) na GitHube: https://github.com/dlamarre-dev/GeminiFolders
+
+📢 AKTUALIZÁCIE:
+Verzia 3.3 (Prémiový a medzinárodný dizajn): Nové dialógové okná Material 3 vytvorené 100% na mieru (zbohom natívne upozornenia!), mobilná synchronizácia prispôsobená vášmu poradiu triedenia, čistejšie rozhranie a celosvetová expanzia s pridaním 10 nových jazykov!
+Verzia 3.2 (Mobilné & Open Source): Šikovná mobilná synchronizácia prostredníctvom záložiek Chrome, inteligentné triedenie pripnutých priečinkov, ultrakompaktná pätička a oficiálny prechod na Open Source s integrovaným odkazom na GitHub!
+Verzia 3.1 (Vylepšenia UX): Stabilizácia Drag & Drop, zaškrtávacie políčka prispôsobené tmavému režimu, inteligentné zamykanie rozhrania počas hromadných akcií a dokonalé zarovnanie na Macu!
+Verzia 3.0 (Aktualizácia produktivity): Pridané klávesové skratky, viacnásobný výber (zaškrtávacie políčka), skupiny kariet, vlastné emotikony, kompresia dát a panel úložiska!
+Verzia 2.1 (Globálna aktualizácia): 🌍 Priečinky Gemini sú teraz okrem francúzštiny a angličtiny plne lokalizované do španielčiny, brazílskej portugalčiny, nemčiny a japončiny!
+Verzia 2.0.2 (Vylepšenia UX): Inteligentné ukladanie otvorených/zatvorených priečinkov do pamäte, vizuálne značky (📁/🗂️) pre plné a prázdne priečinky a drobné opravy.
+Verzia 2.0.1: Opravený problém so získavaním názvu v niektorých prehliadačoch.
+Verzia 2.0: Zásadné prepracovanie s pridaním funkcie Drag & Drop, kontextového menu, vlastného triedenia, pripínania a nového dizajnu Material 3.

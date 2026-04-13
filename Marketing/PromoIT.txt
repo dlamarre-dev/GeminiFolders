@@ -1,0 +1,46 @@
+Usi Google Gemini tutti i giorni per lavoro, per programmare, per fare ricerche o creare, ma perdi costantemente i tuoi prompt importanti in una cronologia infinita?
+Gemini Folders è l'estensione che fa per te.
+
+Trasforma il tuo uso di Gemini in un vero e proprio spazio di lavoro strutturato raggruppando le tue migliori conversazioni per progetti, temi o categorie. Niente più tempo perso a scorrere per trovare una vecchia chat!
+
+💡 Perché è meglio dei semplici preferiti (segnalibri)?
+A differenza dei classici segnalibri che finiscono per ingombrare il tuo browser, Gemini Folders ti offre un'interfaccia di gestione dedicata, isolata e sovrapposta direttamente alla tua finestra Gemini.
+E quando sei in movimento? L'estensione integra ora un "ponte" mobile silenzioso: un'opzione che crea un'unica cartella specchio nei tuoi preferiti per permetterti di consultare le tue conversazioni sul tuo telefono!
+
+🌟 FUNZIONALITÀ PRINCIPALI
+⚡ Salvataggio Rapido (Clic destro e Scorciatoie): Salva la conversazione tramite un semplice clic destro, oppure usa la scorciatoia da tastiera (Ctrl+Shift+S o Cmd+Shift+S su Mac) per inviarla istantaneamente a "⚡ Salvataggi Rapidi"!
+☑️ Selezione Multipla (Bulk Actions): Seleziona più conversazioni con le caselle di controllo per spostarle o eliminarle in un solo clic.
+📑 Gruppi di schede (Tab Groups): Apri un'intera cartella in un clic in un gruppo di schede Chrome nativo e colorato.
+😃 Emoji personalizzati: Inizia il nome della tua cartella con un'emoji (es: "💻 Codice") per sostituire l'icona predefinita della cartella.
+🖱️ Drag & Drop (Trascina e Rilascia): Riorganizza il tuo spazio di lavoro in modo intuitivo.
+📱 Sincronizzazione Mobile: Accedi alle tue conversazioni ovunque tu sia! Un semplice interruttore genera una cartella intelligente nei tuoi preferiti di Chrome, replicando perfettamente la struttura delle cartelle e il tuo ordine di ordinamento personalizzato sul tuo smartphone.
+🗜️ Compressione ultra-efficiente: Comprime automaticamente i tuoi dati (LZString) per massimizzare l'archiviazione nativa di Chrome e salvare in sicurezza centinaia di chat.
+📊 Tracker di archiviazione: Una barra di avanzamento visiva ti mostra il tuo spazio cloud disponibile in tempo reale.
+📁 Cartelle su misura e Pin: Classifica le tue conversazioni e fissa (📌) i tuoi preferiti in cima alla lista con un ordinamento intelligente.
+⇅ Ordinamento Personalizzato: Ordina le tue cartelle e conversazioni al volo (Più recenti, Più vecchi, Dalla A alla Z) con ripercussione diretta sulla sincronizzazione mobile.
+🤖 Rilevamento Intelligente e Ricerca: Precompilazione automatica del titolo esatto della tua conversazione e barra di ricerca istantanea.
+☁️ Sincronizzazione Cloud e Backup: Ritrova la tua organizzazione su tutti i tuoi computer ed esporta i tuoi dati in JSON.
+🎨 Design "Material 3" e Multilingue: Interfaccia ultra-compatta dotata di finestre di dialogo su misura completamente nuove, che si adatta perfettamente alla modalità scura e supporta ora 16 lingue mondiali!
+
+🛠️ COME FUNZIONA?
+Apri una conversazione importante su gemini.google.com.
+Salvataggio express: Usa Ctrl+Shift+S, o fai clic destro sulla pagina > "Salva in Gemini Folders".
+Tramite l'estensione: Clicca sull'icona, scegli una cartella e salva!
+Per il Mobile: Spunta l'icona 📱 nel piè di pagina per inviare le tue cartelle al tuo telefono.
+Spunta le caselle per azioni di gruppo, apri le tue cartelle in schede (📑) e usa il drag and drop per riorganizzare!
+
+🔒 PRIVACY E SICUREZZA
+Progettata con la privacy al centro del suo funzionamento. Richiede l'accesso solo a Gemini e legge la scheda attiva solo al momento del salvataggio. Richiede l'autorizzazione "Preferiti" (bookmarks) esclusivamente per generare la cartella di sincronizzazione mobile (se la attivi). Archiviazione localizzata tramite Chrome Sync: nessun server di terze parti, nessuna telemetria.
+
+🤝 PROGETTO OPEN SOURCE
+Gemini Folders è un progetto open source sviluppato con passione. La trasparenza e il rispetto della tua privacy sono le nostre priorità. Sei uno sviluppatore o semplicemente curioso? Vieni a consultare il nostro codice, seguire la cronologia degli aggiornamenti o contribuire al progetto (link cliccabile direttamente nell'estensione) su GitHub: https://github.com/dlamarre-dev/GeminiFolders
+
+📢 AGGIORNAMENTI:
+Versione 3.3 (Design Premium & Internazionale): Nuove finestre di dialogo Material 3 personalizzate al 100% (addio agli avvisi nativi!), sincronizzazione mobile basata sul tuo ordine di visualizzazione, interfaccia raffinata ed espansione globale con l'aggiunta di 10 nuove lingue!
+Versione 3.2 (Mobile & Open Source): Sincronizzazione mobile intelligente tramite i preferiti di Chrome, ordinamento intelligente delle tue cartelle fissate, piè di pagina ultra-compatto e passaggio ufficiale all'Open Source con link GitHub integrato!
+Versione 3.1 (Miglioramenti UX): Stabilizzazione del Drag & Drop, caselle di controllo adattate alla modalità scura, blocco intelligente dell'interfaccia durante le azioni di gruppo e allineamento perfetto su Mac!
+Versione 3.0 (Aggiornamento Produttività): Aggiunta di scorciatoie da tastiera, selezione multipla (caselle di controllo), gruppi di schede, emoji personalizzati, compressione dei dati e barra di archiviazione!
+Versione 2.1 (Aggiornamento globale): 🌍 Gemini Folders è ora completamente localizzato in spagnolo, portoghese brasiliano, tedesco e giapponese, oltre al francese e all'inglese!
+Versione 2.0.2 (Miglioramenti UX): Memorizzazione intelligente delle cartelle aperte/chiuse, indicatori visivi (📁/🗂️) per cartelle piene e vuote, e correzioni minori.
+Versione 2.0.1: Correzione di un problema di recupero del titolo su alcuni browser.
+Versione 2.0: Importante restyling che aggiunge Drag & Drop, menu contestuale, ordinamento personalizzato, fissaggio e nuovo design Material 3.
