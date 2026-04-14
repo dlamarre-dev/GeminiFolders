@@ -27,7 +27,7 @@
   "btnUnpin": { "message": "ピン留め解除" },
   "sortNewest": { "message": "新しい順" },
   "sortOldest": { "message": "古い順" },
-  "sortAlpha": { "message": "A から Z" },
+  "sortAlpha": { "message": "名前順" },
   "ctxMenuSave": { "message": "Gemini フォルダに保存" },
   "ctxMenuNoFolder": { "message": "(フォルダなし - 拡張機能を開く)" },
   "btnToggleAdd": { "message": "会話を追加" },
