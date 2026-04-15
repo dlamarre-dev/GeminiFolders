@@ -27,7 +27,7 @@
   "btnUnpin": { "message": "고정 해제" },
   "sortNewest": { "message": "최신순" },
   "sortOldest": { "message": "오래된순" },
-  "sortAlpha": { "message": "A에서 Z까지" },
+  "sortAlpha": { "message": "가나다순" },
   "ctxMenuSave": { "message": "Gemini 폴더에 저장" },
   "ctxMenuNoFolder": { "message": "(폴더 없음 - 확장 프로그램 열기)" },
   "btnToggleAdd": { "message": "대화 추가" },

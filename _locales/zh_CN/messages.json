@@ -27,7 +27,7 @@
   "btnUnpin": { "message": "取消置顶" },
   "sortNewest": { "message": "最新" },
   "sortOldest": { "message": "最旧" },
-  "sortAlpha": { "message": "按字母顺序" },
+  "sortAlpha": { "message": "按名称排序" },
   "ctxMenuSave": { "message": "保存到 Gemini 文件夹" },
   "ctxMenuNoFolder": { "message": "(没有文件夹 - 打开扩展程序)" },
   "btnToggleAdd": { "message": "添加对话" },

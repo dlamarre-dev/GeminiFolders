@@ -27,7 +27,7 @@
   "btnUnpin": { "message": "अनपिन करें" },
   "sortNewest": { "message": "सबसे नया" },
   "sortOldest": { "message": "सबसे पुराना" },
-  "sortAlpha": { "message": "A से Z" },
+  "sortAlpha": { "message": "नाम के अनुसार" },
   "ctxMenuSave": { "message": "Gemini फ़ोल्डर्स में सहेजें" },
   "ctxMenuNoFolder": { "message": "(कोई फ़ोल्डर नहीं - एक्सटेंशन खोलें)" },
   "btnToggleAdd": { "message": "बातचीत जोड़ें" },
