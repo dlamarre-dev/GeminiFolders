@@ -363,7 +363,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (typeof openFoldersArg === 'string') openFolders = [openFoldersArg];
     else if (Array.isArray(openFoldersArg)) openFolders = openFoldersArg;
     loadData({ folders: {}, pinnedFolders: [], sortPref: 'dateAsc', openFolders: [] }, (data) => {
-      folderList.innerHTML = "";
+      folderList.textContent = "";
       const folders = data.folders;
       const pinnedFolders = data.pinnedFolders;
       const sortPref = data.sortPref;
@@ -480,13 +480,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         // If there is a custom emoji we use it, otherwise default.
         const folderIcon = customIcon ? customIcon : (isEmpty ? '📁' : '🗂️');
 
-        leftPart.innerHTML = `<span class="folder-icon">${folderIcon}</span><div class="folder-name">${displayName}</div>`;
+        leftPart.textContent = '';
+        const iconSpan = document.createElement('span');
+        iconSpan.className = 'folder-icon';
+        iconSpan.textContent = folderIcon;
+        const nameDiv = document.createElement('div');
+        nameDiv.className = 'folder-name';
+        nameDiv.textContent = displayName;
+        leftPart.append(iconSpan, nameDiv);
 
         const actionsDiv = document.createElement('div');
 
         const pinBtn = document.createElement('button');
         pinBtn.className = `action-btn pin-btn ${isPinned ? 'is-pinned' : ''}`;
-        pinBtn.innerHTML = isPinned ? '📌' : '📍';
+        pinBtn.textContent = isPinned ? '📌' : '📍';
         pinBtn.title = chrome.i18n.getMessage(isPinned ? "btnUnpin" : "btnPin");
         pinBtn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -497,7 +504,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (!isEmpty) {
           const openGroupBtn = document.createElement('button');
           openGroupBtn.className = 'action-btn open-group-btn';
-          openGroupBtn.innerHTML = '📑';
+          openGroupBtn.textContent = '📑';
           openGroupBtn.title = chrome.i18n.getMessage("btnOpenGroup") || "Open in Tab Group";
           openGroupBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -508,7 +515,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const editFolderBtn = document.createElement('button');
         editFolderBtn.className = 'action-btn edit-btn';
-        editFolderBtn.innerHTML = '✏️';
+        editFolderBtn.textContent = '✏️';
         editFolderBtn.title = chrome.i18n.getMessage("btnRenameFolder");
         editFolderBtn.addEventListener('click', (e) => {
           e.stopPropagation();
@@ -518,7 +525,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         const delFolderBtn = document.createElement('button');
         delFolderBtn.className = 'action-btn delete-btn';
-        delFolderBtn.innerHTML = '🗑️';
+        delFolderBtn.textContent = '🗑️';
         delFolderBtn.title = chrome.i18n.getMessage("btnDeleteFolder");
         delFolderBtn.addEventListener('click', async (e) => {
           e.stopPropagation();
@@ -648,7 +655,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           const editBtn = document.createElement('button');
           editBtn.className = 'action-btn edit-btn';
-          editBtn.innerHTML = '✏️';
+          editBtn.textContent = '✏️';
           editBtn.title = chrome.i18n.getMessage("btnRename");
           editBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -658,7 +665,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
           const delBtn = document.createElement('button');
           delBtn.className = 'action-btn delete-btn';
-          delBtn.innerHTML = '🗑️';
+          delBtn.textContent = '🗑️';
           delBtn.title = chrome.i18n.getMessage("btnDelete");
           delBtn.addEventListener('click', (e) => {
             e.stopPropagation();
@@ -954,7 +961,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       // Refresh folder list
       loadData({ folders: {} }, (data) => {
-        bulkMoveSelect.innerHTML = `<option value="" disabled selected>${chrome.i18n.getMessage("bulkMove") || "Move to..."}</option>`;
+
+        const defaultOption = document.createElement('option');
+        defaultOption.value = "";
+        defaultOption.disabled = true;
+        defaultOption.selected = true;
+        defaultOption.textContent = chrome.i18n.getMessage("bulkMove") || "Move to...";
+        bulkMoveSelect.textContent = '';
+        bulkMoveSelect.appendChild(defaultOption);
+
         Object.keys(data.folders).sort().forEach(folder => {
           // Détection d'émoji pour ajouter le dossier par défaut si besoin
           const emojiRegex = /^((?:\p{Emoji_Presentation}|\p{Extended_Pictographic})\uFE0F?)\s*/u;
@@ -970,7 +985,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     } else {
       bulkActionBar.style.display = 'none';
       document.body.classList.remove('bulk-active');
-      bulkMoveSelect.innerHTML = ''; // Cleanup
+      bulkMoveSelect.replaceChildren();
     }
   }
 
