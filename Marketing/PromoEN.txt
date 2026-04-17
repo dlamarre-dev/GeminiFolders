@@ -36,6 +36,7 @@ Designed with privacy at the heart of its operation. It only requests access to 
 Gemini Folders is an open-source project developed with passion. Transparency and respect for your privacy are our priorities. Are you a developer or simply curious? Come check out our code, follow the update history, or contribute to the project (clickable link directly in the extension) on GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
 📢 UPDATES:
+Version 3.4.1 (Cross-Platform Power & Stability): Hello Firefox users! We've successfully ported the extension to Mozilla with a brand-new automated build system and strict security compliance. Plus, we've deployed an indestructible lock system to permanently fix the annoying duplicate bookmark folder bug during mobile sync.
 Version 3.3 (Premium & International Design): New 100% custom Material 3 dialog boxes (goodbye native alerts!), mobile sync mapped to your sort order, refined interface, and global expansion with the addition of 10 new languages!
 Version 3.2 (Mobile & Open Source): Clever mobile sync via Chrome bookmarks, smart sorting of your pinned folders, ultra-compact footer, and official transition to Open Source with integrated GitHub link!
 Version 3.1 (UX Improvements): Stabilization of Drag & Drop, checkboxes adapted to dark mode, smart locking of the interface during bulk actions, and perfect alignment on Mac!
