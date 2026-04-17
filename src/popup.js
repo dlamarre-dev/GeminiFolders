@@ -274,8 +274,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   });
 
   // 3. Import (Updated for backward compatibility)
-  importBtn.addEventListener('click', () => {
-    importFile.click();
+  importBtn.addEventListener('click', (e) => {
+    if (navigator.userAgent.includes("Firefox")) {
+        e.preventDefault();
+        chrome.tabs.create({ url: chrome.runtime.getURL("import.html") });
+    } else {
+        importFile.click();
+    }
   });
 
   importFile.addEventListener('change', (event) => {

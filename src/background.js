@@ -1,4 +1,6 @@
-importScripts('lz-string.min.js', 'utils.js');
+if (typeof importScripts === 'function') {
+  importScripts('lz-string.min.js', 'utils.js');
+}
 // 1. Function to rebuild the context menu
 function updateContextMenu() {
   chrome.contextMenus.removeAll(() => {
