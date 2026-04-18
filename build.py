@@ -32,7 +32,7 @@ def build_chrome(version):
         if os.path.exists(file_path):
             os.remove(file_path)
 
-    # --- Traitement Marketing Chrome ---
+    # --- Marketing processing for Chrome ---
     if os.path.exists(MARKETING_DIR):
         print("📸 Copying marketing assets for Chrome...")
         shutil.copytree(MARKETING_DIR, os.path.join(DIST_DIR, "marketing_chrome"))

@@ -1062,6 +1062,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('reviewTitleTxt').textContent = chrome.i18n.getMessage("reviewTitle") || "⭐ Are you enjoying Gemini Folders?";
   document.getElementById('reviewMessageTxt').textContent = chrome.i18n.getMessage("reviewMessage") || "Your support helps this open-source project immensely!";
   document.getElementById('btnReviewRate').textContent = chrome.i18n.getMessage("reviewRateBtn") || "Rate 5 stars";
+  if (btnReviewRate && navigator.userAgent.toLowerCase().includes('firefox')) {
+    btnReviewRate.href = "https://addons.mozilla.org/firefox/addon/gemini_folders/reviews/";
+  }
   document.getElementById('btnReviewLater').textContent = chrome.i18n.getMessage("reviewLaterBtn") || "Maybe later";
   document.getElementById('btnReviewNo').textContent = chrome.i18n.getMessage("reviewNoBtn") || "No thanks";
 
