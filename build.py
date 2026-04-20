@@ -2,6 +2,7 @@ import os
 import shutil
 import json
 import zipfile
+import re
 
 # --- CONFIGURATION ---
 SRC_DIR = "src"
@@ -102,7 +103,7 @@ def build_firefox(version):
                             val["message"] = val["message"].replace("Chrome", "Firefox")
                             modified = True
                         # Shortcut replacement
-                        old_shortcuts = ["Ctrl+Shift+S", "Cmd+Shift+S", "Command+Shift+S", "⌘+Shift+S"]
+                        old_shortcuts = ["Ctrl+Shift+S", "Cmd+Shift+S", "Command+Shift+S", "⌘+Shift+S", "Strg+Shift+S"]
                         for shortcut in old_shortcuts:
                             if shortcut in val["message"]:
                                 val["message"] = val["message"].replace(shortcut, "Alt+Shift+S")
@@ -130,11 +131,17 @@ def build_firefox(version):
                     if "Chrome" in content:
                         content = content.replace("Chrome", "Firefox")
                         modified = True
-                    old_shortcuts = ["Ctrl+Shift+S", "Cmd+Shift+S", "Command+Shift+S", "⌘+Shift+S"]
+                    old_shortcuts = ["Ctrl+Shift+S", "Cmd+Shift+S", "Command+Shift+S", "⌘+Shift+S", "Strg+Shift+S"]
                     for shortcut in old_shortcuts:
                         if shortcut in content:
                             content = content.replace(shortcut, "Alt+Shift+S")
                             modified = True
+
+                    pattern = r"([\(（])[^\)）]*(?:Alt\+Shift\+S[^\)）]*Mac|Mac[^\)）]*Alt\+Shift\+S)[^\)）]*([\)）])"
+                    new_content = re.sub(pattern, r"\g<1>Alt+Shift+S\g<2>", content, flags=re.IGNORECASE)
+                    if new_content != content:
+                        content = new_content
+                        modified = True
 
                     if modified:
                         with open(file_path, "w", encoding="utf-8") as f:
