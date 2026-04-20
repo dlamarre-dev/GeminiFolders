@@ -50,11 +50,14 @@ function saveData(dataToSave, callback) {
   chrome.storage.sync.set(finalSave, () => {
       chrome.storage.sync.get(['syncBookmarksEnabled', 'foldersDataCompressed', 'pinnedFolders', 'sortPref'], (syncData) => {
         if (syncData.syncBookmarksEnabled && syncData.foldersDataCompressed) {
-          const folders = JSON.parse(LZString.decompressFromUTF16(syncData.foldersDataCompressed));
-          const pinned = syncData.pinnedFolders || []; // Safety fallback if it's empty
-          const sortPref = syncData.sortPref || 'dateAsc'; // Fallback
-
-          syncToBookmarksTree(folders, pinned, sortPref);
+          try {
+            const folders = JSON.parse(LZString.decompressFromUTF16(syncData.foldersDataCompressed));
+            const pinned = syncData.pinnedFolders || []; // Safety fallback if it's empty
+            const sortPref = syncData.sortPref || 'dateAsc'; // Fallback
+            syncToBookmarksTree(folders, pinned, sortPref);
+          } catch (e) {
+            console.error("Bookmark sync skipped — decompression error:", e);
+          }
         }
       });
 
