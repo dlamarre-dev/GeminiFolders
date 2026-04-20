@@ -78,8 +78,8 @@ def build_firefox(version):
             if "suggested_key" in cmd_info:
                 keys = cmd_info["suggested_key"]
                 for platform in ["default", "windows", "chromeos", "linux", "mac"]:
-                    if platform in keys and "Ctrl+Shift+S" in keys[platform]:
-                        keys[platform] = keys[platform].replace("Ctrl+Shift+S", "Alt+Shift+S")
+                    if platform in keys:
+                        keys[platform] = "Alt+Shift+S"
 
     with open(manifest_firefox_path, "w", encoding="utf-8") as f:
         json.dump(manifest, f, indent=2, ensure_ascii=False)
@@ -101,10 +101,12 @@ def build_firefox(version):
                         if "Chrome" in val["message"]:
                             val["message"] = val["message"].replace("Chrome", "Firefox")
                             modified = True
-                        # Remplacement du raccourci
-                        if "Ctrl+Shift+S" in val["message"]:
-                            val["message"] = val["message"].replace("Ctrl+Shift+S", "Alt+Shift+S")
-                            modified = True
+                        # Shortcut replacement
+                        old_shortcuts = ["Ctrl+Shift+S", "Cmd+Shift+S", "Command+Shift+S", "⌘+Shift+S"]
+                        for shortcut in old_shortcuts:
+                            if shortcut in val["message"]:
+                                val["message"] = val["message"].replace(shortcut, "Alt+Shift+S")
+                                modified = True
 
                 if modified:
                     with open(msg_path, "w", encoding="utf-8") as f:
@@ -128,9 +130,11 @@ def build_firefox(version):
                     if "Chrome" in content:
                         content = content.replace("Chrome", "Firefox")
                         modified = True
-                    if "Ctrl+Shift+S" in content:
-                        content = content.replace("Ctrl+Shift+S", "Alt+Shift+S")
-                        modified = True
+                    old_shortcuts = ["Ctrl+Shift+S", "Cmd+Shift+S", "Command+Shift+S", "⌘+Shift+S"]
+                    for shortcut in old_shortcuts:
+                        if shortcut in content:
+                            content = content.replace(shortcut, "Alt+Shift+S")
+                            modified = True
 
                     if modified:
                         with open(file_path, "w", encoding="utf-8") as f:
