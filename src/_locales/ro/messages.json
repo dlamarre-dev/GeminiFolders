@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "Nu, mulțumesc" },
   "modalBtnCancel": { "message": "Anulează" },
   "modalBtnConfirm": { "message": "Confirmă" },
-  "emojiTipPlaceholder": { "message": "Sfat: Începeți cu un emoji (Win+. / ⌘⌃Spațiu)" }
+  "emojiTipPlaceholder": { "message": "Sfat: Începeți cu un emoji (Win+. / ⌘⌃Spațiu)" },
+  "toastAlreadySaved": { "message": "⚠️ Deja salvat!" }
 }

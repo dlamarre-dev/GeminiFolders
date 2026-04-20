@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "Nein danke" },
   "modalBtnCancel": { "message": "Abbrechen" },
   "modalBtnConfirm": { "message": "Bestätigen" },
-  "emojiTipPlaceholder": { "message": "Tipp: Emoji zuerst (Win+. / ⌘⌃Leertaste)" }
+  "emojiTipPlaceholder": { "message": "Tipp: Emoji zuerst (Win+. / ⌘⌃Leertaste)" },
+  "toastAlreadySaved": { "message": "⚠️ Bereits gespeichert!" }
 }

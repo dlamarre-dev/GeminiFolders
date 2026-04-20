@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "不，谢谢" },
   "modalBtnCancel": { "message": "取消" },
   "modalBtnConfirm": { "message": "确认" },
-  "emojiTipPlaceholder": { "message": "提示：以表情符号开头 (Win+. / ⌘⌃空格键)" }
+  "emojiTipPlaceholder": { "message": "提示：以表情符号开头 (Win+. / ⌘⌃空格键)" },
+  "toastAlreadySaved": { "message": "⚠️ 已保存！" }
 }

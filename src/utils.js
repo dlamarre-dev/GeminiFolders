@@ -1,31 +1,43 @@
 // utils.js
 
-// Replaces chrome.storage.sync.get
 function loadData(defaults, callback) {
-  const keysToGet = { ...defaults };
-  if ('folders' in defaults) {
-    keysToGet.foldersDataCompressed = null; // We request the compressed key
-  }
+  chrome.storage.sync.get(null, (result) => {
+    let finalData = Object.assign({}, defaults);
 
-  chrome.storage.sync.get(keysToGet, (data) => {
-    if ('folders' in defaults) {
-      if (data.foldersDataCompressed) {
-        // Case 1: Compressed data found
-        data.folders = JSON.parse(LZString.decompressFromUTF16(data.foldersDataCompressed));
-      } else if (data.folders && Object.keys(data.folders).length > 0) {
-        // Case 2: Silent migration (legacy data)
-        saveData({ folders: data.folders });
-      } else {
-        // Case 3: Empty
-        data.folders = defaults.folders;
+    if (result) {
+      for (let key in result) {
+        if (key !== 'folders' && key !== 'foldersDataCompressed') {
+          finalData[key] = result[key];
+        }
       }
-      delete data.foldersDataCompressed; // Clean up before passing to the rest of the app
+
+      const rawFoldersData = result.foldersDataCompressed || result.folders;
+
+      if (rawFoldersData) {
+        if (typeof rawFoldersData === 'string') {
+          try {
+            const decompressed = LZString.decompressFromUTF16(rawFoldersData);
+            if (decompressed === null) throw new Error("LZString returned null.");
+
+            finalData.folders = JSON.parse(decompressed);
+
+            if (typeof finalData.folders !== 'object' || finalData.folders === null) {
+                throw new Error("Parsed JSON is not an object");
+            }
+          } catch (error) {
+            console.error("🚨 Critical error upon decompression:", error);
+            finalData.folders = defaults.folders || {};
+          }
+        } else {
+          finalData.folders = rawFoldersData;
+        }
+      }
     }
-    callback(data);
+
+    callback(finalData);
   });
 }
 
-// Replaces chrome.storage.sync.set
 function saveData(dataToSave, callback) {
   const finalSave = { ...dataToSave };
 
@@ -158,4 +170,98 @@ async function syncToBookmarksTree(folders, pinnedFolders = [], sortPref = 'date
   } finally {
     isSyncingToBookmarks = false;
   }
+}
+
+function extractGeminiTitleLogic(defaultFallback) {
+  // Plan A: Official title at the top of the page
+  const topTitle = document.querySelector('[data-test-id="conversation-title"]');
+  if (topTitle && topTitle.textContent) {
+    let text = topTitle.textContent.trim();
+    if (text.length > 0) return text;
+  }
+
+  // Plan B: Sidebar menu (if Plan A fails or UI changes)
+  const currentPath = window.location.pathname;
+  if (currentPath && currentPath.includes("/app/")) {
+    const links = document.querySelectorAll(`a[href="${currentPath}"]`);
+    for (let link of links) {
+      let text = link.textContent.trim();
+      if (text && text.length > 1) return text.split('\n')[0].trim();
+    }
+  }
+
+  // Plan C: Tab title
+  let docTitle = document.title || "";
+  let cleanTitle = docTitle.split(' - ')[0].trim();
+  const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
+  if (!ignoreList.includes(cleanTitle.toLowerCase())) return cleanTitle;
+
+  // Plan D: User's first message
+  const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
+  if (firstMsg && firstMsg.textContent) {
+    let excerpt = firstMsg.textContent.trim();
+    return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
+  }
+
+  return defaultFallback;
+}
+
+function normalizeUrl(rawUrl) {
+  try {
+    const urlObj = new URL(rawUrl);
+    return urlObj.origin + urlObj.pathname;
+  } catch (error) {
+    // Security Fallback
+    return rawUrl.split('?')[0].split('#')[0];
+  }
+}
+
+function mergeImportData(importedData) {
+  return new Promise((resolve, reject) => {
+    if (typeof importedData !== 'object' || importedData === null) {
+      return reject(new Error("Invalid Format"));
+    }
+
+    loadData({ folders: {}, pinnedFolders: [] }, (data) => {
+      let currentFolders = data.folders || {};
+      let currentPinned = data.pinnedFolders || [];
+
+      // --- BACKWARD COMPATIBILITY MANAGEMENT ---
+      let foldersToImport = {};
+      let pinsToImport = [];
+
+      if (importedData.folders) {
+        foldersToImport = importedData.folders;
+        if (Array.isArray(importedData.pinnedFolders)) {
+          pinsToImport = importedData.pinnedFolders;
+        }
+      } else {
+        foldersToImport = importedData;
+      }
+
+      // 1. Merge folders and conversations
+      for (const [folderName, chats] of Object.entries(foldersToImport)) {
+        if (!currentFolders[folderName]) currentFolders[folderName] = [];
+        chats.forEach(importedChat => {
+          if (importedChat.title && importedChat.url) {
+            const cleanTargetUrl = normalizeUrl(importedChat.url);
+            const isDuplicate = currentFolders[folderName].some(chat => normalizeUrl(chat.url) === cleanTargetUrl);
+            if (!isDuplicate) currentFolders[folderName].push(importedChat);
+          }
+        });
+      }
+
+      // 2. Merge pins (without creating duplicates)
+      pinsToImport.forEach(pin => {
+        if (!currentPinned.includes(pin) && currentFolders[pin]) {
+          currentPinned.push(pin);
+        }
+      });
+
+      // Final save
+      saveData({ folders: currentFolders, pinnedFolders: currentPinned }, () => {
+        resolve(); // Termine la promesse avec succès
+      });
+    });
+  });
 }

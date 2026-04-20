@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "नहीं, धन्यवाद" },
   "modalBtnCancel": { "message": "रद्द करें" },
   "modalBtnConfirm": { "message": "पुष्टि करें" },
-  "emojiTipPlaceholder": { "message": "टिप: इमोजी से शुरू करें (Win+. / ⌘⌃Space)" }
+  "emojiTipPlaceholder": { "message": "टिप: इमोजी से शुरू करें (Win+. / ⌘⌃Space)" },
+  "toastAlreadySaved": { "message": "⚠️ पहले से सहेजा गया!" }
 }

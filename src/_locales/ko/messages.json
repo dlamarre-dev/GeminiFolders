@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "괜찮습니다" },
   "modalBtnCancel": { "message": "취소" },
   "modalBtnConfirm": { "message": "확인" },
-  "emojiTipPlaceholder": { "message": "팁: 이모지로 시작 (Win+. / ⌘⌃스페이스)" }
+  "emojiTipPlaceholder": { "message": "팁: 이모지로 시작 (Win+. / ⌘⌃스페이스)" },
+  "toastAlreadySaved": { "message": "⚠️ 이미 저장되었습니다!" }
 }

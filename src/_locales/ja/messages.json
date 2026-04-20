@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "いいえ、結構です" },
   "modalBtnCancel": { "message": "キャンセル" },
   "modalBtnConfirm": { "message": "確認" },
-  "emojiTipPlaceholder": { "message": "ヒント：絵文字で開始（Win+. / ⌘⌃スペース）" }
+  "emojiTipPlaceholder": { "message": "ヒント：絵文字で開始（Win+. / ⌘⌃スペース）" },
+  "toastAlreadySaved": { "message": "⚠️ 保存済みです！" }
 }

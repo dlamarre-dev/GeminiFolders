@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "No, gracias" },
   "modalBtnCancel": { "message": "Cancelar" },
   "modalBtnConfirm": { "message": "Confirmar" },
-  "emojiTipPlaceholder": { "message": "Tip: Inicia con emoji (Win+. / ⌘⌃Espacio)" }
+  "emojiTipPlaceholder": { "message": "Tip: Inicia con emoji (Win+. / ⌘⌃Espacio)" },
+  "toastAlreadySaved": { "message": "⚠️ ¡Ya guardado!" }
 }

@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "Ne, děkuji" },
   "modalBtnCancel": { "message": "Zrušit" },
   "modalBtnConfirm": { "message": "Potvrdit" },
-  "emojiTipPlaceholder": { "message": "Tip: Začněte s emoji (Win+. / ⌘⌃Mezerník)" }
+  "emojiTipPlaceholder": { "message": "Tip: Začněte s emoji (Win+. / ⌘⌃Mezerník)" },
+  "toastAlreadySaved": { "message": "⚠️ Již uloženo!" }
 }

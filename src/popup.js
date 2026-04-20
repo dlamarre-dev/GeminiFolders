@@ -153,53 +153,19 @@ document.addEventListener('DOMContentLoaded', async () => {
   // Smart title pre-filling
   let [currentTab] = await chrome.tabs.query({ active: true, currentWindow: true });
 
-  if (currentTab && currentTab.url.includes("gemini.google.com")) {
+  if (currentTab && currentTab.url && currentTab.url.includes("gemini.google.com")) {
     chrome.scripting.executeScript({
       target: { tabId: currentTab.id },
-      func: () => {
-      // Plan A: Official title at the top of the page (Ultra robust)
-        const topTitle = document.querySelector('[data-test-id="conversation-title"]');
-        if (topTitle && topTitle.textContent) {
-          let text = topTitle.textContent.trim();
-          if (text.length > 0) return text;
-        }
-
-        // Plan B: Sidebar menu (if Plan A fails or UI changes)
-        const currentPath = window.location.pathname;
-        if (currentPath && currentPath.includes("/app/")) {
-          const links = document.querySelectorAll(`a[href="${currentPath}"]`);
-          for (let link of links) {
-            let text = link.textContent.trim();
-            if (text && text.length > 1) return text.split('\n')[0].trim();
-          }
-        }
-
-        // Plan C: Tab title
-        let docTitle = document.title || "";
-        let cleanTitle = docTitle.split(' - ')[0].trim();
-        const ignoreList = ["gemini", "google gemini", "discussions", "chats", "nouvelle conversation", "new conversation", "new chat", ""];
-        if (!ignoreList.includes(cleanTitle.toLowerCase())) {
-            return cleanTitle;
-        }
-
-        // Plan D: User's first message
-        const firstMsg = document.querySelector('[data-message-author-role="user"], user-query, message-content, .query-text');
-        if (firstMsg && firstMsg.textContent) {
-          let excerpt = firstMsg.textContent.trim();
-          return excerpt.length > 40 ? excerpt.substring(0, 40) + "..." : excerpt;
-        }
-
-        return null;
-      }
+      args: [null],
+      func: extractGeminiTitleLogic
     }, (injectionResults) => {
       if (injectionResults && injectionResults[0] && injectionResults[0].result) {
         chatTitleInput.value = injectionResults[0].result;
       } else {
-        chatTitleInput.value = chrome.i18n.getMessage("defaultTitle");
+        chatTitleInput.value = chrome.i18n.getMessage("defaultTitle") || "New conversation";
       }
     });
   }
-
   // Initialize display
   displayFolders();
 
@@ -228,7 +194,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       let folders = data.folders;
       if (!folders[folderName]) folders[folderName] = [];
 
-      const isDuplicate = folders[folderName].some(chat => chat.url === chatUrl);
+      const cleanTargetUrl = normalizeUrl(chatUrl);
+      const isDuplicate = folders[folderName].some(chat => normalizeUrl(chat.url) === cleanTargetUrl);
       if (!isDuplicate) {
         folders[folderName].push({
           title: finalChatTitle,
@@ -291,61 +258,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     reader.onload = async (e) => {
       try {
         const importedData = JSON.parse(e.target.result);
-        if (typeof importedData !== 'object' || importedData === null) {
-          throw new Error("Invalid Format");
-        }
 
-        loadData({ folders: {}, pinnedFolders: [] }, (data) => {
-          let currentFolders = data.folders;
-          let currentPinned = data.pinnedFolders;
+        await mergeImportData(importedData);
 
-          // --- BACKWARD COMPATIBILITY MANAGEMENT ---
-          let foldersToImport = {};
-          let pinsToImport = [];
 
-          // If JSON contains a "folders" key, it's the new format (v2.0)
-          if (importedData.folders) {
-            foldersToImport = importedData.folders;
-            if (Array.isArray(importedData.pinnedFolders)) {
-              pinsToImport = importedData.pinnedFolders;
-            }
-          } else {
-            // Otherwise, it's the old format (v1.2) where the whole object is the folder list
-            foldersToImport = importedData;
-          }
-          // ----------------------------------------
-
-          // 1. Merge folders and conversations
-          for (const [folderName, chats] of Object.entries(foldersToImport)) {
-            if (!currentFolders[folderName]) currentFolders[folderName] = [];
-            chats.forEach(importedChat => {
-              if (importedChat.title && importedChat.url) {
-                const isDuplicate = currentFolders[folderName].some(chat => chat.url === importedChat.url);
-                if (!isDuplicate) currentFolders[folderName].push(importedChat);
-              }
-            });
-          }
-
-          // 2. Merge pins (without creating duplicates)
-          pinsToImport.forEach(pin => {
-            // Check that the pin isn't already present AND that the folder exists
-            if (!currentPinned.includes(pin) && currentFolders[pin]) {
-              currentPinned.push(pin);
-            }
-          });
-
-          // Final save
-          saveData({ folders: currentFolders, pinnedFolders: currentPinned }, async () => {
-            await showCustomModal({
-                title: chrome.i18n.getMessage("alertImportSuccess") || "Import successful! Your data has been merged successfully.",
-                type: 'alert'
-              });
-            importFile.value = "";
-            displayFolders();
-          });
+        await showCustomModal({
+          title: chrome.i18n.getMessage("alertImportSuccess") || "Import successful! Your data has been merged successfully.",
+          type: 'alert'
         });
+        importFile.value = "";
+        displayFolders();
 
       } catch (error) {
+        console.error("Erreur d'importation :", error);
         await showCustomModal({
           title: chrome.i18n.getMessage("alertImportError") || "Import error. Make sure it's a valid JSON file generated by this extension.",
           type: 'alert'
@@ -406,6 +331,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
       sortedFolderNames.forEach((folderName) => {
         let chats = folders[folderName];
+
+        if (!chats || !Array.isArray(chats)) return;
 
         chats.sort((a, b) => {
           const timeA = a.timestamp || 0;
@@ -741,7 +668,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (!folders[targetFolder]) folders[targetFolder] = [];
 
       // Prevent duplicates in target folder
-      const isDuplicate = folders[targetFolder].some(chat => chat.url === chatToMove.url);
+      const cleanTargetUrl = normalizeUrl(chatToMove.url);
+      const isDuplicate = folders[targetFolder].some(chat => normalizeUrl(chat.url) === cleanTargetUrl);
       if (!isDuplicate) {
         folders[targetFolder].push(chatToMove);
       }
@@ -1040,7 +968,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           folders[item.folder] = folders[item.folder].filter(c => c.url !== item.url);
         }
         // 2. Add to target folder (no duplicate)
-        const isDuplicate = folders[targetFolder].some(c => c.url === item.url);
+        const cleanTargetUrl = normalizeUrl(item.url);
+        const isDuplicate = folders[targetFolder].some(chat => normalizeUrl(chat.url) === cleanTargetUrl);
         if (!isDuplicate) {
           folders[targetFolder].push(item.chatObj);
         }
@@ -1061,7 +990,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const reviewBanner = document.getElementById('reviewBanner');
   document.getElementById('reviewTitleTxt').textContent = chrome.i18n.getMessage("reviewTitle") || "⭐ Are you enjoying Gemini Folders?";
   document.getElementById('reviewMessageTxt').textContent = chrome.i18n.getMessage("reviewMessage") || "Your support helps this open-source project immensely!";
-  document.getElementById('btnReviewRate').textContent = chrome.i18n.getMessage("reviewRateBtn") || "Rate 5 stars";
+  const btnReviewRate = document.getElementById('btnReviewRate');
+  btnReviewRate.textContent = chrome.i18n.getMessage("reviewRateBtn") || "Rate 5 stars";
   if (btnReviewRate && navigator.userAgent.toLowerCase().includes('firefox')) {
     btnReviewRate.href = "https://addons.mozilla.org/firefox/addon/gemini_folders/reviews/";
   }

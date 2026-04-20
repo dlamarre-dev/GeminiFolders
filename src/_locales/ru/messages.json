@@ -57,5 +57,6 @@
   "reviewNoBtn": { "message": "Нет, спасибо" },
   "modalBtnCancel": { "message": "Отмена" },
   "modalBtnConfirm": { "message": "ОК" },
-  "emojiTipPlaceholder": { "message": "Подсказка: Начните с эмодзи (Win+. / ⌘⌃Пробел)" }
+  "emojiTipPlaceholder": { "message": "Подсказка: Начните с эмодзи (Win+. / ⌘⌃Пробел)" },
+  "toastAlreadySaved": { "message": "⚠️ Уже сохранено!" }
 }
