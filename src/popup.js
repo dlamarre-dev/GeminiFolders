@@ -27,6 +27,260 @@ document.addEventListener('DOMContentLoaded', async () => {
   const toggleAddPanelBtn = document.getElementById('toggleAddPanelBtn');
   const addConversationPanel = document.getElementById('addConversationPanel');
 
+  // --- Prompt Mode Logic ---
+  const modeToggleBtn = document.getElementById('modeToggleBtn');
+  const folderModeContainer = document.getElementById('folderModeContainer');
+  const promptModeContainer = document.getElementById('promptModeContainer');
+
+  let currentMode = 'folder';
+  const syncBookmarksLabel = document.getElementById('syncBookmarksLabel');
+  const syncPromptsLabel = document.getElementById('syncPromptsLabel');
+
+  chrome.storage.local.get(['lastMode'], (data) => {
+    if (data.lastMode === 'prompt') {
+      currentMode = 'prompt';
+      folderModeContainer.style.display = 'none';
+      promptModeContainer.style.display = 'block';
+      if (syncBookmarksLabel) syncBookmarksLabel.style.display = 'none';
+      if (syncPromptsLabel) syncPromptsLabel.style.display = 'flex';
+      modeToggleBtn.textContent = '📁';
+      modeToggleBtn.title = chrome.i18n.getMessage("folderModeTitle") || 'Folder Mode';
+      displayPrompts();
+    }
+  });
+
+  modeToggleBtn.addEventListener('click', () => {
+    if (currentMode === 'folder') {
+      currentMode = 'prompt';
+      folderModeContainer.style.display = 'none';
+      promptModeContainer.style.display = 'block';
+      if (syncBookmarksLabel) syncBookmarksLabel.style.display = 'none';
+      if (syncPromptsLabel) syncPromptsLabel.style.display = 'flex';
+      modeToggleBtn.textContent = '📁';
+      modeToggleBtn.title = chrome.i18n.getMessage("folderModeTitle") || 'Folder Mode';
+      displayPrompts();
+    } else {
+      currentMode = 'folder';
+      promptModeContainer.style.display = 'none';
+      folderModeContainer.style.display = 'block';
+      if (syncPromptsLabel) syncPromptsLabel.style.display = 'none';
+      if (syncBookmarksLabel) syncBookmarksLabel.style.display = 'flex';
+      modeToggleBtn.textContent = '📝';
+      modeToggleBtn.title = chrome.i18n.getMessage("promptModeTitle") || 'Prompt Mode';
+    }
+    chrome.storage.local.set({ lastMode: currentMode });
+  });
+
+  const promptTitleInput = document.getElementById('promptTitle');
+  const promptTextInput = document.getElementById('promptText');
+  const savePromptBtn = document.getElementById('savePromptBtn');
+  const newGeminiConvBtn = document.getElementById('newGeminiConvBtn');
+  const setGemBtn = document.getElementById('setGemBtn');
+  const syncPromptsToggle = document.getElementById('syncPromptsToggle');
+  const promptListDiv = document.getElementById('promptList');
+  const promptStatusDiv = document.getElementById('promptStatus');
+
+  const useGemToggle = document.getElementById('useGemToggle');
+  let currentGemLink = '';
+
+  chrome.storage.sync.get(['syncPromptsEnabled', 'gemLink', 'useGemEnabled'], (data) => {
+    syncPromptsToggle.checked = !!data.syncPromptsEnabled;
+    useGemToggle.checked = !!data.useGemEnabled;
+    if (data.gemLink) {
+        currentGemLink = data.gemLink;
+    }
+  });
+
+  useGemToggle.addEventListener('change', (e) => {
+      chrome.storage.sync.set({ useGemEnabled: e.target.checked });
+  });
+
+  setGemBtn.addEventListener('click', async () => {
+      const link = await window.showCustomModal({
+          title: "Set custom Gem link:",
+          type: 'prompt',
+          defaultValue: currentGemLink,
+          placeholder: "https://gemini.google.com/g/..."
+      });
+      if (link !== null) {
+          const trimmedLink = link.trim();
+          if (trimmedLink !== "" && !trimmedLink.startsWith("https://gemini.google.com/")) {
+              await window.showCustomModal({
+                  title: "Invalid link. It must start with https://gemini.google.com/",
+                  type: 'alert'
+              });
+              return;
+          }
+          chrome.storage.sync.set({ gemLink: trimmedLink });
+          currentGemLink = trimmedLink;
+          if (trimmedLink) {
+              useGemToggle.checked = true;
+              chrome.storage.sync.set({ useGemEnabled: true });
+          }
+      }
+  });
+
+  syncPromptsToggle.addEventListener('change', (e) => {
+      const isEnabled = e.target.checked;
+      loadData({ prompts: {} }, (data) => {
+          saveData({ prompts: data.prompts, syncPromptsEnabled: isEnabled }, () => {
+              setTimeout(() => {
+                  chrome.storage.sync.get(['syncPromptsEnabled'], (res) => {
+                      syncPromptsToggle.checked = !!res.syncPromptsEnabled;
+                  });
+              }, 500);
+          });
+      });
+  });
+
+  savePromptBtn.addEventListener('click', () => {
+      const title = promptTitleInput.value.trim() || 'Untitled Prompt';
+      const text = promptTextInput.value.trim();
+      if (!text) {
+         promptStatusDiv.textContent = 'Prompt cannot be empty!';
+         promptStatusDiv.style.color = 'red';
+         promptStatusDiv.style.display = 'block';
+         setTimeout(() => promptStatusDiv.style.display = 'none', 2000);
+         return;
+      }
+
+      loadData({ prompts: {} }, (data) => {
+          data.prompts[title] = { text: text, timestamp: Date.now() };
+          saveData({ prompts: data.prompts }, () => {
+              promptTitleInput.value = '';
+              promptTextInput.value = '';
+              promptStatusDiv.textContent = 'Prompt saved!';
+              promptStatusDiv.style.color = '#1e8e3e';
+              promptStatusDiv.style.display = 'block';
+              if (addPromptPanel) {
+                  addPromptPanel.style.display = 'none';
+                  if (toggleAddPromptPanelBtn) toggleAddPromptPanelBtn.textContent = "➕ Add Prompt";
+              }
+              setTimeout(() => promptStatusDiv.style.display = 'none', 2000);
+              displayPrompts();
+          });
+      });
+  });
+
+  newGeminiConvBtn.addEventListener('click', () => {
+      let url = 'https://gemini.google.com/app';
+      if (useGemToggle.checked && currentGemLink) {
+          url = currentGemLink;
+      }
+      chrome.tabs.create({ url: url });
+  });
+
+  function displayPrompts() {
+      loadData({ prompts: {}, openPrompts: [] }, (data) => {
+          promptListDiv.innerHTML = '';
+          const prompts = data.prompts;
+          const openPrompts = data.openPrompts;
+          const titles = Object.keys(prompts).sort((a, b) => prompts[b].timestamp - prompts[a].timestamp);
+          
+          if (titles.length === 0) {
+              promptListDiv.innerHTML = '<div style="text-align: center; color: var(--muted-text); font-size: 13px;">No prompts saved yet.</div>';
+              return;
+          }
+
+          titles.forEach(title => {
+              const p = prompts[title];
+              const item = document.createElement('div');
+              item.className = 'prompt-item folder'; // Borrowing .folder for base styling if desired, but we have .prompt-item
+
+              const header = document.createElement('div');
+              header.className = 'prompt-header folder-header'; // Borrowing .folder-header for hover effects and cursor
+              header.style.cursor = 'pointer';
+
+              const titleEl = document.createElement('div');
+              titleEl.className = 'prompt-title folder-name';
+              
+              // Folder icon emulation for prompts
+              const iconSpan = document.createElement('span');
+              iconSpan.className = 'folder-icon';
+              iconSpan.textContent = '📝';
+              
+              const titleText = document.createElement('span');
+              titleText.textContent = title;
+              
+              titleEl.appendChild(iconSpan);
+              titleEl.appendChild(titleText);
+
+              const actions = document.createElement('div');
+              actions.className = 'prompt-actions';
+
+              const copyBtn = document.createElement('button');
+              copyBtn.className = 'action-btn';
+              copyBtn.textContent = '📋';
+              copyBtn.title = 'Copy';
+              copyBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(p.text);
+                  copyBtn.textContent = '✅';
+                  setTimeout(() => copyBtn.textContent = '📋', 1500);
+              });
+
+              const deleteBtn = document.createElement('button');
+              deleteBtn.className = 'action-btn delete-btn';
+              deleteBtn.textContent = '🗑️';
+              deleteBtn.title = 'Delete';
+              deleteBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  loadData({ prompts: {} }, (data) => {
+                      delete data.prompts[title];
+                      saveData({ prompts: data.prompts }, () => {
+                          displayPrompts();
+                      });
+                  });
+              });
+
+              actions.appendChild(copyBtn);
+              actions.appendChild(deleteBtn);
+              header.appendChild(titleEl);
+              header.appendChild(actions);
+
+              const textEl = document.createElement('div');
+              textEl.className = 'prompt-text-display folder-content';
+              textEl.textContent = p.text;
+              
+              let isPromptOpen = openPrompts.includes(title);
+              textEl.style.display = isPromptOpen ? 'block' : 'none';
+
+              header.addEventListener('click', () => {
+                  const isCurrentlyOpen = textEl.style.display === 'block';
+                  textEl.style.display = isCurrentlyOpen ? 'none' : 'block';
+
+                  loadData({ openPrompts: [] }, (storageData) => {
+                      let currentOpen = storageData.openPrompts;
+                      if (isCurrentlyOpen) {
+                          currentOpen = currentOpen.filter(name => name !== title);
+                      } else {
+                          if (!currentOpen.includes(title)) currentOpen.push(title);
+                      }
+                      saveData({ openPrompts: currentOpen });
+                  });
+              });
+
+              item.appendChild(header);
+              item.appendChild(textEl);
+              promptListDiv.appendChild(item);
+          });
+      });
+  }
+  
+  window.displayPrompts = displayPrompts;
+
+  const toggleAddPromptPanelBtn = document.getElementById('toggleAddPromptPanelBtn');
+  const addPromptPanel = document.getElementById('addPromptPanel');
+  if (toggleAddPromptPanelBtn && addPromptPanel) {
+      toggleAddPromptPanelBtn.addEventListener('click', () => {
+          const isHidden = addPromptPanel.style.display === 'none';
+          addPromptPanel.style.display = isHidden ? 'block' : 'none';
+          toggleAddPromptPanelBtn.textContent = isHidden
+              ? "➖ Cancel"
+              : "➕ Add Prompt";
+      });
+  }
+
   toggleAddPanelBtn.addEventListener('click', () => {
     const isHidden = addConversationPanel.style.display === 'none';
     addConversationPanel.style.display = isHidden ? 'block' : 'none';
@@ -61,7 +315,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // --- MOBILE SYNC (BOOKMARKS) ---
   const syncBookmarksToggle = document.getElementById('syncBookmarksToggle');
-  const syncBookmarksLabel = document.getElementById('syncBookmarksLabel');
 
   syncBookmarksLabel.title = chrome.i18n.getMessage("syncBookmarksTooltip") || "Creates a synced folder in your Chrome bookmarks to access your conversations on your phone.";
 
@@ -220,10 +473,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 2. Export (Updated to include pins)
   exportBtn.addEventListener('click', async () => {
-      loadData({ folders: {}, pinnedFolders: [] }, async (data) => {
-        if (Object.keys(data.folders).length === 0) {
+      loadData({ folders: {}, pinnedFolders: [], prompts: {} }, async (data) => {
+        if (Object.keys(data.folders).length === 0 && Object.keys(data.prompts).length === 0) {
           await window.showCustomModal({
-            title: chrome.i18n.getMessage("alertEmptyExport") || "Your folders are empty, nothing to export!",
+            title: chrome.i18n.getMessage("alertEmptyExport") || "Your folders and prompts are empty, nothing to export!",
             type: 'alert'
           });
           return;
@@ -264,11 +517,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         await mergeImportData(importedData);
 
         await window.showCustomModal({
-          title: chrome.i18n.getMessage("alertImportSuccess") || "Import successful! Your data has been merged successfully.",
+          title: chrome.i18n.getMessage("alertImportSuccess") || "Import successful! Your folders and prompts have been merged successfully.",
           type: 'alert'
         });
         importFile.value = "";
         if (window.displayFolders) window.displayFolders();
+        if (window.displayPrompts) window.displayPrompts();
 
       } catch (error) {
         console.error("Erreur d'importation :", error);
