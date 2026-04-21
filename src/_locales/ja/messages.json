@@ -211,5 +211,12 @@
   },
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
-  }
+  },
+  "newConversationBtn": { "message": "新しい会話" },
+  "promptTitlePlaceholder": { "message": "プロンプトのタイトル" },
+  "promptTextPlaceholder": { "message": "プロンプトをここに入力..." },
+  "enableCustomGemTooltip": { "message": "カスタム Gem を有効にする" },
+  "setGemBtnTooltip": { "message": "カスタム Gem リンクを設定" },
+  "syncPromptsTooltip": { "message": "プロンプトを同期" },
+  "promptRenamePrompt": { "message": "プロンプトの新しい名前：" }
 }

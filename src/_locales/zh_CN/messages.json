@@ -211,5 +211,12 @@
   },
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
-  }
+  },
+  "newConversationBtn": { "message": "新对话" },
+  "promptTitlePlaceholder": { "message": "提示标题" },
+  "promptTextPlaceholder": { "message": "在此输入提示..." },
+  "enableCustomGemTooltip": { "message": "启用自定义 Gem" },
+  "setGemBtnTooltip": { "message": "设置自定义 Gem 链接" },
+  "syncPromptsTooltip": { "message": "同步提示" },
+  "promptRenamePrompt": { "message": "新提示名称:" }
 }

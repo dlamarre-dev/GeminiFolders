@@ -69,5 +69,12 @@
   "promptCopyTitle": { "message": "Copy" },
   "promptDeleteTitle": { "message": "Delete" },
   "promptSetGemLink": { "message": "Set custom Gem link:" },
-  "promptInvalidGemLink": { "message": "Invalid link. It must start with https://gemini.google.com/" }
+  "promptInvalidGemLink": { "message": "Invalid link. It must start with https://gemini.google.com/" },
+  "newConversationBtn": { "message": "New Conversation" },
+  "promptTitlePlaceholder": { "message": "Prompt Title" },
+  "promptTextPlaceholder": { "message": "Write your prompt here..." },
+  "enableCustomGemTooltip": { "message": "Enable custom Gem" },
+  "setGemBtnTooltip": { "message": "Set custom Gem link" },
+  "syncPromptsTooltip": { "message": "Sync prompts" },
+  "promptRenamePrompt": { "message": "New prompt name:" }
 }

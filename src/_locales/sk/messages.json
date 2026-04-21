@@ -211,5 +211,12 @@
   },
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
-  }
+  },
+  "newConversationBtn": { "message": "Nová konverzácia" },
+  "promptTitlePlaceholder": { "message": "Názov promptu" },
+  "promptTextPlaceholder": { "message": "Napíšte váš prompt tu..." },
+  "enableCustomGemTooltip": { "message": "Povoliť vlastný Gem" },
+  "setGemBtnTooltip": { "message": "Nastaviť vlastný odkaz Gem" },
+  "syncPromptsTooltip": { "message": "Synchronizovať prompty" },
+  "promptRenamePrompt": { "message": "Nový názov promptu:" }
 }

@@ -13,6 +13,14 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('sortNewest').textContent = chrome.i18n.getMessage("sortNewest");
   document.getElementById('sortOldest').textContent = chrome.i18n.getMessage("sortOldest");
   document.getElementById('sortAlpha').textContent = chrome.i18n.getMessage("sortAlpha");
+  document.getElementById('newGeminiConvBtn').textContent = chrome.i18n.getMessage("newConversationBtn") || "New Conversation";
+  document.getElementById('toggleAddPromptPanelBtn').textContent = "➕ " + (chrome.i18n.getMessage("promptAddBtn") || "Add Prompt");
+  document.getElementById('savePromptBtn').textContent = chrome.i18n.getMessage("saveBtn") || "Save";
+  document.getElementById('promptTitle').placeholder = chrome.i18n.getMessage("promptTitlePlaceholder") || "Prompt Title";
+  document.getElementById('promptText').placeholder = chrome.i18n.getMessage("promptTextPlaceholder") || "Write your prompt here...";
+  document.getElementById('useGemLabel').title = chrome.i18n.getMessage("enableCustomGemTooltip") || "Enable custom Gem";
+  document.getElementById('setGemBtn').title = chrome.i18n.getMessage("setGemBtnTooltip") || "Set custom Gem link";
+  document.getElementById('syncPromptsLabel').title = chrome.i18n.getMessage("syncPromptsTooltip") || "Sync prompts";
 
   const saveBtn = document.getElementById('saveBtn');
   const exportBtn = document.getElementById('exportBtn');
@@ -192,25 +200,14 @@ document.addEventListener('DOMContentLoaded', async () => {
           titles.forEach(title => {
               const p = prompts[title];
               const item = document.createElement('div');
-              item.className = 'prompt-item folder'; // Borrowing .folder for base styling if desired, but we have .prompt-item
+              item.className = 'prompt-item';
 
               const header = document.createElement('div');
-              header.className = 'prompt-header folder-header'; // Borrowing .folder-header for hover effects and cursor
-              header.style.cursor = 'pointer';
+              header.className = 'prompt-header';
 
               const titleEl = document.createElement('div');
-              titleEl.className = 'prompt-title folder-name';
-              
-              // Folder icon emulation for prompts
-              const iconSpan = document.createElement('span');
-              iconSpan.className = 'folder-icon';
-              iconSpan.textContent = '📝';
-              
-              const titleText = document.createElement('span');
-              titleText.textContent = title;
-              
-              titleEl.appendChild(iconSpan);
-              titleEl.appendChild(titleText);
+              titleEl.className = 'prompt-title';
+              titleEl.textContent = title;
 
               const actions = document.createElement('div');
               actions.className = 'prompt-actions';
@@ -221,9 +218,45 @@ document.addEventListener('DOMContentLoaded', async () => {
               copyBtn.title = chrome.i18n.getMessage("promptCopyTitle") || 'Copy';
               copyBtn.addEventListener('click', (e) => {
                   e.stopPropagation();
-                  navigator.clipboard.writeText(p.text);
+                  navigator.clipboard.writeText(textArea.value);
                   copyBtn.textContent = '✅';
                   setTimeout(() => copyBtn.textContent = '📋', 1500);
+              });
+
+              const renameBtn = document.createElement('button');
+              renameBtn.className = 'action-btn';
+              renameBtn.textContent = '✏️';
+              renameBtn.title = chrome.i18n.getMessage("btnRename") || 'Rename';
+              renameBtn.addEventListener('click', async (e) => {
+                  e.stopPropagation();
+                  const newTitle = await window.showCustomModal({
+                      title: chrome.i18n.getMessage("promptRenamePrompt") || "New prompt name:",
+                      type: 'prompt',
+                      defaultValue: title,
+                  });
+                  if (!newTitle || newTitle.trim() === '' || newTitle.trim() === title) return;
+                  const trimmed = newTitle.trim();
+                  loadData({ prompts: {}, openPrompts: [] }, (data) => {
+                      if (data.prompts[trimmed] && trimmed !== title) {
+                          window.showCustomModal({
+                              title: chrome.i18n.getMessage("promptDuplicateWarning") || "A prompt with this title already exists. Overwrite?",
+                              type: 'confirm',
+                          }).then(confirmed => {
+                              if (!confirmed) return;
+                              doRename(data, trimmed);
+                          });
+                      } else {
+                          doRename(data, trimmed);
+                      }
+                      function doRename(d, newName) {
+                          d.prompts[newName] = { ...d.prompts[title] };
+                          delete d.prompts[title];
+                          let open = d.openPrompts;
+                          const idx = open.indexOf(title);
+                          if (idx !== -1) { open[idx] = newName; }
+                          saveData({ prompts: d.prompts, openPrompts: open }, () => displayPrompts());
+                      }
+                  });
               });
 
               const deleteBtn = document.createElement('button');
@@ -241,20 +274,38 @@ document.addEventListener('DOMContentLoaded', async () => {
               });
 
               actions.appendChild(copyBtn);
+              actions.appendChild(renameBtn);
               actions.appendChild(deleteBtn);
               header.appendChild(titleEl);
               header.appendChild(actions);
 
-              const textEl = document.createElement('div');
-              textEl.className = 'prompt-text-display folder-content';
-              textEl.textContent = p.text;
-              
+              const textArea = document.createElement('textarea');
+              textArea.className = 'prompt-text-edit';
+              textArea.value = p.text;
+              textArea.setAttribute('writingsuggestions', 'false');
+              textArea.setAttribute('spellcheck', 'false');
+
+              let saveTimeout;
+              textArea.addEventListener('input', () => {
+                  clearTimeout(saveTimeout);
+                  saveTimeout = setTimeout(() => {
+                      loadData({ prompts: {} }, (data) => {
+                          if (data.prompts[title]) {
+                              data.prompts[title].text = textArea.value;
+                              saveData({ prompts: data.prompts });
+                          }
+                      });
+                  }, 600);
+              });
+
+              textArea.addEventListener('click', (e) => e.stopPropagation());
+
               let isPromptOpen = openPrompts.includes(title);
-              textEl.style.display = isPromptOpen ? 'block' : 'none';
+              textArea.style.display = isPromptOpen ? 'block' : 'none';
 
               header.addEventListener('click', () => {
-                  const isCurrentlyOpen = textEl.style.display === 'block';
-                  textEl.style.display = isCurrentlyOpen ? 'none' : 'block';
+                  const isCurrentlyOpen = textArea.style.display === 'block';
+                  textArea.style.display = isCurrentlyOpen ? 'none' : 'block';
 
                   loadData({ openPrompts: [] }, (storageData) => {
                       let currentOpen = storageData.openPrompts;
@@ -268,7 +319,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               });
 
               item.appendChild(header);
-              item.appendChild(textEl);
+              item.appendChild(textArea);
               promptListDiv.appendChild(item);
           });
       });

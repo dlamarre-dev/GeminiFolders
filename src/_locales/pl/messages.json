@@ -211,5 +211,12 @@
   },
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
-  }
+  },
+  "newConversationBtn": { "message": "Nowa konwersacja" },
+  "promptTitlePlaceholder": { "message": "Tytuł promptu" },
+  "promptTextPlaceholder": { "message": "Wpisz swój prompt tutaj..." },
+  "enableCustomGemTooltip": { "message": "Włącz niestandardowy Gem" },
+  "setGemBtnTooltip": { "message": "Ustaw niestandardowy link Gem" },
+  "syncPromptsTooltip": { "message": "Synchronizuj prompty" },
+  "promptRenamePrompt": { "message": "Nowa nazwa promptu:" }
 }

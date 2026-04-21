@@ -211,5 +211,12 @@
   },
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
-  }
+  },
+  "newConversationBtn": { "message": "Новая беседа" },
+  "promptTitlePlaceholder": { "message": "Название промпта" },
+  "promptTextPlaceholder": { "message": "Введите промпт здесь..." },
+  "enableCustomGemTooltip": { "message": "Включить персональный Gem" },
+  "setGemBtnTooltip": { "message": "Установить ссылку на Gem" },
+  "syncPromptsTooltip": { "message": "Синхронизировать промпты" },
+  "promptRenamePrompt": { "message": "Новое название промпта:" }
 }

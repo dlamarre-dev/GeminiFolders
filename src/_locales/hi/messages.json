@@ -211,5 +211,12 @@
   },
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
-  }
+  },
+  "newConversationBtn": { "message": "नई बातचीत" },
+  "promptTitlePlaceholder": { "message": "प्रॉम्प्ट शीर्षक" },
+  "promptTextPlaceholder": { "message": "अपना प्रॉम्प्ट यहाँ लिखें..." },
+  "enableCustomGemTooltip": { "message": "कस्टम Gem सक्षम करें" },
+  "setGemBtnTooltip": { "message": "कस्टम Gem लिंक सेट करें" },
+  "syncPromptsTooltip": { "message": "प्रॉम्प्ट्स सिंक करें" },
+  "promptRenamePrompt": { "message": "प्रॉम्प्ट का नया नाम:" }
 }
