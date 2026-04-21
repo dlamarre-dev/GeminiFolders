@@ -10,7 +10,9 @@
 ## ✨ Features
 
 * 📱 **Mobile Sync (Bookmarks Bridge):** Access your conversations on the go! Toggle the mobile sync to create a smart, one-way synced folder in your browser's bookmarks. It perfectly mirrors your extension's layout and **your custom sort order** right on your phone.
-* ⚡ **Quick Save (Context Menu & Shortcuts):** Save the current conversation directly to any folder using the right-click menu, or use the global keyboard shortcut (`Ctrl+Shift+S` for Chrome, `Alt+Shift+S` for Firefox, or `Cmd+Shift+S` on Mac) to instantly send it to a "⚡ Quick Saves" folder!
+* ⚡ **Quick Save (Context Menu & Shortcuts):** Save the current conversation directly to any folder using the right-click menu, or use the global keyboard shortcut (`Ctrl+Shift+S` or `Alt+Shift+S` on Firefox) to instantly send it to a "⚡ Quick Saves" folder. Includes smart visual alerts (toasts) to let you know if a conversation is already saved!
+* * 🛡️ **Bulletproof Database & Smart Deduplication:** Your database is shielded against corruption with a secure fallback architecture. Plus, our smart URL normalization ensures you never get false duplicates even if Gemini changes its URL parameters.
+* ☑️ **Bulk Actions (Multi-Select):** Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
 * ☑️ **Bulk Actions (Multi-Select):** Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
 * 📑 **Tab Groups Integration:** Open an entire folder of conversations with a single click. They will automatically open in native, color-coded browser Tab Groups (where supported) for ultimate project management.
 * 😃 **Custom Folder Emojis:** Start your folder name with an emoji (e.g., "💻 Code" or "🌍 Travel") and the extension will automatically use it as the folder's icon instead of the default one.
@@ -26,7 +28,7 @@
 * ☁️ **Cloud Sync:** Uses native `storage.sync` to keep your folders synchronized across all devices connected to your browser profile.
 * 💾 **Import / Export:** Easily backup and restore your folder structure (including pinned folders) via JSON files.
 * 🌍 **Multilingual & Adaptive:** Automatically detects your browser language (now supporting **16 languages** worldwide!) and matches your system's Dark/Light mode.
-* 🤝 **Open Source:** Fully transparent code with a dynamic GitHub version link integrated right into the extension's footer.
+* 🤝 **Open Source & Modular:** Fully transparent, refactored code with a clean, modular architecture (separated UI, data logic, and styling) making it easier than ever for the community to contribute. A dynamic GitHub version link is integrated right into the extension's footer.
 
 ## 🚀 Installation
 
@@ -53,7 +55,7 @@ If you want to test the code locally or contribute to the project, this extensio
 ## 🛠️ Usage
 
 1. Open a conversation on [gemini.google.com](https://gemini.google.com).
-2. **To save instantly:** Press the keyboard shortcut (`Ctrl+Shift+S` on Chrome, `Alt+Shift+S` on Firefox, or `Cmd+Shift+S` on Mac) to save to Quick Saves, or right-click anywhere on the page and hover over "Save to Gemini Folders".
+2. **To save instantly:** Press the keyboard shortcut (`Ctrl+Shift+S` on Chrome, `Alt+Shift+S` on Firefox) to save to Quick Saves, or right-click anywhere on the page and hover over "Save to Gemini Folders".
 3. **To save via the Extension:** Click the **Gemini Folders** icon in your toolbar. The title is automatically detected. Expand the add panel (➕), select or create a folder, and hit **Save**.
 4. **To sync with Mobile:** Click the `📱` toggle in the extension's footer to automatically mirror your folders in your browser's bookmarks.
 5. Drag and drop items, use checkboxes for bulk actions, open folders as Tab Groups (📑), or use the 📌 icon to pin your favorites!
@@ -68,8 +70,8 @@ This extension is built with privacy in mind.
 
 ## 💻 Built With
 
-* HTML5 / CSS3
-* Vanilla JavaScript
+* HTML5 / CSS3 (Separated Stylesheets)
+* Vanilla JavaScript (Modular Architecture: UI, Logic, Bulk Actions)
 * WebExtensions API (Manifest V3)
 * Service Workers / Event Pages (Background Scripts)
 * LZ-String (Data Compression)
