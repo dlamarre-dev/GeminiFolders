@@ -14,8 +14,8 @@
   "defaultFolder": { "message": "Général" },
   "defaultTitle": { "message": "Nouvelle conversation" },
   "promptRename": { "message": "Nouveau nom de la conversation :" },
-  "alertEmptyExport": { "message": "Vos dossiers sont vides, rien à exporter !" },
-  "alertImportSuccess": { "message": "Importation réussie ! Vos données ont été fusionnées avec succès." },
+  "alertEmptyExport": { "message": "Vos dossiers et prompts sont vides, rien à exporter !" },
+  "alertImportSuccess": { "message": "Importation réussie ! Vos dossiers et prompts ont été fusionnés avec succès." },
   "alertImportError": { "message": "Erreur lors de l'importation. Assurez-vous qu'il s'agit bien d'un fichier JSON valide généré par cette extension." },
   "btnRename": { "message": "Renommer" },
   "btnDelete": { "message": "Supprimer" },
@@ -58,5 +58,16 @@
   "modalBtnCancel": { "message": "Annuler" },
   "modalBtnConfirm": { "message": "Confirmer" },
   "emojiTipPlaceholder": { "message": "Astuce : Émoji au début (Win+. / ⌘⌃Espace)" },
-  "toastAlreadySaved": {"message": "⚠️ Déjà sauvegardé !"}
+  "toastAlreadySaved": { "message": "⚠️ Déjà sauvegardé !" },
+  "folderModeTitle": { "message": "Mode Dossiers" },
+  "promptModeTitle": { "message": "Mode Prompts" },
+  "promptCannotBeEmpty": { "message": "Le prompt ne peut pas être vide !" },
+  "promptSaved": { "message": "Prompt sauvegardé !" },
+  "promptDuplicateWarning": { "message": "Un prompt avec ce titre existe déjà. Écraser ?" },
+  "promptNoSavedYet": { "message": "Aucun prompt sauvegardé." },
+  "promptAddBtn": { "message": "Ajouter un prompt" },
+  "promptCopyTitle": { "message": "Copier" },
+  "promptDeleteTitle": { "message": "Supprimer" },
+  "promptSetGemLink": { "message": "Définir un lien Gem personnalisé :" },
+  "promptInvalidGemLink": { "message": "Lien invalide. Il doit commencer par https://gemini.google.com/" }
 }

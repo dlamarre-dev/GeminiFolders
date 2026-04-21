@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   setGemBtn.addEventListener('click', async () => {
       const link = await window.showCustomModal({
-          title: "Set custom Gem link:",
+          title: chrome.i18n.getMessage("promptSetGemLink") || "Set custom Gem link:",
           type: 'prompt',
           defaultValue: currentGemLink,
           placeholder: "https://gemini.google.com/g/..."
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           const trimmedLink = link.trim();
           if (trimmedLink !== "" && !trimmedLink.startsWith("https://gemini.google.com/")) {
               await window.showCustomModal({
-                  title: "Invalid link. It must start with https://gemini.google.com/",
+                  title: chrome.i18n.getMessage("promptInvalidGemLink") || "Invalid link. It must start with https://gemini.google.com/",
                   type: 'alert'
               });
               return;
@@ -133,28 +133,35 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
   });
 
-  savePromptBtn.addEventListener('click', () => {
+  savePromptBtn.addEventListener('click', async () => {
       const title = promptTitleInput.value.trim() || 'Untitled Prompt';
       const text = promptTextInput.value.trim();
       if (!text) {
-         promptStatusDiv.textContent = 'Prompt cannot be empty!';
+         promptStatusDiv.textContent = chrome.i18n.getMessage("promptCannotBeEmpty") || 'Prompt cannot be empty!';
          promptStatusDiv.style.color = 'red';
          promptStatusDiv.style.display = 'block';
          setTimeout(() => promptStatusDiv.style.display = 'none', 2000);
          return;
       }
 
-      loadData({ prompts: {} }, (data) => {
+      loadData({ prompts: {} }, async (data) => {
+          if (data.prompts[title]) {
+              const confirmed = await window.showCustomModal({
+                  title: chrome.i18n.getMessage("promptDuplicateWarning") || "A prompt with this title already exists. Overwrite?",
+                  type: 'confirm'
+              });
+              if (!confirmed) return;
+          }
           data.prompts[title] = { text: text, timestamp: Date.now() };
           saveData({ prompts: data.prompts }, () => {
               promptTitleInput.value = '';
               promptTextInput.value = '';
-              promptStatusDiv.textContent = 'Prompt saved!';
+              promptStatusDiv.textContent = chrome.i18n.getMessage("promptSaved") || 'Prompt saved!';
               promptStatusDiv.style.color = '#1e8e3e';
               promptStatusDiv.style.display = 'block';
               if (addPromptPanel) {
                   addPromptPanel.style.display = 'none';
-                  if (toggleAddPromptPanelBtn) toggleAddPromptPanelBtn.textContent = "➕ Add Prompt";
+                  if (toggleAddPromptPanelBtn) toggleAddPromptPanelBtn.textContent = "➕ " + (chrome.i18n.getMessage("promptAddBtn") || "Add Prompt");
               }
               setTimeout(() => promptStatusDiv.style.display = 'none', 2000);
               displayPrompts();
@@ -178,7 +185,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           const titles = Object.keys(prompts).sort((a, b) => prompts[b].timestamp - prompts[a].timestamp);
           
           if (titles.length === 0) {
-              promptListDiv.innerHTML = '<div style="text-align: center; color: var(--muted-text); font-size: 13px;">No prompts saved yet.</div>';
+              promptListDiv.innerHTML = `<div style="text-align: center; color: var(--muted-text); font-size: 13px;">${chrome.i18n.getMessage("promptNoSavedYet") || 'No prompts saved yet.'}</div>`;
               return;
           }
 
@@ -211,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               const copyBtn = document.createElement('button');
               copyBtn.className = 'action-btn';
               copyBtn.textContent = '📋';
-              copyBtn.title = 'Copy';
+              copyBtn.title = chrome.i18n.getMessage("promptCopyTitle") || 'Copy';
               copyBtn.addEventListener('click', (e) => {
                   e.stopPropagation();
                   navigator.clipboard.writeText(p.text);
@@ -222,7 +229,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               const deleteBtn = document.createElement('button');
               deleteBtn.className = 'action-btn delete-btn';
               deleteBtn.textContent = '🗑️';
-              deleteBtn.title = 'Delete';
+              deleteBtn.title = chrome.i18n.getMessage("promptDeleteTitle") || 'Delete';
               deleteBtn.addEventListener('click', (e) => {
                   e.stopPropagation();
                   loadData({ prompts: {} }, (data) => {
@@ -276,8 +283,8 @@ document.addEventListener('DOMContentLoaded', async () => {
           const isHidden = addPromptPanel.style.display === 'none';
           addPromptPanel.style.display = isHidden ? 'block' : 'none';
           toggleAddPromptPanelBtn.textContent = isHidden
-              ? "➖ Cancel"
-              : "➕ Add Prompt";
+              ? "➖ " + (chrome.i18n.getMessage("btnCancel") || "Cancel")
+              : "➕ " + (chrome.i18n.getMessage("promptAddBtn") || "Add Prompt");
       });
   }
 
