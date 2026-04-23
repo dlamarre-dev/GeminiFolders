@@ -13,7 +13,6 @@
 * ⚡ **Quick Save (Context Menu & Shortcuts):** Save the current conversation directly to any folder using the right-click menu, or use the global keyboard shortcut (`Ctrl+Shift+S` or `Alt+Shift+S` on Firefox) to instantly send it to a "⚡ Quick Saves" folder. Includes smart visual alerts (toasts) to let you know if a conversation is already saved!
 * 🛡️ **Bulletproof Database & Smart Deduplication:** Your database is shielded against corruption with a secure fallback architecture. Plus, our smart URL normalization ensures you never get false duplicates even if Gemini changes its URL parameters.
 * ☑️ **Bulk Actions (Multi-Select):** Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
-* ☑️ **Bulk Actions (Multi-Select):** Select multiple conversations at once using checkboxes to move or delete them in batches, saving you tons of clicks.
 * 📑 **Tab Groups Integration:** Open an entire folder of conversations with a single click. They will automatically open in native, color-coded browser Tab Groups (where supported) for ultimate project management.
 * 😃 **Custom Folder Emojis:** Start your folder name with an emoji (e.g., "💻 Code" or "🌍 Travel") and the extension will automatically use it as the folder's icon instead of the default one.
 * ⇅ **Custom Sorting:** Sort your folders and saved conversations on the fly by Newest, Oldest, or Alphabetically (A-Z) using the dedicated dropdown menu, **with changes reflecting instantly in your mobile sync**.
