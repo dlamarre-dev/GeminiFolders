@@ -58,6 +58,53 @@
       height: 18px; /* RÉDUIT (était 24px) */
     }
 
+    /* --- Mode Toggle Pill --- */
+    .mode-toggle {
+      position: relative;
+      display: flex;
+      background: var(--folder-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 3px;
+      flex-shrink: 0;
+    }
+    .mode-toggle-pill {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: calc(50% - 3px);
+      height: calc(100% - 6px);
+      background: var(--accent-color);
+      border-radius: 14px;
+      transition: transform 0.2s ease;
+      pointer-events: none;
+    }
+    .mode-toggle-pill.is-prompt {
+      transform: translateX(100%);
+    }
+    .mode-toggle-btn {
+      position: relative;
+      z-index: 1;
+      background: transparent;
+      border: none;
+      border-radius: 14px;
+      padding: 3px 10px;
+      font-size: 15px;
+      cursor: pointer;
+      color: var(--muted-text);
+      transition: color 0.2s ease;
+      line-height: 1;
+    }
+    .mode-toggle-btn--active {
+      color: #fff;
+    }
+
+    .gem-btn--active {
+      background: var(--accent-color) !important;
+      border-color: var(--accent-color) !important;
+      color: white !important;
+    }
+
     /* --- Inputs & Selects --- */
     input, select {
       width: 100%;
@@ -191,6 +238,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      color: var(--text-color);
     }
     .action-btn:hover { opacity: 1; background: var(--border-color); }
     .delete-btn:hover { color: var(--delete-color); } /* Removed the red background, it will be gray by default! */

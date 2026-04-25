@@ -11,6 +11,9 @@
   "searchPlaceholder": {
     "message": "🔍 Hľadať konverzáciu..."
   },
+  "promptSearchPlaceholder": {
+    "message": "🔍 Hľadať prompt..."
+  },
   "folderPlaceholder": {
     "message": "Názov priečinka (napr. Projekty Kód)"
   },
@@ -180,10 +183,10 @@
     "message": "⚠️ Už uložené!"
   },
   "folderModeTitle": {
-    "message": "Switch to Folder Mode"
+    "message": "Režim priečinkov"
   },
   "promptModeTitle": {
-    "message": "Switch to Prompt Mode"
+    "message": "Režim promptov"
   },
   "promptCannotBeEmpty": {
     "message": "Prompt cannot be empty!"
@@ -212,11 +215,25 @@
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
   },
-  "newConversationBtn": { "message": "Nová konverzácia" },
-  "promptTitlePlaceholder": { "message": "Názov promptu" },
-  "promptTextPlaceholder": { "message": "Napíšte váš prompt tu..." },
-  "enableCustomGemTooltip": { "message": "Povoliť vlastný Gem" },
-  "setGemBtnTooltip": { "message": "Nastaviť vlastný odkaz Gem" },
-  "syncPromptsTooltip": { "message": "Synchronizovať prompty" },
-  "promptRenamePrompt": { "message": "Nový názov promptu:" }
+  "newConversationBtn": {
+    "message": "Nová konverzácia"
+  },
+  "promptTitlePlaceholder": {
+    "message": "Názov promptu"
+  },
+  "promptTextPlaceholder": {
+    "message": "Napíšte váš prompt tu..."
+  },
+  "enableCustomGemTooltip": {
+    "message": "Povoliť vlastný Gem"
+  },
+  "setGemBtnTooltip": {
+    "message": "Nastaviť vlastný odkaz Gem"
+  },
+  "syncPromptsTooltip": {
+    "message": "Synchronizovať prompty"
+  },
+  "promptRenamePrompt": {
+    "message": "Nový názov promptu:"
+  }
 }

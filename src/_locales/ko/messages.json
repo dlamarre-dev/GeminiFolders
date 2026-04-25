@@ -11,6 +11,9 @@
   "searchPlaceholder": {
     "message": "🔍 대화 검색..."
   },
+  "promptSearchPlaceholder": {
+    "message": "🔍 프롬프트 검색..."
+  },
   "folderPlaceholder": {
     "message": "폴더 이름 (예: 코딩 프로젝트)"
   },
@@ -180,10 +183,10 @@
     "message": "⚠️ 이미 저장되었습니다!"
   },
   "folderModeTitle": {
-    "message": "Switch to Folder Mode"
+    "message": "폴더 모드"
   },
   "promptModeTitle": {
-    "message": "Switch to Prompt Mode"
+    "message": "프롬프트 모드"
   },
   "promptCannotBeEmpty": {
     "message": "Prompt cannot be empty!"
@@ -212,11 +215,25 @@
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
   },
-  "newConversationBtn": { "message": "새 대화" },
-  "promptTitlePlaceholder": { "message": "프롬프트 제목" },
-  "promptTextPlaceholder": { "message": "여기에 프롬프트를 입력하세요..." },
-  "enableCustomGemTooltip": { "message": "사용자 정의 Gem 사용" },
-  "setGemBtnTooltip": { "message": "사용자 정의 Gem 링크 설정" },
-  "syncPromptsTooltip": { "message": "프롬프트 동기화" },
-  "promptRenamePrompt": { "message": "새 프롬프트 이름:" }
+  "newConversationBtn": {
+    "message": "새 대화"
+  },
+  "promptTitlePlaceholder": {
+    "message": "프롬프트 제목"
+  },
+  "promptTextPlaceholder": {
+    "message": "여기에 프롬프트를 입력하세요..."
+  },
+  "enableCustomGemTooltip": {
+    "message": "사용자 정의 Gem 사용"
+  },
+  "setGemBtnTooltip": {
+    "message": "사용자 정의 Gem 링크 설정"
+  },
+  "syncPromptsTooltip": {
+    "message": "프롬프트 동기화"
+  },
+  "promptRenamePrompt": {
+    "message": "새 프롬프트 이름:"
+  }
 }

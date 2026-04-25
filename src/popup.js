@@ -13,13 +13,18 @@ document.addEventListener('DOMContentLoaded', async () => {
   document.getElementById('sortNewest').textContent = chrome.i18n.getMessage("sortNewest");
   document.getElementById('sortOldest').textContent = chrome.i18n.getMessage("sortOldest");
   document.getElementById('sortAlpha').textContent = chrome.i18n.getMessage("sortAlpha");
-  document.getElementById('newGeminiConvBtn').textContent = chrome.i18n.getMessage("newConversationBtn") || "New Conversation";
+  document.getElementById('promptSearchInput').placeholder = chrome.i18n.getMessage("promptSearchPlaceholder") || "🔍 Search a prompt...";
+  document.getElementById('promptSortNewest').textContent = chrome.i18n.getMessage("sortNewest");
+  document.getElementById('promptSortOldest').textContent = chrome.i18n.getMessage("sortOldest");
+  document.getElementById('promptSortAlpha').textContent = chrome.i18n.getMessage("sortAlpha");
+  document.getElementById('modeFolderBtn').title = chrome.i18n.getMessage("folderModeTitle") || "Folder Mode";
+  document.getElementById('modePromptBtn').title = chrome.i18n.getMessage("promptModeTitle") || "Prompt Mode";
+  document.getElementById('newGeminiConvBtn').title = chrome.i18n.getMessage("newConversationBtn") || "New Conversation";
   document.getElementById('toggleAddPromptPanelBtn').textContent = "➕ " + (chrome.i18n.getMessage("promptAddBtn") || "Add Prompt");
   document.getElementById('savePromptBtn').textContent = chrome.i18n.getMessage("saveBtn") || "Save";
   document.getElementById('promptTitle').placeholder = chrome.i18n.getMessage("promptTitlePlaceholder") || "Prompt Title";
   document.getElementById('promptText').placeholder = chrome.i18n.getMessage("promptTextPlaceholder") || "Write your prompt here...";
-  document.getElementById('useGemLabel').title = chrome.i18n.getMessage("enableCustomGemTooltip") || "Enable custom Gem";
-  document.getElementById('setGemBtn').title = chrome.i18n.getMessage("setGemBtnTooltip") || "Set custom Gem link";
+  document.getElementById('gemBtn').title = chrome.i18n.getMessage("setGemBtnTooltip") || "Set custom Gem link";
   document.getElementById('syncPromptsLabel').title = chrome.i18n.getMessage("syncPromptsTooltip") || "Sync prompts";
 
   const saveBtn = document.getElementById('saveBtn');
@@ -36,7 +41,9 @@ document.addEventListener('DOMContentLoaded', async () => {
   const addConversationPanel = document.getElementById('addConversationPanel');
 
   // --- Prompt Mode Logic ---
-  const modeToggleBtn = document.getElementById('modeToggleBtn');
+  const modeFolderBtn = document.getElementById('modeFolderBtn');
+  const modePromptBtn = document.getElementById('modePromptBtn');
+  const modeTogglePill = document.querySelector('.mode-toggle-pill');
   const folderModeContainer = document.getElementById('folderModeContainer');
   const promptModeContainer = document.getElementById('promptModeContainer');
 
@@ -44,66 +51,49 @@ document.addEventListener('DOMContentLoaded', async () => {
   const syncBookmarksLabel = document.getElementById('syncBookmarksLabel');
   const syncPromptsLabel = document.getElementById('syncPromptsLabel');
 
+  function setMode(mode) {
+    currentMode = mode;
+    const isPrompt = mode === 'prompt';
+    folderModeContainer.style.display = isPrompt ? 'none' : 'block';
+    promptModeContainer.style.display = isPrompt ? 'block' : 'none';
+    if (syncBookmarksLabel) syncBookmarksLabel.style.display = isPrompt ? 'none' : 'flex';
+    if (syncPromptsLabel) syncPromptsLabel.style.display = isPrompt ? 'flex' : 'none';
+    modeTogglePill.classList.toggle('is-prompt', isPrompt);
+    modeFolderBtn.classList.toggle('mode-toggle-btn--active', !isPrompt);
+    modePromptBtn.classList.toggle('mode-toggle-btn--active', isPrompt);
+    if (isPrompt) displayPrompts();
+    chrome.storage.local.set({ lastMode: mode });
+  }
+
   chrome.storage.local.get(['lastMode'], (data) => {
     if (data.lastMode === 'prompt') {
-      currentMode = 'prompt';
-      folderModeContainer.style.display = 'none';
-      promptModeContainer.style.display = 'block';
-      if (syncBookmarksLabel) syncBookmarksLabel.style.display = 'none';
-      if (syncPromptsLabel) syncPromptsLabel.style.display = 'flex';
-      modeToggleBtn.textContent = '📁';
-      modeToggleBtn.title = chrome.i18n.getMessage("folderModeTitle") || 'Folder Mode';
-      displayPrompts();
+      modeTogglePill.style.transition = 'none';
+      setMode('prompt');
+      requestAnimationFrame(() => { modeTogglePill.style.transition = ''; });
     }
   });
 
-  modeToggleBtn.addEventListener('click', () => {
-    if (currentMode === 'folder') {
-      currentMode = 'prompt';
-      folderModeContainer.style.display = 'none';
-      promptModeContainer.style.display = 'block';
-      if (syncBookmarksLabel) syncBookmarksLabel.style.display = 'none';
-      if (syncPromptsLabel) syncPromptsLabel.style.display = 'flex';
-      modeToggleBtn.textContent = '📁';
-      modeToggleBtn.title = chrome.i18n.getMessage("folderModeTitle") || 'Folder Mode';
-      displayPrompts();
-    } else {
-      currentMode = 'folder';
-      promptModeContainer.style.display = 'none';
-      folderModeContainer.style.display = 'block';
-      if (syncPromptsLabel) syncPromptsLabel.style.display = 'none';
-      if (syncBookmarksLabel) syncBookmarksLabel.style.display = 'flex';
-      modeToggleBtn.textContent = '📝';
-      modeToggleBtn.title = chrome.i18n.getMessage("promptModeTitle") || 'Prompt Mode';
-    }
-    chrome.storage.local.set({ lastMode: currentMode });
-  });
+  modeFolderBtn.addEventListener('click', () => { if (currentMode !== 'folder') setMode('folder'); });
+  modePromptBtn.addEventListener('click', () => { if (currentMode !== 'prompt') setMode('prompt'); });
 
   const promptTitleInput = document.getElementById('promptTitle');
   const promptTextInput = document.getElementById('promptText');
   const savePromptBtn = document.getElementById('savePromptBtn');
   const newGeminiConvBtn = document.getElementById('newGeminiConvBtn');
-  const setGemBtn = document.getElementById('setGemBtn');
+  const gemBtn = document.getElementById('gemBtn');
   const syncPromptsToggle = document.getElementById('syncPromptsToggle');
   const promptListDiv = document.getElementById('promptList');
   const promptStatusDiv = document.getElementById('promptStatus');
 
-  const useGemToggle = document.getElementById('useGemToggle');
+  let useGemEnabled = false;
   let currentGemLink = '';
+  let gemPressTimer = null;
 
-  chrome.storage.sync.get(['syncPromptsEnabled', 'gemLink', 'useGemEnabled'], (data) => {
-    syncPromptsToggle.checked = !!data.syncPromptsEnabled;
-    useGemToggle.checked = !!data.useGemEnabled;
-    if (data.gemLink) {
-        currentGemLink = data.gemLink;
-    }
-  });
+  function updateGemBtn() {
+      gemBtn.classList.toggle('gem-btn--active', useGemEnabled && !!currentGemLink);
+  }
 
-  useGemToggle.addEventListener('change', (e) => {
-      chrome.storage.sync.set({ useGemEnabled: e.target.checked });
-  });
-
-  setGemBtn.addEventListener('click', async () => {
+  async function openGemModal() {
       const link = await window.showCustomModal({
           title: chrome.i18n.getMessage("promptSetGemLink") || "Set custom Gem link:",
           type: 'prompt',
@@ -119,12 +109,45 @@ document.addEventListener('DOMContentLoaded', async () => {
               });
               return;
           }
-          chrome.storage.sync.set({ gemLink: trimmedLink });
           currentGemLink = trimmedLink;
-          if (trimmedLink) {
-              useGemToggle.checked = true;
-              chrome.storage.sync.set({ useGemEnabled: true });
+          useGemEnabled = !!trimmedLink;
+          chrome.storage.sync.set({ gemLink: trimmedLink, useGemEnabled });
+          updateGemBtn();
+      }
+  }
+
+  chrome.storage.sync.get(['syncPromptsEnabled', 'gemLink', 'useGemEnabled'], (data) => {
+    syncPromptsToggle.checked = !!data.syncPromptsEnabled;
+    useGemEnabled = !!data.useGemEnabled;
+    currentGemLink = data.gemLink || '';
+    updateGemBtn();
+  });
+
+  gemBtn.addEventListener('mousedown', () => {
+      gemPressTimer = setTimeout(() => {
+          gemPressTimer = null;
+          openGemModal();
+      }, 600);
+  });
+
+  gemBtn.addEventListener('mouseup', () => {
+      if (gemPressTimer !== null) {
+          clearTimeout(gemPressTimer);
+          gemPressTimer = null;
+          if (!currentGemLink) {
+              openGemModal();
+          } else {
+              useGemEnabled = !useGemEnabled;
+              chrome.storage.sync.set({ useGemEnabled });
+              updateGemBtn();
           }
+      }
+  });
+
+  gemBtn.addEventListener('mouseleave', () => {
+      if (gemPressTimer !== null) {
+          clearTimeout(gemPressTimer);
+          gemPressTimer = null;
       }
   });
 
@@ -179,18 +202,32 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   newGeminiConvBtn.addEventListener('click', () => {
       let url = 'https://gemini.google.com/app';
-      if (useGemToggle.checked && currentGemLink) {
+      if (useGemEnabled && currentGemLink) {
           url = currentGemLink;
       }
       chrome.tabs.create({ url: url });
   });
 
   function displayPrompts() {
-      loadData({ prompts: {}, openPrompts: [] }, (data) => {
+      const searchQuery = (document.getElementById('promptSearchInput')?.value || '').toLowerCase().trim();
+      loadData({ prompts: {}, openPrompts: [], promptSortPref: 'dateDesc' }, (data) => {
           promptListDiv.innerHTML = '';
           const prompts = data.prompts;
           const openPrompts = data.openPrompts;
-          const titles = Object.keys(prompts).sort((a, b) => prompts[b].timestamp - prompts[a].timestamp);
+          const sortPref = data.promptSortPref;
+
+          let titles = Object.keys(prompts);
+          if (searchQuery) {
+              titles = titles.filter(t =>
+                  t.toLowerCase().includes(searchQuery) ||
+                  (prompts[t].text || '').toLowerCase().includes(searchQuery)
+              );
+          }
+          titles.sort((a, b) => {
+              if (sortPref === 'alphaAsc') return a.localeCompare(b);
+              if (sortPref === 'dateAsc') return (prompts[a].timestamp || 0) - (prompts[b].timestamp || 0);
+              return (prompts[b].timestamp || 0) - (prompts[a].timestamp || 0);
+          });
           
           if (titles.length === 0) {
               promptListDiv.innerHTML = `<div style="text-align: center; color: var(--muted-text); font-size: 13px;">${chrome.i18n.getMessage("promptNoSavedYet") || 'No prompts saved yet.'}</div>`;
@@ -212,15 +249,16 @@ document.addEventListener('DOMContentLoaded', async () => {
               const actions = document.createElement('div');
               actions.className = 'prompt-actions';
 
+              const copySVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`;
               const copyBtn = document.createElement('button');
               copyBtn.className = 'action-btn';
-              copyBtn.textContent = '📋';
+              copyBtn.innerHTML = copySVG;
               copyBtn.title = chrome.i18n.getMessage("promptCopyTitle") || 'Copy';
               copyBtn.addEventListener('click', (e) => {
                   e.stopPropagation();
                   navigator.clipboard.writeText(textArea.value);
                   copyBtn.textContent = '✅';
-                  setTimeout(() => copyBtn.textContent = '📋', 1500);
+                  setTimeout(() => { copyBtn.innerHTML = copySVG; }, 1500);
               });
 
               const renameBtn = document.createElement('button');
@@ -249,7 +287,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                           doRename(data, trimmed);
                       }
                       function doRename(d, newName) {
-                          d.prompts[newName] = { ...d.prompts[title] };
+                          d.prompts[newName] = { ...d.prompts[title], timestamp: Date.now() };
                           delete d.prompts[title];
                           let open = d.openPrompts;
                           const idx = open.indexOf(title);
@@ -292,6 +330,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                       loadData({ prompts: {} }, (data) => {
                           if (data.prompts[title]) {
                               data.prompts[title].text = textArea.value;
+                              data.prompts[title].timestamp = Date.now();
                               saveData({ prompts: data.prompts });
                           }
                       });
@@ -326,6 +365,33 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
   
   window.displayPrompts = displayPrompts;
+
+  // --- Prompt Search ---
+  document.getElementById('promptSearchInput').addEventListener('input', () => displayPrompts());
+
+  // --- Prompt Sort ---
+  const promptSortToggleBtn = document.getElementById('promptSortToggleBtn');
+  const promptSortMenu = document.getElementById('promptSortMenu');
+
+  promptSortToggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      promptSortMenu.classList.toggle('show');
+  });
+
+  loadData({ promptSortPref: 'dateDesc' }, (data) => {
+      const activeItem = document.querySelector(`#promptSortMenu .dropdown-item[data-value="${data.promptSortPref}"]`);
+      if (activeItem) activeItem.classList.add('active');
+  });
+
+  document.querySelectorAll('#promptSortMenu .dropdown-item').forEach(item => {
+      item.addEventListener('click', () => {
+          const value = item.getAttribute('data-value');
+          document.querySelectorAll('#promptSortMenu .dropdown-item').forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          promptSortMenu.classList.remove('show');
+          saveData({ promptSortPref: value }, () => displayPrompts());
+      });
+  });
 
   const toggleAddPromptPanelBtn = document.getElementById('toggleAddPromptPanelBtn');
   const addPromptPanel = document.getElementById('addPromptPanel');

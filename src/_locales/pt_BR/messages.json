@@ -11,6 +11,9 @@
   "searchPlaceholder": {
     "message": "🔍 Pesquisar uma conversa..."
   },
+  "promptSearchPlaceholder": {
+    "message": "🔍 Pesquisar um prompt..."
+  },
   "folderPlaceholder": {
     "message": "Nome da pasta (ex: Projetos)"
   },
@@ -180,10 +183,10 @@
     "message": "⚠️ Já salvo!"
   },
   "folderModeTitle": {
-    "message": "Switch to Folder Mode"
+    "message": "Modo pastas"
   },
   "promptModeTitle": {
-    "message": "Switch to Prompt Mode"
+    "message": "Modo prompts"
   },
   "promptCannotBeEmpty": {
     "message": "Prompt cannot be empty!"
@@ -212,11 +215,25 @@
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
   },
-  "newConversationBtn": { "message": "Nova conversa" },
-  "promptTitlePlaceholder": { "message": "Título do prompt" },
-  "promptTextPlaceholder": { "message": "Escreva seu prompt aqui..." },
-  "enableCustomGemTooltip": { "message": "Ativar Gem personalizado" },
-  "setGemBtnTooltip": { "message": "Definir link Gem personalizado" },
-  "syncPromptsTooltip": { "message": "Sincronizar prompts" },
-  "promptRenamePrompt": { "message": "Novo nome do prompt:" }
+  "newConversationBtn": {
+    "message": "Nova conversa"
+  },
+  "promptTitlePlaceholder": {
+    "message": "Título do prompt"
+  },
+  "promptTextPlaceholder": {
+    "message": "Escreva seu prompt aqui..."
+  },
+  "enableCustomGemTooltip": {
+    "message": "Ativar Gem personalizado"
+  },
+  "setGemBtnTooltip": {
+    "message": "Definir link Gem personalizado"
+  },
+  "syncPromptsTooltip": {
+    "message": "Sincronizar prompts"
+  },
+  "promptRenamePrompt": {
+    "message": "Novo nome do prompt:"
+  }
 }

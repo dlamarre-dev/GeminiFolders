@@ -11,6 +11,9 @@
   "searchPlaceholder": {
     "message": "🔍 Căutați o conversație..."
   },
+  "promptSearchPlaceholder": {
+    "message": "🔍 Căutați un prompt..."
+  },
   "folderPlaceholder": {
     "message": "Nume folder (ex: Proiecte Cod)"
   },
@@ -180,10 +183,10 @@
     "message": "⚠️ Deja salvat!"
   },
   "folderModeTitle": {
-    "message": "Switch to Folder Mode"
+    "message": "Mod dosare"
   },
   "promptModeTitle": {
-    "message": "Switch to Prompt Mode"
+    "message": "Mod prompt-uri"
   },
   "promptCannotBeEmpty": {
     "message": "Prompt cannot be empty!"
@@ -212,11 +215,25 @@
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
   },
-  "newConversationBtn": { "message": "Conversație nouă" },
-  "promptTitlePlaceholder": { "message": "Titlul promptului" },
-  "promptTextPlaceholder": { "message": "Scrieți promptul dvs. aici..." },
-  "enableCustomGemTooltip": { "message": "Activați Gem personalizat" },
-  "setGemBtnTooltip": { "message": "Setați link-ul Gem personalizat" },
-  "syncPromptsTooltip": { "message": "Sincronizați prompturile" },
-  "promptRenamePrompt": { "message": "Noul nume al promptului:" }
+  "newConversationBtn": {
+    "message": "Conversație nouă"
+  },
+  "promptTitlePlaceholder": {
+    "message": "Titlul promptului"
+  },
+  "promptTextPlaceholder": {
+    "message": "Scrieți promptul dvs. aici..."
+  },
+  "enableCustomGemTooltip": {
+    "message": "Activați Gem personalizat"
+  },
+  "setGemBtnTooltip": {
+    "message": "Setați link-ul Gem personalizat"
+  },
+  "syncPromptsTooltip": {
+    "message": "Sincronizați prompturile"
+  },
+  "promptRenamePrompt": {
+    "message": "Noul nume al promptului:"
+  }
 }

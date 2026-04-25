@@ -3,6 +3,7 @@
   "extDesc": { "message": "Organisez vos conversations Gemini dans des dossiers personnalisés." },
   "appTitle": { "message": "Dossiers Gemini" },
   "searchPlaceholder": { "message": "🔍 Rechercher une conversation..." },
+  "promptSearchPlaceholder": { "message": "🔍 Rechercher un prompt..." },
   "folderPlaceholder": { "message": "Nom du dossier (ex: Projets Code)" },
   "chatPlaceholder": { "message": "Titre de la conversation" },
   "saveBtn": { "message": "Sauvegarder" },

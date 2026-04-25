@@ -11,6 +11,9 @@
   "searchPlaceholder": {
     "message": "🔍 会話を検索..."
   },
+  "promptSearchPlaceholder": {
+    "message": "🔍 プロンプトを検索..."
+  },
   "folderPlaceholder": {
     "message": "フォルダ名 (例: プロジェクト)"
   },
@@ -180,10 +183,10 @@
     "message": "⚠️ 保存済みです！"
   },
   "folderModeTitle": {
-    "message": "Switch to Folder Mode"
+    "message": "フォルダモード"
   },
   "promptModeTitle": {
-    "message": "Switch to Prompt Mode"
+    "message": "プロンプトモード"
   },
   "promptCannotBeEmpty": {
     "message": "Prompt cannot be empty!"
@@ -212,11 +215,25 @@
   "promptInvalidGemLink": {
     "message": "Invalid link. It must start with https://gemini.google.com/"
   },
-  "newConversationBtn": { "message": "新しい会話" },
-  "promptTitlePlaceholder": { "message": "プロンプトのタイトル" },
-  "promptTextPlaceholder": { "message": "プロンプトをここに入力..." },
-  "enableCustomGemTooltip": { "message": "カスタム Gem を有効にする" },
-  "setGemBtnTooltip": { "message": "カスタム Gem リンクを設定" },
-  "syncPromptsTooltip": { "message": "プロンプトを同期" },
-  "promptRenamePrompt": { "message": "プロンプトの新しい名前：" }
+  "newConversationBtn": {
+    "message": "新しい会話"
+  },
+  "promptTitlePlaceholder": {
+    "message": "プロンプトのタイトル"
+  },
+  "promptTextPlaceholder": {
+    "message": "プロンプトをここに入力..."
+  },
+  "enableCustomGemTooltip": {
+    "message": "カスタム Gem を有効にする"
+  },
+  "setGemBtnTooltip": {
+    "message": "カスタム Gem リンクを設定"
+  },
+  "syncPromptsTooltip": {
+    "message": "プロンプトを同期"
+  },
+  "promptRenamePrompt": {
+    "message": "プロンプトの新しい名前："
+  }
 }
