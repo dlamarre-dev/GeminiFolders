@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "Inserir no Gemini"
+  },
+  "promptPinTitle": {
+    "message": "Fixar"
   }
 }

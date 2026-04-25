@@ -512,11 +512,14 @@
     .prompt-item {
       margin-bottom: 8px;
       border: 1px solid var(--border-color);
-      border-radius: 8px;
+      border-radius: 10px;
       overflow: hidden;
-      background: var(--bg-color);
+      background: var(--folder-bg);
       box-shadow: 0 1px 2px rgba(0,0,0,0.05);
       transition: box-shadow 0.2s ease;
+    }
+    .prompt-item--pinned {
+      border-left: 3px solid var(--accent-color);
     }
     .prompt-item:hover {
       box-shadow: var(--shadow-sm);
@@ -525,12 +528,12 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 10px;
+      padding: 6px 6px 6px 12px;
       cursor: pointer;
-      background: var(--folder-bg);
+      background: var(--folder-hover);
       transition: background 0.2s ease;
     }
-    .prompt-header:hover { background: var(--folder-hover); }
+    .prompt-header:hover { background: var(--folder-hover); filter: brightness(0.97); }
     .prompt-title {
       font-weight: 600;
       font-size: 13px;
@@ -543,7 +546,7 @@
     }
     .prompt-actions {
       display: flex;
-      gap: 4px;
+      gap: 0;
     }
     .prompt-text-edit {
       display: block;

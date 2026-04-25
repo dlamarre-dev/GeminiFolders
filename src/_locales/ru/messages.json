@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "Вставить в Gemini"
+  },
+  "promptPinTitle": {
+    "message": "Закрепить"
   }
 }

@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "Wstaw do Gemini"
+  },
+  "promptPinTitle": {
+    "message": "Przypnij"
   }
 }

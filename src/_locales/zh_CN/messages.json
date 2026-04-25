@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "插入到 Gemini"
+  },
+  "promptPinTitle": {
+    "message": "置顶"
   }
 }

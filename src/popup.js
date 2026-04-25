@@ -67,9 +67,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   chrome.storage.local.get(['lastMode'], (data) => {
     if (data.lastMode === 'prompt') {
-      modeTogglePill.style.transition = 'none';
+      const toggleEls = [modeTogglePill, modeFolderBtn, modePromptBtn];
+      toggleEls.forEach(el => el.style.transition = 'none');
       setMode('prompt');
-      requestAnimationFrame(() => { modeTogglePill.style.transition = ''; });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          toggleEls.forEach(el => el.style.transition = '');
+        });
+      });
     }
   });
 
@@ -224,6 +229,9 @@ document.addEventListener('DOMContentLoaded', async () => {
               );
           }
           titles.sort((a, b) => {
+              const aPinned = !!prompts[a].pinned;
+              const bPinned = !!prompts[b].pinned;
+              if (aPinned !== bPinned) return bPinned ? 1 : -1;
               if (sortPref === 'alphaAsc') return a.localeCompare(b);
               if (sortPref === 'dateAsc') return (prompts[a].timestamp || 0) - (prompts[b].timestamp || 0);
               return (prompts[b].timestamp || 0) - (prompts[a].timestamp || 0);
@@ -234,10 +242,21 @@ document.addEventListener('DOMContentLoaded', async () => {
               return;
           }
 
+          let hasPinned = false;
+          let transitionDone = false;
+
           titles.forEach(title => {
               const p = prompts[title];
+              if (p.pinned) hasPinned = true;
+              if (!p.pinned && hasPinned && !transitionDone && !searchQuery) {
+                  const divider = document.createElement('hr');
+                  divider.className = 'pin-divider';
+                  promptListDiv.appendChild(divider);
+                  transitionDone = true;
+              }
+
               const item = document.createElement('div');
-              item.className = 'prompt-item';
+              item.className = 'prompt-item' + (p.pinned ? ' prompt-item--pinned' : '');
 
               const header = document.createElement('div');
               header.className = 'prompt-header';
@@ -248,6 +267,20 @@ document.addEventListener('DOMContentLoaded', async () => {
 
               const actions = document.createElement('div');
               actions.className = 'prompt-actions';
+
+              const pinBtn = document.createElement('button');
+              pinBtn.className = `action-btn pin-btn ${p.pinned ? 'is-pinned' : ''}`;
+              pinBtn.textContent = p.pinned ? '📌' : '📍';
+              pinBtn.title = chrome.i18n.getMessage(p.pinned ? "btnUnpin" : "btnPin") || (p.pinned ? 'Unpin' : 'Pin');
+              pinBtn.addEventListener('click', (e) => {
+                  e.stopPropagation();
+                  loadData({ prompts: {} }, (data) => {
+                      if (data.prompts[title]) {
+                          data.prompts[title].pinned = !data.prompts[title].pinned;
+                          saveData({ prompts: data.prompts }, () => displayPrompts());
+                      }
+                  });
+              });
 
               const sendSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
               const sendBtn = document.createElement('button');
@@ -360,6 +393,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   });
               });
 
+              actions.appendChild(pinBtn);
               actions.appendChild(sendBtn);
               actions.appendChild(copyBtn);
               actions.appendChild(renameBtn);
@@ -493,7 +527,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   const sortToggleBtn = document.getElementById('sortToggleBtn');
   const sortMenu = document.getElementById('sortMenu');
-  const sortItems = document.querySelectorAll('.dropdown-item');
+  const sortItems = document.querySelectorAll('#sortMenu .dropdown-item');
 
   // --- MOBILE SYNC (BOOKMARKS) ---
   const syncBookmarksToggle = document.getElementById('syncBookmarksToggle');
@@ -548,7 +582,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   // 3. Load saved preference and highlight active option
   loadData({ sortPref: 'dateAsc' }, (data) => {
-    const activeItem = document.querySelector(`.dropdown-item[data-value="${data.sortPref}"]`);
+    const activeItem = document.querySelector(`#sortMenu .dropdown-item[data-value="${data.sortPref}"]`);
     if (activeItem) activeItem.classList.add('active');
   });
 

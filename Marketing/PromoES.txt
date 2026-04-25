@@ -10,6 +10,7 @@ Con la versión 4.0, Carpetas de Gemini se convierte en tu verdadero cockpit de 
 ✏️ Edición en línea: Haz clic en un prompt para desplegarlo y editar el texto directamente. Los cambios se guardan automáticamente tras una breve pausa y el orden se actualiza en consecuencia.
 💎 Enlace Gem personalizado: Configura un enlace a tu Gem favorito y actívalo con un clic. Cuando está activo, el botón "Nueva conversación" abre tu Gem en lugar del chat por defecto.
 ☁️ Sincronización de prompts: Activa la sincronización en la nube para tu biblioteca de prompts, de forma independiente a tus carpetas.
+📌 Prompts fijados: Fija tus prompts esenciales con un clic para mantenerlos en la parte superior de tu biblioteca, separados del resto por un divisor visual.
 
 🌟 FUNCIONES DE CARPETAS
 
@@ -41,6 +42,7 @@ Haz clic en 📝 en el botón de alternancia en la esquina superior derecha de l
 Haz clic en ➕ Añadir Prompt, escribe un título y tu texto, y guarda.
 Para usar un prompt: despliégalo y haz clic en ▶ — se inyecta directamente en Gemini, listo para enviar.
 Configura 💎 para apuntar a tu Gem personalizado.
+Para fijar un prompt: haz clic en 📍 — sube al principio de la lista y siempre está a mano.
 
 🔒 PRIVACIDAD Y SEGURIDAD
 Diseñada con la privacidad en el centro. Solo solicita acceso a gemini.google.com y solo lee la pestaña activa al guardar una conversación o al inyectar un prompt. El permiso de "Marcadores" solo se usa si activas la sincronización móvil. Almacenamiento vía Chrome Sync: sin servidores de terceros, sin telemetría.
@@ -49,7 +51,7 @@ Diseñada con la privacidad en el centro. Solo solicita acceso a gemini.google.c
 Carpetas de Gemini es un proyecto open source desarrollado con pasión. La transparencia y el respeto a tu privacidad son nuestras prioridades. ¿Eres desarrollador o simplemente tienes curiosidad? Consulta el código, sigue el historial de cambios o contribuye en GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
 📢 ACTUALIZACIONES:
-Versión 4.0 (Biblioteca de Prompts): ¡La actualización más ambiciosa hasta ahora! Carpetas de Gemini estrena un nuevo modo Prompts: guarda tus mejores prompts, edítalos en línea e inyéctalos en Gemini con un clic. Se añade alternancia de modos animada, búsqueda y ordenación en el modo Prompts, botón Gem personalizado y sincronización independiente de prompts.
+Versión 4.0 (Biblioteca de Prompts): ¡La actualización más ambiciosa hasta ahora! Carpetas de Gemini estrena un nuevo modo Prompts: guarda tus mejores prompts, edítalos en línea e inyéctalos en Gemini con un clic. Se añade alternancia de modos animada, búsqueda y ordenación en el modo Prompts, botón Gem personalizado y sincronización independiente de prompts. Fija tus prompts esenciales en la parte superior de la biblioteca.
 Versión 3.5 (Bases Sólidas y Experiencia Mejorada): ¡Gran actualización interna para una robustez de nivel profesional! Alerta visual ante guardados duplicados. Fin de los falsos duplicados por cambios de URL de Gemini y base de datos protegida contra corrupciones.
 Versión 3.4.1 (Potencia Multiplataforma y Estabilidad): Portado con éxito a Mozilla Firefox. Corrección definitiva del error de carpetas de marcadores duplicadas en la sincronización móvil.
 Versión 3.3 (Diseño Premium e Internacional): Nuevos diálogos Material 3 completamente personalizados, sincronización móvil según tu orden de clasificación y expansión con 10 nuevos idiomas.

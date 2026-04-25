@@ -10,6 +10,7 @@ S verziou 4.0 sa Priečinky Gemini stávajú vaším skutočným kokpitom pre Ge
 ✏️ Úprava na mieste: Kliknite na výzvu, rozbaľte ju a priamo upravte text. Zmeny sa automaticky uložia po krátkom okamihu a poradie triedenia sa zodpovedajúco aktualizuje.
 💎 Vlastný odkaz Gem: Nastavte odkaz na váš obľúbený Gem a aktivujte ho kliknutím. Keď je aktívny, tlačidlo „Nová konverzácia" otvorí váš Gem namiesto predvoleného chatu.
 ☁️ Synchronizácia výziev: Aktivujte cloudovú synchronizáciu pre knižnicu výziev nezávisle od priečinkov.
+📌 Pripnuté výzvy: Pripnite svoje najdôležitejšie výzvy jedným kliknutím, aby zostali v hornej časti knižnice — oddelené od ostatných vizuálnym oddeľovačom.
 
 🌟 FUNKCIE PRIEČINKOV
 
@@ -41,6 +42,7 @@ Kliknite na 📝 na prepínači v pravom hornom rohu rozšírenia.
 Kliknite na ➕ Pridať výzvu, zadajte názov a text, uložte.
 Ak chcete použiť výzvu: rozbaľte ju a kliknite na ▶ — vloží sa priamo do Gemini, pripravená na odoslanie.
 Nakonfigurujte 💎, aby ukazoval na váš vlastný Gem.
+Pripnúť výzvu: kliknite na 📍 — presunie sa na začiatok zoznamu a je vždy po ruke.
 
 🔒 SÚKROMIE A BEZPEČNOSŤ
 Navrhnuté so súkromím v centre. Vyžaduje prístup iba k gemini.google.com a číta aktívnu kartu iba pri ukladaní konverzácie alebo vkladaní výzvy. Povolenie „Záložky" sa používa iba ak aktivujete mobilnú synchronizáciu. Ukladanie cez Chrome Sync: žiadne servery tretích strán, žiadna telemetria.
@@ -49,7 +51,7 @@ Navrhnuté so súkromím v centre. Vyžaduje prístup iba k gemini.google.com a 
 Priečinky Gemini sú open source projektom vyvíjaným s vášňou. Transparentnosť a rešpektovanie vášho súkromia sú naše priority. Ste vývojár alebo len zvedavý? Prezrite si kód, sledujte históriu zmien alebo prispejte na GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
 📢 AKTUALIZÁCIE:
-Verzia 4.0 (Knižnica výziev): Najambicióznejšia aktualizácia doteraz! Priečinky Gemini dostávajú úplne nový režim výziev: ukladajte najlepšie výzvy, upravujte ich na mieste a vkladajte ich priamo do Gemini jedným kliknutím. Pridané: animovaný prepínač režimov, vyhľadávanie a triedenie v režime výziev, tlačidlo vlastného Gem a nezávislá synchronizácia výziev.
+Verzia 4.0 (Knižnica výziev): Najambicióznejšia aktualizácia doteraz! Priečinky Gemini dostávajú úplne nový režim výziev: ukladajte najlepšie výzvy, upravujte ich na mieste a vkladajte ich priamo do Gemini jedným kliknutím. Pridané: animovaný prepínač režimov, vyhľadávanie a triedenie v režime výziev, tlačidlo vlastného Gem a nezávislá synchronizácia výziev. Pripnutie najdôležitejších výziev na vrch knižnice.
 Verzia 3.5 (Pevné základy a vylepšená skúsenosť): Veľká interná aktualizácia pre profesionálnu robustnosť! Vizuálne upozornenie pri duplicitnom ukladaní. Koniec falošným duplikátom zo zmien URL Gemini, databáza chránená pred poškodením.
 Verzia 3.4.1 (Multisystémová sila a stabilita): Úspešný prenos na Mozilla Firefox. Definitívne opravenie chyby s duplikátnymi priečinkami záložiek pri mobilnej synchronizácii.
 Verzia 3.3 (Prémiový dizajn a medzinárodné rozšírenie): Nové plne vlastné dialógy Material 3, mobilná synchronizácia podľa poradia triedenia a 10 nových jazykov!

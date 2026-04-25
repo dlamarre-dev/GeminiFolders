@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "Gemini में डालें"
+  },
+  "promptPinTitle": {
+    "message": "पिन करें"
   }
 }

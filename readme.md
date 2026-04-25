@@ -37,6 +37,7 @@
 * ▶ **One-Click Injection:** Hit the play button on any saved prompt to inject it directly into the active Gemini tab's input field—no copy-pasting required. The extension detects whether you're on Gemini and notifies you if not.
 * ✏️ **Inline Editing:** Click a prompt to expand it and edit the text directly. Changes auto-save after a short pause and the sort order updates to reflect the latest modification.
 * 💎 **Custom Gem Link:** Configure a custom Gemini Gem URL and toggle it on/off with the 💎 button. When active, the "New Conversation" button opens your Gem instead of the default chat.
+* 📌 **Pin Important Prompts:** Pin your most-used prompts to keep them at the top of your library. A visual divider separates pinned from unpinned prompts, and the active sort order applies independently within each group.
 * ☁️ **Prompt Sync:** Enable cloud sync for your prompt library independently from your folders, keeping your prompts available across all your devices.
 
 
@@ -76,7 +77,8 @@ If you want to test the code locally or contribute to the project, this extensio
 2. **To save a prompt:** Click **➕ Add Prompt**, enter a title and your prompt text, then hit **Save**.
 3. **To use a prompt:** Click any saved prompt to expand it, then hit **▶** to inject it directly into your active Gemini tab. The input field will be pre-filled and ready to submit.
 4. **To set up a Gem:** Click 💎, paste your custom Gem URL, and confirm. The button will highlight in blue when active. Use **💬** to open a new conversation (in your Gem if active, or standard Gemini otherwise).
-5. Search and sort your prompts, rename or edit them inline—all changes sync automatically.
+5. **To pin a prompt:** Click the 📍 icon on any prompt to pin it (📌). It moves to the top of the list above the visual divider, regardless of the active sort order.
+6. Search and sort your prompts, rename or edit them inline—all changes sync automatically.
 
 ## 🔒 Privacy & Security
 

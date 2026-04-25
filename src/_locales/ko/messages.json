@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "Gemini에 삽입"
+  },
+  "promptPinTitle": {
+    "message": "고정"
   }
 }

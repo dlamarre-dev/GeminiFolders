@@ -9,6 +9,7 @@ Avec la version 4.0, Dossiers Gemini devient votre véritable cockpit Gemini : o
 ▶ Injection en un clic : Plus besoin de copier-coller. Cliquez sur le bouton lecture (▶) de n'importe quel prompt pour l'injecter directement dans le champ de saisie de Gemini. L'extension détecte si vous êtes bien sur une page Gemini et vous avertit sinon.
 ✏️ Édition en place : Cliquez sur un prompt pour le déplier et modifiez son texte directement. Les changements se sauvegardent automatiquement et le tri se met à jour en conséquence.
 💎 Gem personnalisé : Configurez un lien vers votre Gem favori et activez-le d'un clic. Quand il est actif, le bouton "Nouvelle conversation" ouvre votre Gem plutôt que le chat par défaut.
+📌 Prompts épinglés : Épinglez vos prompts essentiels d'un clic pour les garder en tête de liste, séparés des autres par un délimiteur visuel. Le tri s'applique indépendamment dans chaque groupe.
 ☁️ Synchronisation des prompts : Activez la synchro cloud pour votre bibliothèque de prompts, indépendamment de vos dossiers.
 
 🌟 FONCTIONNALITÉS DOSSIERS
@@ -40,6 +41,7 @@ Mode Prompts :
 Cliquez sur 📝 dans le bouton de bascule en haut à droite de l'extension.
 Cliquez sur ➕ Ajouter un prompt, entrez un titre et votre texte, sauvegardez.
 Pour utiliser un prompt : dépliez-le et cliquez ▶ — il s'injecte directement dans Gemini, prêt à envoyer.
+Pour épingler un prompt : cliquez sur 📍 — il remonte en tête de liste et reste accessible d'un regard.
 Configurez 💎 pour pointer vers votre Gem personnalisé.
 
 🔒 CONFIDENTIALITÉ & SÉCURITÉ
@@ -49,7 +51,7 @@ Conçue avec la confidentialité au cœur de son fonctionnement. Elle ne demande
 Dossiers Gemini est un projet open source développé avec passion. La transparence et le respect de votre vie privée sont nos priorités. Vous êtes développeur ou simplement curieux ? Consultez le code, suivez l'historique ou contribuez sur GitHub : https://github.com/dlamarre-dev/GeminiFolders
 
 📢 MISES À JOUR :
-Version 4.0 (Bibliothèque de Prompts) : La mise à jour la plus ambitieuse à ce jour ! Dossiers Gemini se dote d'un tout nouveau mode Prompts : sauvegardez vos meilleurs prompts, éditez-les en place, et injectez-les directement dans Gemini en un clic. Ajout du bouton de bascule animé entre les modes, de la recherche et du tri dans le mode Prompts, du bouton Gem personnalisé, et de la synchronisation indépendante des prompts.
+Version 4.0 (Bibliothèque de Prompts) : La mise à jour la plus ambitieuse à ce jour ! Dossiers Gemini se dote d'un tout nouveau mode Prompts : sauvegardez vos meilleurs prompts, éditez-les en place, et injectez-les directement dans Gemini en un clic. Épinglez vos prompts essentiels en tête de liste. Ajout du bouton de bascule animé entre les modes, de la recherche et du tri dans le mode Prompts, du bouton Gem personnalisé, et de la synchronisation indépendante des prompts.
 Version 3.5 (Fondations Solides & Expérience Améliorée) : Une mise à jour majeure sous le capot pour une robustesse de niveau professionnel ! Alerte visuelle en cas de doublon via raccourci clavier. Fin des faux doublons liés aux changements d'URL de Gemini, et base de données blindée contre les corruptions grâce à notre nouvelle architecture de sécurité.
 Version 3.4.1 (Puissance Multiplateforme & Stabilité) : Portage réussi sur Mozilla Firefox avec un système de compilation automatisé et une stricte conformité sécurité. Correction définitive du bogue des dossiers de favoris en double lors de la synchronisation mobile.
 Version 3.3 (Design Premium & International) : Nouvelles boîtes de dialogue Material 3 100% sur mesure, synchronisation mobile calquée sur votre ordre de tri et expansion mondiale avec 10 nouvelles langues !

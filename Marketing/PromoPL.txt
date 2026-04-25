@@ -10,6 +10,7 @@ W wersji 4.0 Foldery Gemini stają się Twoim prawdziwym centrum sterowania Gemi
 ✏️ Edycja w miejscu: Kliknij prompt, aby go rozwinąć i edytować tekst bezpośrednio. Zmiany zapisują się automatycznie po krótkiej chwili, a kolejność sortowania aktualizuje się odpowiednio.
 💎 Niestandardowy link Gem: Skonfiguruj link do swojego ulubionego Gem i aktywuj go kliknięciem. Gdy jest aktywny, przycisk „Nowa rozmowa" otwiera Twój Gem zamiast domyślnego czatu.
 ☁️ Synchronizacja promptów: Włącz synchronizację w chmurze dla swojej biblioteki promptów, niezależnie od folderów.
+📌 Przypięte podpowiedzi: Przypnij swoje najważniejsze podpowiedzi jednym kliknięciem, aby zawsze były na górze biblioteki — oddzielone od pozostałych wizualnym separatorem.
 
 🌟 FUNKCJE FOLDERÓW
 
@@ -41,6 +42,7 @@ Kliknij 📝 na przełączniku w prawym górnym rogu rozszerzenia.
 Kliknij ➕ Dodaj Prompt, wpisz tytuł i tekst, zapisz.
 Aby użyć promptu: rozwiń go i kliknij ▶ — zostaje wstrzyknięty bezpośrednio do Gemini, gotowy do wysłania.
 Skonfiguruj 💎, aby wskazywał Twój niestandardowy Gem.
+Aby przypiąć podpowiedź: kliknij 📍 — przenosi się na górę listy i jest zawsze pod ręką.
 
 🔒 PRYWATNOŚĆ I BEZPIECZEŃSTWO
 Zaprojektowane z prywatnością w centrum. Żąda dostępu tylko do gemini.google.com i odczytuje aktywną kartę tylko przy zapisywaniu rozmowy lub wstrzykiwaniu promptu. Uprawnienie „Zakładki" jest używane tylko po włączeniu synchronizacji mobilnej. Przechowywanie przez Chrome Sync: bez serwerów zewnętrznych, bez telemetrii.
@@ -49,7 +51,7 @@ Zaprojektowane z prywatnością w centrum. Żąda dostępu tylko do gemini.googl
 Foldery Gemini to projekt open source tworzony z pasją. Przejrzystość i poszanowanie Twojej prywatności to nasze priorytety. Jesteś programistą lub po prostu ciekawskim? Przejrzyj kod, śledź historię zmian lub wnieś wkład na GitHub: https://github.com/dlamarre-dev/GeminiFolders
 
 📢 AKTUALIZACJE:
-Wersja 4.0 (Biblioteka Promptów): Najbardziej ambitna aktualizacja! Foldery Gemini otrzymują zupełnie nowy tryb promptów: zapisuj najlepsze prompty, edytuj je w miejscu i wstrzykuj bezpośrednio do Gemini jednym kliknięciem. Dodano: animowany przełącznik trybów, wyszukiwanie i sortowanie w trybie promptów, przycisk niestandardowego Gem i niezależną synchronizację promptów.
+Wersja 4.0 (Biblioteka Promptów): Najbardziej ambitna aktualizacja! Foldery Gemini otrzymują zupełnie nowy tryb promptów: zapisuj najlepsze prompty, edytuj je w miejscu i wstrzykuj bezpośrednio do Gemini jednym kliknięciem. Dodano: animowany przełącznik trybów, wyszukiwanie i sortowanie w trybie promptów, przycisk niestandardowego Gem i niezależną synchronizację promptów. Przypinanie najważniejszych podpowiedzi na górze biblioteki.
 Wersja 3.5 (Solidne Podstawy i Ulepszone Doświadczenie): Duża aktualizacja „pod maską" dla profesjonalnej niezawodności! Wizualny alert dla duplikatów. Koniec fałszywych duplikatów z powodu zmian URL Gemini, baza danych chroniona przed uszkodzeniami.
 Wersja 3.4.1 (Moc Wieloplatformowa i Stabilność): Pomyślnie przeniesione na Mozilla Firefox. Ostateczna naprawa błędu duplikatów folderów zakładek przy synchronizacji mobilnej.
 Wersja 3.3 (Premium Design i Internacjonalizacja): Nowe w pełni niestandardowe okna dialogowe Material 3, mobilna synchronizacja według kolejności sortowania i 10 nowych języków!

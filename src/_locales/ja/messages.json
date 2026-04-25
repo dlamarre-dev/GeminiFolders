@@ -241,5 +241,8 @@
   },
   "promptInsertBtn": {
     "message": "Gemini に挿入"
+  },
+  "promptPinTitle": {
+    "message": "固定"
   }
 }
