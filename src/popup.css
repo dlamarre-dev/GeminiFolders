@@ -558,8 +558,7 @@
       border-top: 1px solid var(--border-color);
       outline: none;
       resize: none;
-      min-height: 60px;
-      max-height: 200px;
+      overflow-y: auto;
       cursor: text;
     }
     .prompt-text-edit:focus {

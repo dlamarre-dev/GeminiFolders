@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "Noul nume al promptului:"
+  },
+  "confirmDeletePrompt": {
+    "message": "Ștergeți acest prompt?"
+  },
+  "promptInsertBtn": {
+    "message": "Inserați în Gemini"
   }
 }

@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "새 프롬프트 이름:"
+  },
+  "confirmDeletePrompt": {
+    "message": "이 프롬프트를 삭제할까요?"
+  },
+  "promptInsertBtn": {
+    "message": "Gemini에 삽입"
   }
 }

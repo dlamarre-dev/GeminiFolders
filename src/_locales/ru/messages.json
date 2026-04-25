@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "Новое название промпта:"
+  },
+  "confirmDeletePrompt": {
+    "message": "Удалить этот запрос?"
+  },
+  "promptInsertBtn": {
+    "message": "Вставить в Gemini"
   }
 }

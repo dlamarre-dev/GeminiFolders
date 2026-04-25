@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "プロンプトの新しい名前："
+  },
+  "confirmDeletePrompt": {
+    "message": "このプロンプトを削除しますか？"
+  },
+  "promptInsertBtn": {
+    "message": "Gemini に挿入"
   }
 }

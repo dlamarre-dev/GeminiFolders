@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "Nový název promptu:"
+  },
+  "confirmDeletePrompt": {
+    "message": "Smazat tento prompt?"
+  },
+  "promptInsertBtn": {
+    "message": "Vložit do Gemini"
   }
 }

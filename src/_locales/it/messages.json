@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "Nuovo nome del prompt:"
+  },
+  "confirmDeletePrompt": {
+    "message": "Eliminare questo prompt?"
+  },
+  "promptInsertBtn": {
+    "message": "Inserisci in Gemini"
   }
 }

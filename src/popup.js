@@ -249,6 +249,50 @@ document.addEventListener('DOMContentLoaded', async () => {
               const actions = document.createElement('div');
               actions.className = 'prompt-actions';
 
+              const sendSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
+              const sendBtn = document.createElement('button');
+              sendBtn.className = 'action-btn';
+              sendBtn.innerHTML = sendSVG;
+              sendBtn.title = chrome.i18n.getMessage("promptInsertBtn") || 'Insert into Gemini';
+              sendBtn.addEventListener('click', async (e) => {
+                  e.stopPropagation();
+                  const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
+                  if (!tab || !tab.url || !tab.url.includes('gemini.google.com')) {
+                      window.showCustomModal({
+                          title: chrome.i18n.getMessage("alertNotGemini") || "Please use this extension on a Gemini page.",
+                          type: 'alert'
+                      });
+                      return;
+                  }
+                  const results = await chrome.scripting.executeScript({
+                      target: { tabId: tab.id },
+                      args: [textArea.value],
+                      func: (promptText) => {
+                          const editor =
+                              document.querySelector('rich-textarea .ql-editor') ||
+                              document.querySelector('[contenteditable="true"].ql-editor');
+                          if (!editor) return false;
+                          editor.focus();
+                          const sel = window.getSelection();
+                          const range = document.createRange();
+                          range.selectNodeContents(editor);
+                          sel.removeAllRanges();
+                          sel.addRange(range);
+                          document.execCommand('insertText', false, promptText);
+                          return true;
+                      }
+                  });
+                  if (results?.[0]?.result) {
+                      sendBtn.textContent = '✅';
+                      setTimeout(() => { sendBtn.innerHTML = sendSVG; }, 1500);
+                  } else {
+                      window.showCustomModal({
+                          title: chrome.i18n.getMessage("alertNotGemini") || "Please use this extension on a Gemini page.",
+                          type: 'alert'
+                      });
+                  }
+              });
+
               const copySVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>`;
               const copyBtn = document.createElement('button');
               copyBtn.className = 'action-btn';
@@ -301,8 +345,13 @@ document.addEventListener('DOMContentLoaded', async () => {
               deleteBtn.className = 'action-btn delete-btn';
               deleteBtn.textContent = '🗑️';
               deleteBtn.title = chrome.i18n.getMessage("promptDeleteTitle") || 'Delete';
-              deleteBtn.addEventListener('click', (e) => {
+              deleteBtn.addEventListener('click', async (e) => {
                   e.stopPropagation();
+                  const isSure = await window.showCustomModal({
+                      title: chrome.i18n.getMessage("confirmDeletePrompt") || "Delete this prompt?",
+                      type: 'confirm'
+                  });
+                  if (!isSure) return;
                   loadData({ prompts: {} }, (data) => {
                       delete data.prompts[title];
                       saveData({ prompts: data.prompts }, () => {
@@ -311,6 +360,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                   });
               });
 
+              actions.appendChild(sendBtn);
               actions.appendChild(copyBtn);
               actions.appendChild(renameBtn);
               actions.appendChild(deleteBtn);
@@ -323,8 +373,14 @@ document.addEventListener('DOMContentLoaded', async () => {
               textArea.setAttribute('writingsuggestions', 'false');
               textArea.setAttribute('spellcheck', 'false');
 
+              function autoResize(ta) {
+                  ta.style.height = 'auto';
+                  ta.style.height = Math.min(ta.scrollHeight, 200) + 'px';
+              }
+
               let saveTimeout;
               textArea.addEventListener('input', () => {
+                  autoResize(textArea);
                   clearTimeout(saveTimeout);
                   saveTimeout = setTimeout(() => {
                       loadData({ prompts: {} }, (data) => {
@@ -345,6 +401,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               header.addEventListener('click', () => {
                   const isCurrentlyOpen = textArea.style.display === 'block';
                   textArea.style.display = isCurrentlyOpen ? 'none' : 'block';
+                  if (!isCurrentlyOpen) autoResize(textArea);
 
                   loadData({ openPrompts: [] }, (storageData) => {
                       let currentOpen = storageData.openPrompts;
@@ -360,6 +417,7 @@ document.addEventListener('DOMContentLoaded', async () => {
               item.appendChild(header);
               item.appendChild(textArea);
               promptListDiv.appendChild(item);
+              if (isPromptOpen) autoResize(textArea);
           });
       });
   }

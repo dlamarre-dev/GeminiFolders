@@ -235,5 +235,11 @@
   },
   "promptRenamePrompt": {
     "message": "प्रॉम्प्ट का नया नाम:"
+  },
+  "confirmDeletePrompt": {
+    "message": "इस प्रॉम्प्ट को हटाएं?"
+  },
+  "promptInsertBtn": {
+    "message": "Gemini में डालें"
   }
 }
