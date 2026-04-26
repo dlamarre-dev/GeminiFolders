@@ -160,19 +160,18 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
   const CANVAS_H     = 800;
   const TITLE_H      = 100;  // vertical space for the title
   const OUTER_PAD    = 24;   // left/right edge padding
-  const V_PAD_TOP    = 18;   // between title and popups
-  const LABEL_MARGIN = 14;   // between popup bottom and label
-  const LABEL_H      = 46;   // height reserved for mode label text
-  const V_PAD_BOT    = 14;   // below labels
-  const GAP          = 44;   // between the two popups
-  const LABEL_FONT   = Math.round(46 * 2 / 3); // 2/3 of title size
+  const V_GUARD      = 20;   // min padding above/below popup block (for scale cap)
+  const LABEL_MARGIN = 16;   // gap between popup bottom and mode label
+  const LABEL_H      = 46;   // height of mode label text area
+  const GAP          = 44;   // gap between the two popups
+  const LABEL_FONT   = Math.round(54 * 2 / 3); // 2/3 of title font size
 
   const folderH = pngHeight(folderPath);
   const promptH = pngHeight(promptPath);
 
-  // Available area for popups (labels sit below, not beside)
+  // Available area for popups — used only for scale computation
   const availW = CANVAS_W - OUTER_PAD * 2;
-  const availH = CANVAS_H - TITLE_H - V_PAD_TOP - LABEL_MARGIN - LABEL_H - V_PAD_BOT;
+  const availH = CANVAS_H - TITLE_H - V_GUARD * 2 - LABEL_MARGIN - LABEL_H;
 
   // Uniform scale: fit both popups (same display width) within the available area
   const scaleByW = (availW - GAP) / 2 / POPUP_WIDTH;
@@ -188,8 +187,11 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
   const blockW  = dispW * 2 + GAP;
   const leftX   = OUTER_PAD + Math.round((availW - blockW) / 2);
   const rightX  = leftX + dispW + GAP;
-  const topY    = TITLE_H + V_PAD_TOP;
-  const labelY  = topY + sharedDispH + LABEL_MARGIN;
+
+  // Vertical centering: center the popup+label block in the space below the title
+  const totalContentH = sharedDispH + LABEL_MARGIN + LABEL_H;
+  const topY   = TITLE_H + Math.round((CANVAS_H - TITLE_H - totalContentH) / 2);
+  const labelY = topY + sharedDispH + LABEL_MARGIN;
 
   // Strip emoji from labels — show text only below the popups
   const folderText = localeData.folderLabel.replace(/^\S+\s*/, '');
@@ -225,7 +227,7 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     align-items: center;
     justify-content: center;
     color: #ffffff;
-    font-size: 46px;
+    font-size: 54px;
     font-weight: 700;
     letter-spacing: -0.01em;
     text-shadow: 0 2px 20px rgba(0,0,0,0.5);
