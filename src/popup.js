@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', async () => {
           title: chrome.i18n.getMessage("promptSetGemLink") || "Set custom Gem link:",
           type: 'prompt',
           defaultValue: currentGemLink,
-          placeholder: "https://gemini.google.com/g/..."
+          placeholder: "https://gemini.google.com/gem/..."
       });
       if (link !== null) {
           const trimmedLink = link.trim();
