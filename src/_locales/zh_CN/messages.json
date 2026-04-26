@@ -189,31 +189,31 @@
     "message": "提示词模式"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "提示词不能为空！"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "提示词已保存！"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "已存在同名提示词。是否覆盖？"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "尚未保存任何提示词。"
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "添加提示词"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "复制"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "删除"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "设置自定义 Gem 链接："
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "链接无效，必须以 https://gemini.google.com/ 开头"
   },
   "newConversationBtn": {
     "message": "新对话"

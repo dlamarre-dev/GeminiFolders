@@ -189,31 +189,31 @@
     "message": "Mod prompt-uri"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "Promptul nu poate fi gol!"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "Prompt salvat!"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "Un prompt cu acest titlu există deja. Suprascrieți?"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "Nu există prompturi salvate încă."
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "Adaugă prompt"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "Copiază"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "Șterge"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "Setați link Gem personalizat:"
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "Link invalid. Trebuie să înceapă cu https://gemini.google.com/"
   },
   "newConversationBtn": {
     "message": "Conversație nouă"

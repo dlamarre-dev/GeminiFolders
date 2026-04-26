@@ -189,31 +189,31 @@
     "message": "프롬프트 모드"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "프롬프트는 비워 둘 수 없습니다!"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "프롬프트가 저장되었습니다!"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "이 제목의 프롬프트가 이미 있습니다. 덮어쓰시겠습니까?"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "아직 저장된 프롬프트가 없습니다."
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "프롬프트 추가"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "복사"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "삭제"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "맞춤 Gem 링크 설정:"
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "잘못된 링크입니다. https://gemini.google.com/ 으로 시작해야 합니다."
   },
   "newConversationBtn": {
     "message": "새 대화"

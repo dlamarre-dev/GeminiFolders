@@ -189,31 +189,31 @@
     "message": "プロンプトモード"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "プロンプトは空にできません！"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "プロンプトを保存しました！"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "このタイトルのプロンプトがすでに存在します。上書きしますか？"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "まだプロンプトが保存されていません。"
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "プロンプトを追加"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "コピー"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "削除"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "カスタム Gem リンクを設定："
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "無効なリンクです。https://gemini.google.com/ で始まる必要があります。"
   },
   "newConversationBtn": {
     "message": "新しい会話"

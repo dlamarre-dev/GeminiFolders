@@ -1,6 +1,6 @@
 # 📁 Gemini Folders - Browser Extension
 
-![Gemini Folders Hero Image](Marketing/PromoEN.png)
+![Gemini Folders Hero Image](Marketing/screenshots/Promo_en.png)
 
 **Gemini Folders** is a lightweight, multilingual browser extension that lets you organize your Google Gemini conversations into custom folders **and** build a personal prompt library. Stop losing your best ideas in an endless history—build a structured workspace accessible from any device, and inject your saved prompts directly into Gemini with a single click.
 

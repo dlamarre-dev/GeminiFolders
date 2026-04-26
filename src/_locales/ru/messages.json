@@ -189,31 +189,31 @@
     "message": "Режим подсказок"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "Промпт не может быть пустым!"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "Промпт сохранён!"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "Промпт с таким названием уже существует. Перезаписать?"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "Пока нет сохранённых промптов."
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "Добавить промпт"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "Копировать"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "Удалить"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "Задать ссылку на Gem:"
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "Недопустимая ссылка. Она должна начинаться с https://gemini.google.com/"
   },
   "newConversationBtn": {
     "message": "Новая беседа"

@@ -189,31 +189,31 @@
     "message": "प्रॉम्प्ट मोड"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "प्रॉम्प्ट खाली नहीं हो सकता!"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "प्रॉम्प्ट सहेजा गया!"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "इस शीर्षक का प्रॉम्प्ट पहले से मौजूद है। ओवरराइट करें?"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "अभी तक कोई प्रॉम्प्ट सहेजा नहीं गया।"
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "प्रॉम्प्ट जोड़ें"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "कॉपी"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "हटाएं"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "कस्टम Gem लिंक सेट करें:"
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "अमान्य लिंक। यह https://gemini.google.com/ से शुरू होना चाहिए।"
   },
   "newConversationBtn": {
     "message": "नई बातचीत"

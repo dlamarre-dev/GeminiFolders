@@ -189,31 +189,31 @@
     "message": "Modo prompts"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "O prompt não pode estar vazio!"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "Prompt salvo!"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "Já existe um prompt com este título. Substituir?"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "Nenhum prompt salvo ainda."
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "Adicionar prompt"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "Copiar"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "Excluir"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "Definir link Gem personalizado:"
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "Link inválido. Deve começar com https://gemini.google.com/"
   },
   "newConversationBtn": {
     "message": "Nova conversa"

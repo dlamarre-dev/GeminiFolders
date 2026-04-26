@@ -189,31 +189,31 @@
     "message": "Režim promptů"
   },
   "promptCannotBeEmpty": {
-    "message": "Prompt cannot be empty!"
+    "message": "Výzva nemůže být prázdná!"
   },
   "promptSaved": {
-    "message": "Prompt saved!"
+    "message": "Výzva uložena!"
   },
   "promptDuplicateWarning": {
-    "message": "A prompt with this title already exists. Overwrite?"
+    "message": "Výzva s tímto názvem již existuje. Přepsat?"
   },
   "promptNoSavedYet": {
-    "message": "No prompts saved yet."
+    "message": "Zatím žádné uložené výzvy."
   },
   "promptAddBtn": {
-    "message": "Add Prompt"
+    "message": "Přidat výzvu"
   },
   "promptCopyTitle": {
-    "message": "Copy"
+    "message": "Kopírovat"
   },
   "promptDeleteTitle": {
-    "message": "Delete"
+    "message": "Smazat"
   },
   "promptSetGemLink": {
-    "message": "Set custom Gem link:"
+    "message": "Nastavit vlastní odkaz Gem:"
   },
   "promptInvalidGemLink": {
-    "message": "Invalid link. It must start with https://gemini.google.com/"
+    "message": "Neplatný odkaz. Musí začínat https://gemini.google.com/"
   },
   "newConversationBtn": {
     "message": "Nová konverzace"
