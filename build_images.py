@@ -3,12 +3,19 @@
 Build marketing screenshots for Gemini Folders.
 
 Usage:
-  python build_images.py                     # all locales, composed 1280×800
+  python build_images.py                     # all locales, 3 composed 1280×800 each
   python build_images.py --locale fr         # single locale
   python build_images.py --locale fr de ja   # multiple locales
   python build_images.py --mode raw          # raw popup PNGs (no composition)
   python build_images.py --build             # rebuild extension first
   python build_images.py --build --locale en # rebuild + single locale
+
+Output per locale (mode=both):
+  Promo_1_<locale>.png  — Folder + Prompt side by side (overview)
+  Promo_2_<locale>.png  — Folder mode, centered close-up
+  Promo_3_<locale>.png  — Prompt mode, centered close-up
+  Promo_4_<locale>.png  — Mobile sync: popup + phone bookmarks mockup
+  Promo_5_<locale>.png  — Context menu: right-click → folder submenu
 """
 
 import argparse
