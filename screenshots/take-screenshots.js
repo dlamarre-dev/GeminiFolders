@@ -45,6 +45,9 @@ const LOCALES = [
   { id: 'ro',    chrome: 'ro-RO'  },
   { id: 'sk',    chrome: 'sk-SK'  },
   { id: 'cs',    chrome: 'cs-CZ'  },
+  { id: 'tr',    chrome: 'tr-TR'  },
+  { id: 'id',    chrome: 'id-ID'  },
+  { id: 'zh_TW', chrome: 'zh-TW'  },
 ];
 
 const POPUP_WIDTH = 392;
