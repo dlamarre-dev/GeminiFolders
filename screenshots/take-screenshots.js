@@ -1128,7 +1128,7 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
         </svg>
       </div>
       <!-- Refresh: ↻ mirrored in RTL -->
-      <div class="nav-btn"><span style="display:inline-block;transform:${isRTL ? 'scaleY(-1)' : 'rotate(90deg)'};font-size:18px;color:#9aa0a6;line-height:1;">↻</span></div>
+      <div class="nav-btn"><span style="display:inline-block;transform:${isRTL ? 'scaleY(-1) rotate(-90deg)' : 'rotate(90deg)'};font-size:18px;color:#9aa0a6;line-height:1;">↻</span></div>
       <div class="addr-pill">
         <span class="addr-lock">🔒</span>
         <span class="addr-text">gemini.google.com</span>
