@@ -605,3 +605,6 @@
     body[dir="rtl"] .prompt-header {
       padding: 6px 12px 6px 6px;
     }
+    body[dir="rtl"] .prompt-insert-btn {
+      transform: scaleX(-1);
+    }

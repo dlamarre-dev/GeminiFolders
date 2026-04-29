@@ -290,7 +290,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
               const sendSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>`;
               const sendBtn = document.createElement('button');
-              sendBtn.className = 'action-btn';
+              sendBtn.className = 'action-btn prompt-insert-btn';
               sendBtn.innerHTML = sendSVG;
               sendBtn.title = chrome.i18n.getMessage("promptInsertBtn") || 'Insert into Gemini';
               sendBtn.addEventListener('click', async (e) => {

@@ -503,7 +503,7 @@ async function compositeSingleScreenshot(page, imagePath, title, outPath) {
 
 // ─── Mobile Sync Composition ──────────────────────────────────────────────────
 
-async function compositeMobileSync(page, folderPath, checkboxBox, localeData, outPath) {
+async function compositeMobileSync(page, folderPath, checkboxBox, localeData, isRTL, outPath) {
   const CANVAS_W  = 1280;
   const CANVAS_H  = 800;
   const TITLE_H   = 100;
@@ -528,10 +528,12 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, ou
   const phoneH     = Math.min(popupDispH, PHONE_DISP_H);
   const phoneW     = Math.round(phoneH * 0.52);
 
-  // Horizontal layout — center the block
-  const blockW = popupDispW + GAP + phoneW;
-  const leftX  = OUTER_PAD + Math.round((CANVAS_W - OUTER_PAD * 2 - blockW) / 2);
-  const phoneX = leftX + popupDispW + GAP;
+  // Horizontal layout — center the block; RTL: phone left, popup right
+  const blockW  = popupDispW + GAP + phoneW;
+  const blockL  = OUTER_PAD + Math.round((CANVAS_W - OUTER_PAD * 2 - blockW) / 2);
+  const popupX  = isRTL ? blockL + phoneW + GAP : blockL;
+  const phoneX  = isRTL ? blockL                : blockL + popupDispW + GAP;
+  const leftX   = popupX; // alias kept for circle-highlight calc
 
   // Vertical — center each panel in the available area
   const blockH  = Math.max(popupDispH, phoneH);
@@ -539,7 +541,9 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, ou
   const popupY  = topY + Math.round((blockH - popupDispH) / 2);
   const phoneY  = topY + Math.round((blockH - phoneH) / 2);
   const arrowCY = topY + Math.round(blockH / 2);
-  const arrowCX = leftX + popupDispW + Math.round(GAP / 2);
+  const arrowCX = isRTL
+    ? blockL + phoneW + Math.round(GAP / 2)
+    : blockL + popupDispW + Math.round(GAP / 2);
 
   const folderB64 = fs.readFileSync(folderPath).toString('base64');
 
@@ -596,10 +600,10 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, ou
     text-shadow: 0 2px 20px rgba(0,0,0,0.5);
   }
 
-  /* ── Extension popup (left) ──────────────────────────────── */
+  /* ── Extension popup ────────────────────────────────────── */
   .popup {
     position: absolute;
-    left: ${leftX}px; top: ${popupY}px;
+    left: ${popupX}px; top: ${popupY}px;
     width: ${popupDispW}px; height: ${popupDispH}px;
     border-radius: 18px;
     border: 2px solid rgba(255,255,255,0.32);
@@ -703,7 +707,7 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, ou
   </div>
   ${circleHTML}
 
-  <div class="sync-arrow">⟶</div>
+  <div class="sync-arrow">${isRTL ? '⟵' : '⟶'}</div>
 
   <div class="phone">
     <div class="phone-screen">
@@ -959,7 +963,7 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
   .gemini-topbar {
     height: 56px; flex-shrink: 0;
     display: flex; align-items: center;
-    padding: 0 20px 0 0; gap: 12px;
+    padding: ${isRTL ? '0 0 0 20px' : '0 20px 0 0'}; gap: 12px;
   }
   .gemini-topbar-title {
     flex: 1; font-size: 14px; color: #e8eaed; font-weight: 400;
@@ -979,20 +983,20 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
     flex: 1; padding: 24px 0; overflow: hidden;
     display: flex; flex-direction: column; align-items: center; gap: 0;
   }
-  /* User message bubble (right-aligned pill) */
+  /* User message bubble — always on the right (flex-end), aligned with ⋮ icon */
   .msg-user {
     max-width: 520px; width: 90%;
     background: #303134; border-radius: 18px;
     padding: 14px 20px; font-size: 14px; line-height: 1.6;
     color: #e8eaed; align-self: flex-end;
-    margin-right: 40px; margin-bottom: 20px;
+    ${isRTL ? 'margin-left: 40px;' : 'margin-right: 40px;'} margin-bottom: 20px;
     position: relative;
   }
   .msg-user-chevron {
-    position: absolute; right: 16px; top: 14px;
+    position: absolute; ${isRTL ? 'left: 16px;' : 'right: 16px;'} top: 14px;
     color: #9aa0a6; font-size: 12px;
   }
-  /* Gemini response (no bubble, with star icon) */
+  /* Gemini response — always on the left (flex-start), aligned with input box */
   .msg-ai {
     width: 90%; max-width: 680px; align-self: flex-start;
     margin-left: 40px; margin-bottom: 16px;
@@ -1003,10 +1007,10 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
   .msg-ai-star { flex-shrink: 0; margin-top: 2px; }
   .msg-ai-thinking {
     display: flex; align-items: center; gap: 8px;
-    font-size: 13px; color: #9aa0a6;
+    font-size: 13px; color: #9aa0a6; ${isRTL ? 'padding-right: 36px;' : 'padding-right: 0px;'}
     margin-bottom: 10px;
   }
-  .msg-ai-body { font-size: 14px; line-height: 1.65; color: #e8eaed; padding-left: 36px; }
+  .msg-ai-body { font-size: 14px; line-height: 1.65; color: #e8eaed; ${isRTL ? 'padding-right: 72px;' : 'padding-left: 36px;'} }
   .msg-ai-bold { font-weight: 600; }
 
   /* Input bar (two rows) */
@@ -1064,7 +1068,10 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
   /* ── Submenu — dark mode, width fits content ────────────── */
   .sub-menu {
     position: absolute;
-    left: ${SUB_X}px; top: ${SUB_Y}px;
+    ${isRTL
+      ? `right: ${CANVAS_W - CTX_X}px; left: auto;`
+      : `left: ${SUB_X}px;`}
+    top: ${SUB_Y}px;
     width: fit-content; min-width: 120px; background: #303134;
     border-radius: 8px;
     box-shadow: 0 4px 32px rgba(0,0,0,0.7), 0 1px 6px rgba(0,0,0,0.4);
@@ -1104,20 +1111,24 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
 
     <!-- Address bar (dark, Gemini-themed) -->
     <div class="addr-bar">
-      <!-- Back arrow: bigger, almost white (active) -->
+      <!-- Back arrow: active/white — points left in LTR, right in RTL -->
       <div class="nav-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.88)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="20" y1="12" x2="4" y2="12"/><polyline points="11,5 4,12 11,19"/>
+          ${isRTL
+            ? '<line x1="4" y1="12" x2="20" y2="12"/><polyline points="13,5 20,12 13,19"/>'
+            : '<line x1="20" y1="12" x2="4" y2="12"/><polyline points="11,5 4,12 11,19"/>'}
         </svg>
       </div>
-      <!-- Forward arrow: same size as back, dimmed (disabled) -->
+      <!-- Forward arrow: dimmed — points right in LTR, left in RTL -->
       <div class="nav-btn">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.28)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="4" y1="12" x2="20" y2="12"/><polyline points="13,5 20,12 13,19"/>
+          ${isRTL
+            ? '<line x1="20" y1="12" x2="4" y2="12"/><polyline points="11,5 4,12 11,19"/>'
+            : '<line x1="4" y1="12" x2="20" y2="12"/><polyline points="13,5 20,12 13,19"/>'}
         </svg>
       </div>
-      <!-- Refresh: ↻ rotated 90° clockwise -->
-      <div class="nav-btn"><span style="display:inline-block;transform:rotate(90deg);font-size:18px;color:#9aa0a6;line-height:1;">↻</span></div>
+      <!-- Refresh: ↻ mirrored in RTL -->
+      <div class="nav-btn"><span style="display:inline-block;transform:${isRTL ? 'scaleY(-1)' : 'rotate(90deg)'};font-size:18px;color:#9aa0a6;line-height:1;">↻</span></div>
       <div class="addr-pill">
         <span class="addr-lock">🔒</span>
         <span class="addr-text">gemini.google.com</span>
@@ -1166,7 +1177,7 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
         <!-- Gems section -->
         <div class="sb-nav-item" style="justify-content:space-between;">
           <span>Gems</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4c7c5" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c4c7c5" stroke-width="2"><polyline points="${isRTL ? '15 18 9 12 15 6' : '9 18 15 12 9 6'}"/></svg>
         </div>
         <div class="sb-nav-item" style="padding-left:24px;">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c4c7c5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -1243,7 +1254,7 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
           <div class="input-row2">
             <div class="input-left-tools">
               <!-- + as SVG for reliable vertical alignment -->
-              <span class="input-btn" style="padding:0 6px 0 0;">
+              <span class="input-btn" style="padding:${isRTL ? '0 0 0 6px' : '0 6px 0 0'};">
                 <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#c4c7c5" stroke-width="2.2" stroke-linecap="round">
                   <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
                 </svg>
@@ -1388,11 +1399,11 @@ async function run() {
           // Image 4: mobile sync — separate screenshot with sync checkbox checked
           const mobileSyncPath = path.join(OUT_DIR, `_raw_mobile_sync_${locale.id}.png`);
           const checkboxBox = await screenshotMobileSyncFolder(page, extId, localeData, mobileSyncPath);
-          await compositeMobileSync(composePage, mobileSyncPath, checkboxBox, localeData,
+          const isRTL = RTL_LOCALES.has(locale.id);
+          await compositeMobileSync(composePage, mobileSyncPath, checkboxBox, localeData, isRTL,
             path.join(OUT_DIR, `Promo_4_${locale.id}.png`));
           try { fs.unlinkSync(mobileSyncPath); } catch (_) {}
           // Image 5: context menu
-          const isRTL = RTL_LOCALES.has(locale.id);
           await compositeContextMenu(composePage, localeData, isRTL,
             path.join(OUT_DIR, `Promo_5_${locale.id}.png`));
           try { fs.unlinkSync(folderPath); } catch (_) {}
