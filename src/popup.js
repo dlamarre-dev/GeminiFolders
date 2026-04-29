@@ -1,5 +1,11 @@
 // popup.js
 document.addEventListener('DOMContentLoaded', async () => {
+  // RTL support — set dir="rtl" on body (not html) to avoid scroll-origin issues
+  const uiLang = chrome.i18n.getUILanguage();
+  if (['ar', 'he', 'ur', 'fa'].some(l => uiLang.startsWith(l))) {
+    document.body.setAttribute('dir', 'rtl');
+  }
+
   document.getElementById('appTitle').textContent = chrome.i18n.getMessage("appTitle");
   document.getElementById('searchInput').placeholder = chrome.i18n.getMessage("searchPlaceholder");
   document.getElementById('folderName').placeholder = chrome.i18n.getMessage("folderPlaceholder");

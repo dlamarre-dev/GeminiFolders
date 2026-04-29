@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 """
 Build marketing screenshots for Gemini Folders.
 
@@ -19,10 +20,15 @@ Output per locale (mode=both):
 """
 
 import argparse
+import io
 import os
 import shutil
 import subprocess
 import sys
+
+# Force UTF-8 output so box-drawing and emoji chars work on Windows consoles
+if hasattr(sys.stdout, 'buffer'):
+    sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 ROOT           = os.path.dirname(os.path.abspath(__file__))
 SCREENSHOTS_DIR = os.path.join(ROOT, 'screenshots')
@@ -35,6 +41,7 @@ VALID_LOCALES = [
     'ro', 'sk', 'cs',
     'tr', 'id', 'zh_TW',
     'vi', 'bn', 'nl', 'sw', 'tl', 'th', 'hu',
+    'ar',
 ]
 
 # ─── Helpers ──────────────────────────────────────────────────────────────────

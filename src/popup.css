@@ -568,3 +568,40 @@
       background: var(--input-bg);
       border-top-color: var(--accent-color);
     }
+
+    /* ── RTL overrides (Arabic, Hebrew, Urdu, Farsi) ──────────────────────── */
+    /* Fix: importFile uses position:absolute; left:-9999px which creates a
+       10391px scrollWidth in RTL, pushing all content off-screen.
+       position:fixed keeps it hidden without affecting document layout. */
+    body[dir="rtl"] #importFile {
+      position: fixed !important;
+    }
+    body[dir="rtl"] .mode-toggle-pill {
+      right: 3px;
+      left: auto;
+    }
+    body[dir="rtl"] .mode-toggle-pill.is-prompt {
+      transform: translateX(-100%);
+    }
+    body[dir="rtl"] .folder-icon {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+    body[dir="rtl"] .chat-link {
+      margin-right: 0;
+      margin-left: 8px;
+    }
+    body[dir="rtl"] .custom-dropdown {
+      right: auto;
+      left: 0;
+    }
+    body[dir="rtl"] .chat-checkbox {
+      margin: 0 0 0 8px;
+    }
+    body[dir="rtl"] .prompt-item--pinned {
+      border-left: none;
+      border-right: 3px solid var(--accent-color);
+    }
+    body[dir="rtl"] .prompt-header {
+      padding: 6px 12px 6px 6px;
+    }

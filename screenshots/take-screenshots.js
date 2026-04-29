@@ -25,7 +25,7 @@ const SAMPLE_DATA = require('./sample-data');
 
 // ─── Configuration ────────────────────────────────────────────────────────────
 
-const EXT_PATH = path.resolve(__dirname, '../dist/chrome');
+const EXT_PATH = path.resolve(__dirname, '../src');
 const OUT_DIR  = path.resolve(__dirname, '../Marketing/screenshots');
 
 const LOCALES = [
@@ -55,9 +55,12 @@ const LOCALES = [
   { id: 'tl',    chrome: 'tl'     },
   { id: 'th',    chrome: 'th-TH'  },
   { id: 'hu',    chrome: 'hu-HU'  },
+  { id: 'ar',    chrome: 'ar'     },
 ];
 
 const POPUP_WIDTH = 392;
+
+const RTL_LOCALES = new Set(['ar', 'he', 'ur', 'fa']);
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
@@ -227,9 +230,10 @@ async function screenshotPromptMode(page, extId, localeData, outPath) {
   await promptHeaders.nth(1).click();
   await page.waitForTimeout(300);
 
-  // Remove the 200px autoResize cap so full prompt text is visible
+  // Remove the 200px autoResize cap; also trim trailing whitespace to avoid phantom empty lines
   await page.evaluate(() => {
     document.querySelectorAll('.prompt-text-edit').forEach(ta => {
+      ta.value = ta.value.trimEnd();
       ta.style.height = 'auto';
       ta.style.height = ta.scrollHeight + 'px';
       ta.style.overflowY = 'hidden';
@@ -284,17 +288,18 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
   const dispW       = Math.round(POPUP_WIDTH * scale);
   const folderDispH = Math.round(folderH * scale);
   const promptDispH = Math.round(promptH * scale);
-  const sharedDispH = Math.min(folderDispH, promptDispH); // same height for both frames
+  const maxDispH    = Math.max(folderDispH, promptDispH); // each popup shown at natural height
 
   // Horizontal centering
   const blockW  = dispW * 2 + GAP;
   const leftX   = OUTER_PAD + Math.round((availW - blockW) / 2);
   const rightX  = leftX + dispW + GAP;
 
-  // Vertical centering: center the popup+label block in the space below the title
-  const totalContentH = sharedDispH + LABEL_MARGIN + LABEL_H;
-  const topY   = TITLE_H + Math.round((CANVAS_H - TITLE_H - totalContentH) / 2);
-  const labelY = topY + sharedDispH + LABEL_MARGIN;
+  // Vertical centering: center based on the taller popup
+  const totalContentH  = maxDispH + LABEL_MARGIN + LABEL_H;
+  const topY           = TITLE_H + Math.round((CANVAS_H - TITLE_H - totalContentH) / 2);
+  const folderLabelY   = topY + folderDispH + LABEL_MARGIN;
+  const promptLabelY   = topY + promptDispH + LABEL_MARGIN;
 
   // Strip emoji from labels — show text only below the popups
   const folderText = localeData.folderLabel.replace(/^\S+\s*/, '');
@@ -360,14 +365,13 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     height: auto;
   }
 
-  /* ── Both popups clipped to the same height ─────────────────────────────── */
-  .popup-folder { height: ${sharedDispH}px; }
-  .popup-prompt { height: ${sharedDispH}px; }
+  /* ── Each popup at its natural height (no forced clipping) ─────────────── */
+  .popup-folder { height: ${folderDispH}px; }
+  .popup-prompt { height: ${promptDispH}px; }
 
   /* ── Mode labels below each popup ──────────────────────────────────────── */
   .mode-label {
     position: absolute;
-    top: ${labelY}px;
     height: ${LABEL_H}px;
     display: flex;
     align-items: center;
@@ -379,8 +383,8 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     text-shadow: 0 2px 12px rgba(0,0,0,0.4);
     white-space: nowrap;
   }
-  .label-folder { left: ${leftX}px;  width: ${dispW}px; }
-  .label-prompt { left: ${rightX}px; width: ${dispW}px; }
+  .label-folder { left: ${leftX}px;  top: ${folderLabelY}px; width: ${dispW}px; }
+  .label-prompt { left: ${rightX}px; top: ${promptLabelY}px; width: ${dispW}px; }
 </style>
 </head>
 <body>
@@ -724,7 +728,7 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, ou
 
 // ─── Context Menu Composition ─────────────────────────────────────────────────
 
-async function compositeContextMenu(page, localeData, outPath) {
+async function compositeContextMenu(page, localeData, isRTL, outPath) {
   const CANVAS_W = 1280;
   const CANVAS_H = 800;
   const TITLE_H  = 100;
@@ -767,12 +771,16 @@ async function compositeContextMenu(page, localeData, outPath) {
   // Context menu position — centre of the main chat area
   const CONTENT_TOP = PANEL_Y + CHROME_H;
   const CONTENT_H   = PANEL_H - CHROME_H;
-  const CTX_X = PANEL_X + SIDEBAR_W + Math.round((PANEL_W - SIDEBAR_W - CTX_W) * 0.38);
+  const CTX_X = isRTL
+    ? PANEL_X + Math.round((PANEL_W - SIDEBAR_W - CTX_W) * 0.38)
+    : PANEL_X + SIDEBAR_W + Math.round((PANEL_W - SIDEBAR_W - CTX_W) * 0.38);
   const CTX_Y = CONTENT_TOP + Math.round((CONTENT_H - CTX_H) / 2) + 30;
 
   // Highlighted item (ctxMenuSave) is the last
   const highlightedTop = CTX_Y + CTX_PAD_V + CTX_ITEM_H * 4 + CTX_SEP_H * 2;
-  const SUB_X = CTX_X + CTX_W - 4;
+  const SUB_X = isRTL
+    ? Math.max(PANEL_X, CTX_X - SUB_W + 4)
+    : CTX_X + CTX_W - 4;
   const SUB_Y = Math.min(highlightedTop - CTX_PAD_V, PANEL_Y + PANEL_H - SUB_H - 10);
 
   // Sidebar conversations (first devChat1 is the active one)
@@ -791,8 +799,13 @@ async function compositeContextMenu(page, localeData, outPath) {
   // Gemini star SVG — smooth 4-pointed star matching the real logo
   const geminiStar = (size, id) => `<svg width="${size}" height="${size}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="${id}" x1="0" y1="1" x2="1" y2="0"><stop offset="0%" stop-color="#1C7DFF"/><stop offset="100%" stop-color="#8A5CF7"/></linearGradient></defs><path d="M12 2 C11.5 7.5 7.5 11.5 2 12 C7.5 12.5 11.5 16.5 12 22 C12.5 16.5 16.5 12.5 22 12 C16.5 11.5 12.5 7.5 12 2 Z" fill="url(#${id})"/></svg>`;
 
+  // RTL: submenu chevron points left; sidebar active pill corners flip
+  const ctxArrowPoints = isRTL ? '15 18 9 12 15 6' : '9 18 15 12 9 6';
+  const sbConvoRadius  = isRTL ? '24px 0 0 24px' : '0 24px 24px 0';
+  const sbConvoMargin  = isRTL ? 'margin-left: 8px; margin-right: 0;' : 'margin-right: 8px;';
+
   const html = `<!DOCTYPE html>
-<html>
+<html ${isRTL ? 'dir="rtl"' : ''}>
 <head>
 <meta charset="utf-8">
 <style>
@@ -925,7 +938,7 @@ async function compositeContextMenu(page, localeData, outPath) {
   .sb-convo {
     padding: 8px 16px; font-size: 13px; color: #c4c7c5;
     white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-    cursor: pointer; border-radius: 0 24px 24px 0; margin-right: 8px;
+    cursor: pointer; border-radius: ${sbConvoRadius}; ${sbConvoMargin}
   }
   .sb-convo.active {
     background: #2d3a6b; color: #d2e3fc; font-weight: 500;
@@ -1278,7 +1291,7 @@ async function compositeContextMenu(page, localeData, outPath) {
     <div class="ctx-sep"></div>
     <div class="ctx-item active">
       <span class="ctx-label">${iconImg}<span>${localeData.ctxMenuSaveLabel}</span></span>
-      <span class="ctx-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg></span>
+      <span class="ctx-arrow"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="${ctxArrowPoints}"/></svg></span>
     </div>
   </div>
 
@@ -1379,7 +1392,8 @@ async function run() {
             path.join(OUT_DIR, `Promo_4_${locale.id}.png`));
           try { fs.unlinkSync(mobileSyncPath); } catch (_) {}
           // Image 5: context menu
-          await compositeContextMenu(composePage, localeData,
+          const isRTL = RTL_LOCALES.has(locale.id);
+          await compositeContextMenu(composePage, localeData, isRTL,
             path.join(OUT_DIR, `Promo_5_${locale.id}.png`));
           try { fs.unlinkSync(folderPath); } catch (_) {}
           try { fs.unlinkSync(promptPath); } catch (_) {}
