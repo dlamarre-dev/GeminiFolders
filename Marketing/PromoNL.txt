@@ -26,7 +26,7 @@ Met versie 4.0 wordt Gemini Mappen uw echte Gemini-cockpit: organiseer gesprekke
 ⇅ Aangepast sorteren: Sorteer mappen en gesprekken direct (Nieuwste, Oudste, A-Z) met wijzigingen die direct zichtbaar zijn in uw mobiele synchronisatie.
 🤖 Slimme detectie en zoeken: Automatisch vooraf invullen van de exacte titel van uw gesprek en een realtime zoekbalk.
 ☁️ Cloudsynchronisatie en back-up: Toegang tot uw organisatie op al uw apparaten en exporteer uw gegevens als JSON.
-🎨 Material 3-ontwerp en meertalig: Ultracompact interface met volledig aangepaste modaldialoogvensters, automatische donkere modus en ondersteuning voor 16 talen!
+🎨 Material 3-ontwerp en meertalig: Ultracompact interface met volledig aangepaste modaldialoogvensters, automatische donkere modus en ondersteuning voor 27 talen!
 
 🛠️ HOE WERKT HET?
 

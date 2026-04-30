@@ -26,7 +26,7 @@ Mit Version 4.0 wird Gemini-Ordner zu Ihrem echten Gemini-Cockpit: Organisieren 
 ⇅ Benutzerdefinierte Sortierung: Sortieren Sie Ordner und Gespräche nach Belieben (Neueste, Älteste, A-Z) mit sofortiger Auswirkung auf die mobile Sync.
 🤖 Intelligente Erkennung & Suche: Automatische Vorausfüllung des Gesprächstitels und Echtzeit-Suchleiste.
 ☁️ Cloud-Synchronisierung & Backup: Behalten Sie Ihre Organisation auf allen Geräten und exportieren Sie Daten als JSON.
-🎨 Material 3 Design & Mehrsprachig: Ultra-kompakte Oberfläche mit vollständig angepassten Dialogen, automatischem Dunkelmodus und Unterstützung für 16 Sprachen!
+🎨 Material 3 Design & Mehrsprachig: Ultra-kompakte Oberfläche mit vollständig angepassten Dialogen, automatischem Dunkelmodus und Unterstützung für 27 Sprachen!
 
 🛠️ WIE FUNKTIONIERT ES?
 

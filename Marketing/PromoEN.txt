@@ -26,7 +26,7 @@ With version 4.0, Gemini Folders becomes your true Gemini cockpit: organize your
 ⇅ Custom Sorting: Sort folders and conversations on the fly (Newest, Oldest, A-Z) with changes instantly reflected in your mobile sync.
 🤖 Smart Detection & Search: Automatic pre-fill of your conversation's exact title and a real-time search bar.
 ☁️ Cloud Sync & Backup: Access your organization on all your devices and export your data as JSON.
-🎨 Material 3 Design & Multilingual: Ultra-compact interface with fully custom modal dialogs, automatic dark mode, and support for 16 languages!
+🎨 Material 3 Design & Multilingual: Ultra-compact interface with fully custom modal dialogs, automatic dark mode, and support for 27 languages!
 
 🛠️ HOW DOES IT WORK?
 

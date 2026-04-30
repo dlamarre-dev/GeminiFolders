@@ -26,7 +26,7 @@ Sürüm 4.0 ile Gemini Klasörler, gerçek Gemini kokpitiniz haline geliyor: kon
 ⇅ Özel Sıralama: Klasörleri ve konuşmaları anında sıralayın (En Yeni, En Eski, A-Z); değişiklikler mobil senkronizasyonunuza anında yansır.
 🤖 Akıllı Algılama & Arama: Konuşmanızın tam başlığının otomatik doldurulması ve gerçek zamanlı arama çubuğu.
 ☁️ Bulut Senkronizasyonu & Yedekleme: Tüm cihazlarınızda düzeninize erişin ve verilerinizi JSON olarak dışa aktarın.
-🎨 Material 3 Tasarım & Çok Dilli: Ultra kompakt arayüz, tamamen özel modal iletişim kutuları, otomatik karanlık mod ve 16 dil desteği!
+🎨 Material 3 Tasarım & Çok Dilli: Ultra kompakt arayüz, tamamen özel modal iletişim kutuları, otomatik karanlık mod ve 27 dil desteği!
 
 🛠️ NASIL ÇALIŞIR?
 

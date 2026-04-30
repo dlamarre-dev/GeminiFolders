@@ -26,7 +26,7 @@ A 4.0-s verzióval a Gemini Mappák valódi Gemini-kokpitjévé válik: rendszer
 ⇅ Egyéni rendezés: Rendezze a mappákat és a beszélgetéseket menet közben (Legújabb, Legrégebbi, A–Z), a változások azonnal tükröződnek a mobilszinkronizálásban.
 🤖 Intelligens felismerés és keresés: A beszélgetés pontos címének automatikus előkitöltése és valós idejű keresősáv.
 ☁️ Felhőszinkronizálás és biztonsági mentés: Érje el rendszerezését minden eszközén, és exportálja adatait JSON formátumban.
-🎨 Material 3 dizájn és többnyelvűség: Ultrakompakt felület teljesen egyéni modális párbeszédpanelekkel, automatikus sötét móddal és 16 nyelv támogatásával!
+🎨 Material 3 dizájn és többnyelvűség: Ultrakompakt felület teljesen egyéni modális párbeszédpanelekkel, automatikus sötét móddal és 27 nyelv támogatásával!
 
 🛠️ HOGYAN MŰKÖDIK?
 
