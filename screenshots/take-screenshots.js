@@ -319,7 +319,11 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     width: ${CANVAS_W}px;
     height: ${CANVAS_H}px;
     overflow: hidden;
-    background: linear-gradient(135deg, #020f1e 0%, #071d45 40%, #0f3fa8 80%, #1a56db 100%);
+    background:
+      radial-gradient(ellipse at 18% 70%, rgba(110,40,190,0.52) 0%, transparent 42%),
+      radial-gradient(ellipse at 82% 55%, rgba(35,65,210,0.42) 0%, transparent 42%),
+      radial-gradient(ellipse at 50% 105%, rgba(65,20,130,0.45) 0%, transparent 50%),
+      linear-gradient(155deg, #1c2248 0%, #13102e 55%, #09060f 100%);
     font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
     position: relative;
   }
@@ -334,11 +338,18 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
     font-size: 54px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: -0.01em;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    background: linear-gradient(125deg,
+      rgba(198,210,242,0.88) 0%,
+      rgba(228,235,255,0.94) 40%,
+      rgba(205,216,244,0.89) 65%,
+      rgba(222,230,252,0.92) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 16px rgba(80,120,255,0.3)) drop-shadow(0 2px 5px rgba(0,0,0,0.75));
   }
 
   /* ── Popup frames ───────────────────────────────────────────────────────── */
@@ -348,12 +359,14 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     top: ${topY}px;
     width: ${dispW}px;
     border-radius: 18px;
-    border: 2px solid rgba(255,255,255,0.32);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top-color: rgba(255,255,255,0.18);
+    border-left-color: rgba(255,255,255,0.15);
     box-shadow:
-      0 0 0 4px rgba(100,160,255,0.18),
-      0 0 28px rgba(90,150,255,0.55),
-      0 0 70px rgba(26,86,219,0.38),
-      0 20px 60px rgba(0,0,0,0.65);
+      0 0 0 1px rgba(100,150,255,0.08),
+      0 10px 30px rgba(80,120,255,0.07),
+      0 20px 60px rgba(0,0,0,0.55),
+      0 0 80px rgba(40,80,200,0.12);
     overflow: hidden;
   }
   .popup-right {
@@ -376,11 +389,13 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgba(255,255,255,0.88);
     font-size: ${LABEL_FONT}px;
     font-weight: 600;
     letter-spacing: -0.01em;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    background: linear-gradient(125deg, rgba(198,210,242,0.88) 0%, rgba(228,235,255,0.94) 40%, rgba(205,216,244,0.89) 65%, rgba(222,230,252,0.92) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.8)) drop-shadow(0 4px 14px rgba(0,0,0,0.5));
     white-space: nowrap;
   }
   .label-folder { left: ${leftX}px;  top: ${folderLabelY}px; width: ${dispW}px; }
@@ -389,6 +404,9 @@ async function compositeScreenshot(page, folderPath, promptPath, localeData, out
 </head>
 <body>
   <div class="title">${localeData.title}</div>
+
+  <div style="position:absolute;border-radius:50%;pointer-events:none;width:520px;height:520px;left:${leftX + Math.round(dispW / 2) - 260}px;top:${topY + Math.round(folderDispH / 2) - 260}px;background:radial-gradient(circle,rgba(100,50,230,0.22) 0%,rgba(60,80,220,0.1) 45%,transparent 70%);"></div>
+  <div style="position:absolute;border-radius:50%;pointer-events:none;width:520px;height:520px;left:${rightX + Math.round(dispW / 2) - 260}px;top:${topY + Math.round(promptDispH / 2) - 260}px;background:radial-gradient(circle,rgba(40,90,230,0.2) 0%,rgba(80,50,210,0.1) 45%,transparent 70%);"></div>
 
   <div class="popup popup-folder">
     <img src="data:image/png;base64,${folderB64}" alt="folder mode">
@@ -445,7 +463,11 @@ async function compositeSingleScreenshot(page, imagePath, title, outPath) {
     width: ${CANVAS_W}px;
     height: ${CANVAS_H}px;
     overflow: hidden;
-    background: linear-gradient(135deg, #020f1e 0%, #071d45 40%, #0f3fa8 80%, #1a56db 100%);
+    background:
+      radial-gradient(ellipse at 18% 70%, rgba(110,40,190,0.52) 0%, transparent 42%),
+      radial-gradient(ellipse at 82% 55%, rgba(35,65,210,0.42) 0%, transparent 42%),
+      radial-gradient(ellipse at 50% 105%, rgba(65,20,130,0.45) 0%, transparent 50%),
+      linear-gradient(155deg, #1c2248 0%, #13102e 55%, #09060f 100%);
     font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
     position: relative;
   }
@@ -458,11 +480,18 @@ async function compositeSingleScreenshot(page, imagePath, title, outPath) {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #ffffff;
     font-size: 54px;
-    font-weight: 700;
+    font-weight: 500;
     letter-spacing: -0.01em;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    background: linear-gradient(125deg,
+      rgba(198,210,242,0.88) 0%,
+      rgba(228,235,255,0.94) 40%,
+      rgba(205,216,244,0.89) 65%,
+      rgba(222,230,252,0.92) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 16px rgba(80,120,255,0.3)) drop-shadow(0 2px 5px rgba(0,0,0,0.75));
   }
   .popup {
     position: absolute;
@@ -471,12 +500,14 @@ async function compositeSingleScreenshot(page, imagePath, title, outPath) {
     width: ${dispW}px;
     height: ${dispH}px;
     border-radius: 18px;
-    border: 2px solid rgba(255,255,255,0.32);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top-color: rgba(255,255,255,0.18);
+    border-left-color: rgba(255,255,255,0.15);
     box-shadow:
-      0 0 0 4px rgba(100,160,255,0.18),
-      0 0 28px rgba(90,150,255,0.55),
-      0 0 70px rgba(26,86,219,0.38),
-      0 20px 60px rgba(0,0,0,0.65);
+      0 0 0 1px rgba(100,150,255,0.08),
+      0 10px 30px rgba(80,120,255,0.07),
+      0 20px 60px rgba(0,0,0,0.55),
+      0 0 80px rgba(40,80,200,0.12);
     overflow: hidden;
   }
   .popup img {
@@ -488,6 +519,7 @@ async function compositeSingleScreenshot(page, imagePath, title, outPath) {
 </head>
 <body>
   <div class="title">${title}</div>
+  <div style="position:absolute;border-radius:50%;pointer-events:none;width:560px;height:560px;left:${x + Math.round(dispW / 2) - 280}px;top:${y + Math.round(dispH / 2) - 280}px;background:radial-gradient(circle,rgba(80,50,230,0.22) 0%,rgba(50,80,220,0.1) 45%,transparent 70%);"></div>
   <div class="popup">
     <img src="data:image/png;base64,${imgB64}" alt="popup">
   </div>
@@ -588,7 +620,11 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, is
   body {
     width: ${CANVAS_W}px; height: ${CANVAS_H}px;
     overflow: hidden;
-    background: linear-gradient(135deg, #020f1e 0%, #071d45 40%, #0f3fa8 80%, #1a56db 100%);
+    background:
+      radial-gradient(ellipse at 18% 70%, rgba(110,40,190,0.52) 0%, transparent 42%),
+      radial-gradient(ellipse at 82% 55%, rgba(35,65,210,0.42) 0%, transparent 42%),
+      radial-gradient(ellipse at 50% 105%, rgba(65,20,130,0.45) 0%, transparent 50%),
+      linear-gradient(155deg, #1c2248 0%, #13102e 55%, #09060f 100%);
     font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
     position: relative;
   }
@@ -596,8 +632,10 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, is
     position: absolute; top: 0; left: ${OUTER_PAD}px;
     width: ${CANVAS_W - OUTER_PAD * 2}px; height: ${TITLE_H}px;
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 54px; font-weight: 700; letter-spacing: -0.01em;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    font-size: 54px; font-weight: 500; letter-spacing: -0.01em;
+    background: linear-gradient(125deg, rgba(198,210,242,0.88) 0%, rgba(228,235,255,0.94) 40%, rgba(205,216,244,0.89) 65%, rgba(222,230,252,0.92) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 16px rgba(80,120,255,0.3)) drop-shadow(0 2px 5px rgba(0,0,0,0.75));
   }
 
   /* ── Extension popup ────────────────────────────────────── */
@@ -606,12 +644,14 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, is
     left: ${popupX}px; top: ${popupY}px;
     width: ${popupDispW}px; height: ${popupDispH}px;
     border-radius: 18px;
-    border: 2px solid rgba(255,255,255,0.32);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-top-color: rgba(255,255,255,0.18);
+    border-left-color: rgba(255,255,255,0.15);
     box-shadow:
-      0 0 0 4px rgba(100,160,255,0.18),
-      0 0 28px rgba(90,150,255,0.55),
-      0 0 70px rgba(26,86,219,0.38),
-      0 20px 60px rgba(0,0,0,0.65);
+      0 0 0 1px rgba(100,150,255,0.08),
+      0 10px 30px rgba(80,120,255,0.07),
+      0 20px 60px rgba(0,0,0,0.55),
+      0 0 80px rgba(40,80,200,0.12);
     overflow: hidden;
   }
   .popup img { display: block; width: 100%; height: auto; }
@@ -701,6 +741,9 @@ async function compositeMobileSync(page, folderPath, checkboxBox, localeData, is
 </head>
 <body>
   <div class="title">${localeData.mobileScreenTitle}</div>
+
+  <div style="position:absolute;border-radius:50%;pointer-events:none;width:520px;height:520px;left:${popupX + Math.round(popupDispW / 2) - 260}px;top:${popupY + Math.round(popupDispH / 2) - 260}px;background:radial-gradient(circle,rgba(100,50,230,0.22) 0%,rgba(60,80,220,0.1) 45%,transparent 70%);"></div>
+  <div style="position:absolute;border-radius:50%;pointer-events:none;width:400px;height:400px;left:${phoneX + Math.round(phoneW / 2) - 200}px;top:${phoneY + Math.round(phoneH / 2) - 200}px;background:radial-gradient(circle,rgba(40,90,230,0.2) 0%,rgba(80,50,210,0.1) 45%,transparent 70%);"></div>
 
   <div class="popup">
     <img src="data:image/png;base64,${folderB64}" alt="folder mode">
@@ -817,7 +860,11 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
   body {
     width: ${CANVAS_W}px; height: ${CANVAS_H}px;
     overflow: hidden;
-    background: linear-gradient(135deg, #020f1e 0%, #071d45 40%, #0f3fa8 80%, #1a56db 100%);
+    background:
+      radial-gradient(ellipse at 18% 70%, rgba(110,40,190,0.52) 0%, transparent 42%),
+      radial-gradient(ellipse at 82% 55%, rgba(35,65,210,0.42) 0%, transparent 42%),
+      radial-gradient(ellipse at 50% 105%, rgba(65,20,130,0.45) 0%, transparent 50%),
+      linear-gradient(155deg, #1c2248 0%, #13102e 55%, #09060f 100%);
     font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif;
     position: relative;
   }
@@ -825,8 +872,10 @@ async function compositeContextMenu(page, localeData, isRTL, outPath) {
     position: absolute; top: 0; left: 24px;
     width: ${CANVAS_W - 48}px; height: ${TITLE_H}px;
     display: flex; align-items: center; justify-content: center;
-    color: #fff; font-size: 54px; font-weight: 700; letter-spacing: -0.01em;
-    text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    font-size: 54px; font-weight: 500; letter-spacing: -0.01em;
+    background: linear-gradient(125deg, rgba(198,210,242,0.88) 0%, rgba(228,235,255,0.94) 40%, rgba(205,216,244,0.89) 65%, rgba(222,230,252,0.92) 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 16px rgba(80,120,255,0.3)) drop-shadow(0 2px 5px rgba(0,0,0,0.75));
   }
 
   /* ── Chrome browser window ──────────────────────────────── */
