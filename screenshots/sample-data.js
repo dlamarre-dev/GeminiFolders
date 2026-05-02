@@ -1041,7 +1041,7 @@ module.exports = {
     folderLabel:      '📁 Folder Mode',
     promptLabel:      '📝 Prompt Mode',
     folderScreenTitle: 'Panatilihing maayos ang iyong mga pag-uusap',
-    promptScreenTitle: 'Ang iyong mga pinakamahusay na prompt, laging handa',
+    promptScreenTitle: 'Pinakamahusay mong prompt, laging handa',
     mobileScreenTitle: 'I-access ang mga Gemini chat sa iyong telepono',
     contextMenuScreenTitle: 'I-save ang pag-uusap sa isang right-click',
     ctxMenuSaveLabel: 'I-save sa Mga Folder ng Gemini',
